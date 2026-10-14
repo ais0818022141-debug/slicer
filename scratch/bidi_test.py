@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+test_html = """<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<style>
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; padding: 20px; line-height: 1.8; }
+.exp-opt-item { display: block; margin: 8px 0; padding-right: 12px; unicode-bidi: isolate; }
+.opt-letter-tag { color: #0284c7; font-weight: 800; margin-left: 6px; unicode-bidi: isolate; display: inline-block; }
+.exp-opt-desc { unicode-bidi: isolate; }
+.bad-box { border: 1px solid red; padding: 10px; margin: 10px 0; }
+.good-box { border: 1px solid green; padding: 10px; margin: 10px 0; }
+</style>
+</head>
+<body>
+<h2>المشكلة السابقة (كل الخيارات متصلة على سطر واحد):</h2>
+<div class="bad-box">
+الخيارات الأخرى: A) عبارة صحيحة؛ إنذاره أسوأ نسبياً من السرطانين الحليمي والجريبي (نظراً لميله للغزو الوعائي وعدم قبطه لليود المشع) ولكنه أفضل من اللامصنع؛ وبقيا 10 سنوات بين 70–90% بحسب المرحلة وترافقه مع MEN2B. B) عبارة صحيحة؛ يترافق في 25% من الحالات مع أشكال عائلية وراثية كمتلازمتي MEN 2A و MEN 2B وطفرات RET. C) عبارة صحيحة؛ يرتكز علاجه على الاستئصال التام للغدة مع تجريف العقد الرقبية المركزية ثنائي الجانب روتينياً (وتجريف عنق جذري عند وجود عقد رقبية مجسوسة أو إصابة العقد المركزية) بسبب الميل العالي للانتقال اللمفاوي. D) عبارة صحيحة؛ يمثل ارتفاع مستوى كالسيتونين المصل الواسم التشخيصي والمتابعي النوعي له.
+</div>
+
+<h2>الحل النموذجي (عزل Bidi وعناصر بلوك منفصلة لكل خيار):</h2>
+<div class="good-box">
+<b>الخيارات الأخرى:</b>
+<div class="exp-opt-item"><bdi class="opt-letter-tag">A)</bdi> <span class="exp-opt-desc">عبارة صحيحة؛ إنذاره أسوأ نسبياً من السرطانين الحليمي والجريبي (نظراً لميله للغزو الوعائي وعدم قبطه لليود المشع) ولكنه أفضل من اللامصنع؛ وبقيا 10 سنوات بين 70–90% بحسب المرحلة وترافقه مع MEN2B.&rlm;</span></div>
+<div class="exp-opt-item"><bdi class="opt-letter-tag">B)</bdi> <span class="exp-opt-desc">عبارة صحيحة؛ يترافق في 25% من الحالات مع أشكال عائلية وراثية كمتلازمتي MEN 2A و MEN 2B وطفرات RET.&rlm;</span></div>
+<div class="exp-opt-item"><bdi class="opt-letter-tag">C)</bdi> <span class="exp-opt-desc">عبارة صحيحة؛ يرتكز علاجه على الاستئصال التام للغدة مع تجريف العقد الرقبية المركزية ثنائي الجانب روتينياً (وتجريف عنق جذري عند وجود عقد رقبية مجسوسة أو إصابة العقد المركزية) بسبب الميل العالي للانتقال اللمفاوي.&rlm;</span></div>
+<div class="exp-opt-item"><bdi class="opt-letter-tag">D)</bdi> <span class="exp-opt-desc">عبارة صحيحة؛ يمثل ارتفاع مستوى كالسيتونين المصل الواسم التشخيصي والمتابعي النوعي له.&rlm;</span></div>
+</div>
+</body>
+</html>
+"""
+
+with open('scratch/bidi_test.html', 'w', encoding='utf-8') as f:
+    f.write(test_html)
+print("Successfully generated scratch/bidi_test.html")

@@ -1,0 +1,3339 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - النسائية (اضطرابات الدورة الطمثية)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #9D174D;
+            --primary-dark: #700B34;
+            --primary-rgb: 157, 23, 77;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - النسائية (اضطرابات الدورة الطمثية)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">التصنيف:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع التصنيفات (الكل - 58 سؤال)</option>
+                    <option value="topic-1">اضطرابات الدورة الطمثية (58 سؤال)</option>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل التصنيف المحدد (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">النسائية</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب المواضيع)</p>
+                <p class="stats-summary" id="statsSummary">58 سؤال • 1 مواضيع • 2018 - 2026</p>
+            </div>
+
+            <div class="index-section-title">فهرس المواضيع والتصنيفات</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="topic-1">
+                    <a href="#topic-1" class="index-row" data-group-id="topic-1" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018">
+                        <span class="index-topic-name">اضطرابات الدورة الطمثية</span>
+                        <span class="index-topic-meta">
+                            <span>2018 - 2026</span>
+                            <span class="index-count">58 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'topic-1', 'اضطرابات الدورة الطمثية')" title="تحميل اضطرابات الدورة الطمثية كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018" data-group-id="topic-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="topic-1">
+                    <div class="topic-title-text">اضطرابات الدورة الطمثية</div>
+                    <span class="topic-counter">58 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_gync_03" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">أي من الحالات التالية يعتبر أشهر سبب لانقطاع الطمث الثانوي لدى النساء في سن الإنجاب:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قصور الدرق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قصور النخامي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فشل المبيض المبكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">المبيض متعدد الكيسات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الحمل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يُعد &quot;الحمل&quot; هو السبب الفيزيولوجي الطبيعي الأول والأكثر شيوعاً على الإطلاق لانقطاع الطمث الثانوي لدى أي امرأة في سن النشاط التناسلي، ويجب استبعاده دائماً كخطوة بدئية إلزامية عبر اختبار الحمل قبل التفكير في الأسباب المرضية كالمبيض متعدد الكيسات أو قصور الغدد.</div></div>
+        
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_gync_04" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">فتاة 16 سنة لديها صفات جنسية ثانوية دون حدوث الطمث، الإجراء الأول هو:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">رنين مغناطيسي للدماغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تنظير بطن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فحص عياني للأعضاء التناسلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التصوير الصدوي للحوض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ايكو درق.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — فحص عياني للأعضاء التناسلية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عند مريضة بعمر 16 سنة تعاني من انقطاع طمث بدئي مع وجود صفات جنسية ثانوية نامية، فإن الإجراء الأول والأبسط بالعيادة هو الفحص العياني الظاهري للأعضاء التناسلية الخارجية لنفي وجود عيوب ميكانيكية انسدادية خلقية كعدم انثقاب غشاء البكارة أو وجود حجاب معترض.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_09" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">أفضل علاج لمتلازمة أشرمان:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تنظير باطن رحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فتح بطن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تعويض هرموني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">IVF.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">استئصال رحم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — تنظير باطن رحم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الخط العلاجي المختار والأفضل لتدبير متلازمة أشرمان هو فك وإزالة الالتصاقات الليفية المتشكلة داخل جوف الرحم جراحياً تحت الرؤية المباشرة عبر &quot;تنظير باطن الرحم&quot; (Hysteroscopy)، يليه إعطاء هرمونات داعمة لإعادة بناء البطانة ومنع نكس الالتصاقات.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_22" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">تم إجراء إيكو لفتاة بدينة تعاني من عد وشعرانية، لوحظ منظر عقد اللؤلؤ على سطح المبيض، التدبير المثالي:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إنقاص الوزن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ميتفورمين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تثقيب المبيض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تحريض الإباضة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">شادات GNRH.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — إنقاص الوزن.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> المظهر السريري والصدوي (عقد اللؤلؤ) يشير لمتلازمة المبيض متعدد الكيسات PCOS، والخط الأول والتدبير المثالي البدئي للمريضات البدينات هو &quot;إنقاص الوزن&quot; وتغيير نمط الحياة لاستعادة التوازن الهرموني، في حين تُعد الخيارات الأخرى علاجاً عرضياً أو مرحلة تالية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_25" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">فتاة 20 سنة تعاني من ألم بطني دوري وانقطاع طمث بدئي مع تطور ثديين طبيعي، وأشعار الإبط والعانة ضمن الطبيعي، التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متلازمة ماير روكيتانسكي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">عدم انثقاب غشاء البكارة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">متلازمة تورنر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">متلازمة عدم الحساسية للأندروجين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">حجاب مهبلي طولاني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — عدم انثقاب غشاء البكارة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انقطاع الطمث البدئي المترافق مع ألم بطني دوري (طمث خفي) مع تطور كامل وطبيعي للصفات الجنسية الثانوية (الثدي والأشعار) يوجه لـ &quot;عدم انثقاب غشاء البكارة&quot;، بينما روكيتانسكي وعدم الحساسية للأندروجين لا يترافقان مع ألم دوري لغياب الرحم.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_35" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">كل مايلي صحيح في متلازمة أشرمان ماعدا:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تحدث نتيجة لتجريف جائر لبطانة الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التجريف الجنائي قد يكون أحد الأسباب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الإصابة السلية تسبب حدوثها.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تركيب اللوالب تدبير علاجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">العلاج بفك الالتصاقات بتنظير البطن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — العلاج بفك الالتصاقات بتنظير البطن.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> فك وإصلاح التصاقات متلازمة أشرمان داخل جوف الرحم يتم حصرياً وجراحياً عبر &quot;تنظير باطن الرحم&quot; (Hysteroscopy) وليس تنظير البطن (Laparoscopy) الذي لا يرى داخل التجويف، بينما السل واللوالب كحاجز مؤقت والتجريف حقائق صحيحة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_42" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">الصحيح فيما يخص متلازمة المبيض متعدد الكيسات:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">لا يزيد مقاومة انسولين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">لا إباضة مزمنة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نقص استراديول مديد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص حساسية للأندروجين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">لا شيء مما سبق.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — لا إباضة مزمنة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عدم الإباضة المزمن هو معيار تشخيصي أساسي لمتلازمة المبيض متعدد الكيسات وفقاً لمعايير روتردام نتيجة الاضطرابات الهرمونية التي تعطل نضج الجريبات، بينما العبارات الأخرى خاطئة حيث تشهد المتلازمة زيادة في مقاومة الإنسولين، وتكون مستويات الاستراديول طبيعية أو مرتفعة، وتتميز بفرط الأندروجين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_43" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">كل ما يلي من أسباب انقطاع الطمث البدئي، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">حجاب مهبلي معترض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">حجاب مهبلي طولاني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عدم انثقاب غشاء بكارة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">متلازمة ماير - روكيتيناسكي - كوستر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">متلازمة تورنر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — حجاب مهبلي طولاني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الحجاب المهبلي الطولاني هو عيب تشريحي لا يعوق تدفق دم الحيض للخارج وبالتالي لا يؤدي إلى انقطاع طمث، في حين يسبب الحجاب المعترض وعدم انثقاب غشاء البكارة انسداداً كاملاً وتراكم الدم (طمث خفي)، وتتميز متلازمة ماير بغياب الرحم، ومتلازمة تورنر بفشل المبيضين وكلها تسبب انقطاع طمث بدئي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_44" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل ما يلي من أسباب انقطاع الطمث الثانوي، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">القصور المبيضي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">القصور الدرقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">القهم العصبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الارضاع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">عسرة تصنع الأقناد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — عسرة تصنع الأقناد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عسرة تصنع الأقناد (مثل متلازمة تورنر) هي فشل خلقي في تطور المبايض منذ الحياة الجنينية وتحولها لشريط ليفي وبالتالي تسبب انقطاع طمث بدئي وليس ثانوياً، بينما القصور المبيضي والقصور الدرقي والقهم العصبي والإرضاع هي أسباب تؤدي إلى غياب وتوقف الطمث بعد أن كان موجوداً سابقاً (انقطاع ثانوي).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_52" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">العرض الأشيع في متلازمة شيهان هو:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انقطاع الطمث.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">زيادة كمية إدرار الحليب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">أعراض فرط نشاط درق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أعراض فرط نشاط قشر الكظر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قصور كلوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — انقطاع الطمث.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة شيهان هي قصور في النخامية الشامل ناتج عن احتشاء الغدة بسبب نزف ولادي غزير، ويعتبر انقطاع الطمث الثانوي وعدم عودة الدورة الشهرية هو العرض الأشيع والأبرز نتيجة تلف الخلايا المفرزة لهرموني FSH و LH، بينما الخيارات الأخرى خاطئة حيث يحدث فشل في الإرضاع (وليس زيادة إدرار الحليب) وقصور في الدرق وقصور في الكظر.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_53" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">كل ما يلي من أسباب انقطاع الطمث الثانوي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فرط البرولاكتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">القهم العصبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قصور المبيض الباكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">متلازمة أشرمان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">متلازمة كالمان.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — متلازمة كالمان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة كالمان تسبب انقطاع طمث بدئي (أولي) وليس ثانوياً بسبب فشل هجرة الخلايا العصبية الوطائية المفرزة لـ GnRH وفشل اتمام البلوغ، في حين أن فرط البرولاكتين والقهم العصبي وقصور المبيض الباكر ومتلازمة أشرمان كلها عوامل تؤدي إلى غياب الطمث بعد بدءه الطبيعي وتصنف كأسباب لانقطاع الطمث الثانوي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_76" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">كل ما يلي صحيح فيما يخص المبيض متعدد الكيسات ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ارتفاع LH.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">بدانة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انقطاع طمث ثانوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">شعرانية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انقطاع طمث بدئي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — انقطاع طمث بدئي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة المبيض متعدد الكيسات ترتبط بحدوث اضطرابات طمثية كشح الطمث أو تباعد الطموث وتعد من أشهر أسباب انقطاع الطمث &quot;الثانوي&quot; (بنسبة 15-20%) وليس انقطاع الطمث البدئي، في حين أن بقية الخيارات تمثل السمات الهرمونية والسريرية الكلاسيكية للمتلازمة كارتفاع هرمون LH والبدانة والشعرانية الناتجة عن فرط الأندروجين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_77" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">كل مايلي صحيح في علاجات المبيض عديد الكيسات ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">حمية غذائية وتمارين رياضية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">مركبات البروجسترون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">مانعات الحمل الفموية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ميتفورمين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">شادات GnRH.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — شادات GnRH.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> شادات (مشابهات) GnRH لا تُعد خطاً علاجياً أساسياً في متلازمة المبيض متعدد الكيسات بل تُستخدم لتدبير حالات أخرى كالأندومتريوز أو الأورام الليفية، بينما تشمل الخطة العلاجية الأساسية للمتلازمة تعديل نمط الحياة بالحمية والرياضة، ومانعات الحمل المركبة أو البروجسترون لتنظيم الدورة وحماية البطانة، والميتفورمين لتحسين مقاومة الإنسولين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_78" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">كل مايلي من أسباب انقطاع الطمث البدئي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تناذر تورنر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التأنيث الخصوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">متلازمة ماير-روكيتانسكي-كيوستر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فرط تصنع قشر كظر خلقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">داء شيهان.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — داء شيهان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة (داء) شيهان هي من الأسباب النخامية الوطائية الموثقة لإحداث انقطاع الطمث &quot;الثانوي&quot; الحاصل نتيجة احتشاء ونخر الغدة النخامية بعد نزف ولادي غزير وصدمة، بينما عسر تصنع الأقناد (تورنر)، والتأنيث الخصوي، ومتلازمة ماير-روكيتانسكي، وفرط تصنع قشر الكظر الخلقي كلها عيوب خلقية تسبب انقطاع طمث بدئي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_79" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">كل ما يلي من أسباب انقطاع الطمث الثانوي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">القهم العصبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التأنيث الخصوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">المبيض متعدد الكيسات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">فرط برولاكتين الدم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — التأنيث الخصوي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة التأنيث الخصيوي (عدم الحساسية للأندروجين) هي عيب وراثي خلقي (46,XY) يغيب فيه الرحم والمبايض تماماً وبالتالي تتظاهر المريضة منذ البداية بانقطاع طمث &quot;بدئي&quot; (أولي)، في حين أن الحمل (الأشيع)، والقهم العصبي، والمبيض متعدد الكيسات، وفرط برولاكتين الدم كلها من أشهر أسباب انقطاع الطمث الثانوي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_89" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">كل ما يلي من أسباب النزف الطمثي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الورم العضلي الليفي الرحمي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">العضال الغدي المنتشر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">بوليبات بطانة الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">داء أشرمان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">فرط تصنع بطانة الرحم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — داء أشرمان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة (داء) أشرمان تتميز بوجود التصاقات تندبية داخل جوف الرحم تؤدي سريرياً إلى حدوث انقطاع طمث ثانوي أو شح طمث شديد وليس نزفاً طمثياً، في حين تمثل الخيارات الأخرى كالأورام الليفية داخل العضلية أو تحت المخاطية، والعضال الغدي (الأدينوميوز)، وبوليبات وفرط تصنع البطانة أشهر الأسباب العضوية لإحداث النزف الطمثي الغزير.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_90" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">كل مايلي من الأسباب العضوية للنزف التناسلي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">أورام ليفية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">بوليبات باطن الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فرط تصنع بطانة الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اللاإباضة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">العضال الغدي (الأدينوميوز).</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — اللاإباضة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الدورات اللاإباضية (كما في متلازمة المبيض متعدد الكيسات) تعد السبب الأكثر شيوعاً للنزوف الرحمية الوظيفية الناتجة عن خلل هرموني (تأثير الإستروجين غير المعاكس) بغياب أي سبب تشريحي، بينما تمثل الأورام الليفية والبوليبات وفرط التصنع والأدينوميوز أسباباً بنيوية تشريحية تصنف كأسباب عضوية للنزف.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_95" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">كل ما يلي من أسباب انقطاع الطمث البدئي، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متلازمة تورنر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التانيث الخصوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الغياب الخلقي للرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">المتلازمة الكظرية التناسلية الباكرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">متلازمة شيهان.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — متلازمة شيهان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة شيهان هي قصور نخامي مكتسب ينجم عن نزف ولادي غزير واحتشاء النخامة، وبالتالي تسبب انقطاع طمث &quot;ثانوي&quot; بعد الحمل والولادة وليس بدئياً، في حين أن متلازمات تورنر والتأنيث الخصوي والغياب الخلقي للرحم والمتلازمة الكظرية هي عيوب خلقية تسبب انقطاع طمث بدئي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_96" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">كل ما يلي من أسباب انقطاع الطمث الثانوي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فرط البرولاكتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">القهم العصبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قصور المبيض الباكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">متلازمة أشرمان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تناذر كالمان.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — تناذر كالمان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تناذر كالمان هو اضطراب خلقي جيني ينجم عن فشل هجرة الخلايا المفرزة لـ GnRH، ويتظاهر بعدم حدوث الطمث نهائياً منذ البداية (انقطاع طمث بدئي)، في حين أن فرط البرولاكتين والقهم العصبي وقصور المبيض المبكر ومتلازمة أشرمان تسبب غياب الطمث بعد وجوده (انقطاع ثانوي).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_97" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">20.</span>
+                    <span class="q-stem">كل ما يلي من الأدوية و العلاجات الممكنة للنزف الرحمي الوظيفي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">Tranexamic حمض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الأدوية الخافضة للدوبامين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">Mirena لولب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">موانع الحمل الفموية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">مضادات الالتهاب اللاستيروئيدية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الأدوية الخافضة للدوبامين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الأدوية الخافضة للدوبامين (مثل مضادات الذهان) تمنع تأثير الدوبامين المثبط للبرولاكتين، مما يؤدي إلى فرط برولاكتين الدم وإحداث اضطرابات طمثية ولا علاقة لها بعلاج النزف الرحمي الوظيفي، بينما يُستخدم حمض الترانيكساميك، واللولب الهرموني ميرينا، وموانع الحمل، ومضادات الالتهاب NSAIDs لتقليل كمية الدم وضبط النزف.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_98" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">21.</span>
+                    <span class="q-stem">كل ما يلي من الأسباب الغدية لانقطاع الطمث الثانوي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تناذر أشرمان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فرط برولاكتين الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قصور الدرق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">داء كوشنغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">المبيض متعدد الكيسات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — تناذر أشرمان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة (تناذر) أشرمان هي سبب &quot;عضوي بنيوي تشريحي&quot; ينجم عن التصاقات ميكانيكية داخل جوف الرحم إثر تجريف جائر، وليست سبباً وظيفياً غدياً، بينما يعتبر فرط برولاكتين الدم، وقصور الدرق، وداء كوشينغ، ومتلازمة المبيض متعدد الكيسات من الأسباب الغدية الهرمونية الموثقة لانقطاع الطمث الثانوي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_109" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">22.</span>
+                    <span class="q-stem">كل ما يلي صحيح في ما يخص المبيض متعدد الكيسات عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ارتفاع LH.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">البدانة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انقطاع طمث ثانوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">شعرانية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تقارب طموث.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — تقارب طموث.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة المبيض متعدد الكيسات ترتبط سريرياً بحدوث شح في الطمث أو تباعد في الطموث (ندرة طموث تفصل بينها فترات أطول من 35 يوماً) أو انقطاع طمث تام، ولا تتظاهر إطلاقاً بتقارب الطموث، في حين يمثل ارتفاع هرمون LH والبدانة والشعرانية وانقطاع الطمث الثانوي السمات التشخيصية الكلاسيكية الموثقة للمتلازمة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_116" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">23.</span>
+                    <span class="q-stem">فتاة 16 سنة لم تر الحيض، يظهر الفحص غياب تطور الثدي وأعضاء حوضية أنثوية صغيرة، الاختبار التشخيصي الأكثر فائدة في تحديد سبب انقطاع الطمث:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">FSH.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">استراديول المصل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">خزعة المبيض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تستوستيرون المصل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تصوير الرأس بالرنين المغناطيسي MRI.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — FSH.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> معايرة هرمون FSH يمثل الخطوة الأولى والأكثر فائدة للتفريق بين القصور المبيضي الأولي (حيث يرتفع FSH) والقصور المركزي الوطائي النخامي (حيث ينخفض أو يبقى طبيعياً) في سياق انقطاع الطمث البدئي وغياب الصفات الجنسية، بينما الاستقصاءات الأخرى كاستراديول المصل وخزعة المبيض والرنين لا تُطلب كخطوة تقييمية أولى.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_122" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">24.</span>
+                    <span class="q-stem">يعد الآتي من العلامات السريرية للمبييض متعدد الكيسات PCOS، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ندرة طموث وانقطاع طمث.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الشعرانية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">خشونة الصوت.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ضعف الخصوبة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">البدانة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — خشونة الصوت.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> خشونة الصوت ليست من العلامات السريرية المرافقة لمتلازمة المبيض متعدد الكيسات بل توجه لأورام مفرزة للأندروجين أو اضطرابات كظرية شديدة، في حين تشمل المظاهر الكلاسيكية للمتلازمة ندرة الطمث وانقطاعه، والشعرانية، والبدانة، وضعف الخصوبة والعقم.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_136" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">25.</span>
+                    <span class="q-stem">كل مما يلي من أسباب انقطاع الطمث البدئي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متلازمة كالمان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">متلازمة ماير - روكيتيناسكي - كوستر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">متلازمة أشرمان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">متلازمة تورنر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">عدم انثقاب غشاء البكارة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — متلازمة أشرمان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة أشرمان تنجم عن التصاقات تندبية داخل جوف الرحم إثر تداخلات جراحية كالكحت وتسبب انقطاع طمث ثانوياً (بعد وجود طمث سابق) وليست من أسباب انقطاع الطمث البدئي، بينما تعتبر متلازمات كالمان وماير وتورنر وعدم انثقاب غشاء البكارة عيوباً وتشوهات خلقية تسبب انقطاع طمث بدئي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_141" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">26.</span>
+                    <span class="q-stem">الحالة التي يمكن أن تسبب زيادة تركيز برولاكتين الدم وانقطاع طمث ثانوي:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فرط نشاط الغدة الدرقية البدئي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الشدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عدم انثقاب غشاء البكارة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">متلازمة تورنر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">فرط تصنع الغدة الكظرية الخلقي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الشدة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> حالات الشدة النفسية والضغط العصبي الشديد تحفز إفراز هرمون البرولاكتين مركزياً مما يؤدي إلى فرط برولاكتين الدم وتثبيط محور الإباضة مسببة انقطاع طمث ثانوياً، بينما غشاء البكارة وتورنر وفرط تصنع الكظر تسبب انقطاع طمث بدئياً، وقصور الدرق هو ما يرفع البرولاكتين وليس فرط نشاطها.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_150" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">27.</span>
+                    <span class="q-stem">أشيع أذية تحدث في استئصال الرحم (الصح):</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ربط الحالب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قطع الحالب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">أذية المثانة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تمزق الإحليل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">النواسير الحالبية المهبلية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — أذية المثانة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> أذية المثانة تمثل &quot;أشيع&quot; أذية تشريحية تحدث أثناء عمليات استئصال الرحم عبر البطن نظراً لالتصاقها الوثيق بجدار عنق الرحم السفلي، في حين أن ربط أو قطع الحالب يعتبر من &quot;أخطر&quot; الاختلاطات الجراحية المرافقة للاستئصال وليس الأشيع عدداً.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_151" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">28.</span>
+                    <span class="q-stem">فتاة تبلغ من العمر 16 عاماً لم تر الحيض يظهر الفحص غياب لتطور الثدي وأعضاء حوضية أنثوية صغيرة ولكنها طبيعية من باقي النواحي، أي من الاختبارات التشخيصية التالية هي الأكثر فائدة في تحديد سبب انقطاع الطمث (الصح):</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">FSH.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">استراديول المصل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">خزعة المبيض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تستوستيرون المصل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تصوير الرأس بالرنين المغناطيسي MRI.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — FSH.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> معايرة هرمون FSH يمثل الفحص الأكثر فائدة والخطوة الأولى للتفريق بين القصور المبيضي المحيطي (حيث يرتفع FSH نتيجة غياب التلقيم الراجع كالخصى الخيطية في تورنر) والقصور المركزي الوطائي النخامي (حيث ينخفض FSH)، بينما معايرة باقي الهرمونات أو إجراء الرنين لا تطلب كخطوة بدئية في هذا السياق.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_152" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">29.</span>
+                    <span class="q-stem">يوجد عند مريضة متلازمة المبيض متعدد الكيسات زيادة في مقاومة الأنسولين في أغلب الأحيان (معروفة باسم متلازمة X الاستقلابية). الاضطرابات الطمثية اللاحقة هي نتيجة لزيادة (الصح):</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">مستوى الـ estradiol الحر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">مستوى الـ FSH.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">مستوى التستوستيرون الحر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الإنتاج الكبدي لـ SHBG.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تثبيط عمل على الخلايا القرابية (الصندوقية).</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — مستوى التستوستيرون الحر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> مقاومة الإنسولين وفرط أنسولين الدم ينشطان إنتاج الأندروجينات من الخلايا القرابية ويثبطان إنتاج بروتين SHBG من الكبد، مما يؤدي مباشرة إلى ارتفاع شديد في مستوى &quot;التستوستيرون الحر&quot; النشط في الدم وهو المسؤول عن التظاهرات السريرية والاضطرابات الطمثية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_180" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">30.</span>
+                    <span class="q-stem">أهم سبب للشعرانية:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الـ pco.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">متلازمة كوشينغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">سرطان كظر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فرط تنسج كظري خلقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الورم المذكر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الـ pco.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة المبيض متعدد الكيسات (PCOS) تعد السبب الأكثر شيوعاً والأهم على الإطلاق للشعرانية لدى النساء بنسبة عالية نتيجة الاضطراب الهرموني وارتفاع مستويات الأندروجينات الحرة والنشطة في الدوران، بينما تعتبر الأسباب الكظرية والأورام المذكرة أسباباً نادرة جداً سريرياً.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_181" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">31.</span>
+                    <span class="q-stem">فتاة عمرها 16 سنة مع تأخر طمث وبالفحص عدم تطور ثدي وأعضاء تناسلية صغيرة ولكن طبيعية، الإجراء المناسب:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">FSH.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تصوير نخامي بـ MRI.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">خزعة مبيض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">استروجين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تستسترون.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — FSH.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> غياب الطمث حتى سن 16 سنة مع غياب الصفات الجنسية الثانوية (تطور الثدي) يمثل انقطاع طمث بدئياً، ويعتبر قياس هرمون FSH الإجراء الأول والأكثر فائدة للتفريق بين القصور المبيضي الأولي (حيث يرتفع FSH كالمناسل الخيطية في تورنر) والقصور المركزي الوطائي النخامي (حيث ينخفض الهرمون).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_182" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">32.</span>
+                    <span class="q-stem">كل ما يلي يسبب ارتفاع البرولاكتين ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ورم غدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">السكري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">متلازمة سرج تركي فارغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">أذيات الصدر وجراحاته.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — السكري.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الداء السكري ليس له صلة سببية أو فيزيولوجية مرضية بإحداث فرط برولاكتين الدم، في حين تشمل الحالات الموثقة لارتفاع البرولاكتين حدوث الحمل كحالة فيزيولوجية، والأورام الغدية النخامية المجهرية كأشيع سبب مرضي، ومتلازمة السرج التركي الفارغ، وأذيات الصدر وجراحاته.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_188" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">33.</span>
+                    <span class="q-stem">كل مما يلي يسبب انقطاع طمث ثانوي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">سوء تكون مولر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قصور مبيضي بدئي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">مبيض متعدد الكيسات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قصور الدرق.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — سوء تكون مولر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تشوهات سوء تكون (تصنع) قنوات مولر (مثل الغياب الخلقي للرحم والمهبل) تمثل عيوباً بنيوية خلقية تمنع حدوث الطمث منذ البداية وتصنف كأسباب لانقطاع الطمث البدئي وليس الثانوي، في حين يمثل القصور المبيضي والدرقي والـ PCO والحمل أشهر أسباب انقطاع الطمث الثانوي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_189" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">34.</span>
+                    <span class="q-stem">كل ما يلي من أسباب انقطاع طمث بدئي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الحجاب المهبلي المعترض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">عدم انثقاب غشاء البكارة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تناذر تورنر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">متلازمة أشرمان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">عدم تصنع مهبل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — متلازمة أشرمان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة أشرمان تنجم عن التصاقات تندبية داخل جوف الرحم إثر تداخلات جراحية جائرة وتؤدي ميكانيكياً لإحداث انقطاع طمث ثانوي (بعد وجود طمث سابق) وليست من أسباب البدئي، بينما يعتبر الحجاب المعترض وعدم انثقاب البكارة وتناذر تورنر وعدم تصنع المهبل عوامل لإحداث انقطاع بدئي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_190" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">35.</span>
+                    <span class="q-stem">مريضة أثناء تقييمها بسبب عقم تم تشخيص أشرمان ماذا يحدث لديها:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">Amenorrhea.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">Uterine bleeding.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">Polymenorrhea.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">Dysmenorrhea.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — Amenorrhea.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة أشرمان تمثل سبباً بنيوياً ميكانيكياً يؤدي نسيجياً وتندبياً لإغلاق جوف الرحم وتخريب الطبقة القاعدية للبطانة، مما يتظاهر سريرياً بغياب وتوقف الدورة الطمثية التام المصنف طبياً باسم انقطاع الطمث الثانوي العضوي (Amenorrhea)، ولا تسبب العوارض الأخرى كغزارة النزف أو تعدد الطموث.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_193" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">36.</span>
+                    <span class="q-stem">امرأة عمرها 25 لديها انقطاع طمث ثانوي مع نقص الاستروجين وفرط برولاكتين الدم . التشخيص:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تورنر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فرط قشر كظر خلقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">شدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فرط درق بدئي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">عدم انثقاب غشاء البكارة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — شدة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> حالات الشدة والضغط العصبي ترفع البرولاكتين وتثبط إفراز GnRH مما يقود لنقص الإستروجين وانقطاع طمث ثانوي، بينما تورنر وفرط تصنع الكظر وعدم انثقاب البكارة تسبب انقطاع طمث بدئياً، وقصور الدرق هو ما يسبب فرط البرولاكتين وليس فرط نشاطها البدئي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_199" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">37.</span>
+                    <span class="q-stem">النزف الرحمي الوظيفي، كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">من أشكاله تقارب طموث.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">من أشكاله غزارة دم الطمث.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يترافق مع قصور الدرق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نزف بعد سن اليأس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">من أسبابه الكيسة المبيضية الوظيفية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — نزف بعد سن اليأس.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> النزف الرحمي الوظيفي ينتج عن خلل هرموني وظيفي في محور الإباضة خلال سن النشاط التناسلي ولا يحدث إطلاقاً بعد سن اليأس (الضهي) حيث النزوف هناك تكون عضوية وبنيوية غالباً، بينما يتخذ النزف الوظيفي أشكالاً كتقارب وغزارة الطموث، ويترافق مع قصور الدرق والكيسات المبيضية الوظيفية واللاإباضة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_204" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">38.</span>
+                    <span class="q-stem">معايير روتردام لتشخيص الـ PCO:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">زيادة البروتينات الرابطة للهرمونات الجنسية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع أندروجين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الميتفورمين يحرض الإباضة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نزف طمثي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">مبييض طبيعي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — ارتفاع أندروجين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> معايير روتردام لتشخيص متلازمة المبيض متعدد الكيسات تتطلب وجود معيارين على الأقل من بينها: فرط الأندروجين السريري أو الكيميائي الحيوي (ارتفاع أندروجين)، وتباعد الطموث أو اللاإباضة، ومظهر المبيض متعدد الكيسات بالإيكو، في حين تنخفض بروتينات SHBG بالمتلازمة، ولا يعتمد تشخيصها على النزف أو المبيض الطبيعي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_209" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">39.</span>
+                    <span class="q-stem">كل ما يلي من النزوف الوظيفية ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نزف تماس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نزف الإباضة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نزف الغرسات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نزف بعد حبوب موانع الحمل الفموية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نزف السحب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — نزف تماس.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> نزف التماس (النزف عقب الجماع) ينتج حصرياً عن أسباب عضوية تشريحية كبوليبات أو سرطانات عنق الرحم أو المهبل ولا يُعد نزفاً وظيفياً، بينما تعتبر نزوف الإباضة، ونزف الغرسات، والنزوف التالية لنسيان أو استخدام حبوب موانع الحمل، ونزف السحب كلها نزوفاً وظيفية ناتجة عن خلل أو تبدل هرموني مؤقت.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_211" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">40.</span>
+                    <span class="q-stem">في المبيض متعدد الكيسات كل ما يلي صحيح ماعدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نقص مقاومة الانسولين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">زيادة الإصابة بأمراض قلبية وعائية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">زيادة الإصابة بسرطان باطن الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">شواك أسود.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">حدوث فرط تصنع في بطانة الرحم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — نقص مقاومة الانسولين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> السمة والآلية الفيزيولوجية المرضية الأساسية لحالات متلازمة المبيض متعدد الكيسات هي وجود &quot;زيادة في مقاومة الإنسولين&quot; وفرط أنسولين الدم وليس نقصها، بينما بقية الخيارات صحيحة حيث ترتبط بالمتلازمة الاستقلابية والأمراض الوعائية، وفرط الإستروجين يسبب فرط تصنع وبسرطان باطن الرحم، والشواك الأسود عرض شائع.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_212" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">41.</span>
+                    <span class="q-stem">كل ما يلي يسبب انقطاع طمث فيزيولوجي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الإرضاع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قبل البلوغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">بعد الضهي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تناذر أشرمان.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — تناذر أشرمان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة (تناذر) أشرمان هي حالة مرضية عضوية ميكانيكية تنتج عن التصاقات تندبية داخل جوف الرحم إثر تجريف جائر وليست سبباً فيزيولوجياً طبيعياً لانقطاع الطمث، في حين يعتبر الحمل والإرضاع وقبل سن البلوغ وبعد سن الضهي (اليأس) هي الحالات الفيزيولوجية الطبيعية الكلاسيكية الموثقة لغياب وانقطاع الطمث.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_225" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">42.</span>
+                    <span class="q-stem">من أسباب انقطاع الطمث البدئي كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متلازمة أشرمان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">متلازمة التأنيث الخصوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عدم انثقاب غشاء البكارة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">متلازمة كالمان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قهم عصبي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — متلازمة أشرمان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة أشرمان تنجم عن التصاقات تندبية ميكانيكية داخل جوف الرحم إثر تجريف جائر للبطانة وتُصنف كسبب لانقطاع الطمث الثانوي وليس البدئي، في حين يمثل تأنيث الخصية، وعدم انثقاب غشاء البكارة، ومتلازمة كالمان، والقهم العصبي الشديد في مرحلة المراهقة أسباباً موثقة لإحداث انقطاع طمث بدئي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_227" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">43.</span>
+                    <span class="q-stem">كل مما يلي في المبيض المتعدد الكيسات صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إنقاص الوزن مفيد في التدبير.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">زيادة الغلوبيولينات الرابطة للهرمونات الجنسية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يزداد خطر الإصابة القلبية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">لتحريض الإباضة نستخدم الكلوميفين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تثقيب المبيض.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — زيادة الغلوبيولينات الرابطة للهرمونات الجنسية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تتميز متلازمة المبيض متعدد الكيسات بنقص وتثبيط الإنتاج الكبدي للغلوببيولينات الرابطة للهرمونات الجنسية SHBG بفعل فرط أنسولين الدم مما يرفع الأندروجين الحر، في حين أن إنقاص الوزن يفيد البدينات، ويزداد خطر الإصابة القلبية الوعائية، ويُستخدم الكلوميفين لتحريض الإباضة، وتثقيب المبيض جراحياً يحسن فرص الحمل.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_232" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">44.</span>
+                    <span class="q-stem">في تنظير الرحم كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تخدير عام عند أخذ الخزعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تكشف الالتصاقات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تفيد في تشخيص حالات اضطراب الطمث.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">صدمة نقص الحجم مضاد استطباب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يتم تشخيص حالات نقص الخصوبة بالخزعة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — تخدير عام عند أخذ الخزعة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العبارة خاطئة لأن تنظير باطن الرحم استقصاء تشخيصي وعلاجي طفيف التوغل يمكن إجراؤه في العيادة الخارجية بتخدير موضعي أو حتى بدونه ولا يتطلب التخدير العام إلزامياً عند أخذ الخزعة، في حين يفيد في كشف وفك الالتصاقات، وتشخيص أسباب اضطرابات الطمث، وعوامل نقص الخصوبة، وتُعد الصدمة مضاد استطباب له.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_249" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">45.</span>
+                    <span class="q-stem">في علاج النزوف الرحمية الوظيفية ما يلي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">حمض الترانكساميك.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">موانع حمل فموية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">لولب نحاسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">NSAIDS.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تجريف الرحم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — لولب نحاسي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> اللولب النحاسي لا يُستخدم إطلاقاً في علاج النزوف الوظيفية بل قد يفاقم غزارة دم الطمث والتشنجات، والعلاج المعتمد يشمل اللولب الهرموني البروجستروني (ميرينا)، وحمض الترانكساميك كمضاد لانحلال الفيبرين، ومضادات الالتهاب غير الستيروئيدية NSAIDs لتقليل الفقد، وموانع الحمل الفموية وتجريف الرحم.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_252" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">46.</span>
+                    <span class="q-stem">في المبيض متعدد الكيسات ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ارتفاع الأندروجين ليس من المعايير التشخيصية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نشاهد أكثر من 12 كيسة مبيض على الايكو.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يجب تحري تحمل السكر قبل حدوث الحمل وخلال بواكر الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">له أساس مورثي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التدبير بإعطاء موانع الحمل المركبة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ارتفاع الأندروجين ليس من المعايير التشخيصية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العبارة خاطئة لأن فرط الأندروجين السريري أو البيوكيميائي (ارتفاع أندروجين الدم) يعتبر معيار تشخيصي أساسي لتشخيص متلازمة المبيض متعدد الكيسات وفق معايير روتردام، وتشمل بقية المعايير رؤية 12 كيسة أو أكثر بالإيكو، وله أساس مورثي، ويدبر هرمونياً بموانع الحمل.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_253" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">47.</span>
+                    <span class="q-stem">يفيد تنظير الرحم في كل ما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تناذر أشرمان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ورم عضلي ضمن جدار الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">بوليب رحمي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">حجاب رحمي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تسمك البطانة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — ورم عضلي ضمن جدار الرحم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تنظير باطن الرحم (Hysteroscopy) يستقصي الآفات المتواجدة داخل التجويف والبطانة ولا يمكنه تشخيص أو تدبير الأورام العضلية المتوضعة عميقاً &quot;ضمن جدار الرحم&quot; (الأورام الليفية الخلالية)، في حين يفيد تشخيصياً وعلاجياً في فك التصاقات أشرمان، واستئصال البوليبات، وإصلاح الحجاب الرحمي، وتأكيد تسمك البطانة بالخزعة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_263" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">48.</span>
+                    <span class="q-stem">انقطاع الطمث ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فرط البرولاكتين أشيع سبب لانقطاع الطمث الثانوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انقطاع الطمث البدئي عندما لا يبدأ بعد عمر 16 سنة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تعدد الطموث أقل من 21 يوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تباعد الطموث أكثر من 35 يوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قد يكون سبب انقطاع الطمث البدئي خلل صبغي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — فرط البرولاكتين أشيع سبب لانقطاع الطمث الثانوي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العبارة خاطئة لأن الحمل والإرضاع هما السبب الفيزيولوجي الأشيع على الإطلاق لانقطاع الطمث الثانوي وليس فرط البرولاكتين، بينما الخيارات الأخرى تعاريف صحيحة طبياً لانقطاع البدئي، وتعدد الطموث، وتباعدها، والدور الصبغي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_264" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">49.</span>
+                    <span class="q-stem">الاستقصاءات اللازمة في انقطاع الطمث الثانوي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">مسحة من عنق الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">برولاكتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">استروجين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">FSH.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">HCG.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — مسحة من عنق الرحم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> مسحة (لطاخة) عنق الرحم ليست من الاستقصاءات الهرمونية أو التشخيصية المطلوبة لتقييم انقطاع الطمث الثانوي، في حين تشمل الاستقصاءات الأساسية اختبار الحمل HCG أولاً، يليه عيار البرولاكتين، وهرمون FSH و LH، والاستروجين (17 بيتا إستراديول) لتقييم المحور.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_272" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">50.</span>
+                    <span class="q-stem">كل ما يلي من استطبابات استئصال الرحم ماعدا:</span>
+                </div>
+                <span class="q-date-badge">شباط 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">أدينوميوز.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تمزق رحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">هبوط رحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">LGSIL.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ورم ليفي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — LGSIL.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الآفات المجهرية منخفضة الدرجة LGSIL لا تشكل استطباباً لاستئصال الرحم بل تتطلب المراقبة فقط، في حين يُستطب استئصال الرحم في الحالات الحادة كتمزق الرحم، والآفات السليمة كالأورام الليفية، والأدنيوميوز العرضي المعند، وهبوط الرحم الشائع.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_280" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">51.</span>
+                    <span class="q-stem">سيدة بعد الولادة خضعت لتجريف رحم ولم تحتج خلال الولادة لنقل دم انقطع الطمث بعدها التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">شباط 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متلازمة المبيض متعدد الكيسات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تناذر شيهان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تناذر روكيتانسكي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تناذر أشرمان.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — تناذر أشرمان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة (تناذر) أشرمان تنتج عن وجود التصاقات تندبية داخل جوف الرحم إثر تجريف جائر بعد الولادة أو الإجهاض مما يتوافق مع القصة، بينما شيهان يستدعي قصة نزف صاعق ونقل دم لحصول احتشاء النخامى، وروكيتانسكي يسبب انقطاعاً بدئياً.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_284" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">52.</span>
+                    <span class="q-stem">امرأة عمرها 30 سنة (2 حمول ، 1 ولد) عندها انقطاع طمث من 9 شهور و TSH والبرولاكتين طبيعي الفحص المطلوب:</span>
+                </div>
+                <span class="q-date-badge">شباط 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">عيار FSH المصل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إيكو حوضي لنفي أورام المبيضين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">اختبار البروجسترون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اختبار الحمل المناعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">لا شيء مما سبق.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — اختبار الحمل المناعي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> أول استقصاء وإجراء يطلب إلزامياً في حال انقطاع الطمث الثانوي لامرأة في سن النشاط التناسلي هو اختبار الحمل لنفيه تماماً، ولا يتم الانتقال للاستقصاءات الهرمونية الأخرى كعيار FSH أو اختبار سحب البروجسترون إلا بعد نفي الحمل.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_290" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">53.</span>
+                    <span class="q-stem">كل ما يلي من أسباب انقطاع الطمث الثانوي مع نقص الإستروجين عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متلازمة المبيض متعدد الكيسات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">متلازمة شيهان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التعرض لشدة شديدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">مشكلة وطائية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الضهي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — متلازمة المبيض متعدد الكيسات.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في متلازمة المبيض متعدد الكيسات PCOS لا ينقص مستوى الإستروجين بل قد يرتفع بفعل التحول المحيطي للأندروجينات، بينما تتسبب متلازمة شيهان، الشدة الشديدة، الاضطرابات الوطائية، والضهي (سن اليأس) بانقطاع طمث ثانوي يترافق وصفياً مع نقص الإستروجين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_291" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">54.</span>
+                    <span class="q-stem">كل ما يلي صحيح في استئصال الرحم عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انثقاب الرحم أحد استطباباته.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">هبوط الرحم من الاستطبابات الشائعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الداء الحوضي الالتهابي لا يتحسن باستئصال الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">استئصال الرحم تحت التام يستطب في استئصال الرحم الولادي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">فرط تصنع بطانة الرحم من أحد استطباباته.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — الداء الحوضي الالتهابي لا يتحسن باستئصال الرحم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العبارة خاطئة لأن الحالات المزمنة من الداء الحوضي الالتهابي PID وتشكّل كتل الملحقات أو خراج بوقي مبيضي غير المستجيب على المعالجات المحافظة تتحسن وتُدبر سريرياً عبر جراحة استئصال الرحم، في حين تشمل بقية الاستطبابات الصحيحة الموثقة الحالات الحادة كانثقاب الرحم، والآفات السليمة كهبوط الرحم الشائع، وفرط تصنع البطانة، والاستئصال تحت التام في جراحات التوليد.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_293" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">55.</span>
+                    <span class="q-stem">كل ما يلي يمكن أن يتأذى في استئصال الرحم عن طريق البطن عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ربط الحالب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">أذية المثانة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قطع الحالب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تمزق الإحليل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نواسير حالبية مهبلية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — تمزق الإحليل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تمزق الإحليل لا يحدث في عمليات استئصال الرحم عبر البطن لتوضعه البعيد تشريحياً في الأسفل، في حين تشمل أذيات المسالك البولية الموثقة كاختلاطات لاستئصال الرحم أذية المثانة (وهي الأشيع)، وقطع أو ربط الحالب (وهي الأخطر)، والنواسير الحالبية المهبلية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_295" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">56.</span>
+                    <span class="q-stem">كل ما يلي من أسباب انقطاع الطمث الثانوي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متلازمة أشرمان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">متلازمة شيهان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">متلازمة التأنيث الخصيوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الإرضاع.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — متلازمة التأنيث الخصيوي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة التأنيث الخصوي (عدم الحساسية للأندروجين) هي حالة وراثية (XY) تتظاهر بنمط ظاهري أنثوي من غير رحم، وبالتالي تسبب انقطاع طمث بدئياً وليس ثانوياً، بينما يمثل الحمل والإرضاع أشيع الأسباب الفيزيولوجية للثانوي، وتناذر شيهان وأشرمان أسباباً ثانوية مرضية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_299" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">57.</span>
+                    <span class="q-stem">ما يلي يدخل في تدبير النزف التناسلي في سن النشاط التناسلي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">حبوب موانع الحمل المركبة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">لولب نحاسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">NSAIDS.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ترانكساميك أسيد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ميدروكسي بروجسترون أسيتات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — لولب نحاسي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> اللولب النحاسي لا يدخل في تدبير النزف التناسلي بل يُعد مسبباً لغزارة دم الطمث والتشنجات، واللولب الهرموني البروجستوني (ميرينا) هو الذي يفيد، وتشمل العلاجات الطبية الأخرى حمض الترانكساميك، والـ NSAIDs، وحبوب منع الحمل، والمركبات البروجسترونية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_gync_301" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">58.</span>
+                    <span class="q-stem">كل ما يلي صحيح في متلازمة المبيض متعدد الكيسات عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يمكن كشف المقاومة للأنسولين باختبار تحمل الغلوكوز.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">وجود الشعرانية واللاإباضة كافي للتشخيص.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">أشيع سبب للعقم الإباضي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يدخل في التشخيص التفريقي مع فرط نشاط الدرق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">في إمراضية المبيض متعدد الكيسات نقص الأروماتاز داخل المبيض.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — يدخل في التشخيص التفريقي مع فرط نشاط الدرق.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة المبيض متعدد الكيسات (PCOS) تدخل في التشخيص التفريقي لحالات فرط الأندروجين مع متلازمة كوشينغ وفرط تنسج الكظر وأورامه، وليس مع فرط نشاط الغدة الدرقية، وتشمل سماتها المقاومة للإنسولين، ونقص الأروماتاز، وهي أشيع سبب للعقم اللاإباضي.</div></div>
+        
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "58 سؤال • 1 مواضيع • 2018 - 2026";
+        const originalDocTitle = "بنك الأسئلة - النسائية (اضطرابات الدورة الطمثية)";
+        const subjectName = "النسائية";
+        const groupByMode = "topic";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

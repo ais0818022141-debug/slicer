@@ -1,0 +1,3007 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - الصدرية (أخماج الجهاز التنفسي)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0369A1;
+            --primary-dark: #073B5E;
+            --primary-rgb: 3, 105, 161;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - الصدرية (أخماج الجهاز التنفسي)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">التصنيف:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع التصنيفات (الكل - 44 سؤال)</option>
+                    <option value="topic-1">أخماج الجهاز التنفسي (44 سؤال)</option>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل التصنيف المحدد (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">الصدرية</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب المواضيع)</p>
+                <p class="stats-summary" id="statsSummary">44 سؤال • 1 مواضيع • 2018 - 2026</p>
+            </div>
+
+            <div class="index-section-title">فهرس المواضيع والتصنيفات</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="topic-1">
+                    <a href="#topic-1" class="index-row" data-group-id="topic-1" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018">
+                        <span class="index-topic-name">أخماج الجهاز التنفسي</span>
+                        <span class="index-topic-meta">
+                            <span>2018 - 2026</span>
+                            <span class="index-count">44 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'topic-1', 'أخماج الجهاز التنفسي')" title="تحميل أخماج الجهاز التنفسي كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018" data-group-id="topic-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="topic-1">
+                    <div class="topic-title-text">أخماج الجهاز التنفسي</div>
+                    <span class="topic-counter">44 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_pulmo_075" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">كل مما يلي عن الساركوئيد صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قد يتراق مع حمامى عقدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">لا تفيد الستيروئيدات في جميع مراحل المرض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ضخامات عقدية سرية مزدوجة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إنذار المرض جيد عموماً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التشخيص ممكن بالخزعة القصبية وعبر القصبات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — لا تفيد الستيروئيدات في جميع مراحل المرض.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> نظراً لأن الستيروئيدات ليست ضرورية أو مستطبة في جميع مراحل ودرجات المرض (إذ تحدث هدأة عفوية في نسبة كبيرة من الحالات، خاصة المرحلة I)، فإن اعتبار هذه العبارة بحد ذاتها استثناءً يتطلب فهمها ضمن سياق أن العلاج الستيروئيدي يُستطب بشكل انتقائي فقط عند وجود مظاهر شديدة أو أذية عضو هدف، وليس كقاعدة عامة مطلقة لكل المرضى في كل مرحلة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> قد يترافق مع حمامى عقدة ضمن متلازمة لوفغرين - ضخامة العقد السرية ثنائية الجانب هي الموجودة الشعاعية النموذجية للمرحلة I - إنذار المرض جيد عموماً مع هدأة عفوية شائعة - يمكن تأكيد التشخيص بالخزعة القصبية وعبر القصبات (حبيبوم غير متجبن).</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">غالبية حالات الساركوئيد (خاصة المرحلة I) تتراجع عفوياً دون علاج؛ تُحجز الستيروئيدات الجهازية للحالات ذات المظاهر الجهازية الشديدة أو فرط كلس الدم أو إصابة العين/الكلية أو تدهور وظائف التنفس.</span>
+        </div>
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_pulmo_076" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">كل ما يلي صحيح في متلازمة الكرب التنفسي الحاد ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">العلاج الأساسي بالمدرات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">هي وذمة رئة غير قلبية المنشأ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ارتشاحات رئوية مزدوجة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قد تنجم عن التهاب البنكرياس الحاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نقص أكسجة هام.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — العلاج الأساسي بالمدرات.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> بما أن الوذمة الرئوية في ARDS غير قلبية المنشأ وناتجة عن زيادة نفوذية الغشاء السنخي الشعري وليس عن فرط الحمل الحجمي أو ارتفاع الضغط الهيدروستاتيكي، فإن المدرات لا تصحح الآلية الممرضة الأساسية، والعلاج الأساسي هو الدعم التنفسي (أكسجين، تهوية آلية) ومعالجة السبب المحرض.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> هي بالفعل وذمة رئة غير قلبية المنشأ - الارتشاحات الرئوية المزدوجة موجودة سلفاً شعاعياً - قد تنجم عن التهاب البنكرياس الحاد كسبب غير رئوي معروف - نقص الأكسجة الهام سمة أساسية مميزة للمتلازمة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">ARDS هي وذمة رئة غير قلبية المنشأ ناتجة عن أذية سنخية شعرية منتشرة؛ العلاج الأساسي داعم (أكسجين، تهوية آلية بحماية رئوية) وعلاج السبب المستبطن، وليس المدرات.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_077" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">كل ما يلي يمكن أن يكون في سياق متلازمة هورنر ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">توسع قصبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انعدام التعرق في نفس الجانب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انسدال الجفن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">غؤور المقلة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تقبض الحدقة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — توسع قصبي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> توسع القصبات هو مرض تشريحي في جدار القصبات لا علاقة له بالسلسلة الودية العنقية، بينما متلازمة هورنر تنجم حصراً عن انقطاع المسار الودي المغذي للعين والوجه في نفس الجانب.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> انعدام التعرق بنفس الجانب من العلامات الأربع الأساسية - انسدال الجفن (ptosis) علامة كلاسيكية - غؤور المقلة (enophthalmos) علامة مميزة - تقبض الحدقة (miosis) هو أحد أهم مكونات المتلازمة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">متلازمة هورنر = تقبض الحدقة (miosis) + انسدال الجفن (ptosis) + غؤور المقلة (enophthalmos) + انعدام التعرق بنفس الجانب (anhidrosis)، وتشاهد كلاسيكياً في ورم قمة الرئة (Pancoast).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_078" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">الاستقصاء الأفضل لتشخيص COPD:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تصوير طبقي محوري للصدر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">غازات الدم الشريانية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">اختبار وظائف الرئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">زرع قشع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">صورة الصدر البسيطة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — اختبار وظائف الرئة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> قياس التنفس (وظائف الرئة) هو الاستقصاء الوحيد الذي يقيس بشكل موضوعي درجة انسداد الطرق الهوائية (عبر نسبة FEV1/FVC) وشدته، وهو ما يعرّف المرض تشخيصياً ويصنف مراحله وفق التوصيات المعيارية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التصوير الطبقي المحوسب يفيد في تقييم النفاخ والاختلاطات لكنه ليس معياراً تشخيصياً - غازات الدم الشرياني تقيّم القصور التنفسي لا التشخيص الأولي - زرع القشع يفيد في تحديد الجرثوم المسبب للسورات الخمجية - صورة الصدر البسيطة قد تظهر فرط الانتفاخ لكنها غير تشخيصية بحد ذاتها.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تشخيص COPD يعتمد على نسبة FEV1/FVC &lt; 0.7 بعد الموسعات القصبية؛ يُستخدم % FEV1 المتوقع لتصنيف شدة الانسداد من المرحلة 1 إلى 4.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_079" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">كل ما يلي صحيح فيما يتعلق بانصباب الجنب الرشحي (النتعي) ما عدا:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">من أسبابه قصور القلب الاحتقاني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">من أسبابه التدرن الرئوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">بروتين السائل اقل من 50% من بروتين المصل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">عدد الكريات البيض أقل من 1000.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">من أسبابه تشمع كبد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — من أسبابه التدرن الرئوي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التدرن الرئوي (السل) يسبب التهاباً مباشراً في الغشاء الجنبي مع زيادة نفوذية الأوعية الدقيقة، فينتج عنه انصباب نضحي غني بالبروتين وLDH وليس انصباباً رشحياً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> قصور القلب الاحتقاني سبب شائع كلاسيكي للانصباب الرشحي - بروتين السائل أقل من 50% من بروتين المصل معيار مميز للرشحي وفق لايت - عدد الكريات البيض أقل من 1000 موجودة نموذجية للرشحي - تشمع الكبد ينقص الألبومين والضغط التناضحي فيسبب انصباباً رشحياً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الانصباب الرشحي: بروتين السائل/المصل &lt; 0.5، LDH منخفض، خلايا بيض قليلة (&lt;1000)؛ أسبابه الشائعة قصور القلب وتشمع الكبد ونقص الألبومين، بينما التدرن سبب نضحي كلاسيكي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_080" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">في ذات الرئة كل مايلي يشاهد بالفحص السريري ماعدا:</span>
+                </div>
+                <span class="q-date-badge">تموز 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">خراخر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فرط وضاحة بالقرع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نفخة انبوبية بالإصغاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">زيادة بالاهتزازات الصوتية المنتقلة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تسرع تنفس.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — فرط وضاحة بالقرع.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التكثف السنخي في ذات الرئة يستبدل الهواء بنسيج التهابي كثيف، مما ينقص الرنين ويعطي أصمية (dullness) بالقرع وليس فرط وضاحة؛ فرط الوضاحة يشاهد في حالات احتباس الهواء كالنفاخ أو الريح الصدرية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الخراخر علامة إصغائية نموذجية للتكثف - النفخة الأنبوبية تنتج عن توصيل الصوت عبر النسيج المتكثف - زيادة الاهتزازات الصوتية المنتقلة علامة كلاسيكية للتكثف - تسرع التنفس عرض شائع مرافق لنقص الأكسجة والحمى.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تكثف الرئة (ذات الرئة) يعطي أصمية بالقرع (وليس فرط وضاحة)، مع نفخة أنبوبية، خراخر، وزيادة الاهتزازات الصوتية المنتقلة نتيجة توصيل الصوت عبر النسيج المتكثف.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_081" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">الطريقة الافضل لتشخيص الصمة الرئوية:</span>
+                </div>
+                <span class="q-date-badge">تموز 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ايكو القلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صورة الصدر الشعاعية البسيطة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تحليل d-dimer.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تخطيط القلب الكهربائي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تصوير طبقي محوري للصدر وعائي CTPA.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — تصوير طبقي محوري للصدر وعائي CTPA.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التصوير الطبقي المحوسب الوعائي للرئة (CTPA) يُظهر مباشرة الخثرة ضمن لمعة الشرايين الرئوية بدقة تشخيصية عالية (حساسية ونوعية مرتفعتان)، مما يجعله الاستقصاء التأكيدي الأمثل حالياً للصمة الرئوية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> إيكو القلب يقيّم الحمل على البطين الأيمن كدليل غير مباشر فقط - صورة الصدر البسيطة غالباً طبيعية أو غير نوعية - D-dimer اختبار حساس لكن غير نوعي يستخدم للنفي وليس التأكيد - تخطيط القلب الكهربائي يظهر علامات غير نوعية كـ S1Q3T3.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">CTPA يحدد موقع وحجم الخثرة مباشرة داخل الشرايين الرئوية بدقة عالية؛ تُستخدم اختبارات أخرى (D-dimer، ECG، صورة الصدر) للفرز أو الدعم لا للتأكيد النهائي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_082" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">كل ما يلي هو من علاجات ذات الرئة المكتسبة في المجتمع عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">كلاريثرومايسين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ليفوفلوكساسين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ايزونيازيد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أزيترومايسين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">سيفالوسبورين جيل ثالث.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — ايزونيازيد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الإيزونيازيد هو أحد أدوية العلاج الرباعي المعياري للتدرن الرئوي وليس له أي دور في علاج ذات الرئة الجرثومية المكتسبة من المجتمع، إذ لا يغطي الجراثيم المسببة النموذجية كالمكورات الرئوية والمفطورات.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> كلاريثرومايسين ماكروليد فعال يغطي الجراثيم النموذجية وغير النموذجية - ليفوفلوكساسين فلوروكينولون تنفسي فعال ضد CAP - أزيترومايسين ماكروليد بديل شائع الاستخدام - سيفالوسبورين الجيل الثالث خيار وريدي في الحالات الشديدة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تشمل خيارات علاج CAP: أموكسيسيلين، الماكروليدات (كلاريثرومايسين/أزيترومايسين)، الفلوروكينولونات التنفسية (ليفوفلوكساسين)، والسيفالوسبورينات من الجيل الثالث؛ الإيزونيازيد دواء نوعي لعلاج التدرن فقط.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_083" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل ما يلي من اختلاطات ذات الرئة عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انصباب جنب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قصور تنفسي حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تقيح جنب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">خراجة رئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تناذر هورنر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — تناذر هورنر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة هورنر تنتج عن غزو ورمي (كسرطان قمة الرئة/ورم بانكوست) للسلسلة الودية العنقية، وهي آلية مختلفة تماماً عن العملية الالتهابية الخمجية في ذات الرئة، لذا لا تُعد من اختلاطاتها.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الانصباب الجنبي المجاور لذات الرئة اختلاط موثق وشائع - القصور التنفسي الحاد يحدث في الحالات الشديدة - تقيح الجنب اختلاط معروف لتأخر العلاج - خراجة الرئة اختلاط كلاسيكي خاصة مع العنقوديات المذهبة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">اختلاطات ذات الرئة: انصباب جنب مجاور، تقيح جنب، خراجة رئة، قصور تنفسي حاد، داء صمي خثري، وريح صدرية؛ متلازمة هورنر ليست من اختلاطاتها بل ترتبط بورم قمة الرئة (Pancoast).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_084" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">كل ما يلي من الأسباب المكتسبة لتوسع القصبي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">استنشاق جسم أجنبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التدرن الرئوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ذات الرئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التليف الكيسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">السرطان القصبي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — التليف الكيسي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التليف الكيسي سبب خلقي (وراثي) ناجم عن طفرة مورثة CFTR وليس مكتسباً، فهو يُصنف ضمن الأسباب الخلقية للتوسع القصبي وليس المكتسبة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> استنشاق الجسم الأجنبي سبب مكتسب شائع. <b class="opt-letter-tag">B)</b> التدرن الرئوي من الأسباب المكتسبة المذكورة صراحة. <b class="opt-letter-tag">C)</b> ذات الرئة (كاختلاط للشاهوق أو الحصبة) سبب مكتسب. <b class="opt-letter-tag">E)</b> السرطانة القصبية (الأورام القصبية) سبب مكتسب.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الأسباب المكتسبة الشائعة: استنشاق جسم أجنبي، ذات الرئة، التدرن، ذات الرئة القيحية، داء الرشاشيات القصبي الرئوي الأرجي، الأورام القصبية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_085" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">كل مما يلي من أسباب السعال المزمن ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الربو القصبي المزمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">متلازمة التقطير الأنفي الخلفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الصمة الرئوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">القلس المعدي المريئي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الأدوية المثبطة للخميرة الحاصرة للأنجيوتنسين ACEI.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — الصمة الرئوية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الصمة الرئوية تسبب سعالاً حاداً أو عابراً (إضافة لعسر التنفس المفاجئ والألم الجنبي ونفث الدم)، وليست من الأسباب التقليدية للسعال المزمن المستمر لدى مريض بفحص طبيعي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الربو من الأسباب الكلاسيكية للسعال المزمن (مكافئات الربو). <b class="opt-letter-tag">B)</b> متلازمة التقطير الأنفي الخلفي هي السبب الأشيع للسعال المزمن. <b class="opt-letter-tag">D)</b> القلس المعدي المريئي يسبب سعالاً مزمناً باستنشاق محتويات المعدة. <b class="opt-letter-tag">E)</b> مثبطات ACEI سبب دوائي معروف للسعال المزمن.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أشيع أسباب السعال المزمن مع فحص فيزيائي وصورة صدر طبيعيين: التقطير الأنفي الخلفي، الربو، القلس المعدي المريئي، مثبطات ACEI.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_086" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">كل مما يلي من اختلاطات الـ COPD ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قلب رئوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فرط التوتر الرئوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">شلل الحجاب الحاجز.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قصور تنفسي مزمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انتانات تنفسية سفلية متكررة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — شلل الحجاب الحاجز.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> شلل الحجاب الحاجز ليس من اختلاطات COPD المعروفة؛ بل هو ناجم عن أسباب عصبية عضلية أو أذية العصب الحجابي، وليس نتيجة مباشرة للانسداد التنفسي المزمن.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> القلب الرئوي اختلاط معروف لـ COPD المتقدم. <b class="opt-letter-tag">B)</b> فرط التوتر الرئوي يحدث نتيجة نقص الأكسجة المزمن. <b class="opt-letter-tag">D)</b> القصور التنفسي المزمن (خاصة النمط الثاني) اختلاط أساسي في COPD الشديد. <b class="opt-letter-tag">E)</b> الانتانات التنفسية السفلية المتكررة شائعة وتسبب السورات الحادة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">اختلاطات COPD الشائعة: القلب الرئوي، فرط التوتر الرئوي، القصور التنفسي المزمن (خاصة النمط الثاني)، الانتانات التنفسية السفلية المتكررة، كثرة الحمر الثانوية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_087" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">يشاهد القصور التنفسي المزمن في كل ما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">النفاخ الرئوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التوسع القصبي المزمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تليف الرئة المنتشر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الريح الصدرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">متلازمة انقطاع التنفس اثناء النوم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — الريح الصدرية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الريح الصدرية (استرواح الصدر) حالة حادة تسبب قصوراً تنفسياً حاداً (نمط أول) وليست سبباً للقصور التنفسي المزمن، إذ تنتج عن دخول هواء مفاجئ للجوف الجنبي وليست عملية مترقية مزمنة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> النفاخ الرئوي سبب كلاسيكي لقصور تنفسي مزمن (نمط ثاني). <b class="opt-letter-tag">B)</b> التوسع القصبي المزمن يؤدي لقصور تنفسي مزمن مع تقدم المرض. <b class="opt-letter-tag">C)</b> تليف الرئة المنتشر يسبب قصوراً تنفسياً مزمناً (نمط أول عادة). <b class="opt-letter-tag">E)</b> متلازمة انقطاع التنفس أثناء النوم من أسباب القصور التنفسي المزمن النمط الثاني.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أسباب القصور التنفسي المزمن: النفاخ الرئوي، التليف الرئوي المنتشر، التوسع القصبي المزمن، الجنف الحدابي، انقطاع التنفس أثناء النوم، الأمراض العصبية العضلية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_088" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">كل ما يلي من الأسباب المكتسبة للتوسع القصبي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">استنشاق جسم أجنبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">السل الرئوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ذات الرئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">سرطان الرئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التليف الكيسي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — التليف الكيسي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التليف الكيسي سبب خلقي ناجم عن طفرة مورثة CFTR، ولذلك لا يُصنف ضمن الأسباب المكتسبة للتوسع القصبي رغم أنه من أهم أسبابه إجمالاً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> استنشاق الجسم الأجنبي سبب مكتسب. <b class="opt-letter-tag">B)</b> السل الرئوي سبب مكتسب شائع. <b class="opt-letter-tag">C)</b> ذات الرئة سبب مكتسب (اختلاط للشاهوق أو الحصبة). <b class="opt-letter-tag">D)</b> سرطان الرئة (الأورام القصبية) سبب مكتسب.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التليف الكيسي وسوء حركة الأهداب البدئي ومتلازمة كارتاجينر ونقص غاما غلوبولين الدم البدئي هي أسباب خلقية، وليست مكتسبة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_089" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">كل ما يلي من أعراض الصمة الرئوية الكبيرة الكتلية ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الزلة التنفسية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تغيم الوعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نقص الأكسجة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">بطء القلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">هبوط الضغط.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — بطء القلب.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تترافق الصمة الرئوية الكبيرة مع تسرع القلب (تسرع قلب جيبي) كآلية تعويضية للصدمة ونقص الأكسجة، وليس بطء القلب؛ بطء القلب يشاهد في الحالات الحرجة جداً أو المتأخرة فقط وليس عرضاً نموذجياً موصوفاً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الزلة التنفسية عرض أساسي ومباشر للصمة الرئوية الكبيرة. <b class="opt-letter-tag">B)</b> تغيم الوعي (الدوخة) يحدث نتيجة نقص التروية الدماغية والصدمة. <b class="opt-letter-tag">C)</b> نقص الأكسجة موجود دوماً بسبب اضطراب التبادل الغازي. <b class="opt-letter-tag">E)</b> هبوط الضغط جزء من الصدمة المرافقة للصمة الكتلية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الصمة الكتلية تتظاهر بصدمة (تسرع قلب وهبوط ضغط)، زراق مركزي، ارتفاع ضغط الوريد الوداجي، وغياب علامات رئوية موضعية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_090" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">كل ما يلي صحيح في انصباب الجنب ماعدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تستخدم معاير لايت لتمييز انصباب الجنب النتحي عن النتعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يمكن اجراء بزل الجنب افراغي بكمية تصل حتى 3 ل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يكون انصباب الجنب في قصور القلب نتعياً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">لا يمكن لصورة الصدر البسيطة الخلفية الأمامية ان تكشف الانصباب اذا كان أقل من 200 مل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ينخفض PH سائل الجنب في تقيح الجنب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — يمكن اجراء بزل الجنب افراغي بكمية تصل حتى 3 ل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> بزل كمية كبيرة كـ٣ لتر دفعة واحدة يعرض المريض لخطورة حدوث وذمة رئة ناتجة عن إعادة التمدد السريع للرئة المنخمصة، لذا الحد الأقصى الموصى به هو ١,٥ لتر في المرة الواحدة وليس ٣ لتر.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> معايير لايت فعلاً تستخدم للتمييز بين الانصباب النتحي (النضحي) والنتعي (الرشحي). <b class="opt-letter-tag">C)</b> انصباب الجنب في قصور القلب رشحي (نتعي) بسبب ارتفاع الضغط الهيدروستاتيكي. <b class="opt-letter-tag">D)</b> الصورة الخلفية الأمامية البسيطة لا تكشف الانصباب الأقل من ٢٠٠ مل فعلاً. <b class="opt-letter-tag">E)</b> انخفاض PH سائل الجنب يشير للمصدر الخمجي كتقيح الجنب فعلاً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">لا يفضل بزل أكثر من ١,٥ لتر بالمرة الواحدة تجنباً لوذمة الرئة الناجمة عن عودة التمدد السريع.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_091" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">المرض الرئوي الذي لا يسبب عادة نفث دم هو:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">السرطانة قصبية المنشأ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">احتشاء الرئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ذات الرئة بالمكورات الرئوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">توسع القصبات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تليف الرئة البدئي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — تليف الرئة البدئي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تليف الرئة البدئي مرض خلالي يتظاهر نموذجياً بسعال جاف وزلة تنفسية مترقية دون نزف من الطرق التنفسية، إذ لا تتضمن آليته المرضية تخرب الأوعية القصبية أو السنخية المسبب للنفث الدموي كما في الأسباب الأخرى.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> السرطانة قصبية المنشأ سبب شائع لنفث الدم المتكرر أو الخيوط الدموية بالقشع. <b class="opt-letter-tag">B)</b> احتشاء الرئة (الصمة الخثارية) سبب شائع لنفث الدم. <b class="opt-letter-tag">C)</b> ذات الرئة بالمكورات الرئوية تسبب قشعاً صدئياً ونفثاً دموياً صريحاً أحياناً. <b class="opt-letter-tag">D)</b> توسع القصبات يسبب نزفاً دموياً قد يكون صاعقاً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الأسباب الشائعة لنفث الدم: السرطانة القصبية، التدرن، ذات الرئة (خاصة بالمكورات الرئوية)، توسع القصبات، الصمة الرئوية (احتشاء الرئة)، الأورام الفطرية داخل الأجواف.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_092" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">العامل الأشيع المسبب لذات الرئة الفصية هو:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">المستدميات النزلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الموراكسيلا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الفيروسات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الكليبسيلا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">المكورات العقدية الرئوية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — المكورات العقدية الرئوية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> المكورات الرئوية (Streptococcus pneumoniae) هي العامل الممرض الأشيع المسبب لذات الرئة الفصية بشكل عام، وتتظاهر نموذجياً بتكثف متجانس في فص أو أكثر مع التهاب جنب مرافق وقشع صدئي اللون.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> المستدميات النزلية شائعة عند المعمرين لكنها أقل شيوعاً من المكورات الرئوية. <b class="opt-letter-tag">B)</b> الموراكسيلا سبب أقل شيوعاً لذات الرئة المجتمعية. <b class="opt-letter-tag">C)</b> الفيروسات أكثر شيوعاً عند الأطفال ولا تسبب نمطياً ذات رئة فصية كلاسيكية. <b class="opt-letter-tag">D)</b> الكليبسيلا سبب أقل شيوعاً، يترافق أكثر مع ذات الرئة الاستنشاقية أو القيحية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">المكورات الرئوية والمستدميات النزلية الأكثر شيوعاً عند المعمرين، بينما تصادف المفطورات والمتدثرة الرئوية عند الشباب غالباً؛ القشع الصدئي اللون مميز للمكورات الرئوية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_093" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">يزيد الآتي من خطورة حدوث السل الرئوي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">السيليكوز.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الداء السكري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عمر الشباب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التدخين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التماس مع مريض إيجابي القشع للسل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — عمر الشباب.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عمر الشباب (البالغين الصغار) ليس من عوامل خطورة الإصابة بالسل؛ فالخطورة العمرية تزداد عند الأطفال والمسنين مقارنة بالبالغين الشباب الذين يملكون مناعة خلوية أقوى نسبياً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> السيليكوز (تغبر الرئة بالسيليكا) عامل خطر موثق يزيد احتمال السل. <b class="opt-letter-tag">B)</b> الداء السكري (النمط الأول) عامل خطر مذكور صراحة. <b class="opt-letter-tag">D)</b> التدخين (التبغ) عامل خطر مذكور صراحة. <b class="opt-letter-tag">E)</b> التماس مع مريض إيجابي القشع للسل عامل خطر رئيسي وأساسي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">عوامل الخطر: التماس مع مريض إيجابي اللطاخة، التثبيط المناعي، السكري النمط الأول، السحار السيليسي، القصور الكلوي المزمن، سوء التغذية، التدخين؛ الخطر يزداد عند الأطفال والمسنين أكثر من البالغين الشباب.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_094" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">20.</span>
+                    <span class="q-stem">يعد من التظاهرات السريرية للتوسع القصبي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">خراخر قصبية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نفث الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">سعال جاف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">رائحة نفس كريهة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تبقرط أصابع.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — سعال جاف.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> السعال في التوسع القصبي هو سعال منتج (رطب) لقشع قيحي غزير وليس سعالاً جافاً، لأن المرضية الأساسية تقوم على تجمع الإفرازات المزمنة داخل القصبات المتوسعة والملتهبة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الخراخر القصبية الخشنة علامة تسمعية نموذجية بسبب القشع في القصبات المتوسعة. <b class="opt-letter-tag">B)</b> نفث الدم من المظاهر السريرية الموصوفة صراحة. <b class="opt-letter-tag">D)</b> رائحة النفس الكريهة مظهر مميز نتيجة الإنتان المزمن. <b class="opt-letter-tag">E)</b> تبقرط الأصابع من العلامات الفيزيائية المرافقة للمرض المزمن.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">يتظاهر التوسع القصبي بسعال مزمن منتج لقشع قيحي غزير، نفث دموي، رائحة فم كريهة، خراخر خشنة (قصبية)، وتبقرط أصابع.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_095" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">21.</span>
+                    <span class="q-stem">يتم علاج الصمة الرئوية بالآتي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الوارفارين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">هيبارين منخفض الوزن الجزيئي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">هيبارين غير مجزأ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">حالات الخثرة في الصمة الكتلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الأسبرين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — الأسبرين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الأسبرين مضاد صفيحي وليس مضاد تخثر، وآليته العلاجية غير موجهة لعلاج الخثرات الوريدية الرئوية الفعلية، لذلك لا يُعد من خيارات العلاج القياسية للصمة الرئوية على عكس مضادات التخثر وحالات الخثرة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الوارفارين مضاد فيتامين K يستخدم للمعالجة الفموية المديدة بعد التطبيب الحاد بالهيبارين. <b class="opt-letter-tag">B)</b> الهيبارين منخفض الوزن الجزيئي علاج أساسي في الطور الحاد. <b class="opt-letter-tag">C)</b> الهيبارين غير المجزأ يستخدم خاصة عند الحاجة لضبط سريع أو في القصور الكلوي. <b class="opt-letter-tag">D)</b> حالات الخثرة تستطب في الصمة الرئوية الكتلية المهددة للحياة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">يعتمد علاج الصمة الرئوية على مضادات التخثر (الهيبارين ثم الوارفارين) وحالات الخثرة في الحالات الكتلية المهددة للحياة؛ الأسبرين ليس علاجاً معتمداً للصمة الرئوية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_096" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">22.</span>
+                    <span class="q-stem">كل ما يلي من أسباب السعال المزمن ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متلازمة التقطير الأنفي الخلفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الربو القصبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">القلس المعدي المريئي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الأدوية المثبطة للخميرة القالبة للأنجيوتنسين (ACE inhibitors).</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الصمة الرئوية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — الصمة الرئوية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الصمة الرئوية تسبب زلة تنفسية حادة وألماً جنبياً ونفثاً دموياً بشكل نموذجي، وليست من الأسباب المصنفة ضمن آلية السعال المزمن (المستمر لأسابيع مع فحص وصورة صدر طبيعيين).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> التقطير الأنفي الخلفي من أشيع أسباب السعال المزمن. <b class="opt-letter-tag">B)</b> الربو (مكافئاته) سبب معروف للسعال المزمن. <b class="opt-letter-tag">C)</b> القلس المعدي المريئي يسبب سعالاً مزمناً عبر استنشاق محتويات المعدة. <b class="opt-letter-tag">D)</b> مثبطات ACE تسبب سعالاً دوائي المنشأ مزمناً معروفاً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أشيع أسباب السعال المزمن مع فحص فيزيائي وصورة صدر طبيعيين: التقطير الأنفي الخلفي، الربو، القلس المعدي المريئي، ومثبطات ACE.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_097" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">23.</span>
+                    <span class="q-stem">أشيع عامل ممرض لذات الرئة عند مرضى الإيدز:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">العنقوديات المذهبة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">المتكيس الرئوي الكاريني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">المكورات الرئوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الكلاميديا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الليجونيلا.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — المتكيس الرئوي الكاريني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عند تثبط المناعة الخلوية الشديد كما في الإيدز، تصبح عضويات انتهازية كالمتكيسة الرئوية الجيروفيسية سبباً رئيسياً لذات الرئة، مع تظاهرات لا نوعية وبداية مخاتلة مقارنة بالجراثيم النموذجية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> العنقوديات المذهبة أشيع بعد النزلة الوافدة وليست الأشيع بالإيدز. <b class="opt-letter-tag">C)</b> المكورات الرئوية أشيع مسبب لذات الرئة المكتسبة بالمجتمع عموماً وليس خاصاً بالإيدز. <b class="opt-letter-tag">D)</b> الكلاميديا (المتدثرة) تصيب الشباب أكثر دون علاقة خاصة بالإيدز. <b class="opt-letter-tag">E)</b> الليجونيلا مرتبطة بالسفر والمياه الدافئة وليست الأشيع بالإيدز.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">ذات الرئة بالمتكيسة الرئوية الجيروفيسية تتميز ببداية بطيئة التطور وسبق السعال والزلة لظهور الشذوذات الشعاعية بعدة أيام؛ التشخيص بفحص القشع أو الغسالة السنخية القصبية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_098" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">24.</span>
+                    <span class="q-stem">كل ما يلي من علامات سوء إنذار نوبة الربو ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التنفس السطحي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الزرقة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تغيم الوعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">السعال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الصدر الصامت.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — السعال.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> السعال عرض شائع وغير نوعي في الربو ولا يعكس شدة الانسداد أو خطورة النوبة، بخلاف العلامات الأخرى التي تشير لفشل الجهد التنفسي أو نقص الأكسجة الشديد أو تأثر الوعي والدوران.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> التنفس السطحي يعكس ضعف الجهد التنفسي وهو علامة مهددة للحياة. <b class="opt-letter-tag">B)</b> الزرقة تدل على نقص أكسجة شديد ومهدد للحياة. <b class="opt-letter-tag">C)</b> تغيم الوعي علامة إنذارية خطيرة تستدعي تهوية آلية. <b class="opt-letter-tag">E)</b> الصدر الصامت يشير لانسداد شديد جداً في الطرق الهوائية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">علامات سوء الإنذار: الصدر الصامت، الزراق، تخليط/تدني الوعي، هبوط الضغط، بطء القلب، الإنهاك، وقيمة PEF دون ٣٣٪ من المتوقع.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_099" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">25.</span>
+                    <span class="q-stem">كل ما يلي من التظاهرات السريرية للتوسع القصبي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">رائحة نفس كريهة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سعال مزمن منتج لقشع قيحي غزير.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نفث دموي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تبقرط الأصابع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تطبل البطن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — تطبل البطن.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تطبل البطن ليس من التظاهرات الرئوية أو الجهازية المرتبطة بالتوسع القصبي، إذ إن المرض محصور تأثيره بالجهاز التنفسي ولا يسبب أعراضاً هضمية كهذه.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> رائحة النفس الكريهة تنتج عن القشع القيحي المتراكم في القصبات المتوسعة. <b class="opt-letter-tag">B)</b> السعال المزمن المنتج للقشع القيحي الغزير من العلامات المميزة للمرض. <b class="opt-letter-tag">C)</b> النفث الدموي يحدث بسبب تخرب جدران القصبات المتوسعة والأوعية المجاورة. <b class="opt-letter-tag">D)</b> تبقرط الأصابع من العلامات الفيزيائية الشائعة في المرض المتقدم.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التوسع القصبي يتظاهر بسعال مزمن منتج لقشع قيحي غزير، نفث دموي، رائحة فم كريهة، وتعجر الأصابع مع خراخر خشنة بالفحص.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_100" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">26.</span>
+                    <span class="q-stem">الطريقة المثلى لتشخيص الصمة الرئوية بشكل قطعي:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">عيار دي دايمر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ومضان التهوية/التروية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التصوير الطبقي المحوري الوعائي للصدر CTPA.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تخطيط القلب الكهربائي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">غازات الدم الشرياني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — التصوير الطبقي المحوري الوعائي للصدر CTPA.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يصوّر CTPA الأوعية الرئوية مباشرة ويكشف الخثار ضمنها، مما يجعله المعيار التشخيصي القطعي الحديث، بعكس الاختبارات الأخرى التي تقيّم نتائج غير مباشرة أو احتمالية فقط.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> دي دايمر اختبار حساس لكنه غير نوعي، يفيد بالاستبعاد فقط عند قيمة سلبية. <b class="opt-letter-tag">B)</b> ومضان التهوية/التروية بديل عند مضاد استطباب CTPA لكنه أقل قطعية. <b class="opt-letter-tag">D)</b> تخطيط القلب الكهربائي قد يظهر تبدلات غير نوعية (كنمط S1Q3T3) لا تشخص الصمة قطعياً. <b class="opt-letter-tag">E)</b> غازات الدم الشرياني تظهر نقص أكسجة غير نوعي دون تحديد التشخيص.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">CTPA يحدد مباشرة الخثرة ضمن الشرايين الرئوية بحساسية ونوعية عاليتين، بينما تبقى الاختبارات الأخرى داعمة أو استبعادية فقط.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_101" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">27.</span>
+                    <span class="q-stem">كل ما يلي من التدابير العلاجية للـمرض الرئوي الساد المزمن عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ينصح بالغذاء المتكامل المنوع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يفيد الكورتيزون في علاج الهجمة الحادة للـ COPD بتخفيف شدة الهجمة وتقليل مدة البقاء بالمستشفى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تفيد اللقاحات الرئوية ولقاح الإنفلونزا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">لا يفيد إيقاف التدخين في كبح تدهور FEV1 أو تخفيف السعال أو القشع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">لا يفيد كرومولين الصوديوم كعلاج متمم لتحسين الأعراض.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — لا يفيد إيقاف التدخين في كبح تدهور FEV1 أو تخفيف السعال أو القشع.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> أثبتت الدراسات أن التوقف عن التدخين يبطئ معدل هبوط حجم الزفير القسري (FEV1) بشكل واضح ويحسن السعال والقشع، وبالتالي فإن نفي هذه الفائدة (كما ورد بالخيار <b class="opt-letter-tag">D)</b> هو العبارة غير الصحيحة والمستثناة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الغذاء المتكامل المنوع ينصح به فعلاً في COPD. <b class="opt-letter-tag">B)</b> الكورتيزون الوريدي/الفموي يخفف شدة الهجمة الحادة ويقلل مدة الاستشفاء فعلاً. <b class="opt-letter-tag">C)</b> لقاحات النزلة الوافدة والمكورات الرئوية موصى بها فعلاً. <b class="opt-letter-tag">E)</b> كرومولين الصوديوم فعلاً غير مفيد كعلاج متمم في COPD.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التوقف المطلق عن التدخين هو التدخل الوحيد المثبت لإبطاء هبوط FEV1؛ الكورتيزون الفموي يفيد في السورات الحادة فقط لا كعلاج مزمن.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_102" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">28.</span>
+                    <span class="q-stem">مريض لديه ربو قصبي وموضوع على Beclometasone 400 مايكروغرام يومياً مع salbutamol انشاقاً عند اللزوم، ولا يزال يعاني من نوب ضيق النفس والسعال، ما هو التدبير المناسب في هذه الحالة:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إضافة Montelukust.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إضافة salmeterol.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">زيادة جرعة Beclometasone.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إضافة ipratropium.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">إضافة Theophyline.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — زيادة جرعة Beclometasone.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> المريض على بيكلوميتازون ٤٠٠ مكغ فقط، وهي دون عتبة ٨٠٠ مكغ التي تستدعي الانتقال لمعالجة إضافية، لذا فإن الخطوة الأنسب هي زيادة جرعة الستيرويد الإنشاقي قبل إضافة موسع قصبات طويل الأثر.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> مونتيلوكاست خيار إضافي أقل فعالية من LABA ولا يستطب قبل تحسين جرعة ICS. <b class="opt-letter-tag">B)</b> سالميتيرول (LABA) يضاف عند سوء الضبط رغم جرعة ICS ٨٠٠ مكغ، لم تُبلغ بعد. <b class="opt-letter-tag">D)</b> إيبراتروبيوم غير مدرج ضمن خطوات علاج الربو المزمن التصاعدية. <b class="opt-letter-tag">E)</b> ثيوفيلين خيار للخطوة ٤ المتقدمة وليس مناسباً بهذه المرحلة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">المعالجة الإضافية (كإضافة LABA) تستطب عند سوء الضبط رغم جرعة ICS تصل لـ ٨٠٠ مكغ BDP يومياً؛ دون بلوغ هذه الجرعة تتم زيادة جرعة الستيرويد الإنشاقي أولاً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_103" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">29.</span>
+                    <span class="q-stem">شاب 35 عام، نحيل ويعاني من شهرين من سعال ونفث دموي ونقص وزن وتعرق ليلي. التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">سرطانة رئة متنخرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">خراجة رئوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ساركوئيد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ذات رئة خمجية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — سل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> اجتماع النفث الدموي المزمن مع نقص الوزن والتعرق الليلي عند شاب نحيل يشكل الصورة السريرية الكلاسيكية للتدرن الرئوي بعد البدئي، وهو الشكل الأكثر شيوعاً من المرض ببدء مخاتل خلال أسابيع.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> السرطانة المتنخرة أكثر شيوعاً بعمر أكبر ومع قصة تدخين مديدة. <b class="opt-letter-tag">C)</b> الخراجة الرئوية تترافق بقشع قيحي غزير وحمى حادة أكثر من الصورة المزمنة الموصوفة. <b class="opt-letter-tag">D)</b> الساركوئيد نادراً ما يسبب نفثاً دموياً بارزاً كعرض أساسي. <b class="opt-letter-tag">E)</b> ذات الرئة الخمجية حادة البدء وليست بمسار شهرين تدريجي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الأعراض الجهازية للتدرن بعد البدئي: حمى، تعرق ليلي، تعب، نقص شهية ووزن، مع سعال ونفث دموي؛ بدء مخاتل على مدى أسابيع.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_104" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">30.</span>
+                    <span class="q-stem">مسن يعاني من نفث دم وبحة صوت، تكثف في صورة الصدر. التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ذات رئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سرطان حنجرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">سل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">سرطان رئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">خراجة رئوية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — سرطان رئة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> إصابة العصب الحنجري الراجع الأيسر بالورم القصبي المنتشر منصفياً تسبب شلل الحبل الصوتي وبحة الصوت والسعال البقري، وهذا مجتمعاً مع النفث الدموي والتكثف الشعاعي عند مسن يقترح بقوة سرطان الرئة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> ذات الرئة لا تفسر بحة الصوت المزمنة عادة. <b class="opt-letter-tag">B)</b> سرطان الحنجرة يسبب بحة الصوت لكنه لا يفسر مباشرة التكثف الرئوي على صورة الصدر. <b class="opt-letter-tag">C)</b> السل ممكن لكنه أقل ترجيحاً عند مسن دون ذكر أعراض جهازية نموذجية. <b class="opt-letter-tag">E)</b> الخراجة الرئوية تترافق بقشع قيحي غزير وحمى أكثر من بحة الصوت.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">بحة الصوت في سرطان الرئة تنتج عن غزو العصب الحنجري الراجع الأيسر بالورم السري؛ تترافق مع نفث دموي وتظاهرات شعاعية كالكتلة أو الانخماص.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_105" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">31.</span>
+                    <span class="q-stem">كل مما يلي يسبب قصور تنفسي نمط 1 حاد عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">وذمة رئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تليف رئوي موضع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ريح صدرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">هجمة ربو حادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ذات رئة شديدة ثنائية الجانب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — تليف رئوي موضع.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التليف الرئوي الموضع حالة مزمنة تتطور تدريجياً وتصنف ضمن أسباب القصور التنفسي النمط الأول المزمن وليس الحاد، إذ يفتقر لآلية الحدوث المفاجئ المميزة للأسباب الحادة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> وذمة الرئة سبب كلاسيكي حاد لنقص الأكسجة مع CO2 طبيعي أو منخفض. <b class="opt-letter-tag">C)</b> الريح الصدرية (استرواح الصدر) تسبب قصوراً تنفسياً حاداً نمط I. <b class="opt-letter-tag">D)</b> هجمة الربو الحادة سبب معروف للقصور التنفسي الحاد نمط I قبل تطور فرط CO2. <b class="opt-letter-tag">E)</b> ذات الرئة الشديدة ثنائية الجانب سبب حاد كلاسيكي لنقص الأكسجة الشديد.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أسباب القصور التنفسي الحاد النمط I: وذمة الرئة، ذات الرئة، الانخماص، الريح الصدرية، الربو الحاد، الصمة الرئوية، ARDS؛ بينما التليف الرئوي والنفاخ من الأسباب المزمنة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_110" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">32.</span>
+                    <span class="q-stem">كل مما يلي من صفات الربو ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">أزيز.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سعال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يضطرب نوم المريض بسبب السعال والأزيز.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يشتد مساءً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الإحساس بضيق صدر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — يشتد مساءً.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تنقص عتبة استثارة الطرق الهوائية والزفير الأقصى فسيولوجياً في ساعات الفجر الباكرة بسبب التقلبات اليومية في التوتر الكولينرجي ومستوى الكورتيزول الداخلي، مما يجعل الأعراض أسوأ صباحاً لا مساءً، لذا فإن &quot;يشتد مساءً&quot; وصف غير دقيق لصفات الربو.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الأزيز من الأعراض النموذجية الأساسية للربو. <b class="opt-letter-tag">B)</b> السعال من التظاهرات الشائعة وخاصة الليلي منه. <b class="opt-letter-tag">C)</b> اضطراب النوم بالسعال والأزيز موجود في الربو غير المضبوط. <b class="opt-letter-tag">E)</b> الإحساس بضيق الصدر من الأعراض الكلاسيكية المرافقة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تتصف أعراض الربو بإيقاع يومي مميز حيث تشتد وتسوء في الصباح الباكر (عند الفجر) وليس في المساء، وهذا يفسر إيقاظ المريض ليلاً بالسعال والأزيز.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_111" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">33.</span>
+                    <span class="q-stem">نشاهد تبقرط الأصابع في واحدة من الأمراض التالية:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">داء رينو.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الصداف الشديد المنتشر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التليف الرئوي مجهول السبب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التصلب الجهازي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الساركوئيد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — التليف الرئوي مجهول السبب.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يُعتقد أن تبقرط الأصابع في IPF ينجم عن إفراز عوامل نمو وعائية ومنشطات صفيحية ناتجة عن نقص الأكسجة المزمن والتليف المترقي في المتن الرئوي، وهو من الموجودات الفيزيائية المميزة المذكورة صراحة ضمن المظاهر السريرية لهذا المرض.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> داء رينو لا يترافق نموذجياً بتبقرط الأصابع. <b class="opt-letter-tag">B)</b> الصداف الجلدي لا يسبب تبقرطاً رئوياً. <b class="opt-letter-tag">D)</b> التصلب الجهازي قد يسبب تليفاً رئوياً لكن التبقرط ليس سمة مميزة له كما في IPF. <b class="opt-letter-tag">E)</b> الساركوئيد نادراً ما يترافق بتعجر الأصابع.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تعجر الأصابع علامة كلاسيكية للتليف الرئوي مجهول السبب (IPF) ولسرطان القصبات، بينما لا يترافق عادة مع الساركوئيد أو داء رينو أو الصداف أو التصلب الجهازي المعزول.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_106" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">34.</span>
+                    <span class="q-stem">ينصح بالعلاج الوقائي للتدرن بكل مما يلي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشـــرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">وليد لأم لديها إيجابية تفاعل السلين بشدّة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الأشخاص المؤكد لديهم تحول حديث لاختبار السلين من سلبي لإيجابي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الأطفال تحت عمر العامين المخالطين لأشخاص إيجابيي المسحة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">مريض HIV على اتصال مع مريض إيجابي المسحة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">المتصل مع مريض تدرن بعمر تحت 16 سنة وإيجابية اختبار السلين بقوّة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — وليد لأم لديها إيجابية تفاعل السلين بشدّة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> المعيار المرجعي هو &quot;وليد الأم المصابة بالتدرن&quot; أي وجود مرض تدرني فعّال لدى الأم، أما إيجابية تفاعل السلين بشدة فقط (دون إثبات المرض النشط) فلا تشكل بمفردها استطباباً كافياً للعلاج الوقائي عند الوليد.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> التحول الحديث من سلبي لإيجابي في اختبار السلين استطباب موثق للعلاج الوقائي. <b class="opt-letter-tag">C)</b> الأطفال تحت عمر العامين المخالطين لأشخاص إيجابيي المسحة يستطب علاجهم وقائياً. <b class="opt-letter-tag">D)</b> مريض HIV على اتصال مع مريض إيجابي المسحة من أعلى فئات الخطورة المستطبة للوقاية. <b class="opt-letter-tag">E)</b> المتصل تحت ١٦ عاماً مع إيجابية سلين قوية مدرج صراحة ضمن استطبابات الوقاية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">يستطب العلاج الوقائي لوليد الأم المصابة فعلياً بالتدرن (المرض النشط) وليس لمجرد إيجابية اختبار السلين لدى الأم دون إثبات المرض النشط.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_107" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">35.</span>
+                    <span class="q-stem">كل مما يلي من أسباب التوسع القصبي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشـــرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التليف الكيسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">استنشاق جسم أجنبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الأورام القصبية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فرط غاما غلوبيولين الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التدرن الرئوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — فرط غاما غلوبيولين الدم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> السبب الخلقي الموثق هو نقص غاما غلوبولين الدم البدئي (عوز مناعي خلطي يؤهب للأخماج المتكررة والتوسع القصبي)، أما فرط غاما غلوبيولين الدم فليس من الأسباب المعروفة أو المذكورة مرجعياً لهذا المرض.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> التليف الكيسي سبب خلقي رئيسي وشائع للتوسع القصبي. <b class="opt-letter-tag">B)</b> استنشاق جسم أجنبي سبب مكتسب معروف عبر الانسداد الموضعي المزمن. <b class="opt-letter-tag">C)</b> الأورام القصبية سبب مكتسب عبر الانسداد وتراكم المفرزات المزمن. <b class="opt-letter-tag">E)</b> التدرن الرئوي سبب مكتسب كلاسيكي للتوسع القصبي بعد التندب الالتهابي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الأسباب الخلقية للتوسع القصبي: التليف الكيسي، سوء حركة الأهداب البدئي، متلازمة كارتاجينر، ونقص غاما غلوبولين الدم البدئي (وليس فرطه).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_108" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">36.</span>
+                    <span class="q-stem">كل مما يلي صحيح في الساركوئيد عدا:</span>
+                </div>
+                <span class="q-date-badge">تشـــرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ضخامة عقد سرية ثنائية الجانب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">حمامى عقدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انخفاض كالسيوم الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب عنبة العين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">اضطراب نظم القلب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — انخفاض كالسيوم الدم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الحبيبومات في الساركوئيد تحوي إنزيم ١-ألفا هيدروكسيلاز الذي يحول فيتامين د إلى الشكل الفعال بشكل غير منظم، مما يزيد امتصاص الكالسيوم المعوي ويسبب فرط كالسيوم الدم وليس نقصه.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> ضخامة العقد السرية ثنائية الجانب من أبرز موجودات المرحلة I شعاعياً. <b class="opt-letter-tag">B)</b> الحمامى العقدة من مكونات متلازمة لوفغرين الشائعة. <b class="opt-letter-tag">D)</b> التهاب العنبية من التظاهرات العينية المعروفة للساركوئيد. <b class="opt-letter-tag">E)</b> قد يحدث اضطراب نظم القلب في الإصابة القلبية الحبيبومية بالساركوئيد.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الساركوئيد حبيبوم غير متجبن يصيب الرئة بنسبة ٩٠٪، ويترافق مع ارتفاع الكالسيوم المشرد (وليس انخفاضه) بسبب زيادة تحويل فيتامين د إلى شكله الفعال في البلاعم الحبيبومية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_109" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">37.</span>
+                    <span class="q-stem">كل مما يلي صحيح في الانصباب الجنبي النتعي Transudate عدا:</span>
+                </div>
+                <span class="q-date-badge">تشـــرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">من أسبابه قصور القلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">من أسبابه تشمع الكبد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قد ينجم عن زيادة الضغط المائي السكوني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يكون سائل الانصباب عالي البروتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قد ينجم عن نقص الضغط الجرمي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — يكون سائل الانصباب عالي البروتين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الانصباب الرشحي ينتج عن خلل جهازي (قصور قلب، تشمع كبد، نقص ألبومين) يزيد الضغط الهيدروستاتيكي أو ينقص الضغط الجرمي دون زيادة نفوذية الأوعية الجنبية، فيبقى السائل فقيراً بالبروتين (نسبة بروتين الجنب/المصل أقل من ٠,٥)، وبالتالي فإن كونه &quot;عالي البروتين&quot; غير صحيح ويميز النضح لا الرشح.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> قصور القلب سبب كلاسيكي للرشح عبر ارتفاع الضغط الهيدروستاتيكي. <b class="opt-letter-tag">B)</b> تشمع الكبد يسبب الرشح عبر نقص الألبومين ونقص الضغط الغرواني. <b class="opt-letter-tag">C)</b> زيادة الضغط المائي الساكن (الهيدروستاتيكي) آلية معروفة للرشح. <b class="opt-letter-tag">E)</b> نقص الضغط الجرمي (الغرواني) آلية أساسية أخرى للرشح.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">ينجم الرشح عن اضطراب ضغوط جهازية (ارتفاع الضغط الهيدروستاتيكي أو نقص الضغط الغرواني) دون مرض في الجنب نفسه، لذا يكون منخفض البروتين، بعكس النضح الذي يكون غنياً بالبروتين وفق معايير لايت.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_112" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">38.</span>
+                    <span class="q-stem">كل مما يلي يثير نوبة ربو ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الجهد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">مضادات الالتهاب اللّاستيروئيدية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الأخماج الفيروسيّة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الطقس الحار.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التعرّض للمؤرجات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — الطقس الحار.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يؤدي الهواء البارد والجاف إلى فقدان الماء والحرارة من بطانة الطريق الهوائي محرضاً تحرر الوسائط الالتهابية وتشنجاً قصبياً، وهذا مذكور صراحة كعامل محرض بعكس الطقس الحار الذي لا يعد من المحرضات النموذجية للربو.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الجهد محرض معروف عبر فرط التهوية وفقدان الحرارة والرطوبة. <b class="opt-letter-tag">B)</b> مضادات الالتهاب اللاستيرويدية تحرض الربو عبر زيادة إنتاج الليكوترينات. <b class="opt-letter-tag">C)</b> الأخماج الفيروسية هي السبب الأكثر شيوعاً لتفاقم الربو. <b class="opt-letter-tag">E)</b> التعرض للمؤرجات (كغبار المنزل والحيوانات) من المحرضات الأساسية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تشمل محرضات الربو الجهد والأخماج الفيروسية والمؤرجات والأدوية (الأسبرين ومضادات الالتهاب اللاستيرويدية وحاصرات بيتا)، والطقس البارد وليس الحار هو المرتبط بتحريض النوب.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_113" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">39.</span>
+                    <span class="q-stem">كل مما يلي من مظاهر الصمة الرئوية الكبيرة الحادة عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ارتفاع الضغط الوريدي المركزي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع الضغط الدموي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">زلة تنفسية شديدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الألم الصدري المركزي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تسرع القلب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — ارتفاع الضغط الدموي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الانسداد المفاجئ لجذع أو فروع رئيسية من الشريان الرئوي يرفع المقاومة الوعائية الرئوية بشكل حاد فيحدث قصور بطين أيمن حاد وهبوط نتاج قلبي، مما يؤدي لصدمة مع هبوط الضغط الشرياني وارتفاع الضغط الوريدي المركزي تعويضياً، وليس ارتفاعاً بالضغط الشرياني كما تقترحه الإجابة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> ارتفاع الضغط الوريدي المركزي علامة نموذجية للفشل الأيمن الحاد. <b class="opt-letter-tag">C)</b> الزلة التنفسية الشديدة من أبرز الأعراض الحادة. <b class="opt-letter-tag">D)</b> الألم الصدري المركزي يعكس توسع الشريان الرئوي الحاد أو نقص التروية. <b class="opt-letter-tag">E)</b> تسرع القلب استجابة تعويضية شائعة للصدمة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تتظاهر الصمة الرئوية الكبيرة بصدمة انسدادية (تسرع قلب وهبوط ضغط) وارتفاع ضغط وريدي مركزي نتيجة الفشل الأيمن الحاد، وليس بارتفاع الضغط الشرياني.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_114" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">40.</span>
+                    <span class="q-stem">المعيار الأساسي للتمييز بين انصباب الجنب الرشحي و النضحي (النتحي):</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تعداد الخلايا في سائل الجنب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">مستويات المتممة في سائل الجنب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نسبة بروتين الجنب إلى بروتين المصل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قيمة PH سائل الجنب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قيمة سكر سائل الجنب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — نسبة بروتين الجنب إلى بروتين المصل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يعتمد التفريق على معايير لايت التي تقارن التركيب الكيميائي الحيوي لسائل الجنب مع المصل (نسبة البروتين ونازعة الهدروجين اللاكتاتية)، وهي المعيار الأساسي المعتمد عالمياً، وتفوق باقي الفحوص في الحساسية والنوعية للتمييز.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> تعداد الخلايا يفيد في تحديد سبب الانصباب (خمجي، خبيث) لا في التفريق الرشحي/النضحي. <b class="opt-letter-tag">B)</b> مستويات المتممة غير معيار تصنيفي أساسي. <b class="opt-letter-tag">D)</b> قيمة pH تفيد في تقييم شدة الانصباب النضحي (كالتوجه لتقيح الجنب) لا في التفريق الأولي. <b class="opt-letter-tag">E)</b> سكر سائل الجنب يفيد في تحديد سبب النضح (كالروماتويد) لا في تصنيفه الأساسي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">يُعد الانصباب نضحياً بوجود واحد أو أكثر من معايير لايت، وأهمها نسبة بروتين سائل الجنب إلى بروتين المصل أكثر من ٠,٥.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_115" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">41.</span>
+                    <span class="q-stem">مريض قيد المعالجة بمضادات السل، حدث لديه عمى ألوان فالدواء المتهم:</span>
+                </div>
+                <span class="q-date-badge">شباط 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بيرازيناميد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إيزونيازيد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">إيتامبوتول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ريفامبيسين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ستربتومايسين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — إيتامبوتول.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يثبط الإيتامبوتول تصنيع جدار الخلية الجرثومية، لكنه يملك سمية انتقائية على العصب البصري تؤدي لالتهابه واضطراب تمييز الألوان، وهذا التأثير عكوس غالباً عند الإيقاف الباكر، لذا يُنصح بفحص الرؤية اللونية قبل وأثناء العلاج.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> بيرازيناميد يسبب سمية كبدية وارتفاع حمض البول. <b class="opt-letter-tag">B)</b> إيزونيازيد يسبب اعتلال أعصاب محيطية وسمية كبدية. <b class="opt-letter-tag">D)</b> ريفامبيسين يسبب تلون الإفرازات بالبرتقالي وسمية كبدية وتحريض أنزيمات كبدية. <b class="opt-letter-tag">E)</b> ستربتومايسين يسبب سمية أذنية ودهليزية وكلوية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الإيتامبوتول يسبب التهاب العصب البصري خلف المقلة مع عمى الألوان (خاصة الأحمر-الأخضر) ونقص حدة البصر، وهي تأثيرات جانبية تستوجب إيقافه فوراً ومراقبة الرؤية اللونية دورياً أثناء العلاج.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_116" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">42.</span>
+                    <span class="q-stem">تكثف بقمة الرئة على صورة الصدر عند مدخن التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">شباط 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ريح صدرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ورم بانكوست.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ذات رئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انصباب جنب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — ورم بانكوست.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ينشأ الورم من ظهارة القصبات المحيطية في قمة الرئة وينمو ببطء نسبي محدثاً تكثفاً قمياً على الصورة الشعاعية، ومع تقدمه يغزو موضعياً الضفيرة العضدية والعقدة النجمية مسبباً ألم الذراع الداخلي ومتلازمة هورنر، وهذا النمط السريري والشعاعي عند مدخن يرجح التشخيص بقوة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> الريح الصدرية تعطي فرط شفافية وغياب مرسمة رئوية محيطية لا تكثفاً قمياً. <b class="opt-letter-tag">C)</b> التدرن يصيب القمة أيضاً لكنه أقل ترجيحاً من الورم عند مدخن دون أعراض جهازية تدرنية مذكورة. <b class="opt-letter-tag">D)</b> ذات الرئة تعطي تكثفاً حاداً مع حمى وليس كتلة مزمنة بالقمة. <b class="opt-letter-tag">E)</b> الانصباب الجنبي يعطي عتامة قاعدية مع زاوية مقعرة لا تكثفاً قمياً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">ورم بانكوست هو سرطان قصبي محيطي في قمة الرئة يغزو الضفيرة العضدية والسلسلة الودية مسبباً ألماً في الذراع ومتلازمة هورنر، ويشيع لدى المدخنين.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_117" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">43.</span>
+                    <span class="q-stem">أي مما يلي لا يعتبر من الأدوية المضادة للتدرن Tuberculosis:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ايتامبوتول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">بيرازيناميد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">بيبراسيللين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ستربتومايسين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ايزونيازيد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — بيبراسيللين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> البيبراسيللين هو بنسلين واسع الطيف يستخدم لعلاج الأخماج الجرثومية سلبية الغرام وخاصة الزائفة الزنجارية، وليس له فعالية نوعية على المتفطرة السلية، بعكس الأدوية الأربعة الأساسية المذكورة صراحة في البروتوكول المعياري لعلاج التدرن.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الإيتامبوتول أحد الأدوية الأربعة الأساسية بالشهرين الأولين. <b class="opt-letter-tag">B)</b> البيرازيناميد جزء من العلاج الرباعي الأولي. <b class="opt-letter-tag">D)</b> الستربتومايسين يستخدم بديلاً عن الإيتامبوتول في حالات خاصة كالتدرن السحائي. <b class="opt-letter-tag">E)</b> الإيزونيازيد أحد ركيزتي العلاج طوال الستة أشهر.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">يتألف العلاج المعياري للتدرن من الايزونيازيد والريفامبيسين لستة أشهر مع إضافة البيرازيناميد والإيتامبوتول خلال الشهرين الأولين؛ البيبراسيللين مضاد حيوي بيتا-لاكتامي مضاد للزائفة لا علاقة له بعلاج التدرن.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_pulmo_118" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">44.</span>
+                    <span class="q-stem">كل مما يلي من الأدوية التالية تعتبر من الأدوية المسيطرة على الربو Controllers Of Asthma ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الكورتيزون الإنشاقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الثيوفيلين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">محرضات بيتا 2 قصيرة التأثير.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">مضادات اللوكوترين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">محرضات بيتا 2 طويلة التأثير.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — محرضات بيتا 2 قصيرة التأثير.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> منبهات بيتا-٢ قصيرة التأثير توسع القصبات سريعاً لتخفيف الأعراض الحادة (الخطوة ١ في الربو المتقطع الخفيف) لكنها لا تملك تأثيراً مضاداً للالتهاب المزمن ولا تُستخدم للضبط طويل الأمد، بعكس الأدوية الأخرى التي تُعطى بانتظام للسيطرة على الالتهاب المزمن والأعراض.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الكورتيزون الإنشاقي هو حجر الأساس في العلاج الوقائي المنتظم (الخطوة ٢). <b class="opt-letter-tag">B)</b> الثيوفيلين يستخدم كعلاج إضافي مسيطر في الخطوات المتقدمة. <b class="opt-letter-tag">D)</b> مضادات الليكوترين تستخدم كعلاج إضافي مسيطر رغم فعاليتها الأقل.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تشمل أدوية السيطرة المستخدمة بانتظام للوقاية: الستيرويد الإنشاقي، الثيوفيلين، ومضادات مستقبلات الليكوترين ومنبهات بيتا-٢ طويلة التأثير؛ أما منبهات بيتا-٢ قصيرة التأثير فهي أدوية إنقاذ عرضية وليست مسيطرة.</span>
+        </div>
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "44 سؤال • 1 مواضيع • 2018 - 2026";
+        const originalDocTitle = "بنك الأسئلة - الصدرية (أخماج الجهاز التنفسي)";
+        const subjectName = "الصدرية";
+        const groupByMode = "topic";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

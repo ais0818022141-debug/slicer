@@ -1,0 +1,3125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - التوليد (دورات 2024)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #9D174D;
+            --primary-dark: #700B34;
+            --primary-rgb: 157, 23, 77;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - التوليد (دورات 2024)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">الدورة:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع الدورات (الكل - 51 سؤال)</option>
+                    <optgroup label="دورات سنة 2024 (51 سؤال)">
+                        <option value="year_2024">📅 جميع دورات 2024 (51 سؤال)</option>
+                        <option value="session-1">دورة تشرين 2024 (29 سؤال)</option>
+                        <option value="session-2">دورة أيار 2024 (22 سؤال)</option>
+                    </optgroup>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل الدورة المحددة (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">التوليد</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب الدورات الامتحانية)</p>
+                <p class="stats-summary" id="statsSummary">51 سؤال • 2 دورة امتحانية • 2024</p>
+            </div>
+
+            <div class="index-section-title">فهرس الدورات الامتحانية (مرتبة من الأحدث إلى الأقدم)</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="session-1">
+                    <a href="#session-1" class="index-row" data-group-id="session-1" data-year="2024">
+                        <span class="index-topic-name">تشرين 2024</span>
+                        <span class="index-topic-meta">
+                            <span>16 مواضيع</span>
+                            <span class="index-count">29 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'session-1', 'دورة تشرين 2024')" title="تحميل دورة تشرين 2024 كملف مستقل">⬇ تحميل</button>
+                </div>
+                <div class="index-row-wrapper" data-group-id="session-2">
+                    <a href="#session-2" class="index-row" data-group-id="session-2" data-year="2024">
+                        <span class="index-topic-name">أيار 2024</span>
+                        <span class="index-topic-meta">
+                            <span>10 مواضيع</span>
+                            <span class="index-count">22 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'session-2', 'دورة أيار 2024')" title="تحميل دورة أيار 2024 كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2024" data-group-id="session-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="session-1">
+                    <div class="topic-title-text">دورة تشرين 2024</div>
+                    <span class="topic-counter">29 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_obs_009" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">كل ما يلي صحيح في تحريات الإباضة عند المرأة ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الإباضة والدورة الطمثية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">مخطط حرارة الجسم الأساسية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">عيار البروجسترون بالدم باليوم 14 من الدورة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فحص مخاط عنق الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اللطاخة المهبلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">المراقبة بالايكو المهبلي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — عيار البروجسترون بالدم باليوم 14 من الدورة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يبلغ إفراز هرمون البروجسترون ذروته في منتصف الطور اللوتيئيني (الطور الإفرازي) لتقييم جودة الإباضة، وهذا يوافق &quot;اليوم 21&quot; تقريباً من دورة طمثية نموذجية (مدتها 28 يوماً)، وليس اليوم 14 الذي يشهد ذروة الـ LH والإباضة نفسها بوجود مستويات متدنية جداً من البروجسترون.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> مخطط حرارة الجسم (<b class="opt-letter-tag">A)</b>: ترتفع الحرارة بمقدار نصف درجة مئوية بعد الإباضة بتأثير البروجسترون. - فحص مخاط عنق الرحم (<b class="opt-letter-tag">C)</b>: يتبدل المخاط ليصبح لزجاً وكثيفاً وغير نفوذ بعد الإباضة. - اللطاخة المهبلية (<b class="opt-letter-tag">D)</b>: تفيد في تقييم التبدلات الخلوية المعتمدة على الهرمونات. - الإيكو المهبلي (<b class="opt-letter-tag">E)</b>: يعتبر الوسيلة الأدق لمراقبة تطور الجريب المبيضي وتمزقه.</div></div>
+        
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_obs_022" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">تحدث التغيرات التالية خلال الحمل ما عدا:</span>
+                </div>
+                <span class="q-date-badge">التغيرات الفيزيولوجية والتشريحية في الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متوسط وزن الرحم في نهاية الحمل وسطيا 1100 غرام.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ازدياد حجم الرحم في الحمل يكون نتيجة Hyperplasia للخلايا العضلية الملساء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ازدياد التوعية الوعائية هو العامل المسؤول عن ليونة وازرقاق عنق الرحم باكرا في الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الاستئصال الجراحي للجسم الأصفر الحملي قبل الأسبوع 7 قد يسبب إسقاط للحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">علامة شادويك هي ازرقاق مخاطية المهبل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — ازدياد حجم الرحم في الحمل يكون نتيجة Hyperplasia للخلايا العضلية الملساء.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ازدياد حجم الرحم الهائل خلال الحمل لا ينتج فقط عن فرط التنسج (Hyperplasia - زيادة عدد الخلايا)، بل يعتمد بشكل أساسي على &quot;التضخم&quot; (Hypertrophy - زيادة حجم الخلايا العضلية الملساء) والتمدد الميكانيكي، مما يجعل حصرها بفرط التنسج وحده عبارة علمية ناقصة وخاطئة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> متوسط وزن الرحم (<b class="opt-letter-tag">A)</b>: يزداد فعلياً من 70 غرام إلى حوالي 1100 غرام بتمام الحمل. - تغيرات عنق الرحم (<b class="opt-letter-tag">C)</b>: زيادة التوعية تسبب احتقان عنق الرحم وتلونه وازرقاقه (علامة غوديل). - استئصال الجسم الأصفر (<b class="opt-letter-tag">D)</b>: استئصاله قبل الأسبوع 7 يسبب إسقاطاً لغياب المصدر الوحيد للبروجسترون قبل أن تتولى المشيمة العمل. - علامة شادويك (<b class="opt-letter-tag">E)</b>: هي بالفعل الازرقاق الوصفي لمخاطية المهبل بسبب الاحتقان الوعائي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_039" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">كل ما يلي صحيح في التأثيرات الدوائية خلال الثلث الأول للحمل ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الرعاية السابقة للولادة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الأمينوغليكوزيدات قد تسبب السمية السمعية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الكلورأمفينكول قد يسبب تلون الجلد بالرمادي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التتراسيكلين يسبب تلون ميناء الأسنان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">النيتروفيورانتوئين يسبب نقص تصنع القلب الأيسر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الوارفارين يسبب نزف في مشاش العظم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — النيتروفيورانتوئين يسبب نقص تصنع القلب الأيسر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> النيتروفيورانتوئين هو صاد حيوي آمن الاستخدام خلال الثلث الأول للحمل لعلاج الإنتانات البولية، ولا يرتبط بإحداث تشوهات قلبية أو نقص تصنع (يُمنع فقط في الشهر الأخير لخطر انحلال الدم لدى حديث الولادة).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الأمينوغليكوزيدات (<b class="opt-letter-tag">A)</b>: تسبب بالفعل سمية سمعية للجنين (أذية العصب الثامن). - الكلورأمفينكول (<b class="opt-letter-tag">B)</b>: يسبب متلازمة الطفل الرمادي الخطيرة. - التتراسيكلين (<b class="opt-letter-tag">C)</b>: يؤثر على ميناء الأسنان ويسبب تلونها بالأسود أو الأصفر. - الوارفارين (<b class="opt-letter-tag">E)</b>: يسبب متلازمات وجهية ونزفاً ويشوه تنسج المشاش العظمي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_104" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">الإجابة الصحيحة في حالة التهديد بالإجهاض:</span>
+                </div>
+                <span class="q-date-badge">الإجهاض والإسقاط</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يكون عنق الرحم مفتوحا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يكون الألم عرضا ثابتا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يكون النزف شديدا عادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">لا يتوافق حجم الرحم مع السن المقدرة للحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يمكن أن يتابع الحمل بشكل طبيعي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — يمكن أن يتابع الحمل بشكل طبيعي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في حالة التهديد بالإسقاط، تكون الموجودات الصدوية طبيعية مع جنين حي، وتؤكد المراجع أن 98% من هذه الحالات ستكمل وتتابع الحمل بشكل طبيعي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> عنق مفتوح ونزف شديد وألم (A, B, <b class="opt-letter-tag">C)</b>: هذه صفات &quot;الإجهاض المحتم&quot; وليس التهديد. في التهديد يكون العنق مغلقاً والنزف خفيفاً والألم غائباً أو خفيفاً. - حجم الرحم غير متوافق (<b class="opt-letter-tag">D)</b>: خاطئ، في التهديد بالإسقاط يتوافق حجم الرحم تماماً مع السن المقدرة للحمل (بينما يصغر في الإجهاض المنسي).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_125" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">كل مايلي صحيح في الحمل الهاجر ماعدا:</span>
+                </div>
+                <span class="q-date-badge">الحمل خارج الرحم</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الحمل الهاجر القرني قد يستدعي استئصال البوق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الحمل الهاجر العنقي قد يستدعي استئصال الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يمكن تدبير الحمل الهاجر بالمراقبة فقط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">العلاج الدوائي يفيد في الحالات المستقرة هيموديناميكيا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يعالج الحمل الهاجر المتمزق بفغر البوق.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — يعالج الحمل الهاجر المتمزق بفغر البوق.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في حال التمزق البوقي العفوي وحدوث النزف البطني، العلاج الجراحي الإسعافي والمعتمد هو &quot;استئصال البوق&quot; المتأذي والمتمزق (Salpingectomy) للسيطرة على النزف، وليس &quot;فغر البوق&quot; (Salpingostomy) الذي يُلجأ إليه حصراً في الحالات السليمة غير المتمزقة للحفاظ على بنية الأنبوب.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الحمل القرني والعنقي (A, <b class="opt-letter-tag">B)</b>: قد يترافقان مع نزف غزير ومعند يستدعي جراحات جذرية كاستئصال البوق والقرن أو استئصال الرحم لإنقاذ الحياة. - التدبير بالمراقبة والعلاج الدوائي (C, <b class="opt-letter-tag">D)</b>: إجراءات صحيحة ومثبتة للحالات المستقرة التي تستوفي شروط التراجع العفوي أو التجاوب مع الميثوتريكسات.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_146" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">كل ما يلي صحيح في انفكاك المشيمة الباكر ما عدا:</span>
+                </div>
+                <span class="q-date-badge">نزف أشهر الحمل الأخيرة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يسبب تألم جنيني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يمكن أن يحدث عند التوأم الثاني بعد ولادة الأول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قد يؤدي إلى موت الجنين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">القيصرية استطباب مطلق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">لا تتناسب الحالة العامة للمريضة مع كمية النزف الظاهر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — القيصرية استطباب مطلق.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الولادة القيصرية ليست استطباباً مطلقاً وحتمياً في جميع حالات انفكاك المشيمة الباكر؛ فإذا كان الجنين قد توفي، أو كانت حالة الأم مستقرة وتخطيط قلب الجنين مطمئناً مع وجود مخاض فعال، يمكن اللجوء لتمزق الأغشية (بثق جيب المياه) والولادة المهبلية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> لا تتناسب الحالة العامة مع النزف الظاهر (<b class="opt-letter-tag">E)</b>: عبارة صحيحة ودقيقة جداً، لأن النزف في الانفكاك غالباً ما يكون مخفياً (خلف المشيمة)، فتُصاب الأم بصدمة لا تتناسب مع النزف الخارجي القليل. - يحدث للتوأم الثاني (<b class="opt-letter-tag">B)</b>: صحيح، نتيجة الصغر والتفريغ المفاجئ للرحم بعد ولادة التوأم الأول، مما يؤدي ميكانيكياً لانسلاخ مشيمة التوأم الثاني. - تألم وموت الجنين (A, <b class="opt-letter-tag">C)</b>: من الاختلاطات الشائعة نتيجة انقطاع التروية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_167" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">الاختلاط الأكثر شيوعا في حالة ارتفاع الضغط المزمن والحمل هو:</span>
+                </div>
+                <span class="q-date-badge">ارتفاع الضغط الشرياني عند الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الإرجاج وانفكاك المشيمة الباكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انبثاق الأغشية الباكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الإسقاط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الخداج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تحدد نمو الجنين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الإرجاج وانفكاك المشيمة الباكر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يترافق ارتفاع الضغط الشرياني المزمن بشكل رئيسي ومباشر مع خطورة عالية لتطور &quot;ما قبل الإرجاج المضاف&quot; (والذي قد يتطور لإرجاج)، بالإضافة لزيادة ملحوظة جداً في نسبة حدوث انفكاك المشيمة الباكر نتيجة التبدلات الوعائية المشيمية وتشنج الشرايين الحلزونية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات (B, C, D, <b class="opt-letter-tag">E)</b>: قد تحدث كعواقب ثانوية لارتفاع الضغط، لكن الإرجاج المضاف والانفكاك هما الاختلاطان النوعيان والأكثر شيوعاً وارتباطاً مباشراً بارتفاع الضغط المزمن.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_193" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">كل ما يلي صحيح في المريضات سلبيات الريزوس ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات القلبية الوعائية التنفسية الدموية العصبية والهضمية في الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تعطي السيدة غير المتحسسة ANTI D في الأسبوع 28.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تعطي السيدة المتحسسة ANTI D بعد الولادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تعطي السيدة ANTI D بعد الإسقاط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">للكشف المبكر لفقر الدم الجنيني بإجراء الدوبلر للشريان المخي المتوسط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يتم تقدير كمية ANTI D بحسب اختبار كلاين أور.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — تعطي السيدة المتحسسة ANTI D بعد الولادة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> (وهو تكرار مقصود لنفس الفكرة الامتحانية الهامة في السؤال 183 أعلاه). لا يُعطى الغلوبيولين المناعي للأم المتحسسة أبداً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> اختبار كلاي أور (<b class="opt-letter-tag">E)</b>: معلومة هامة جداً، يُستخدم اختبار &quot;كلايهاور-بتكه&quot; (Kleihauer-Betke) لكشف الكريات الجنينية في دم الأم لتقدير حجم النزف الجنيني الوالدي، وبناءً عليه يتم تحديد جرعة (Anti-<b class="opt-letter-tag">D)</b> الإضافية اللازمة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_194" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل ما يلي صحيح في تدبير المريضة القلبية خلال الحمل ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات القلبية الوعائية التنفسية الدموية العصبية والهضمية في الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تجنب اكتساب الوزن الزائد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تجرى القيصرية باستطباب توليدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تعطى المدرات في المريضات تصنيف 1و 2 حسب جمعية أمراض القلب في نيويورك.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الولادة المهبلية هي المفضلة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">استخدام المميعات في حالات الدسامات الصنعية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — تعطى المدرات في المريضات تصنيف 1و 2 حسب جمعية أمراض القلب في نيويورك.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يُمنع إعطاء المدرات البولية بشكل روتيني أثناء الحمل (وخاصة في التصنيفات القلبية الخفيفة 1 و 2 التي تكون فيها المريضة غير عرضية أو بأعراض خفيفة)؛ لأن المدرات تنقص من حجم البلازما وتؤدي إلى هبوط شديد في التروية الدموية المشيمية مما يضر الجنين. لا تُعطى المدرات إلا بحذر شديد وفي حالات إسعافية متقدمة كحدوث &quot;وذمة الرئة&quot; المرافقة لقصور القلب الصريح.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_195" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">كل ما يلي يسبب اعتلال تخثر منتشر استهلاكي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات القلبية الوعائية التنفسية الدموية العصبية والهضمية في الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انفكاك المشيمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صمة السائل الأمنيوسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الإسقاط المنسي في الثلث الثاني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الخمج بإيجابيات الغرام.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">النزف التوليدي الغزير الحاد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — الخمج بإيجابيات الغرام.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الإنتانات التي تسبب التخثر المنتشر داخل الأوعية (DIC) غالباً ما تكون ناجمة عن &quot;سلبيات الغرام&quot; (Gram-negative) لأنها تفرز ذيفانات داخلية (Endotoxins) تحفز شلال التخثر بشدة. بينما الإنتان بإيجابيات الغرام لا يرتبط عادة بإحداث هذه الحالة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات (A, B, C, <b class="opt-letter-tag">E)</b>: انفكاك المشيمة الباكر (أشيع سبب على الإطلاق)، الصمة الأمنيوسية، الإسقاط المنسي المتأخر، والنزف الغزير كلها حالات كلاسيكية تطلق كميات هائلة من الترومبوبلاستين النسيجي وتستنزف عوامل التخثر مسببة DIC.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_196" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">كل ما يلي صحيح في الركودة الصفراوية الحملية ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات القلبية الوعائية التنفسية الدموية العصبية والهضمية في الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الحكة عرض مميز.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ناكس عادة في كل حمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قد يحدث باستخدام موانع الحمل الفموية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تزداد نسبة الإملاص.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">اضطراب كبير بالوظيفة الكبدية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — اضطراب كبير بالوظيفة الكبدية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الركودة الصفراوية الكبدية أثناء الحمل (Intrahepatic cholestasis) تتميز باضطراب &quot;خفيف إلى متوسط&quot; في وظائف الكبد (ارتفاع خفيف بالخمائر) ولا تسبب اضطراباً كبيراً أو قصوراً كبدياً. وتقتصر المشكلة على ارتفاع الحموض الصفراوية التي تترسب في الجلد مسببة الحكة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات: الحكة المعممة (خاصة بالراحتين والأخمصين) هي العرض الواسم، وتشفى بعد الولادة لكنها تنكس في الحمول اللاحقة. كما تزيد من خطر الإملاص (موت الجنين المفاجئ) بسبب سمية الحموض الصفراوية على قلب الجنين والمشيمة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_197" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">يسبب الربو الشديد خلال الحمل كل ما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات القلبية الوعائية التنفسية الدموية العصبية والهضمية في الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تزداد نسبة الإسقاطات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">زيادة حدوث الولادة الباكرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يحدث نقص نمو داخل الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص السعة الوظيفية المتبقية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نقص السعة الحيوية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — نقص السعة الوظيفية المتبقية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في الحمل الطبيعي السليم، تنقص السعة الوظيفية المتبقية (FRC) بسبب ارتفاع الحجاب الحاجز. ولكن في حالة نوبات &quot;الربو الشديد&quot;، يحدث انحباس للهواء داخل الرئتين (Air trapping) مما يؤدي إلى &quot;زيادة&quot; السعة الوظيفية المتبقية وليس نقصها.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات: نوبات الربو الشديدة ونقص الأكسجة المرافقة لها ترفع بشكل واضح من خطورة حدوث الإسقاطات، الولادة الباكرة، وتحدد نمو الجنين داخل الرحم (IUGR).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_218" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">كل ما يلي صحيح في الداء السكري غير المضبوط والحمل ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات الغدية أثناء الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يزيد خطر التشوهات الجنينية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يزيد خطر حدوث الانسمام الحملي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تزداد الاختلاطات عند الوليد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أكثر ما تزيد الحاجة للأنسولين في النصف الأول للحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تتفاقم الاختلاطات خلال الحمل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — أكثر ما تزيد الحاجة للأنسولين في النصف الأول للحمل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تزداد الحاجة للأنسولين تدريجياً وبشكل كبير في &quot;النصف الثاني&quot; من الحمل وليس الأول؛ وذلك بسبب زيادة إفراز الهرمونات المشيمية المعاكسة والمضادة لعمل الأنسولين (مثل اللاكتوجين المشيمي). أما في النصف الأول من الحمل، فقد تزداد الحساسية للأنسولين وتقل الحاجة له بسبب الغثيان والإقياء الحملي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_219" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">كل ما يلي صحيح في تحري الداء السكري الحملي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات الغدية أثناء الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يجرى اختبار تحمل السكر بين أسبوع 38-34.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سوابق ولادة جنين عرطل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">سوابق ولادة طفل مشوه.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">زيادة مشعر كتلة الجسم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">عمر الأم أكبر من 30 سنة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — يجرى اختبار تحمل السكر بين أسبوع 38-34.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تكرار لنفس الفكرة. يُجرى اختبار تحمل السكر في الثلث الثاني بين الأسبوعين 24 و 28 (أو أبكر عند النساء عاليات الخطورة)، ولا يُؤجل أبداً إلى الأسابيع الأخيرة من الحمل (34-38).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_232" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">الإجابة الصحيحة فيما يخص لقاح الحصبة والحمل والإرضاع هي:</span>
+                </div>
+                <span class="q-date-badge">الأخماج أثناء الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يمكن أن يعطى في الثلث الثالث من الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يجب تجنب الإرضاع عند إعطاء اللقاح.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يستدعي إعطاؤه عند الحامل بطريق الخطأ إنهاء الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إيجابية أضداد الحصبة من نوع IgG يعني أن المريضة ممنعة ولا خطر عليها خلال الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يستدعى إعطاء اللقاح عند غير الحامل الامتناع عن الحمل لمدة عام.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — إيجابية أضداد الحصبة من نوع IgG يعني أن المريضة ممنعة ولا خطر عليها خلال الحمل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> وجود أضداد (IgG) يدل على إصابة سابقة أو تلقيح سابق يمنح مناعة دائمة، ولا يشكل خطراً على الحمل ولا يحتاج لأي تدخل.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات: لقاح الحصبة (حي مضعف) يمنع إعطاؤه للحامل في أي ثلث، ولكن إعطاؤه بالخطأ لا يستدعي إنهاء الحمل لقلة الخطورة المثبتة. ويجب الامتناع عن الحمل لمدة 3 أشهر (وليس عاماً) بعد اللقاح لغير الحامل، ولا يمنع اللقاح الإرضاع الطبيعي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_233" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">كل مايلي صحيح بالنسبة لفيروس مضخم الخلايا CMV خلال الحمل ماعدا:</span>
+                </div>
+                <span class="q-date-badge">الأخماج أثناء الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">خزب لامناعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نقص نمو متناظر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تكلسات دماغية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">كبر حجم الرأس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">استسقاء دماغي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — كبر حجم الرأس.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الإصابة بفيروس مضخم الخلايا (CMV) تسبب ضموراً دماغياً وتخلفاً عصبياً يتظاهر بـ &quot;صغر حجم الرأس&quot; (Microcephaly) وليس كبره، وهي السمة السريرية المشتركة والرئيسية للأخماج الخلقية داخل الرحم. بينما تترافق الإصابة مع الخزب اللامناعي، وتأخر النمو المتناظر، والتكلسات الدماغية حول البطينات، وحتى الاستسقاء الدماغي (الذي قد يحدث رغم بقاء محيط الرأس صغيراً نسبياً).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_234" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">تعتبر الإصابة بالعوامل الممرضة التالية مشوهة للجنين ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الأخماج أثناء الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الحصبة الألمانية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الحلأ البسيط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الحمة المضخمة للخلايا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">السفلس (الإفرنجي).</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">العنقوديات المذهبة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — العنقوديات المذهبة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العنقوديات المذهبة هي جراثيم قيحية تسبب إنتانات موضعية أو جهازية كالإنتان النفاسي، ولكنها لا تعتبر من العوامل الممرضة المشوهة للجنين (Teratogenic) بشكل مباشر عبر المشيمة. بينما الحصبة الألمانية (متلازمة الحصبة الألمانية الخلقية)، والحلأ البسيط (تشوهات والتهاب دماغ)، والحمة المضخمة للخلايا CMV (نقص نمو وتكلسات)، والسفلس (تشوهات عظمية وحنكية وكبدية) جميعها تسبب تشوهات جنينية خطيرة (إنتانات ToRCH).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_251" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">كل ما يلي صحيح في شذوذات الحبل السري ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض المشيمة وأغشيتها</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يمكن أن يكون ارتكاز الحبل السري هامشياً أو غشائياً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الحبل السري الطويل له أهمية سريرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">وجود شريان وحيد في الحبل السري قد يترافق مع شذوذات جنينية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">وجود العقد الكاذبة ليس له أهمية سريرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">وجود الفتق السري الفيزيولوجي طبيعي حتى الأسبوع العاشر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الحبل السري الطويل له أهمية سريرية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> إن مجرد كون الحبل السري طويلاً بحد ذاته ليس له أهمية سريرية مباشرة ولا توجد طريقة دقيقة للتنبؤ بأطواله وآثاره أثناء الحمل، إلا إذا شكل بالفعل انضغاطاً، تدلياً، التفافاً حول العنق، أو عُقداً حقيقية (True knots) تعيق التروية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الشريان السري الوحيد (<b class="opt-letter-tag">C)</b>: (الطبيعي هو شريانين ووريد)، تواجده يستدعي فوراً البحث عن تشوهات جنينية أخرى (خاصة قلبية وبولية). - العقد الكاذبة (<b class="opt-letter-tag">D)</b>: هي مجرد تجمعات موضعية لمادة هلام وارتون ولا تعيق التروية ولا أهمية لها. - الارتكاز الهامشي (المضربي) والغشائي (المظلي) (<b class="opt-letter-tag">A)</b>: قد تؤهب لتمزق الأوعية المتقدمة ونزف جنيني صاعق.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_252" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">كل مايلي من أسباب قلة السائل السلوي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض المشيمة وأغشيتها</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فقدان حركة البلع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قصور المشيمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عدم تكون الكلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انسداد الحالبين ثنائي الجانب عند الجنين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تمزق الغشاء السلوي الباكر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — فقدان حركة البلع.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> فقدان حركة البلع عند الجنين (بسبب تشوهات عصبية كانعدام الجمجمة، أو انسدادات هضمية كرتق المريء) يمنع الجنين من تصريف السائل وابتلاعه، مما يؤدي إلى تراكمه وزيادته وحدوث &quot;موه السلوي&quot; (Polyhydramnios) وليس قلته.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات: قصور المشيمة (تترافق مع تأخر نمو ونقص التروية الكلوية)، عدم تكون الكلية، وانسداد الحالبين كلها تمنع إنتاج البول الجنيني مسببة الشح. وتمزق الأغشية هو سبب ميكانيكي لضياع السائل.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_253" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">20.</span>
+                    <span class="q-stem">أفضل وسيلة لتحسين الأعراض الوالدية الناجمة عن موه السلى:</span>
+                </div>
+                <span class="q-date-badge">أمراض المشيمة وأغشيتها</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بزل السلى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">المدرات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">حمية عن الملح.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الإقلال من السوائل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الإندوميتاسين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — بزل السلى.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عند حدوث موه السائل السلوي الحاد أو الشديد المترافق مع أعراض والدية ضاغطة ومزعجة (مثل الزلة التنفسية الشديدة، تسرع القلب، أو ألم بطني حاد بسبب فرط تمدد الرحم)، فإن بزل السلى الإفراغي (Amniocentesis) هو الوسيلة الأكثر فعالية لتخفيف الضغط وتحسين الأعراض. (يتم سحب ما لا يزيد عن 500 مل ببطء في الجلسة الواحدة لتجنب الانفكاك المشيمي).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> المدرات وتخفيف السوائل (B, C, <b class="opt-letter-tag">D)</b>: لا قيمة لها في علاج موه السلى لأن الآلية لا تتعلق باحتباس السوائل الوالدي بل بالإفراز الجنيني.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_254" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">21.</span>
+                    <span class="q-stem">كل مايلي صحيح بالنسبة للرحى العدارية ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض المشيمة وأغشيتها</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الإنذار في الرحى العدارية التامة أفضل من الجزئية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الإقياءات الشديدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">حجم الرحم عادة أكبر من السن المقدرة للحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">وجود حويصلات ضمن النزف التناسلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ظهور أعراض فرط نشاط درق.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الإنذار في الرحى العدارية التامة أفضل من الجزئية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الإنذار الطبي في الرحى العدارية &quot;التامة&quot; (Complete mole) هو أسوأ من الرحى الجزئية، لأن احتمالية تحولها وتطورها إلى أورام أرومة غاذية خبيثة (مثل السرطانة المشيمائية) تبلغ حوالي 5 إلى 20%، بينما نادراً جداً ما تتحول الرحى الجزئية إلى خباثة (أقل من 5%).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> المظاهر الكلاسيكية للرحى (B, C, D, <b class="opt-letter-tag">E)</b>: إقياء مفرط، حجم رحم عجيني أكبر من المتوقع، انطراح حويصلات كالعنب، وتظاهرات فرط درق كلها صحيحة ومميزة للمرض.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_272" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">22.</span>
+                    <span class="q-stem">كل ما يلي يفيد في تشخيص انبثاق الأغشية الباكر ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاختلافات في مدة الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">اختبار تسرخس عنق الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">عيار الفيبرونيكتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التصوير بالأمواج فوق الصوتية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اختبار النترازين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">اختبار كلابهور.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — اختبار كلابهور.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> اختبار كلايهاور-بتكه (Kleihauer-Betke) هو فحص دموي يُستخدم لتحري وجود الكريات الحمر الجنينية في دوران الأم (النزف الجنيني الوالدي) لتقدير خطورته وحساب جرعة الـ Anti-D، ولا علاقة له بتشخيص تمزق الأغشية. (تشخيص انبثاق الأغشية):
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> اختبار النترازين: يتحول لونه للأزرق الغامق بسبب قلوية السائل السلوي مقارنة بحموضة المهبل. - اختبار التسرخس (Ferning): جفاف السائل السلوي على شريحة زجاجية يعطي شكل أوراق نبات السرخس بفضل تبلور كلور الصوديوم بتأثير الإستروجين. - الإيكو: يظهر نقصاً أو ندرة في السائل السلوي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_273" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">23.</span>
+                    <span class="q-stem">السبب الرئيسي لوفيات الولدان هو:</span>
+                </div>
+                <span class="q-date-badge">الاختلافات في مدة الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الخداج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الشلل الدماغي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الإنتان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التشوهات الخلقية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الأمراض المناعية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الخداج.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تُعتبر الولادة الباكرة والخداج (Prematurity) السبب الرئيسي والأول للمراضة والوفيات بين حديثي الولادة (الولدان الأحياء)، وذلك بسبب نقص النضج الوظيفي لأجهزة الجسم (وخاصة متلازمة العسرة التنفسية أو داء الأغشية الهيالينية).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> </div><div class="exp-section exp-note"><b class="exp-header-tag">ملاحظة دقيقة:</b> بينما التشوهات الخلقية تُعد السبب الأكثر شيوعاً لـ &quot;وفيات حول الولادة&quot; ككل (والتي تشمل الإملاص ووفاة الجنين قبل ولادته).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_290" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">24.</span>
+                    <span class="q-stem">كل ما يلي صحيح في تحدد النمو داخل الرحم ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الجنين المعرض للخطورة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تعتبر عامل خطورة على الوليد من حيث النتائج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قد تكون علامة ابغار منخفضة عند الوليد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">استطباب للقيصرية دوما.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يفضل المراقبة CTG بالتخطيط القلبي الجنيني المستمر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">لا يفضل إجراء التحدي بالأوكسيتوسين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — استطباب للقيصرية دوما.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تحدد أو نقص النمو داخل الرحم (IUGR) ليس استطباباً &quot;دائماً أو مطلقاً&quot; للولادة القيصرية. يمكن محاولة الولادة المهبلية تحت المراقبة الإلكترونية اللصيقة لقلب الجنين (CTG). ولا يُلجأ للقيصرية إلا إذا ظهرت علامات &quot;تألم جنيني&quot; أو كانت مخططات القلب غير مطمئنة (لأن الجنين المتحدد النمو ضعيف القدرة على تحمل نقص الأكسجة المرافق للتقلصات).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التحدي بالأوكسيتوسين (<b class="opt-letter-tag">E)</b>: لا يفضل إجراؤه لضعف احتياطي الجنين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_320" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">25.</span>
+                    <span class="q-stem">في انعضال الكتفين كل الخطوات التالية ضرورية ما عدا:</span>
+                </div>
+                <span class="q-date-badge">المخاض الشاذ (عسر المخاض)</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">طلب تجهيز غرفة العمليات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">طلب مساعدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">توسيع خزع الفرج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الضغط على قعر الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الطلب من المساعدة تطبيق ضغط فوق العانة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — الضغط على قعر الرحم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الضغط على قعر الرحم من الأعلى أثناء انعضال الكتفين هو إجراء خاطئ وممنوع تماماً؛ لأنه يدفع الكتف الأمامي المنحشر ليصبح أكثر انحشاراً وانغرازاً خلف الارتفاق العاني، ويزيد من خطر تمزق الرحم وأذية الضفيرة العضدية للجنين. الخطوات الصحيحة تشمل طلب المساعدة فوراً، وتوسيع الفرج، وتطبيق ضغط &quot;فوق العانة&quot; لدفع الكتف للأسفل، ومناورات أخرى كمناورة ماك روبرتس (ثني فخذي الأم).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_331" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">26.</span>
+                    <span class="q-stem">كل مايلي صحيح فيما يخص اضطرابات النفاس ماعدا:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات النفاس</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تحدث نزوف الخلاص الباكر خلال الـ 24 ساعة الأولى للنفاس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يحدث الانتان النفاسي خلال الـ 24 ساعة الأولى للنفاس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يعد انتان باطن الرحم النفاسي من أسباب الانتان النفاسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يعد التهاب الثدي سببا للإنتان النفاسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تعد البقايا المشيمية من أسباب نزوف الخلاص المتأخرة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — يحدث الانتان النفاسي خلال الـ 24 ساعة الأولى للنفاس.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تعريف &quot;الحمى أو الإنتان النفاسي&quot; يشترط ارتفاع درجة الحرارة لـ 38 مئوية أو أكثر، ولكن يُستثنى من ذلك الـ 24 ساعة الأولى بعد الولادة (لأن الارتفاع الطفيف فيها غالباً ما يكون فيزيولوجياً ارتكاسياً لجهد المخاض أو التجفاف، ما لم تكن هناك قصة إنتان واضحة سابقة للولادة). ولذلك لا يُشخّص الإنتان النفاسي كقاعدة عامة خلال الـ 24 ساعة الأولى. أما بقية العبارات فهي حقائق حول نزوف الخلاص وأسباب الإنتان.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_332" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">27.</span>
+                    <span class="q-stem">العوامل المؤهبة لنزف العطالة هو:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات النفاس</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قلة السائل الأمينوسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تحدد النمو داخل الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">السكري الحملي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ارتكاز المشيمة المعيب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">المجيء المعترض.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — السكري الحملي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> السكري الحملي يترافق بشدة مع ضخامة وعرطلة الجنين (Macrosomia) ومع زيادة في السائل الأمنيوسي، وكلا العاملين يؤديان إلى فرط تمطط وتمدد شديد للألياف العضلية الرحمية. هذا التمدد المفرط يجعل الرحم منهكاً وغير قادر على الانقباض بشكل فعال بعد ولادة الجنين والمشيمة، مما يجعله عاملاً مؤهباً قوياً لنزف العطالة الرحمية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_400" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">28.</span>
+                    <span class="q-stem">كل ما يلي صحيح فيما يخص الحمل التوأمي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أسئلة منوعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يزيد خطر السكري الحملي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التوأمي رأسي معترض استطباب للقيصرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يزيد خطر الانسمام الحملي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تزداد نسبة الولادات المبكرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يزيد خطر حدوث نزف الخلاص.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — التوأمي رأسي معترض استطباب للقيصرية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> المجيء &quot;رأسي-معترض&quot; في التوائم ليس استطباباً مطلقاً للولادة القيصرية، إذ يمكن سريرياً توليد التوأم الأول (الرأسي) مهبلياً، ومن ثم محاولة إجراء تحويل خارجي أو داخلي للتوأم الثاني (المعترض) ليولد مهبلياً أيضاً. بينما يزيد الحمل المتعدد بوضوح من كافة أعباء الحمل الأخرى كالسكري، والانسمام، والولادة المبكرة، ونزف الخلاص بسبب التمطط المفرط للعضلة الرحمية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_401" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">29.</span>
+                    <span class="q-stem">كل ما يلي صحيح في الحمل التوأمي أحادي البيضة Monozygotic ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أسئلة منوعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ينجم عن القاح نطفة واحدة لبيضة واحدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إذا انقسمت البيضة الملقحة في اليوم الثالث كان الحمل أحادي الكوريون ثنائي الأمنيون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">إذا انقسمت البيضة الملقحة في اليوم الثامن كان الحمل أحادي الكوريون أحادي الأمنيون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إذا حدث انقسام في اليوم الثالث عشر قد تكون التوائم ملتحمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تزداد الحمول التوأمية أحادية البيضة مع تقدم عمر الأم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — تزداد الحمول التوأمية أحادية البيضة مع تقدم عمر الأم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> معدل حدوث التوائم &quot;أحادية البيضة&quot; (Monozygotic) يُعتبر ثابتاً عالمياً ولا يتأثر إطلاقاً بتقدم عمر الأم أو العوامل الوراثية أو العرقية. في حين أن التوائم &quot;ثنائية البيضة&quot; هي التي تزداد نسبة حدوثها مع تقدم العمر (بسبب زيادة مستويات الهرمونات المحفزة للإباضة المتعددة). أما التسلسل الزمني لانقسامات البيضة (في الأيام الثالث والثامن والثالث عشر) فمذكور بشكل دقيق علمياً في الخيارات.</div></div>
+        
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+        <div class="topic-container" data-year="2024" data-group-id="session-2">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="session-2">
+                    <div class="topic-title-text">دورة أيار 2024</div>
+                    <span class="topic-counter">22 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_obs_023" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">كل ما يلي صحيح في التغيرات الدموية الحاصلة أثناء الحمل ماعدا:</span>
+                </div>
+                <span class="q-date-badge">التغيرات الفيزيولوجية والتشريحية في الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يزداد حجم الدم بشكل واضح أثناء الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يزداد حجم البلازما بنسبة 55%.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يزداد إنتاج الكريات الحمراء بنسبة أكبر من ازدياد حجم البلازما.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يزداد إنتاج الكريات الحمراء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يتناقص تركيز الخضاب والهيماتوكريت.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — يزداد إنتاج الكريات الحمراء بنسبة أكبر من ازدياد حجم البلازما.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> زيادة حجم البلازما أثناء الحمل تكون بنسبة أكبر من زيادة إنتاج الكريات الحمراء مما يسبب تخفيف الدم الفسيولوجي (تمدد الدم) وليس العكس.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يزداد حجم الدم والبلازما وإنتاج الكريات (A, B, <b class="opt-letter-tag">D)</b>: تصف بدقة التغيرات الدموية الطبيعية في الحمل لتلبية احتياجات التروية. - يتناقص تركيز الخضاب والهيماتوكريت (<b class="opt-letter-tag">E)</b>: عبارة صحيحة، وتعرف بفقر الدم الفيزيولوجي التمددي في الحمل.</div></div>
+        
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_obs_024" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">كل مايلي من تبدلات الجهاز الهضمي أثناء الحمل ماعدا:</span>
+                </div>
+                <span class="q-date-badge">التغيرات الفيزيولوجية والتشريحية في الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تنقص الحموضة المعدية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تغير مكان الزائدة الدودية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">زيادة الحركة الحوية للأمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">زيادة خطر الإصابة بالحصيات الصفراوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ظهور البواسير.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — زيادة الحركة الحوية للأمعاء.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الحركة الحوية للأمعاء تقل (تنقص) أثناء الحمل بسبب تأثير هرمون البروجسترون المرخي للعضلات الملساء، وليس تزداد، مما يسبب الإمساك الشائع عند الحوامل.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تنقص الحموضة المعدية (<b class="opt-letter-tag">A)</b>: صحيحة، ينقص الإفراز المعدي ويبقى الطعام فترة أطول. - تغير مكان الزائدة الدودية (<b class="opt-letter-tag">B)</b>: صحيحة، تنزاح للأعلى وللوحشي بسبب كبر حجم الرحم. - زيادة خطر الحصيات (<b class="opt-letter-tag">D)</b>: صحيحة، تزداد بسبب ركودة العصارة الصفراوية. - ظهور البواسير (<b class="opt-letter-tag">E)</b>: صحيحة، تظهر بسبب زيادة التوتر داخل البطن والضغط الميكانيكي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_040" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">كل مايلي من استطبابات تحري الشذوذات الجنينية في النصف الأول للحمل ماعدا:</span>
+                </div>
+                <span class="q-date-badge">الرعاية السابقة للولادة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">عمر الحامل 30 سنة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سوابق ولادة طفل مشوه.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قصة مرض وراثي مرتبط بالجنس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">شذوذ صبغي معروف عند أحد الوالدين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">وجود مخاطر لحدوث عيوب في الأنبوب العصبي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — عمر الحامل 30 سنة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العمر 30 سنة ليس استطباباً لإجراء فحوصات صبغية روتينية في النصف الأول، بل يعتبر الاستطباب المعتمد هو عمر الأم 35 سنة فأكثر حيث يزداد الخطر الإحصائي للتشوهات الصبغية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> سوابق ولادة طفل مشوه (<b class="opt-letter-tag">B)</b>: استطباب صريح ومباشر. - قصة مرض وراثي مرتبط بالجنس (<b class="opt-letter-tag">C)</b>: مثل الناعور، تستدعي التحري لتحديد جنس الجنين وإصابته. - شذوذ صبغي عند الوالدين ومخاطر عيوب الأنبوب العصبي (D, <b class="opt-letter-tag">E)</b>: من الاستطبابات المباشرة والروتينية للفحص المبكر.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_105" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">كل ما يلي من أسباب نزوف أشهر الحمل الأولى ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الإجهاض والإسقاط</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الحمل البوقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الحمل العنقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الرحى العدارية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انفكاك المشيمة الباكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التهديد بالإسقاط.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — انفكاك المشيمة الباكر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يُصنف انفكاك المشيمة الباكر بشكل رئيسي ضمن &quot;نزوف أشهر الحمل الأخيرة&quot; (النزف قبل الوضع والذي يحدث حصراً بعد الأسبوع 20)، ولا يمكن أن يحدث في أشهر الحمل الأولى لعدم اكتمال تشكل وارتكاز المشيمة بشكلها النهائي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الحمل الهاجر بأنواعه (A, <b class="opt-letter-tag">B)</b>: الحمل البوقي والعنقي من أهم أسباب النزف والألم البطني الحاد في الأسابيع الأولى. - الرحى والتهديد بالإسقاط (C, <b class="opt-letter-tag">E)</b>: تشكل مع الحمل الهاجر الثالوث الكلاسيكي المسبب لنزوف أشهر الحمل الأولى.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_106" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">كل مايلي من استطبابات الاسقاط الطبي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">الإجهاض والإسقاط</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قصور القلب درجة ثالثة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قصور كلية شديد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">متلازمة ايزمنغر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ارتفاع التوتر الشرياني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">سرطان الثدي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — ارتفاع التوتر الشرياني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ارتفاع التوتر الشرياني غير المختلط لا يشكل بحد ذاته استطباباً للإسقاط المحرض، بل يُدبر بأدوية الضغط الآمنة للحمل والمراقبة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> قصور القلب (درجة ثالثة) ومتلازمة إيزمنغر (A, <b class="opt-letter-tag">C)</b>: أمراض قلبية ووعائية متقدمة تهدد حياة الأم وتستدعي الإنهاء. - قصور الكلية وسرطان الثدي (B, <b class="opt-letter-tag">E)</b>: استطبابات طبية صريحة لإنهاء الحمل (بسبب الحاجة للعلاج الشعاعي أو الكيماوي للسرطان، أو عدم تحمل الكلية لعبء الحمل).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_107" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">كل مايلي من أسباب الإِسقاطات المتكررة ماعدا:</span>
+                </div>
+                <span class="q-date-badge">الإجهاض والإسقاط</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تشوهات الرحم الخلقية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قصور الفوهة الباطنة لعنق الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الأسباب المناعية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قصور الدرق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">سوابق الإصابة بالحصبة الألمانية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — سوابق الإصابة بالحصبة الألمانية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> سوابق الإصابة بالحمات كالحصبة الألمانية (أو الإنتانات العابرة) تمنح الأم مناعة مستديمة، وبالتالي لا تسبب إجهاضات &quot;متكررة&quot; بتكرر الحمول، بل قد تسبب إجهاضاً أو تشوهاً لمرة واحدة فقط عند الإصابة الفعالة أثناء الحمل.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تشوهات الرحم وقصور الفوهة (A, <b class="opt-letter-tag">B)</b>: من الأسباب التشريحية والميكانيكية المباشرة للإسقاطات المتكررة (تشكل 8% من الأسباب الوالدية). - الأسباب المناعية وقصور الدرق (C, <b class="opt-letter-tag">D)</b>: أضداد الفوسفوليبيد وأمراض الغدة الدرقية غير المضبوطة هي أسباب جهازية ومناعية كلاسيكية لتكرار الإسقاط.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_108" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">حامل عشر أسابيع تشكو من نزف مشحي خفيف مع ألم أسفل الظهر ويبدي الفحص النسائي حجم رحم يتوافق مع عمر الحمل وعنق مغلق دون ألم بتحريكه ودون وجود كتلة ملحقات وهذا يتماشى مع تشخيص:</span>
+                </div>
+                <span class="q-date-badge">الإجهاض والإسقاط</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إسقاط منسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إسقاط ناقص.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تهديد بالإسقاط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">حمل هاجر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">رحى تامة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — تهديد بالإسقاط.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> توافق حجم الرحم مع عمر الحمل، عنق رحم مغلق، نزف خفيف، وألم ظهري خفيف هي المعايير السريرية الكلاسيكية لتشخيص &quot;التهديد بالإسقاط&quot; والذي يترافق مع جنين حي طبيعي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الإسقاط المنسي والناقص (A, <b class="opt-letter-tag">B)</b>: في المنسي يكون حجم الرحم أصغر من المتوقع، وفي الناقص يكون العنق مفتوحاً مع خروج قطع نسيجية. - حمل هاجر ورحى تامة (D, <b class="opt-letter-tag">E)</b>: الحمل الهاجر يترافق بألم شديد وكتلة ملحقات، والرحى التامة تترافق برحم أكبر من العمر الحملي وغثيان شديد.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_168" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">كل مايلي من مضاعفات واختلاطات اللاارتعاج (ما قبل الارتعاج) ماعدا:</span>
+                </div>
+                <span class="q-date-badge">ارتفاع الضغط الشرياني عند الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تناذر هيلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">زيادة تركيز الصوديوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">القصور الكلوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انفكاك المشيمة الباكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تحدد النمو الجنيني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — زيادة تركيز الصوديوم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ما قبل الارتعاج يترافق عادة مع &quot;نقص&quot; في تركيز الصوديوم (نقص صوديوم الدم) وفرط بوتاسيوم الدم نتيجة الخلل في الوظيفة الكلوية والوذمات، وليس زيادة في تركيز الصوديوم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> القصور الكلوي وانفكاك المشيمة (C, <b class="opt-letter-tag">D)</b>: اختلاطات وعائية حتمية في الحالات الشديدة نتيجة التشنج الوعائي. - تناذر هيلب وتحدد النمو (A, <b class="opt-letter-tag">E)</b>: من المضاعفات الكلاسيكية والمباشرة المرافقة لسير المرض.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_169" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل ما يلي صحيح في تدبير الإرجاج (الارتعاج) الشديد ماعدا:</span>
+                </div>
+                <span class="q-date-badge">ارتفاع الضغط الشرياني عند الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الراحة في غرفة هادئة مظلمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">اعطاء مدرات البول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">اعطاء خافضات الضغط وريديا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اعطاء سلفات المغنيزيوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انهاء الحمل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — اعطاء مدرات البول.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> كما أشرنا سابقاً، إعطاء مدرات البول روتينياً يعتبر إجراءً خاطئاً وغير آمن في الارتعاج الشديد لأنها تفاقم نقص الحجم الوعائي وتقلل التروية المشيمية، ولا تُستخدم إلا استثناءً في حالة وذمة الرئة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الراحة وتخفيف المنبهات (<b class="opt-letter-tag">A)</b>: ضرورية جداً في غرفة مظلمة لأن الضوء والأصوات تحرض نوبات الاختلاج. - خافضات الضغط والمغنزيوم والإنهاء (C, D, <b class="opt-letter-tag">E)</b>: تمثل الأعمدة الثلاثة الأساسية للتدبير (ضبط الضغط، منع الاختلاج، وتوليد المشيمة والجنين كعلاج جذري).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_198" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">كل ما يلي من مضاعفات تنافر RH عند الجنين ماعدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات القلبية الوعائية التنفسية الدموية العصبية والهضمية في الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فقر دم شديد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صغر حجم المشيمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قصور قلب احتقاني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">حبن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انصباب جنب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — صغر حجم المشيمة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في حالة تنافر الزمر (الريزوس) وحدوث الداء الانحلالي الجنيني، يحاول الجنين التعويض عن فقر الدم الشديد بزيادة النتاج القلبي وتفعيل مراكز تصنيع الدم خارج النقي (في الكبد والطحال). هذا يؤدي إلى احتقان، وذمة، وتضخم كبير جداً في المشيمة لتصبح &quot;عرطلة&quot; (مشيمة مائية وذمية)، وليس صغر حجمها.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات: فقر الدم الانحلالي يؤدي إلى قصور قلب احتقاني، والذي يتسبب بدوره في تشكل الخزب الجنيني (Hydrops fetalis) المتظاهر بحبن وانصباب جنب.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_274" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">كل مايلي من شروط البدء بالمعالجة الموقفة للمخاض ماعدا:</span>
+                </div>
+                <span class="q-date-badge">الاختلافات في مدة الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ما قبل إرجاج شديد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">اتساع عنق رحم أقل من 3 سم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">لا يوجد انفكاك مشيمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">لا يوجد التهاب سلوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">عمر الحمل أقل من 34 أسبوع.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ما قبل إرجاج شديد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> وجود حالة &quot;ما قبل ارتعاج شديد&quot; (أو إرجاج) هو اختلاط مهدد لحياة الأم والجنين، ويعتبر استطباباً حتمياً لتحريض المخاض وإنهائه، ويُمنع منعاً باتاً إعطاء موقفات المخاض في هذه الحالة لأن استمرار الحمل يفاقم الخطر. (شروط إيقاف المخاض الباكر Tocolysis):
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> عمر الحمل أقل من 34 أسبوعاً (بعد 34 أسبوع تكون الرئة ناضجة فلا داعي للإيقاف). - اتساع عنق الرحم أقل من 4 أو 5 سم (إذا تجاوزها يكون المخاض قد دخل الطور الفعال). - الجنين حي ولا توجد تشوهات مميتة. - غياب مضادات الاستطباب: (كالنزف الغزير، انفكاك المشيمة، التهاب السلى، ما قبل الارتعاج الشديد، والتألم الجنيني).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_275" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">كل مايلي صحيح في تدبير المخاض الباكر ماعدا:</span>
+                </div>
+                <span class="q-date-badge">الاختلافات في مدة الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">حاصرات الكلس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">مضادات الأوكسيتوسين النوعية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">حاصرات بيتا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الكورتيكوستيرويدات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">سلفات المغنيزيوم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — حاصرات بيتا.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تُستخدم الأدوية الموقفة للمخاض (Tocolytics) لإرخاء العضلة الرحمية وتأخير الولادة، وتشمل: محاكيات أو ناهضات بيتا (مثل السالبتامول والريتودرين)، وحاصرات قنوات الكالسيوم (النيفيديبين)، ومضادات البروستاغلاندينات (الإندوميتاسين),. أما &quot;حاصرات بيتا&quot; فلها تأثير معاكس يؤدي إلى تقبض الرحم ولا تستخدم أبداً لإيقاف المخاض.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الكورتيكوستيرويدات: تعطى قبل الأسبوع 34 لإنضاج رئة الجنين والوقاية من داء الأغشية الهيالينية والنزف داخل البطينات,. - النيفيديبين: يتفوق حالياً على مشابهات بيتا لأن اختلاطاته الجانبية على الأم والوليد أقل. - سلفات المغنزيوم: يستخدم أيضاً للحماية العصبية لدماغ الخديج.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_276" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">كل ما يلي من العوامل المؤهبة لانبثاق الأغشية الباكر ماعدا:</span>
+                </div>
+                <span class="q-date-badge">الاختلافات في مدة الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">موه السلى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التدخين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ارتكاز معيب للمشيمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الانتانات التناسلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الحمل المتعدد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — ارتكاز معيب للمشيمة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الارتكاز المعيب للمشيمة (المشيمة المنزاحة) يتظاهر بنزف مهبلي، ولكنه ليس عاملاً ميكانيكياً أو إمراضياً يؤدي لانبثاق الأغشية. أسباب انبثاق الأغشية الباكر (PROM):
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الإنتانات التناسلية والبولية: تفرز أنزيمات تضعف متانة الغشاء السلوي (وهي أشيع سبب). - زيادة التوتر داخل الرحم: بسبب فرط التمدد في (الحمل المتعدد، وموه السلى). - التدخين: يقلل متانة الأغشية ويؤهب لتمزقها.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_277" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">قد يترافق الحمل المديد مع كل مما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاختلافات في مدة الحمل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تعقي السلى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انعضال الكتفين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عرطلة جنينية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ارتفاع التوتر الشرياني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قصور مشيمي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — ارتفاع التوتر الشرياني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ارتفاع التوتر الشرياني ليس من الاختلاطات المباشرة الناتجة عن استمرار الحمل لما بعد تمامه (الحمل المديد). اختلاطات الحمل المديد:
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> القصور المشيمي (متلازمة الإجرار): تتراجع وظيفة المشيمة وتشيخ، مما يؤدي لنقص أكسجة الجنين. - التبدل الجنيني: نقص الأكسجة يؤدي لارتخاء معصرة الشرج الجنينية وطرح العقي (تعقي السلى). - العرطلة الجنينية وانعضال الكتف: إذا استمرت المشيمة بوظيفتها، سيزداد حجم الجنين ليصبح عرطلاً، مما يرفع بشدة خطر انعضال الكتف أثناء الولادة المهبلية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_300" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">مريضة حامل بعمر 39 أسبوع قُبلت بحالة مخاض عفوي. بالفحص النسائي: اتساع عنق الرحم 5 سم والانمحاء 90% مع جيب مياه سالم مع الشعور بالحبل السري النابض متقدما على المجيء. يكون التدبير بـ:</span>
+                </div>
+                <span class="q-date-badge">المجيئات الجنينية المعيبة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بثق جيب المياه للتأكد من التشخيص.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الانتظار والمراقبة حتى الانبثاق العفوي لجيب المياه.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تحريض المخاض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إجراء قيصرية مباشرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تطبيق ملقط جنين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — إجراء قيصرية مباشرة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الشعور بالحبل السري النابض متقدماً على المجيء مع اتساع عنق رحم غير تام (5 سم فقط) يعني وجود انسدال سرر حقيقي يهدد حياة الجنين بالاختناق. ويستدعي ذلك إجراء ولادة قيصرية إسعافية مباشرة لمنع نقص الأكسجة الجنينية، بينما بثق جيب المياه أو الانتظار أو التحريض سيؤدي حتماً لانضغاط الحبل السري وتفاقم الضائقة وتوقف قلب الجنين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_301" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">إجابة واحدة صحيحة في المجيء الوجهي:</span>
+                </div>
+                <span class="q-date-badge">المجيئات الجنينية المعيبة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قطر التدخل تحت الذقني البرغماوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">طول قطر التدخل 11 سم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">لا تأثير لنوع الوضع على الولادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">شيوعه أكثر من المجيء المقعدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الذقني الأمامي عادة يلد عن طريق القيصرية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — قطر التدخل تحت الذقني البرغماوي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> قطر التدخل النموذجي في المجيء الوجهي هو القطر تحت الذقني البرغماوي ويبلغ طوله 9.5 سم (وليس 11 سم). المجيء الوجهي أقل شيوعاً بكثير من المجيء المقعدي. لنوع الوضع تأثير حاسم على طريقة الولادة؛ فالمجيء الذقني الأمامي يمكن أن يولد مهبلياً، بينما المجيء الذقني الخلفي يستحيل ولادته مهبلياً ويستدعي القيصرية حتماً.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_333" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">كل ما يلي من أسباب نزوف الخلاص الباكرة ماعدا:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات النفاس</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">العطالة الرحمية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">رضوض وتمزقات المسير التناسلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انحباس فلقة مشيمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الإنتان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">اضطراب آلية تخثر الدم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — الإنتان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> &quot;الإنتان النفاسي&quot; (كالتهاب باطن الرحم) يُعد من أهم أسباب نزوف الخلاص المتأخرة (الثانوية) التي تحدث بعد مرور 24 ساعة وحتى 6 أسابيع من الولادة، وذلك لكون الإنتان يعيق الاندمال السليم لمكان ارتكاز المشيمة. في حين أن العطالة، التمزقات الرضية، البقايا المشيمية، واضطرابات التخثر هي الأسباب المباشرة والرئيسية (4Ts) لنزف الخلاص الباكر (خلال الـ 24 ساعة الأولى).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_334" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">كل ما يلي من عوامل الخطر لحدوث خمج باطن الرحم النفاسي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات النفاس</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انبثاق أغشية مديد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الولادة القيصرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">المخاض السريع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">السكري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">المس المهبلي المتكرر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — المخاض السريع.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> المخاض السريع أو الخاطف يقلل نظرياً من فترة تعرض جوف الرحم للمحيط الخارجي، وبالتالي يقلل من احتمالية غزو الجراثيم المهبلية والصاعدة لباطن الرحم، لذا لا يعتبر عامل خطورة للإنتان. على العكس تماماً، &quot;المخاض المديد&quot;، وانبثاق الأغشية المطول، وكثرة المس المهبلي، والعمليات الجراحية (القيصرية)، والسكري (الذي يضعف المناعة)، هي العوامل المؤهبة بقوة لخمج باطن الرحم النفاسي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_355" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">كل مما يلي من شروط التحويل بالأعمال الخارجية ماعدا:</span>
+                </div>
+                <span class="q-date-badge">العمليات التوليدية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">أن تكون المشيمة مرتكزة ارتكازاً نظامياً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">أن يكون المجيء متدخلاً في الحوض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">طول سرر نظامي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">كمية السائل الأمينوسي معتدلة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تناسب حوضي جنيني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — أن يكون المجيء متدخلاً في الحوض.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التحويل الرأسي الخارجي (ECV) يهدف إلى تغيير وضعية الجنين (من مقعدي أو معترض إلى رأسي) عبر التلاعب الخارجي ببطن الأم. لكي تنجح هذه المناورة، يُشترط أن يكون الجزء المقدم من الجنين &quot;حراً وغير متدخل&quot; في الحوض لسهولة تدويره؛ أما إذا كان المجيء متدخلاً (منحشراً داخل الحوض العظمي)، فإن محاولة تحويله تصبح مستحيلة ومضاد استطباب. بقية الخيارات تعتبر من شروط الأمان لنجاح التحويل.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_356" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">20.</span>
+                    <span class="q-stem">كل مما يلي من شروط تطبيق ملقط الجنين ماعدا:</span>
+                </div>
+                <span class="q-date-badge">العمليات التوليدية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">عنق الرحم باتساع 7 سم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">جيب المياه مبثوق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">سعة الحوض كافية لمرور الجنين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يجب أن يجرى خزع الفرج بشكل روتيني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يمكن تطبيقه في المجيء المقعدي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — عنق الرحم باتساع 7 سم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> القاعدة الذهبية والشرط الأول لتطبيق الملقط التوليدي (أو المحجم) هو الاتساع التام لعنق الرحم (10 سم). تطبيق الملقط على عنق رحم غير متسع بالكامل (مثل 7 سم) سيؤدي حتماً إلى تمزقات عنقية خطيرة ونزف صاعق. (</div><div class="exp-section exp-note"><b class="exp-header-tag">ملاحظة:</b> الملقط يطبق لتوليد الرأس، ويمكن استخدامه للمساعدة في توليد &quot;الرأس المتأخر&quot; في المجيء المقعدي، ويُجرى خزع الفرج روتينياً لتجنب تمزقات العجان العشوائية).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_357" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">21.</span>
+                    <span class="q-stem">كل مما يلي صحيح فيما يخص القيصرية عدا:</span>
+                </div>
+                <span class="q-date-badge">العمليات التوليدية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">القيصرية العلوية الأكثر شيوعا وتؤمن ندبة قوية ونزف أقل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ممكن الولادة الطبيعية بعد قيصرية سفلية واحدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تجرى القيصرية إسعافية في حال انسدال السرر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">من اختلاطات القيصرية رضوض المثانة والطرق البولية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قد تكون القيصرية باترة في حالة العطالة الرحمية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — القيصرية العلوية الأكثر شيوعا وتؤمن ندبة قوية ونزف أقل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> القيصرية السفلية (المعترضة) هي الأكثر شيوعاً، وتتميز بنزف أقل وندبة متينة تسمح بإجراء ولادة طبيعية مهبلية في الحمول اللاحقة (VBAC). أما القيصرية العلوية (الكلاسيكية الطولانية) فهي نادرة جداً حالياً، وتترافق مع نزف غزير وندبة ضعيفة جداً تحمل خطراً كبيراً لتمزق الرحم في الحمول التالية، مما يمنع الولادة المهبلية بعدها.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_402" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">22.</span>
+                    <span class="q-stem">كل ما يلي صحيح فيما يخص التوائم ثنائية البيضة ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أسئلة منوعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">دائما ثنائية الكوريون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">دائما ثنائية الأمنيون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تكون دوما من نفس الجنس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تشاهد بشكل أكبر عند العرق الأسود.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يعد وجود قصة عائلية عاملاً مؤهبا لحدوثها.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — تكون دوما من نفس الجنس.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التوائم ثنائية البيضة (Dizygotic) تنتج عن إلقاح بويضتين منفصلتين بنطفتين مختلفتين، وبالتالي فهما أخوان جينياً، قد يتماثلان في الجنس وقد يختلفان (ذكر وأنثى). ومن المؤكد أنهما يمتلكان دائماً مشيمتين وكيسين سلويين منفصلين (ثنائية الكوريون والأمنيون)، وتزداد نسبة حدوثهما بالوراثة (القصة العائلية) وعند العرق الأسود.</div></div>
+        
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "51 سؤال • 2 دورة امتحانية • 2024";
+        const originalDocTitle = "بنك الأسئلة - التوليد (دورات 2024)";
+        const subjectName = "التوليد";
+        const groupByMode = "session";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

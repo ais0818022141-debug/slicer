@@ -1,0 +1,3347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - طب الأطفال 2 (دورات 2021)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0284C7;
+            --primary-dark: #0369A1;
+            --primary-rgb: 2, 132, 199;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - طب الأطفال 2 (دورات 2021)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">الدورة:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع الدورات (الكل - 56 سؤال)</option>
+                    <optgroup label="دورات سنة 2021 (56 سؤال)">
+                        <option value="year_2021">📅 جميع دورات 2021 (56 سؤال)</option>
+                        <option value="session-1">دورة 2021 تشرين (26 سؤال)</option>
+                        <option value="session-2">دورة 2021 حزيران (30 سؤال)</option>
+                    </optgroup>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل الدورة المحددة (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">طب الأطفال 2</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب الدورات الامتحانية)</p>
+                <p class="stats-summary" id="statsSummary">56 سؤال • 2 دورة امتحانية • 2021</p>
+            </div>
+
+            <div class="index-section-title">فهرس الدورات الامتحانية (مرتبة من الأحدث إلى الأقدم)</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="session-1">
+                    <a href="#session-1" class="index-row" data-group-id="session-1" data-year="2021">
+                        <span class="index-topic-name">2021 تشرين</span>
+                        <span class="index-topic-meta">
+                            <span>8 مواضيع</span>
+                            <span class="index-count">26 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'session-1', 'دورة 2021 تشرين')" title="تحميل دورة 2021 تشرين كملف مستقل">⬇ تحميل</button>
+                </div>
+                <div class="index-row-wrapper" data-group-id="session-2">
+                    <a href="#session-2" class="index-row" data-group-id="session-2" data-year="2021">
+                        <span class="index-topic-name">2021 حزيران</span>
+                        <span class="index-topic-meta">
+                            <span>11 مواضيع</span>
+                            <span class="index-count">30 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'session-2', 'دورة 2021 حزيران')" title="تحميل دورة 2021 حزيران كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2021" data-group-id="session-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="session-1">
+                    <div class="topic-title-text">دورة 2021 تشرين</div>
+                    <span class="topic-counter">26 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_peds_016" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">التظاهر الأول من بين التالي لتطور البلوغ عند الأنثى هو:</span>
+                </div>
+                <span class="q-date-badge">النمو والبلوغ</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">شعر عانة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">شعر إبط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">طمث.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تسارع نمو.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تغير ملامح الصوت.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — شعر عانة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> طبياً، &quot;برعم الثدي&quot; (Thelarche) هو العلامة الأولى لبدء البلوغ عند الإناث، وبما أنه غائب عن الخيارات، فإن ظهور &quot;شعر العانة&quot; (Pubarche) وتسارع النمو الطولي هما التظاهران التاليان مباشرة لتطور الثدي في تسلسل البلوغ الطبيعي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تسارع النمو (ذروة سرعة النمو) يحدث عند الإناث في مرحلة مبكرة من البلوغ (غالباً تانر 2-3) مقارنة بالذكور. الطمث (Menarche) هو علامة متأخرة جداً تحدث عادة بعد سنتين ونصف من ظهور برعم الثدي. تغير ملامح الصوت يميز بلوغ الذكور.</div></div>
+        
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_peds_017" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">طفلة بعمر 6.5 سنوات، ظهر لديها برعم الثدي تانر (2) وطولها على مخطط النمو + 1 انحراف معياري عن المتوسط، ما هو الاجراء المناسب:</span>
+                </div>
+                <span class="q-date-badge">النمو والبلوغ</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">صورة معصم أيسر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">معايرة الاستراديول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">FSH, LH.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ايكو حوض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">رنين مغناطيسي للدماغ.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — صورة معصم أيسر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ظهور برعم الثدي (تانر 2) قبل عمر 8 سنوات عند الإناث يُشخّص كـ &quot;بلوغ باكر&quot;. الإجراء البدئي والأهم في التقييم هو إجراء صورة شعاعية لمعصم اليد اليسرى لتحديد &quot;العمر العظمي&quot;، مما يساعد في التفريق بين البلوغ الباكر الحقيقي (حيث يكون العمر العظمي متقدماً بشكل ملحوظ) وبين تطور الثدي المعزول السليم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الاستقصاءات الهرمونية (FSH, LH، والإستراديول) والتصويرية (إيكو الحوض لتصوير المبيضين، والمرنان المغناطيسي للدماغ لنفي الأورام الوطائية) هي استقصاءات لاحقة تُطلب متى ما تم تأكيد تقدم العمر العظمي وتسارع وتيرة البلوغ.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_039" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">وليد لديه إقياءات نافورية بعد الإرضاع مع كسب وزن طبيعي وشهية جيدة والتطور الروحي سليم، التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">أمراض الجهاز الهضمي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قلس معدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فتق حجابي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تضيق بواب ضخامي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انسداد بعيد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">فرط توتر قحف.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — قلس معدي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> وجود &quot;كسب وزن طبيعي&quot; وتطور روحي سليم مع شهية جيدة يوجه التشخيص بقوة نحو &quot;القلس المعدي المريئي الفيزيولوجي&quot; السليم، حيث يُعرف هؤلاء الرضع بـ (Happy Spitters) أو الباصقين السعداء.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تضيق البواب الضخامي يتميز أيضاً بإقياءات نافورية وتأخرها لعدة أسابيع، لكنه يترافق حتماً مع &quot;نقص وزن&quot; وفشل كسب وزن بسبب عدم مرور الغذاء. الفتق الحجابي يتظاهر بضائقة تنفسية حادة منذ الولادة. الانسداد البعيد يعطي إقياءات صفراوية. فرط التوتر القحفي يترافق مع أعراض عصبية وتأخر تطور. (</div><div class="exp-section exp-note"><b class="exp-header-tag">ملاحظة:</b> بعض بنوك الأسئلة القديمة تختار تضيق البواب بسبب كلمة &quot;نافورية&quot;، ولكن كسب الوزن الطبيعي ينفي التضيق طبياً).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_095" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">أشيع اختلاط للحصبة:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخمجية والمناعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب دماغ حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب دماغ مصلب تحت حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ذات رئة خلالية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب أذن وسطى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ذات رئة خلايا عرطلة / بقاء القناة الشريانية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — التهاب أذن وسطى.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يعتبر &quot;التهاب الأذن الوسطى الحاد&quot; هو الاختلاط الجرثومي المكتسب الأشيع على الإطلاق لمرض الحصبة، وخاصة لدى الرضع والأطفال الصغار.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> ذات الرئة (الخمج الرئوي) هي الاختلاط التنفسي &quot;الأخطر&quot; وهي أشيع سبب للوفاة المرتبطة بالحصبة، ولكنها ليست الأشيع كحدوث. التهاب الدماغ المصلب تحت الحاد (SSPE) هو اختلاط عصبي تنكسي خطير جداً ولكنه متأخر الظهور ونادر. ذات رئة الخلايا العرطلة وبقاء القناة الشريانية مرتبطان بالحصبة الألمانية والـ CMV.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_096" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن وردية الطفل ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخمجية والمناعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">حالة عامة سيئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">حرارة مرتفعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">اختلاج حروري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تختفي الحرارة فجأة بعد 3-4 أيام.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">طفح لطاخي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — حالة عامة سيئة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تتميز الوردية الطفيلية أو وردية الرضع (الداء السادس الناجم عن فيروس الحلأ البشري 6) بأن الطفل يكون بحالة عامة &quot;ممتازة&quot; ونشيطاً ويلعب (طفل يبدو سليماً)، بالرغم من الارتفاع الشديد في درجة حرارته، وهذه مفارقة سريرية هامة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يتظاهر المرض نموذجياً بترفع حروري شديد (قد يحرض اختلاجاً حرورياً) يستمر لمدة 3-4 أيام، ثم &quot;تختفي الحرارة فجأة&quot;، ليعقبها مباشرة ظهور طفح بقعي لطاخي وردي ينتشر من الجذع للرقبة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_097" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن الحمى القرمزية ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخمجية والمناعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">المناعة دائمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نادرة قبل 3 سنوات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">المسبب العقديات مجموعة A.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">لا يوجد لقاح.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">العلاج بالبنسلين 10 أيام.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — المناعة دائمة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الإصابة بالحمى القرمزية &quot;لا&quot; تمنح مناعة دائمة أو مطلقة، ويمكن أن تتكرر الإصابة بالمرض لدى نفس الطفل إذا تعرض لسلالات مختلفة من العقديات المفرزة للذيفان.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> العامل المسبب هو الذيفان المحمر المفرز من العقديات بيتا الحالة للدم مجموعة A. تعتبر نادرة الحدوث قبل عمر 3 سنوات بسبب وجود أضداد والدية واقية. لا يوجد لقاح متوفر ضدها. والعلاج المعياري الفعال هو البنسلين (أو الأموكسيسيلين) لمدة 10 أيام كاملة للوقاية من اختلاط الحمى الرثوية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_098" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">فيما يتعلق بلقاحات الطفل المثبط مناعياً كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخمجية والمناعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يمكن إعطاء اللقاح الثلاثي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يمكن إعطاء لقاح المستدميات النزلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">لا يمكن إعطاء لقاح MMR.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">لا يمكن إعطاء لقاح الشلل الفموي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">لا يمكن إعطاء لقاح التهاب الكبد البائي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — لا يمكن إعطاء لقاح التهاب الكبد البائي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> لقاح التهاب الكبد البائي هو لقاح &quot;مؤتلف مأشوب هندسياً&quot; (يحتوي فقط على المستضد السطحي HBsAg وليس فيروساً حياً)، وبالتالي فهو آمن تماماً ويُستطب إعطاؤه للأطفال المثبطين مناعياً لحمايتهم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> القاعدة الذهبية في التثبيط المناعي: &quot;يُمنع إعطاء اللقاحات الحية المضعفة&quot;. لذا، لا يمكن إعطاء لقاح الـ MMR (حصبة، نكاف، حصبة ألمانية) ولا لقاح شلل الأطفال الفموي (سابين) لأنها حية وقد تسبب المرض. بينما يمكن بأمان إعطاء اللقاح الثلاثي المقتول (DTP) ولقاح المستدمية النزلية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_099" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن لقاحات الأطفال في برنامج التلقيح الوطني ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخمجية والمناعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب الكبد ب 3 جرعات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">لقاح MMR يعطى 3 جرعات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الرباعي هو DTP مع المستدميات النزلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">لقاح السل خلال الأيام الأولى من الولادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">اللقاح الثلاثي MMR هو الحصبة والحصبة الألمانية والنكاف.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — لقاح MMR يعطى 3 جرعات.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يقصد لقاح MMR ثلاث جرعات. <div class="exp-section exp-clinical"><b class="exp-header-tag">الشرح:</b> لقاح الـ MMR يُعطى ضمن برنامج التلقيح الوطني السوري على &quot;جرعتين&quot; فقط (الجرعة الأولى بعمر السنة، والجرعة الداعمة الثانية بعمر السنة ونصف)، وليس ثلاث جرعات.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يعطى لقاح التهاب الكبد البائي على 3 جرعات (ضمن اللقاح الخماسي أو السداسي). اللقاح الرباعي يضم اللقاح الثلاثي (DTP) مع لقاح المستدميات النزلية B. لقاح السل (BCG) يعطى في الأيام الأولى بعد الولادة كجرعة وحيدة داخل الأدمة. اللقاح الثلاثي الفيروسي MMR يقي من (الحصبة، النكاف، الحصبة الألمانية).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_173" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن الكروب ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات التنفسية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بحة صوت.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صرير.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">صعوبة التنفس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">سعال نباحي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">العاب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — العاب.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الإلعاب (سيلان اللعاب) وصعوبة البلع هي من العلامات الوصفية المميزة لـ &quot;التهاب لسان المزمار&quot; (Epiglottitis) الحاد والمهدد للحياة، ولا تشاهد في الكروب (التهاب الحنجرة والرغامى والقصبات الفيروسي).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يتظاهر الكروب كلاسيكياً بثالوث: بحة صوت (بسبب إصابة الحبال الصوتية)، صرير شهيقي (انسداد علوي)، وسعال نباحي مميز (كصوت الفقمة)، مع صعوبة تنفس وسحب صدري تزداد ليلاً، والطفل يكون بحالة عامة جيدة نسبياً ويمكنه بلع ريقه.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_174" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">كل ما يلي من الموسعات القصبية ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات التنفسية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">سالبوتامول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سالميترول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ثيوفيليين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">كرومولين الصوديوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">إبراتروبيوم برومايد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — كرومولين الصوديوم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> كرومولين الصوديوم (Cromolyn) هو دواء &quot;مثبت للأسواط&quot; (يمنع زوال تحبب الخلايا البدينة وتحرر الهيستامين واللوكوترينات)، ويستخدم كعلاج وقائي للربو، ولكنه لا يمتلك أي تأثير &quot;موسع للقصبات&quot; ولا يفيد أبداً في الهجمة الحادة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> السالبوتامول (SABA) والسالميتيرول (LABA) هي منبهات مستقبلات بيتا 2 وتوسع القصبات مباشرة. الإبراتروبيوم برومايد هو مضاد كولينرجي يوسع القصبات. الثيوفيللين هو موسع قصبي من زمرة الميثيل كسانتين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_175" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">كل ما يلي من أسباب انسداد الطرق التنفسية العلوية ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات التنفسية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">استنشاق جسم أجنبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب لسان المزمار.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">كروب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تضيق حنجرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الربو.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — الربو.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الربو هو مرض التهابي مزمن يصيب &quot;الطرق التنفسية السفلية&quot; (القصبات والقصيبات داخل الصدر) ويسبب انسداداً ديناميكياً يتظاهر سريرياً بالوزيز الزفيري وتطاول الزفير، وليس له علاقة بالطرق التنفسية العلوية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> استنشاق جسم أجنبي (في الحنجرة أو الرغامى العلوية)، التهاب لسان المزمار، الكروب، وتضيق الحنجرة التشريحي؛ هي جميعها أسباب حادة ومزمنة لانسداد &quot;الطرق التنفسية العلوية&quot; (خارج الصدر)، وتتظاهر سريرياً بشكل رئيسي بـ &quot;الصرير&quot; الشهيقي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_228" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">كل ما يلي من الأمراض القلبية المعتمدة على القناة الشريانية ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات القلبية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نقص تصنع بطين أيسر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">جذع شرياني مشترك.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انقطاع قوس الأبهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تضيق برزخ أبهر حرج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تضيق صمام أبهري حرج.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — جذع شرياني مشترك.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الجذع الشرياني المشترك (Truncus Arteriosus) هو آفة قلبية مزرقة ينشأ فيها وعاء دموي واحد كبير من كلا البطينين، ويؤمن التروية الرئوية والجهازية معاً. وبالتالي الدوران فيه غير معتمد على القناة الشريانية لضمان البقاء.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> نقص تصنع البطين الأيسر، انقطاع قوس الأبهر، تضيق برزخ الأبهر الحرج، وتضيق الصمام الأبهري الحرج؛ هي جميعها آفات &quot;سادة لبطين أيسر&quot;، وتعتبر آفات &quot;معتمدة على القناة الشريانية لتروية الدوران الجهازي&quot;، حيث يؤدي انغلاق القناة لانهيار دوراني وصدمة، لذلك يجب إبقاؤها سالكة بإعطاء البروستاغلاندين E.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_229" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">يكون افتراق الصوت الثاني ثابتاً في إحدى التشوهات التالية:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات القلبية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ASD.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">VSD.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">PDA.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تضيق أبهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تضيق رئوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ASD.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انقسام (افتراق) الصوت القلبي الثاني (S2) الانقسام &quot;الواسع والثابت&quot; (لا يتأثر بالشهيق والزفير) هو العلامة الإصغائية الواسمة والمميزة سريرياً لفتحة الحاجز الأذيني (ASD).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> في عيب الحاجز البطيني (VSD) يلاحظ انقسام طبيعي مع نفخة شاملة للانقباض. في القناة الشريانية السالكة (PDA) تسمع نفخة مستمرة (آلاتية). في التضيق الأبهري قد يحدث انقسام متناقض للصوت الثاني. وفي التضيق الرئوي يكون الصوت الثاني الرئوي خافتاً ومتأخراً.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_230" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">أي مما يلي يسبب حمى رثوية غير مقيحة:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات القلبية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">عقديات مقيحة A.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">عنقوديات مذهبة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">مستدميات نزلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">عقديات رئوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">النيسيريا البنية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — عقديات مقيحة A.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الحمى الرثوية هي ارتكاس مناعي والتهابي جهازي (غير متقيح) يتلو إنتاناً بلعومياً حصراً بـ &quot;العقديات بيتا الحالة للدم من المجموعة A&quot; (Streptococcus pyogenes - العقديات المقيحة) بفترة كامنة تتراوح بين أسبوعين لثلاثة أسابيع.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> العنقوديات المذهبة، المستدميات النزلية، العقديات الرئوية، والنيسريات البنية تسبب أمراضاً إنتانية وتجرثماً دموياً مباشراً أو التهابات مفاصل قيحية، ولكنها لا تطلق الارتكاس المناعي المتصالب الخاص بالحمى الرثوية أو معايير جونز.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_273" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">كل ما يلي من علامات المتلازمة النفروزية المستجيبة للكورتيزون ما عدا:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات الكلية والمسالك البولية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">مستويات متممة طبيعية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">لا يوجد بيلة دموية عيانية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الضغط الشرياني طبيعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">العمر أقل من سنة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">كرياتينين طبيعي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — العمر أقل من سنة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العمر (أقل من سنة) يوجه نحو التناذر النفروزي &quot;الولادي أو الطفلي&quot;، والذي يكون عادة ذا أساس وراثي جيني (مثل طفرات النيفرين) ويكون &quot;مقاوم ومعند جداً&quot; على العلاج بالستيروئيدات، ويحمل إنذاراً سيئاً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الملامح السريرية والمخبرية التي تتنبأ باستجابة ممتازة للكورتيزون (نفروز التبدلات الصغرى MCD) هي: عمر الطفل بين (1 - 10 سنوات)، غياب البيلة الدموية العيانية، ضغط شرياني طبيعي، وظائف كلية (كرياتينين) طبيعية، ومستويات متممة C3 طبيعية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_274" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">طفلة بعمر سنتين لديها شحوب مع وذمة بعد إسهال مدمى بعد 5 أيام، التحاليل المخبرية أشارت لارتفاع البولة والكرياتينين ونقص صفيحات، التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات الكلية والمسالك البولية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">HUS.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">متلازمة النفروز.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب كبب وكلية تالي للعقديات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فرفرية نقص الصفيحات الأساسية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قصور كلوي مزمن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — HUS.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> القصة الوصفية تتضمن الثالوث الكلاسيكي للمتلازمة الانحلالية اليوريميائية (HUS) وهو: 1- أذية كلوية حادة (ارتفاع البولة والكرياتينين والوذمة). 2- فقر دم انحلالي (شحوب). 3- نقص صفيحات استهلاكي. وكل ذلك يتلو قصة خمج معوي بـ E.coli يتظاهر بـ (إسهال مدمى).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> المتلازمة النفروزية لا تسبب فقر دم انحلالي ولا نقص صفيحات. التهاب الكلية التالي للعقديات يتلو إنتاناً بلعومياً أو جلدياً ويسبب ارتفاع ضغط وبيلة دموية. الـ ITP يسبب نقص صفيحات معزول دون أذية كلوية. القصور الكلوي المزمن مسيرته طويلة ولا يبدأ بشكل حاد تالٍ لإسهال.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_339" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن تكور الكريات الوراثي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات الدموية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يكون تفاعل كومبس إيجابي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يكون في معظم الحالات وراثي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نوب نقص تصنع كريات حمراء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قد يسبب حصيات مرارية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انحلال دم في عمر الوليد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — يكون تفاعل كومبس إيجابي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تكور الكريات الوراثي هو فقر دم انحلالي ناتج عن &quot;عيب بنيوي خلقي&quot; في بروتينات غشاء الكرية الحمراء، وليس له أي علاقة بوجود أضداد مناعية، لذلك يكون اختبار كومبس المباشر (Direct Coombs test) &quot;سلبياً&quot; دائماً. (إيجابية كومبس تميز فقر الدم الانحلالي المناعي الذاتي AIHA).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> المرض يورث بصفة جسدية قاهرة غالباً. يتظاهر بانحلال دم ويرقان (حتى في عمر الوليد). يسبب تشكل حصيات مرارية صباغية بسبب الانحلال المزمن. وقد يختلط بنوب &quot;نقص تصنع&quot; خطيرة (توقف إنتاج الكريات) تالية للخمج بفيروس بارفو B19.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_340" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن عوز G6PD ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات الدموية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">جميع المرضى تصيبهم نوبات انحلال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تتحرض النوبة بتناول الفول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ضخامة طحال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">من غير الضروري تعويض الحديد للبعض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تتحرض بتناول بعض الأدوية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — جميع المرضى تصيبهم نوبات انحلال.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ليس بالضرورة أن يصاب جميع مرضى عوز G6PD (الفوال) بنوبات انحلال دموي، بل إن الكثير منهم (خاصة الإناث الحاملات للطفرة أو الذكور ذوي الطفرات الخفيفة) يبقون &quot;لا عرضيين&quot; طوال حياتهم ما لم يتعرضوا لشدة أو عامل محرض قوي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> النوبة الانحلالية الحادة تتحرض بتناول الفول (الفاصولياء العريضة) أو بعض الأدوية (كمضادات الملاريا ومركبات السلفا) أو الإنتانات. قد تحدث ضخامة طحال خفيفة. ومن غير الضروري، بل من غير المستطب، تعويض الحديد للمرضى بشكل روتيني لأن الانحلال يعيد تدوير الحديد داخل الجسم ولا يفقده.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_341" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">كل ما يلي صحيح في الثلاسيميا الكبرى ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات الدموية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ضخامة طحال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ضخامة كبد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يرقان وانحلال منذ الولادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">سحنة مميزة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">فشل نمو.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — يرقان وانحلال منذ الولادة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التلاسيميا الكبرى (عوز سلاسل بيتا) لا تتظاهر منذ الولادة مباشرة، لأن الجنين والوليد الحديث يعتمدان على &quot;الخضاب الجنيني&quot; (HbF) الذي لا يحوي سلاسل بيتا. تبدأ الأعراض بالظهور بعد الشهر الثالث إلى السادس من العمر عندما يبدأ إنتاج الخضاب البالغ (HbA) فيحل محله خضاب غير فعال ويحدث الانحلال.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> في التلاسيميا الكبرى تتشوه العظام (سحنة مميزة) وتحدث ضخامة طحال وضخامة كبد هائلة بسبب تكون الدم خارج النقي والارتشاح الانحلالي، ويتأثر النمو بشدة (فشل نمو) إذا لم يُعالج الطفل بنقل الدم المنتظم.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_342" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">20.</span>
+                    <span class="q-stem">كل ما يلي من تظاهرات المنجلي عند الأطفال ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات الدموية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نوبات ألمية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ضخامة طحال حتى سن البلوغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فقر الدم مفيد بسبب نقص اللزوجة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">كثرة تناول المسكنات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نوبات تشظي الطحال شائعة خلال السنوات الأولى للطفولة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — ضخامة طحال حتى سن البلوغ.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في الداء المنجلي، تحدث ضخامة الطحال في السنوات الأولى من العمر فقط، ولكن بسبب نوبات الاحتشاء المتكررة للأوعية الطحالية (احتشاء الطحال الذاتي)، يتليف الطحال ويضمر ويصغر حجمه بشكل لا عكوس قبل سن السادسة غالباً (استئصال طحال وظيفي). لذا لا تستمر الضخامة حتى سن البلوغ.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> النوبات الألمية (أزمة انسداد الأوعية) هي العرض الأشيع ويحتاج الطفل لكثرة المسكنات القوية. نوبات تشظي الطحال (تجمع الدم المفاجئ فيه) شائعة وخطيرة في السنوات الأولى. فقر الدم المرافق للمرض يعتبر &quot;مفيداً&quot; جزئياً لأنه ينقص من لزوجة الدم ويخفف من ركودة الكريات المنجلية وانسداد الأوعية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_343" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">21.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن تدمي المفصل بالناعور ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات الدموية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نقل ركازة العامل الثامن أو التاسع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يعالج برسابة قرية أو بلازما طازجة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يعالج بالستيروئيدات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">بزل المفصل لتخفيف الضغط عنه.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">راحة تامة للمفصل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — يعالج بالستيروئيدات.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> النزف داخل المفصل (تدمي المفصل) في مرض الناعور هو مشكلة &quot;نزفية بحتة&quot; ناتجة عن عوز عوامل التخثر، وليس مشكلة التهابية أو مناعية، لذا لا يوجد أي دور علاجي للستيروئيدات (الكورتيزون) في تدبير هذه الحالة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يعتمد التدبير الأساسي والفعال على تعويض العامل الناقص (إعطاء ركازة العامل الثامن للناعور A، أو التاسع للناعور <b class="opt-letter-tag">B)</b>. في حال عدم توفر الركازات، يمكن استخدام البلازما الطازجة المجمدة (FFP) أو الرسابة القرية. يجب إعطاء راحة تامة للمفصل، وقد يجرى بزل المفصل إسعافياً لتخفيف الضغط ومنع التخرب الغضروفي إذا كان التوتر شديداً جداً.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_344" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">22.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن فقر الدم بعوز الحديد ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات الدموية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نقص شهية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الشحوب العلامة الأبكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">شهية ضالة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ضعف القدرات العقلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">غالباً لا يوجد ضخامة طحال أو كبد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الشحوب العلامة الأبكر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الشحوب السريري (في الملتحمة والجلد) ليس العلامة الأبكر لفقر الدم، بل هو علامة متأخرة ولا يصبح واضحاً أو ملحوظاً إلا عندما ينخفض خضاب الدم إلى ما دون 7-8 غ/دل. العلامات المخبرية (كنقص الفيريتين) والتعب تسبق الشحوب.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يسبب عوز الحديد نقصاً في الشهية وضعفاً في القدرات العقلية والتركيز والأداء المدرسي (بسبب نقص أكسجة الدماغ وتأثر إنزيمات الجملة العصبية). يترافق بشكل وصفي مع &quot;البيكا&quot; أو الشهية الضالة (أكل التراب أو الورق). وغالباً ما يكون الفحص السريري طبيعياً ولا تترافق الحالة مع ضخامة طحال أو كبد.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_377" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">23.</span>
+                    <span class="q-stem">طفل يعاني من اختلاجات وتراجع فك سفلي، وجد بصورة الصدر غياب التيموس، أي من التالي يوجه للعلاج:</span>
+                </div>
+                <span class="q-date-badge">الداء السكري واضطرابات الغدد الصم</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ايكو عبر اليافوخ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صوديوم الدم / مغنيزيوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">كلس الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">سكر الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تخطيط دماغ / طبقي محوري للدماغ.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — كلس الدم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> القصة السريرية (تراجع فك سفلي كشذوذ وجهي، غياب ظل غدة التيموس شعاعياً، واختلاجات متكررة) هي اللوحة الوصفية الكلاسيكية لـ &quot;متلازمة دي جورج&quot; (DiGeorge Syndrome). تترافق هذه المتلازمة مع غياب أو عدم تنسج الغدد جارات الدرق، مما يؤدي إلى &quot;نقص كلس دم شديد&quot; يسبب الاختلاجات، وبالتالي فإن معايرة الكالسيوم وتصحيحه هو الموجّه الفوري للعلاج.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> السكر والمغنيزيوم والصوديوم هي أسباب شائعة للاختلاجات الاستقلابية، لكنها لا تترافق مع غياب التيموس وتراجع الفك. إيكو اليافوخ وتخطيط الدماغ تستقصي الأسباب العصبية المركزية للاختلاج، لكن المفتاح هنا استقلابي مرتبط بالمتلازمة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_378" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">24.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن داء غريفز عند الأطفال ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الداء السكري واضطرابات الغدد الصم</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">عدم تحمل حرارة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فقدان وزن ونقص شهية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">سلعة درقية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تعرق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تسرع قلب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — فقدان وزن ونقص شهية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في داء غريفز (فرط نشاط الدرق)، يرتفع معدل الاستقلاب الأساسي بشدة، مما يسبب &quot;فقدان وزن&quot; ملحوظاً، ولكن ذلك يترافق على نحو مفارقاتي مع &quot;زيادة كبيرة في الشهية&quot; (شره للطعام) وليس نقصاً فيها.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التظاهرات الكلاسيكية لفرط نشاط الدرق تشمل: عدم تحمل الحرارة، فرط التعرق، تسرع القلب والخفقان، ضخامة الغدة الدرقية المنتشرة (السلعة الدرقية)، بالإضافة إلى القلق، العصبية، الرجفان، والجحوظ العيني.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_379" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">25.</span>
+                    <span class="q-stem">التظاهرة الأكثر شيوعاً لكوشينغ عند الأطفال هي:</span>
+                </div>
+                <span class="q-date-badge">الداء السكري واضطرابات الغدد الصم</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بدانة جذعية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع ضغط شرياني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">شعرانية / تأخر نمو.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تظاهرات نفسية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — بدانة جذعية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التظاهر السريري الأكثر شيوعاً والأبرز لداء أو متلازمة كوشينغ عند الأطفال هو البدانة الجذعية (تراكم الشحوم في المركز والجذع مع بقاء الأطراف رفيعة)، وغالباً ما تترافق هذه البدانة مع &quot;قصر قامة&quot; وتوقف في سرعة النمو الخطي، وهذا ما يميزها بقوة عن البدانة الأساسية السليمة التي تترافق عادةً مع زيادة في الطول.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> ارتفاع الضغط الشرياني، العد (حب الشباب)، الشعرانية، وتأخر النمو، وكذلك التظاهرات النفسية؛ جميعها من التظاهرات الكلاسيكية لفرط الكورتيزول (كوشينغ)، لكن &quot;البدانة الجذعية&quot; هي العرض الأشيع والأوضح.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> العلامة المخبرية الأولى لمتلازمة كوشينغ هي غياب أو تبدل الإفراز اليوماوي الطبيعي للكورتيزول (حيث يبقى مرتفعاً ليلاً). ويتم التشخيص باختبار التثبيط بالديكساميتازون.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_380" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">26.</span>
+                    <span class="q-stem">كل ما يلي من اختبارات تشخيص داء أديسون عند الأطفال ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الداء السكري واضطرابات الغدد الصم</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">كورتيزول الساعة 8 صباحاً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ACTH معايرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">اختبار التثبيط بالديكساميتازون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أضداد ذاتية لقشر الكظر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">اختبار التحريض بال ACTH.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — اختبار التثبيط بالديكساميتازون.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> اختبار التثبيط بالديكساميتازون يُستخدم لتشخيص حالات &quot;فرط&quot; نشاط قشر الكظر (مثل متلازمة كوشينغ) لمعرفة ما إذا كان الإفراز يثبط أم لا، ولا يُستخدم لتشخيص داء أديسون الذي هو &quot;قصور&quot; ونقص في الإفراز.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> لتشخيص داء أديسون (القصور الكظري البدئي) نعتمد على: معايرة كورتيزول المصل الساعة 8 صباحاً (يكون منخفضاً)، معايرة الـ ACTH (يكون مرتفعاً جداً بسبب غياب التلقيم الراجع السلبي)، اختبار التحريض بالـ ACTH (لإثبات عدم قدرة الكظر على الاستجابة وإنتاج الكورتيزول)، والتحري عن الأضداد الذاتية لقشر الكظر (بما أن السبب المناعي الذاتي هو الأشيع).</div></div>
+        
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+        <div class="topic-container" data-year="2021" data-group-id="session-2">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="session-2">
+                    <div class="topic-title-text">دورة 2021 حزيران</div>
+                    <span class="topic-counter">30 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_peds_018" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">في استقصاءات قصر القامة لدى الطفل، كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">النمو والبلوغ</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">صورة الصدر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">طول الأم والأب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">TSH.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">العمر العظمي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">أضداد زلاقي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — صورة الصدر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> صورة الصدر الشعاعية البسيطة لا تعتبر من الاستقصاءات الروتينية أو المبدئية لتقييم طفل يعاني من قصر قامة، حيث لا تقدم دلالة مباشرة على اضطرابات النمو أو العمر العظمي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> في المقاربة التشخيصية لقصر القامة نطلب حتماً: تقييم &quot;طول الأم والأب&quot; (لحساب الطول المستهدف الوراثي)، صورة معصم لتقييم &quot;العمر العظمي&quot;، معايرة &quot;TSH&quot; (لنفي قصور الدرق المكتسب)، وتحري &quot;أضداد الزلاقي&quot; كـ anti-tTG (لأن الداء الزلاقي قد يتظاهر بقصر قامة معزول).
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> أي طفلة &quot;أنثى&quot; تراجع بقصر قامة غير مفسر يجب أن يُجرى لها حتماً استقصاء الصيغة الصبغية (Karyotype) لنفي متلازمة تورنر، حتى بغياب الملامح الوجهية الكلاسيكية.</div></div>
+        
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_peds_040" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">كل مما يلي من الأسباب الخمجية للإسهال الحاد ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الجهاز الهضمي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">العنقوديات المذهبة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الايشريشة كولي المنزفة للأمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فيروس الروتا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اليرسينيا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">بلهارسيا.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — بلهارسيا.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> البلهارسيا (داء المنشقات Schistosomiasis) هو خمج طفيلي يسبب التهاباً مزمناً في الكبد أو الطرق البولية أو الأمعاء (بشكل داء مزمن)، ولا يُعد من الأسباب الكلاسيكية لـ &quot;الإسهال الخماجي الحاد&quot; (Gastroenteritis) عند الأطفال.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> فيروس الروتا (هو السبب الفيروسي الأشيع للإسهال المائي الحاد عند الرضع). العنقوديات المذهبة (تسبب انسماماً غذائياً وإسهالاً حاداً بسبب ذيفاناتها). الإشريكية القولونية (E.coli) بذراريها المختلفة (خاصة النزفية) واليرسينيا؛ هي جراثيم كلاسيكية تسبب التهاب معدة وأمعاء حاد قد يكون زحارياً مدمى.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_100" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">كل ما يلي من المظاهر السريرية أو اختلاطات لداء وحيدات النوى الخمجي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخمجية والمناعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">اعتلال أعصاب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انحلال دم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">طفح.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب خصية وبربخ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">لمفوما بوركيت.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — التهاب خصية وبربخ.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب الخصية والبربخ هو الاختلاط الكلاسيكي والمميز لمرض &quot;النكاف&quot; (Mumps) خاصة عند المراهقين والبالغين الذكور، ولا يعتبر من اختلاطات داء وحيدات النوى الخمجي (الذي يسببه فيروس إبشتاين بار EBV).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يتظاهر داء وحيدات النوى بالثالوث (حرارة، التهاب بلعوم ولوزات بشع، واعتلال عقد لمفاوية رقبية). ومن اختلاطاته الممكنة: انحلال الدم (فقر دم انحلالي مناعي)، طفح بقعي حطاطي (خاصة إذا أُعطي المريض أمبيسيلين بالخطأ)، واعتلالات عصبية. كما يترافق فيروس EBV ارتباطاً وثيقاً مع خباثات كـ &quot;لمفوما بيركت&quot; وسرطان البلعوم الأنفي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_101" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">في داء كاوازاكي كل ما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخمجية والمناعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">حرارة أكثر من 3 أيام.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">اعتلال عقد رقبية وحيدة الجانب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">لا يوجد اختبار مشخص.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">توذم راحتين واخمصين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التهاب ملتحمة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — حرارة أكثر من 3 أيام.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الشرط الأساسي والمفتاحي لتشخيص داء كاوازاكي هو وجود حرارة مستمرة ومعندة لمدة &quot;5 أيام على الأقل&quot; (وليس 3 أيام فقط)، ولا تستجيب لخافضات الحرارة العادية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> لتشخيص المرض يجب توفر الحرارة (5 أيام) مع 4 من المعايير التالية: التهاب ملتحمة ثنائي الجانب (غير قيحي)، تبدلات في الفم والشفتين (لسان الفراولة)، توذم واحمرار وتقشر في الراحتين والأخمصين، اعتلال عقد لمفاوية رقبية (غالباً وحيدة الجانب)، وطفح جلدي متعدد الأشكال. ولا يوجد &quot;اختبار مخبري نوعي أو مشخص&quot; للمرض بل يعتمد التشخيص على المعايير السريرية.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> يُعالج كاوازاكي إسعافياً بالغلوبولين المناعي الوريدي (IVIG) والأسبرين بجرعة عالية للوقاية من أخطر اختلاطاته وهو (أمهات دم الشرايين الإكليلية).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_102" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">أعراض الحصبة، كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخمجية والمناعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">سعال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب ملتحمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">بقع كوبليك.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">حمى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">طفح حويصلي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — طفح حويصلي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الطفح الجلدي المميز لمرض الحصبة (Measles) هو طفح &quot;بقعي حطاطي حمامي&quot; يبدأ عادة من خلف الأذنين وخط الشعر وينتشر للأسفل. أما الطفح &quot;الحويصلي&quot; فهو الوصف الكلاسيكي لمرض الحماق (جدري الماء).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الطور البادري الكلاسيكي للحصبة يتميز بالثلاثية النزلية (3Cs): سعال (Cough)، زكام، والتهاب ملتحمة (Conjunctivitis) مترافق مع حرارة عالية مستمرة. كما تعتبر &quot;بقع كوبليك&quot; (Koplik spots) على باطن الخد العلامة الواسمة والمشخصة باكراً للمرض قبل ظهور الطفح.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_103" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن التدرن ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخمجية والمناعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">العامل الممرض هو عصيات إيجابية غرام غير متحركة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">المعقد غون يشمل الآفة البدئية مع إصابة العقد اللمفية الناحية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قد يكون تفاعل السلين سلبياً في السل المنتشر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يستخدم علاج ثلاثي في التهاب السحايا السلي فقط.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — يستخدم علاج ثلاثي في التهاب السحايا السلي فقط.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في التهاب السحايا السلي (الذي يعتبر من أخطر أشكال التدرن)، لا نكتفي بالعلاج الثلاثي، بل نستخدم بروتوكولاً مكثفاً بـ &quot;علاج رباعي&quot; (إيزونيازيد، ريفامبيسين، بيرازيناميد، وإيثامبوتول) وتتطلب المعالجة فترة أطول من الأشهر الستة المعتادة (قد تصل حتى 12 شهر)، مع إضافة الديكساميتازون منذ البداية لتقليل خطر العقابيل طويلة الأمد.&quot;
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> العامل الممرض هو عصيات التدرن (Mycobacterium tuberculosis) وهي عصيات قصبية إيجابية الغرام غير متحركة (وتُصبغ بصبغة زيل نيلسن كعصيات صامدة للحمض). المعقد الأولي (معقد غون) يتألف من آفة برانشيمية رئوية بدئية تترافق مع ضخامة العقد اللمفاوية السرية. وفي السل الدخني المنتشر الشديد قد يكون اختبار السلين الجلدي (PPD) &quot;سلبياً&quot; (سلبية كاذبة) بسبب الإنهاك المناعي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_104" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">أشيع مسبب لالتهاب السحايا عند الأطفال:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخمجية والمناعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الحلأ البسيط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الفيروسات المعوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">المكورات الرئوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">المكورات السحائية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الفيروس التنفسي المخلوي RSV.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الفيروسات المعوية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> بشكل عام، تعتبر الأخماج الفيروسية هي المسبب الأشيع لالتهاب السحايا عند الأطفال (ويعرف بالتهاب السحايا العقيم)، وتعد الفيروسات المعوية (Enteroviruses) هي العامل الفيروسي الأبرز والأكثر شيوعاً لإحداثه.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> المكورات الرئوية والسحائية هي أشيع المسببات &quot;الجرثومية&quot; المقيحة، ولكنها أقل شيوعاً بالمجمل من المسببات الفيروسية رغم كونها الأخطر. فيروس الحلأ البسيط (HSV) يميل لإحداث &quot;التهاب دماغ&quot; أكثر من التهاب سحايا معزول. الفيروس التنفسي المخلوي (RSV) هو المسبب الأشيع لالتهاب القصيبات الشعرية ولا علاقة له بالتهاب السحايا.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> في التهاب السحايا الفيروسي، تظهر نتائج بزل السائل الدماغي الشوكي بروتيناً طبيعياً أو مرتفعاً قليلاً مع سكر طبيعي وغلبة واضحة للمفاويات، بينما يتظاهر الالتهاب الجرثومي بغلبة العدلات وانخفاض السكر الشديد وارتفاع البروتين الملحوظ.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_105" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن الحماق ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخمجية والمناعة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">خمج شديد ومنتشر عند الأطفال أكثر منه عند الأكبر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">حويصلات أكثر على الجذع من الأطراف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تظهر مجموعات جديدة كل 3-5 أيام.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ظهور اندفاعات حطاطية حويصلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">فترة الحضانة 6 - 8 أيام.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — فترة الحضانة 6 - 8 أيام.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> فترة حضانة فيروس الحماق (جدري الماء) أطول بكثير من 6-8 أيام، حيث تتراوح عادة بين 10 إلى 23 يوماً، وبمتوسط 14 يوماً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الحماق يسبب خمجاً أشد وأكثر انتشاراً عند حديثي الولادة وعند البالغين والمضعفين مناعياً مقارنة بالأطفال الأصحاء الذين تكون إصابتهم أخف. يتميز الطفح بتوزع مركزي حيث تظهر الحويصلات على الجذع والظهر أكثر من الأطراف. تظهر الاندفاعات بشكل حطاطات حمامية ثم حويصلات تتقشر لاحقاً. وتظهر على شكل دفعات ومجموعات جديدة متتالية كل 3-5 أيام مما يعطي مظهر تواجد الآفات بأطوار مختلفة في نفس الوقت.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> يكون الطفل معدياً قبل يومين من ظهور الطفح وحتى تتقشر كافة الحويصلات. أخطر اختلاط هو الإنتان الجرثومي الثانوي للآفات الجلدية، ويكون التهاب المخيخ الحاد (الرنح) من الاختلاطات العصبية المرافقة. لا يجوز إعطاء الأسبرين للطفل المصاب خشية متلازمة راي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_176" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن الداء الليفي الكيسي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات التنفسية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">زيادة تركيز الصوديوم داخل الخلية السنخية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">زيادة افراز الصوديوم مع العرق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عقم عند الذكور.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">السعال عرض متأخر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">طفرة F508 هي الأشيع.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — السعال عرض متأخر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في الداء الليفي الكيسي (Cystic Fibrosis)، يُعتبر &quot;السعال&quot; عرضاً &quot;باكراً جداً&quot; ومستمراً (سعال رطب منتج لقشع كثيف لزج)، وهو التظاهر التنفسي الأول الذي يلفت الانتباه للمرض لدى الأطفال بعد تجاوز فترة الوليد.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> المشكلة الأساسية في المرض هي عيب ببروتين قناة الكلور (CFTR) مما يؤدي لزيادة احتباس الصوديوم داخل الخلية السنخية (لسحب الماء وتكثيف المفرزات)، وزيادة إفراز الصوديوم والكلور مع العرق (وهو أساس اختبار شوارد العرق المشخص). طفرة (F508del) هي الطفرة الأشيع عالمياً. ويسبب المرض &quot;عقماً عند الذكور&quot; بسبب الغياب الخلقي للأسهر.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_177" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">كل ما يلي يسبب التهاب متكرر بالرئة ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات التنفسية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">داء ليفي كيسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب أنف تحسسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نقص المناعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">المعالجة بالستيروئيدات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">استنشاق جسم أجنبي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — التهاب أنف تحسسي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب الأنف التحسسي هو آفة تقتصر على المجاري التنفسية العلوية والمخاطية الأنفية، وعلى الرغم من أنه قد يرافق الربو، إلا أنه بحد ذاته ليس مسبباً مباشراً لإنتانات برانشيم الرئة المتكررة (ذات الرئة).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الداء الليفي الكيسي (يسبب توسع قصبات وركودة للمفرزات)، نقص المناعة (يجعل الطفل عرضة للأخماج الانتهازية)، المعالجة المديدة بالستيروئيدات (تثبط المناعة الخلوية)، واستنشاق جسم أجنبي غير مكتشف (يؤدي لالتهاب رئة انسدادي بؤري متكرر في نفس الفص)؛ هي جميعها أسباب رئيسية وكلاسيكية لذات الرئة المتكررة أو الناكسة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_178" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">كل ما يلي من اختلاطات السعال الديكي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات التنفسية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب شغاف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">رعاف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">اختلاجات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص أكسجة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ريح صدرية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — التهاب شغاف.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب الشغاف الخمجي هو انتان يصيب الصمامات القلبية (تسببه جراثيم كالعقديات والعنقوديات تدخل مجرى الدم)، ولا علاقة له بمرض السعال الديكي (Pertussis) الذي يقتصر تأثيره على الظهارة التنفسية ولا يسبب تجرثماً دموياً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الاختلاطات الرئيسية للسعال الديكي ناتجة إما عن نقص الأكسجة خلال النوبات (مما يسبب زرقة، اختلاجات، أو أذية دماغية) أو ناتجة عن الجهد الميكانيكي الهائل والضغط المرتفع جداً المتولد أثناء السعال الانتيابي والذي يسبب (نزفاً تحت الملتحمة، رعافاً، فتوقاً إربية، كسوراً ضلعية، أو تمزقاً للأسناخ وحدوث ريح صدرية).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_179" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">طفل عمره 3 أشهر لديه انتان تنفسي علوي منذ 3 أيام مع حرارة ولديه سعال نوبي تشنجي، صورة الصدر طبيعية ولديه وزيز خفيف بالساحتين التشخيص المحتمل لديه:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات التنفسية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">كروب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب لسان مزمار.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الربو.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">السعال الديكي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">فرط توتر رئوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — السعال الديكي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> السعال النوبي التشنجي يوجه نحو السعال الديكي, وصورة الصدر الطبيعية تنفي التهاب القصيبات الشعرية. يزداد السعال التشنجي الديكي غالباً في الليل وقد يتوّج بالإقياء, وفي أثناء النوبات يصبح وجه الطفل أحمر أو مزرق ويسيل المخاط من الأنف والفم.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_180" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">كل مما يلي يستخدم في ضبط الربو المزمن ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات التنفسية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ستيروئيدات انشاقية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ستيروئيدات فموية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">منبهات بيتا قصيرة الأمد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">منبهات بيتا طويلة الأمد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ثيوفيلين مديد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — منبهات بيتا قصيرة الأمد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عندما نقول ضبط ربو مزمن, أي السيطرة عليه كمرض يومي وليس كهجمات, لذلك لا نستخدم منبهات بيتا قصيرة الأمد كعلاج ضابط مزمن. منبهات بيتا قصيرة الأمد تُستخدم كعلاج إسعافي لتفريج الهجمات الحادة, بينما يُعتمد على الستيروئيدات الإنشاقية ومنبهات بيتا مديدة التأثير في الضبط المزمن.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_231" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">فيما يتعلق برباعي فالو، كل ما يلي صحيح عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات القلبية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">VSD.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ASD.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تراكب أبهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ضخامة بطين أيمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تضيق صمام تحت رئوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — ASD.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ASD (فتحة بين الأذينتين). <div class="exp-section exp-clinical"><b class="exp-header-tag">الشرح:</b> يتألف رباعي فالو كلاسيكياً من: تضيق مخرج البطين الأيمن (تضيق رئوي أو تحت رئوي)، فتحة بين البطينين (VSD)، ضخامة بطين أيمن، وتراكب الأبهر على الحاجز البطيني. الـ ASD ليس من مكونات رباعي فالو.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_232" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">صفات النفخات البريئة كل ما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات القلبية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">هرير ناعم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انقباضية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">لا تجس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أصوات القلب طبيعية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">دفعية ناعمة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — هرير ناعم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> النفخات البريئة لا يجس فيها الهرير إطلاقاً، وتكون ناعمة (درجة 1-2)، انقباضية غالباً، وتسمع عادة على الحافة اليسرى للقص مع أصوات قلب طبيعية تماماً ولا تنتشر. جس الهرير (Thrill) يدل حتماً على نفخة مرضية عضوية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_275" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">طفل بعد قصة إنتان فيروسي، تظاهر ببيلة بروتينية 2+، بدون وذمة، بدون بيلة دموية، التشخيص الأكثر احتمالاً:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات الكلية والمسالك البولية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متلازمة نفروزية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">بيلة انتصابية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فرفرية هينوخ شونلاين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب كبب وكلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">بيلة عابرة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — بيلة عابرة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ليست كل بيلة بروتينية تعتبر هامة ومرضية, فظهورها معزولة بعد قصة خمج حروري (إنتان فيروسي) بدون وذمات (التي تميز المتلازمة النفروزية) وبدون بيلة دموية أو ارتفاع ضغط (التي تميز التهاب الكبب والكلية) يرجّح بقوة أن تكون بيلة بروتينية عابرة تالية للترفع الحروري وتزول عفوياً ولا تحتاج لاستقصاءات معقدة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_276" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">كل ما يلي من استطبابات التحال ما عدا:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات الكلية والمسالك البولية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">وذمة رئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نقص صوديوم شديد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قلاء استقلابي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فرط بوتاسيوم معند.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">فشل أجهزة متعددة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — قلاء استقلابي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> استطبابات التحال (غسيل الكلى) في الأذية الكلوية الحادة تشمل: الحماض الاستقلابي الشديد (وليس القلاء), فرط بوتاسيوم الدم المعند, نقص أو فرط صوديوم الدم الشديد, وذمة الرئة (فرط الحمل الدوراني), وفشل أجهزة متعددة أو فشل المعالجة المحافظة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_277" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">التهاب الحويضة والكلية عند الرضع، كل ما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات الكلية والمسالك البولية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قد يكون عسر التبول تظاهر وحيد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تسبب إقياء واسهال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قد تسبب يرقان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قد يسبب نقص وزن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">بيلة دموية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — قد يكون عسر التبول تظاهر وحيد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عسر التبول المعزول كعرض وحيد يُعزى عادةً إلى التهاب المثانة السفلي, أو التهاب الفرج عند الإناث, أو التهاب الحشفة عند الذكور. إما التهاب الحويضة والكلية (العلوي) عند الرضع فيتظاهر بحرارة, وهن, هياج, نقص وزن, إقياء وإسهال, وقد يسبب يرقاناً أو بيلة دموية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_292" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">في الفتق الإربي عند الأطفال كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات الأعضاء التناسلية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">أكثر شيوعاً عند الخدج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">بقاء الناتئ الغمدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عادة غير عرضي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الاختناق أشيع عند الأطفال الكبار من الرضع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">معظم الفتوق ترد يدوياً.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — الاختناق أشيع عند الأطفال الكبار من الرضع.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> خطورة حدوث الاختناق (Incarceration) في الفتق الإربي تكون أكبر وأشيع بكثير لدى &quot;الرضّع&quot; والأطفال الصغار منها لدى الأطفال الأكبر سناً. الفتق الإربي شائع وأشيع عند الخدج وسببه بقاء الناتئ الغمدي، ومعظم الفتوق تُرد يدوياً بنجاح بانتظار الجراحة الانتقائية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_293" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">20.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن الإحليل التحتي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات الأعضاء التناسلية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الجراحة إسعافية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قد يترافق مع تشوهات تناسلية أخرى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يجب عدم إجراء الختان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أشيع توضعاته بنهاية القضيب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الهدف من الجراحة جعل الطفل يتبول بشكل مستقيم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الجراحة إسعافية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> علاج الإحليل التحتي ليس جراحة إسعافية، بل هو جراحة تصحيحية انتقائية ومبرمجة تُجرى غالباً بعمر 2-3 أعوام. يُمنع إجراء الختان الروتيني لهؤلاء الأطفال لأن قلفة القضيب تُستخدم في الجراحة الترميمية لتصنيع الإحليل الجديد.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_313" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">21.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن ALL ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخبيثة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ارتفاع شبكيات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع كريات بيض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نقص صفيحات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فقر دم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نقص الكريات البيض.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ارتفاع شبكيات.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في الابيضاض اللمفاوي الحاد (ALL)، يحدث ارتشاح وتثبيط لنقي العظم، مما يؤدي إلى فشل الإنتاج ونقص الكريات الحمر، وبالتالي تكون الشبكيات (التي تعبر عن استجابة النقي وتوليد الكريات) &quot;منخفضة&quot; وليست مرتفعة. ارتفاع الشبكيات يميز آفات الدم التجددية (كالانحلال أو النزف).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_314" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">22.</span>
+                    <span class="q-stem">طفل عمره 4 سنوات، لديه كتلة بطنية غير نموذجية مع ارتفاع بالتوتر الشرياني، ما هو التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">الأمراض الخبيثة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نيور بلاستوما.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نفروبلاستوما.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">لمفوما هودجكن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الابيضاض اللمفاوي الحاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">خراجة بطنية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — نيور بلاستوما.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الورم الأرومي العصبي (النوروبلاستوما) هو السبب الأشيع لكتلة بطنية عند حديثي الولادة والأطفال الصغار، وتكون الكتلة غير نموذجية (قاسية ومفصصة وتتجاوز الخط الناصف غالباً)، وتترافق مع ارتفاع التوتر الشرياني بسبب إفراز الكاتيكولامينات أو انضغاط أوعية الكلية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> النفروبلاستوما (ورم ويلمس) تتظاهر عادة بكتلة ملساء لا تعبر الخط الناصف عند طفل سليم ظاهرياً ولا عرضي ولا يترافق غالباً بارتفاع ضغط. لمفوما هودجكن تتظاهر بضخامة عقدية (غالباً رقبية) وليس بكتلة بطنية معزولة مسببة لفرط توتر شرياني. الابيضاض اللمفاوي الحاد يتظاهر بضخامات كبدية طحالية وفشل نقي (شحوب ونزف). الخراجة البطنية تترافق مع قصة إنتانية وحمى عالية.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> أشيع مكان لنقائل النوروبلاستوما هو العظام وتفرز المستقلبات الكاتيكولامينية في البول (VMA و HVA)، بينما ورم ويلمس ينتقل غالباً للرئتين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_345" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">23.</span>
+                    <span class="q-stem">في فقر الدم بعوز الحديد كل ما يلي عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات الدموية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ناقص الصباغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صغير الخلايا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ينقص الفيرتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تنقص السعة الرابطة للحديد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تزداد الترانسفيرين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — تنقص السعة الرابطة للحديد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في فقر الدم بعوز الحديد، تزداد (ولا تنقص) السعة الرابطة الإجمالية للحديد (TIBC) كآلية معاوضة من الكبد لزيادة التقاط أي حديد متوفر في الدوران، وبالتالي الخيار D هو العبارة الخاطئة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> فقر الدم بعوز الحديد يتظاهر مخبرياً بأنه فقر دم صغير الخلايا (نقص MCV) وناقص الصباغ (نقص MCH). كما ينقص الفيريتين الذي يمثل مخزون الحديد في الجسم وهو المشعر الأبكر والأدق للعوز. وتزداد مستويات الترانسفيرين كآلية معاوضة لنقل الحديد.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> العلامة السريرية النوعية والمميزة لفقر الدم بعوز الحديد هي شهوة الطين (البيكا PICA)، ويعتمد العلاج على إعطاء سلفات الحديد فموياً لعدة أشهر حتى بعد عودة الخضاب للطبيعي لملء المخازن.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_346" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">24.</span>
+                    <span class="q-stem">كل مما يلي صحيح عن تكور الكريات الوراثي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات الدموية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تحدث نوب لا تصنع خمجية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">من أشيع أسباب النوب اللاتصنع الباريو فايروس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يحدث فقر دم كبير الخلايا بعوز B12.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">وراثة جسدية قاهرة غالباً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تأخذ الكريات الحمراء شكلاً كروياً.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — يحدث فقر دم كبير الخلايا بعوز B12.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في تكور الكريات الوراثي، يؤدي الانحلال الدموي المزمن إلى فرط استهلاك واحتياج شديد لـ &quot;الفولات&quot; (حمض الفوليك) من أجل تصنيع كريات حمراء جديدة، مما قد يسبب فقر دم كبير الخلايا بعوز الفولات وليس بعوز فيتامين B12.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> المرض يورث في معظم الحالات بصفة جسدية قاهرة. تأخذ الكريات الحمراء شكلاً كروياً بسبب خلل في بروتينات الغشاء الخلوي. من أهم اختلاطاته المهددة للحياة حدوث نوب لا تصنع خمجية (توقف إنتاج الكريات) عابرة، وأشيع مسبب لهذه النوب هو الخمج بفيروس البارفو (Parvovirus B19).
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> يكون تفاعل كومبس المباشر &quot;سلبياً&quot; في تكور الكريات الوراثي لأنه عيب بنيوي وليس مناعياً، ويترافق بشكل شائع مع تشكل حصيات مرارية صباغية نتيجة الانحلال، ويفيد استئصال الطحال في تدبير الحالات الشديدة بعد عمر 6 سنوات.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_381" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">25.</span>
+                    <span class="q-stem">كل ما يلي من أسباب قصور الدرق الخلقي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الداء السكري واضطرابات الغدد الصم</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انعدام الدرق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">رضوض أثناء الولادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">درق هاجر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إعطاء الأم مضادات الدرق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">عوز اليود.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — رضوض أثناء الولادة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> قصور الدرق الخلقي ينجم عن أسباب تتعلق بالتطور الجنيني البنيوي للغدة أو بتصنيع الهرمونات، ولا علاقة للرضوض أو الأذيات الميكانيكية أثناء الولادة والتوليد العسير بإحداث قصور في الغدة الدرقية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> أشيع سبب لقصور الدرق المعزول هو خلل التكون (انعدام الدرق أو الدرق الهاجرة). عوز اليود الشديد لدى الأم يسبب قصور درق خلقي متوطن. إعطاء الأم مضادات الدرق يعبر المشيمة ويثبط غدة الجنين مسبباً قصور درق عابراً أو دائماً.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> القاعدة الذهبية والأساسية للتشخيص المبكر هي &quot;برامج المسح الوليدي&quot; لأن الأعراض السريرية (كالخمول وتأخر النضج) تكون خفية في الأسابيع الأولى، والتأخير في العلاج بالليفوثيروكسين يسبب تخلفاً عقلياً غير عكوس.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_382" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">26.</span>
+                    <span class="q-stem">كل ما يلي صحيح فيما يخص الحماض الكيتوني السكري ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الداء السكري واضطرابات الغدد الصم</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ألم بطني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تجفاف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تنفس حامضي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">طفح جلدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">صدمة نقص حجم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — طفح جلدي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الحماض الكيتوني السكري (DKA) هو اختلاط استقلابي حاد لا يترافق مع أي طفح جلدي وصفي، وظهور الطفح يوجه نحو أمراض أخرى (كالأخماج الفيروسية أو الارتكاسات الدوائية).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تتضمن اللوحة السريرية الكلاسيكية للحماض الكيتوني السكري: ألم بطني شديد قد يقلد البطن الحادة، تجفاف شديد مع بوال وسهاف، تنفس حامضي عميق (تنفس كوسماول) كمعاوضة تنفسية للتخلص من الحموضة، والذي قد يترقى في الحالات الشديدة وغير المعالجة إلى صدمة نقص حجم، سبات، ووفاة.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> يترافق التنفس الحامضي برائحة خلونية (رائحة التفاح الفاسد) مميزة للنفس بسبب طرح الكيتونات. الإجراء الإسعافي الأول والأهم في التدبير هو الإماهة بالسوائل الوريدية (سيروم ملحي) قبل البدء بتسريب الإنسولين لتجنب وذمة الدماغ.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_415" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">27.</span>
+                    <span class="q-stem">مضادات استطباب البزل القطني ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات العصبية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ارتفاع توتر قحفي مجهول السبب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نزف دموي تحت الجافية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">وذمة حليمة العصب البصري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ورم سحائي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">خراجة دماغ.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ارتفاع توتر قحفي مجهول السبب.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> فرط التوتر داخل القحف مجهول السبب (الورم المخي الكاذب) ليس مضاد استطباب للبزل القطني، بل على العكس؛ يُعد البزل القطني هنا &quot;إجراءً تشخيصياً وعلاجياً&quot; متكرراً لتخفيف ضغط السائل الدماغي الشوكي وتخفيف الصداع وحماية الرؤية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يُمنع منعاً باتاً إجراء البزل القطني في حالات: وجود آفة شاغلة للحيز (كورم سحائي أو خراجة دماغ أو نزف تحت جافية) أو وجود &quot;وذمة حليمة العصب البصري&quot; الواضحة الناتجة عن انضغاط بنيوي، لأن البزل في هذه الحالات قد يؤدي إلى &quot;انفتاق الدماغ&quot; القاتل (Herniation).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_416" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">28.</span>
+                    <span class="q-stem">في الاختلاجات الحرورية عند الأطفال، كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات العصبية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">شائعة بين عمر 6 أشهر و5 سنوات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">القصة العائلية إيجابية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يتظاهر باختلاج مقوي رمعي معمم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الشكل المعقد يزيد خطر الإصابة بالصرع لاحقاً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يعالج بالفينوباربيتال لمدة سنتين بعد أول نوبة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — يعالج بالفينوباربيتال لمدة سنتين بعد أول نوبة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> لا يحتاج الاختلاج الحروري البسيط (وهو النمط الأشيع) لأي علاج وقائي صرعي طويل الأمد كالفينوباربيتال بعد النوبة الأولى، حيث أن الحالة سليمة ومحددة لذاتها ومخاطر الأدوية الوقائية تفوق فوائدها.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الاختلاجات الحرورية شائعة حصراً في الفئة العمرية بين 6 أشهر و5 سنوات. هناك استعداد وراثي قوي وتكون القصة العائلية إيجابية غالباً. يتظاهر الشكل البسيط كاختلاج مقوي رمعي معمم وقصير المدة. بينما الشكل المعقد (البؤري، الطويل، أو المتكرر) هو الذي يزيد من خطر تطور مرض الصرع مستقبلاً.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> شرط التشخيص الأساسي هو عدم وجود إنتان في الجملة العصبية (كالتهاب السحايا) وعدم وجود صرع مسبق. يعتمد التدبير الأساسي على طمأنة الأهل، وإذا استمرت نوبة الاختلاج لأكثر من 5 دقائق، يعطى الديازيبام الشرجي أو الميدازولام الفموي كعلاج إسعافي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_417" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">29.</span>
+                    <span class="q-stem">في متلازمة غيلان باريه كل ما يلي صحيح عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات العصبية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قد يصاب الحس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">شلل حركي صاعد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">إصابة المصرات شائعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إصابة الأعصاب القحفية شائعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">شلل رخو.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — إصابة المصرات شائعة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في متلازمة غيلان باريه (الاعتلال العصبي المتعدد المزيل للميالين)، تعتبر إصابة المصرات (التحكم بالبول والبراز) نادرة أو غير شائعة، وهذا ما يميزها سريرياً عن آفات النخاع الشوكي (كالتهاب النخاع المعترض) التي تترافق مع احتباس أو سلس باكر.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يتظاهر المرض بشلل رخو وضعف حركي صاعد ومتناظر. قد يصاب الحس وتظهر أعراض حسية (ألم، نمل) تسبق غالباً الضعف الحركي. إصابة الأعصاب القحفية (وخاصة العصب الوجهي والعضلات البصلية) شائعة جداً وقد تسبب صعوبة بلع وخطورة استنشاق.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> العلامة المخبرية الواسمة في السائل الدماغي الشوكي هي &quot;الافتراق الآحيني الخلوي&quot; (ارتفاع البروتين دون ارتفاع الكريات البيض). يشفى المريض غالباً بفضل التحسن العفوي، ويفيد الغلوبولين المناعي الوريدي (IVIG) بتسريع الشفاء.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds_418" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">30.</span>
+                    <span class="q-stem">كل ما يلي من أعراض الصداع المنذرة لآفة شاغلة للحيز ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الاضطرابات العصبية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إقياء صباحي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">رهاب ضوء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يزداد بالسعال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">صداع يوقظ من النوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يسبب تبدلات بالشخصية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — رهاب ضوء.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> رهاب الضوء (Photophobia) هو عرض كلاسيكي يرافق تخريش السحايا (كما في التهاب السحايا) أو نوبات الشقيقة، ولا يعتبر من العلامات المنذرة المباشرة أو الوصفية للآفة الشاغلة للحيز (كالورم الدماغي).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الآفة الشاغلة للحيز ترفع التوتر داخل القحف، مما يسبب إقياءً مستمراً وخاصة إقياء صباحي عند الاستيقاظ، وصداعاً يوقظ الطفل من النوم، ويزداد هذا الصداع مع السعال أو الانحناء للأمام (بسبب زيادة الضغط)، بالإضافة إلى إحداث تبدلات حديثة في الشخصية والسلوك وتراجع بالأداء المدرسي.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> من العلامات السريرية المتأخرة للآفات الشاغلة للحيز وذمة حليمة العصب البصري، وشلل العصب القحفي السادس (الحول الإنسي). يُمنع إجراء البزل القطني عند وجود علامات آفة شاغلة للحيز خشية الانفتاق الدماغي.</div></div>
+        
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "56 سؤال • 2 دورة امتحانية • 2021";
+        const originalDocTitle = "بنك الأسئلة - طب الأطفال 2 (دورات 2021)";
+        const subjectName = "طب الأطفال 2";
+        const groupByMode = "session";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

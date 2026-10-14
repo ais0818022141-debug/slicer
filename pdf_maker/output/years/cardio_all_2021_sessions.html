@@ -1,0 +1,2247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - القلبية (دورات 2021)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B1818;
+            --primary-dark: #5A0F0F;
+            --primary-rgb: 139, 24, 24;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .exp-lead {
+            margin-bottom: 3px;
+            font-weight: 700;
+        }
+
+        .exp-opt-item {
+            display: block;
+            margin-top: 1.5px;
+            margin-bottom: 2px;
+            padding-right: 0;
+            line-height: 1.58;
+            unicode-bidi: isolate;
+        }
+
+        .opt-letter-tag {
+            color: #1e293b;
+            font-weight: 800;
+            margin-left: 6px;
+            font-size: 1.0rem;
+        }
+
+        .exp-opt-desc {
+            unicode-bidi: isolate;
+        }
+
+        .opt-ref-tag {
+            color: #1e293b;
+            font-weight: 800;
+        }
+
+        .exp-para {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            line-height: 1.68;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-opt-item {
+                margin-top: 1px !important;
+                margin-bottom: 1.5px !important;
+                padding-right: 0 !important;
+                line-height: 1.40 !important;
+            }
+
+            .opt-letter-tag {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                color: #0f172a !important;
+                font-size: 10.0pt !important;
+                font-weight: 800 !important;
+                margin-left: 5px !important;
+            }
+
+            .opt-ref-tag {
+                color: #0f172a !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - القلبية (دورات 2021)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">الدورة:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع الدورات (الكل - 26 سؤال)</option>
+                    <optgroup label="دورات سنة 2021 (26 سؤال)">
+                        <option value="year_2021">📅 جميع دورات 2021 (26 سؤال)</option>
+                        <option value="session-1">دورة تشرين 2021 (14 سؤال)</option>
+                        <option value="session-2">دورة حزيران 2021 (12 سؤال)</option>
+                    </optgroup>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل الدورة المحددة (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">القلبية</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب الدورات الامتحانية)</p>
+                <p class="stats-summary" id="statsSummary">26 سؤال • 2 دورة امتحانية • 2021</p>
+            </div>
+
+            <div class="index-section-title">فهرس الدورات الامتحانية (مرتبة من الأحدث إلى الأقدم)</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="session-1">
+                    <a href="#session-1" class="index-row" data-group-id="session-1" data-year="2021">
+                        <span class="index-topic-name">تشرين 2021</span>
+                        <span class="index-topic-meta">
+                            <span>6 مواضيع</span>
+                            <span class="index-count">14 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'session-1', 'دورة تشرين 2021')" title="تحميل دورة تشرين 2021 كملف مستقل">⬇ تحميل</button>
+                </div>
+                <div class="index-row-wrapper" data-group-id="session-2">
+                    <a href="#session-2" class="index-row" data-group-id="session-2" data-year="2021">
+                        <span class="index-topic-name">حزيران 2021</span>
+                        <span class="index-topic-meta">
+                            <span>5 مواضيع</span>
+                            <span class="index-count">12 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'session-2', 'دورة حزيران 2021')" title="تحميل دورة حزيران 2021 كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2021" data-group-id="session-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="session-1">
+                    <div class="topic-title-text">دورة تشرين 2021</div>
+                    <span class="topic-counter">14 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_cardio_008" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">كل ما يلي يسبب هبوط ضغط انتصابي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">التظاهرات السريرية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">العلاج بمانعات الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">العلاج بالمدرات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">السكري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التقدم بالعمر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">المعالجة بموسعات الأوعية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — العلاج بمانعات الحمل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> نفس آلية السؤال السابق، مانعات الحمل الحاوية على الإستروجين تفعّل جملة الرينين-أنجيوتنسين-ألدوستيرون وتسبب احتباس الصوديوم والماء مما يرفع الضغط لا يخفضه انتصابياً.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">المدرات تنقص الحجم الدوراني الفعال.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">السكري يسبب اعتلالاً عصبياً ذاتياً معطلاً للتقبض الوعائي التعويضي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">التقدم بالعمر يضعف الاستجابة الودية الانعكاسية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">موسعات الأوعية تخفض المقاومة الوعائية المحيطية مباشرة.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">مانعات الحمل الفموية سبب معروف لفرط الضغط الشرياني الثانوي عبر احتباس الماء والصوديوم، وليست من أسباب هبوط الضغط الانتصابي.</span>
+        </div>
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_cardio_076" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">تتضمن المتلازمة الاكليلية الحادة ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الداء الإكليلي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ألم صدري يتحرض بالجهد ويتحسن بالنتروغليسرين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">احتشاء مع تزحل ST للأسفل مع تروبونين سلبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">احتشاء مع تزحل ST للأسفل مع تروبونين إيجابي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">احتشاء مع تزحل ST للأعلى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ألم صدري مع LBBB حديث.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ألم صدري يتحرض بالجهد ويتحسن بالنتروغليسرين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تنتج الذبحة المستقرة عن تضيق ثابت في الشريان الإكليلي يسبب عدم توازن بين العرض والطلب الأكسجيني أثناء الجهد فقط، دون تمزق لويحة أو تشكل خثرة حادة، لذلك لا تندرج ضمن المتلازمات الإكليلية الحادة التي أساسها الفيزيولوجي المرضي تصدع اللويحة العصيدية وتشكل خثرة داخل اللمعة.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">احتشاء دون تزحل ST مع تروبونين سلبي يعبر عن ذبحة غير مستقرة، وهي من المتلازمة الإكليلية الحادة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">احتشاء دون تزحل ST مع تروبونين إيجابي هو NSTEMI، من المتلازمة الإكليلية الحادة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الاحتشاء مع تزحل ST للأعلى (STEMI) هو الشكل الأشد من المتلازمة الإكليلية الحادة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">الألم مع LBBB حديث يعامل معاملة STEMI ويستطب إعادة تروية فورية.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الذبحة المستقرة: ألم يتحرض بالجهد ويخف فوراً بالراحة أو النتروغليسرين، وليست جزءاً من المتلازمة الإكليلية الحادة؛ بينما المتلازمة الإكليلية الحادة تشمل الذبحة غير المستقرة واحتشاء NSTEMI وSTEMI.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_077" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">كل ما يلي من عوامل الخطر بالمتلازمة الاكليلية الحادة ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الداء الإكليلي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">عمر فوق الـ 60.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سكري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قصور قلب عند التظاهر الأول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قصور تاجي إقفاري حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">سوابق احتشاء.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — قصور تاجي إقفاري حاد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> القصور التاجي الإقفاري الحاد ينتج عادة عن تمزق أو خلل وظيفي بالعضلة الحليمية بعد حدوث الاحتشاء، أي أنه نتيجة لاحقة (اختلاط) للمتلازمة الإكليلية الحادة وليس عاملاً مؤهباً يسبقها.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">العمر فوق 60 عامل خطورة مستقل قوي للتصلب العصيدي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">السكري عامل خطورة رئيسي للداء الإكليلي المنتشر.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">قصور القلب عند التظاهر الأول علامة خطورة ترافق الاحتشاء الواسع.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">سوابق الاحتشاء تزيد خطر النكس والحوادث اللاحقة.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">عوامل الخطورة التقليدية: العمر، التدخين، فرط ضغط الدم، فرط شحوم الدم، السكري، القصة العائلية، وسوابق الاحتشاء أو قصور القلب عند التظاهر الأول تنذر بإنذار أسوأ؛ أما القصور التاجي الإقفاري الحاد فهو اختلاط للاحتشاء وليس عامل خطورة سابق له.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_115" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">نفخة تضيق الأبهر تنتشر إلى:</span>
+                </div>
+                <span class="q-date-badge">أمراض الشغاف والصمامات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">السباتي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الإبط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الظهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الشرسوف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">أسفل القص.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — السباتي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يتجه تيار الدم المتسارع عبر الصمام المتضيق باتجاه قوس الأبهر ثم الشرايين السباتية، مما يفسر انتشار النفخة نحو الرقبة والسباتي.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">خاطئ، الانتشار للإبط مميز لنفخة القصور التاجي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">خاطئ، الانتشار للظهر أكثر ما يميز تضيق برزخ الأبهر.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">خاطئ، الانتشار للشرسوف غير نموذجي لهذه النفخة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">خاطئ، أسفل القص أكثر ما يميز نفخات الجانب الأيمن كقصور مثلث الشرف.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">نفخة تضيق الأبهر انقباضية قذفية خشنة، أفضل ما تسمع في البؤرة الأبهرية وتنتشر نحو الشرايين السباتية مع هرير ممكن.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_116" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن تضيق التاجي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الشغاف والصمامات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">احتداد الصوت الأول والمركبة الرئوية للصوت الثاني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تتناسب المسافة بين المركبة الأبهرية للصوت الثاني وصكة الانفتاح عكساً مع شدة تضيق الصمام التاجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نفخة غراهام ستيل نادراً ما تسمع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أفضل ما تسمع صكة الانفتاح في القمة أثناء الشهيق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قد يوجد اشتداد قبيل انقباضي في الدحرجة الانبساطية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — أفضل ما تسمع صكة الانفتاح في القمة أثناء الشهيق.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> صكة الانفتاح لا تتأثر بشكل مميز بالشهيق كما هو الحال في نفخات الصمامات اليمنى (كقصور مثلث الشرف)، وهي علامة يسارية القلب تسمع في القمة بشكل مستقل عن دورة التنفس، لذا فإن ربطها بالشهيق تحديداً غير صحيح.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">صحيح، احتداد S1 و P2 من العلامات المميزة لتضيق التاجي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">صحيح، هذه العلاقة العكسية موثقة تشخيصياً.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">صحيح، نفخة غراهام ستيل (قصور رئوي ثانوي لفرط الضغط الرئوي) نادرة نسبياً.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">صحيح، الاشتداد قبيل الانقباضي يحدث بسبب تقلص الأذينة في النظم الجيبي.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">صكة الانفتاح في التضيق التاجي تسمع أفضل ما يكون في القمة، والمسافة بينها وبين S2 تتناسب عكساً مع شدة التضيق؛ لا ترتبط بالشهيق كما في نفخات الجانب الأيمن.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_117" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">نفخة قصور التاجي:</span>
+                </div>
+                <span class="q-date-badge">أمراض الشغاف والصمامات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انقباضية شاملة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انقباضية شاملة لبؤرة رئوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انقباضية قذفية لبؤرة تاجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نفخة أوستن فلنت.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نفخة انقباضية دفعية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — انقباضية شاملة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> نظراً لاستمرار فرق الضغط بين البطين الأيسر والأذينة اليسرى طوال فترة الانقباض بأكملها، تكون نفخة القصور التاجي شاملة للانقباض بدلاً من كونها قذفية أو محدودة الزمن.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">خاطئ، النفخة الشاملة للانقباض في البؤرة الرئوية توحي بعيب حاجز بطيني أو قصور مثلث الشرف.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">خاطئ، النفخة القذفية في البؤرة التاجية غير نموذجية للقصور التاجي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">خاطئ، نفخة أوستن فلنت انبساطية وتشاهد في القصور الأبهري الشديد.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">خاطئ، &quot;دفعية&quot; ليست الوصف المعتمد لنفخة القصور التاجي.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">نفخة القصور التاجي انقباضية شاملة (holosystolic) في القمة تنتشر للإبط، ناجمة عن ارتداد الدم المستمر طوال الانقباض للأذينة اليسرى.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_118" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">واحد مما يلي من استطباب الوقاية من التهاب الشغاف الخمجي قبل الجراحة:</span>
+                </div>
+                <span class="q-date-badge">أمراض الشغاف والصمامات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قصور قلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">احتشاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">رباعي فالو.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ارتفاع ضغط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">خوارج انقباض.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — رباعي فالو.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> رباعي فالو هو آفة قلبية خلقية مزرقة معقدة تصنف ضمن الفئة عالية الخطورة لالتهاب الشغاف الخمجي، وبالتالي تستطب الوقاية الصادية قبل الإجراءات الجراحية أو السنية المؤهبة.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">خاطئ، قصور القلب وحده ليس استطباباً نوعياً للوقاية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">خاطئ، الاحتشاء لا علاقة له بالوقاية من التهاب الشغاف.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">خاطئ، ارتفاع الضغط الشرياني ليس عامل خطورة لالتهاب الشغاف.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">خاطئ، الخوارج الانقباضية اضطراب نظم حميد لا علاقة له بالوقاية.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الآفات القلبية الخلقية المزرقة (كرباعي فالو) والصمامات الصنعية وسوابق التهاب الشغاف من أعلى فئات الخطورة المستطبة للوقاية الصادية قبل الإجراءات المؤهبة لتجرثم الدم.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_119" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">من التظاهرات القلبية في الحمى الرثوية كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الشغاف والصمامات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قصر PR.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب الشغاف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب التامور.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب العضلة القلبية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قصور قلب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — قصر PR.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> المعيار الصغير المرافق للحمى الرثوية هو إطالة الفاصلة PR (حصار أذيني بطيني درجة أولى) وليس قصرها، لذا يعد &quot;قصر PR&quot; معلومة خاطئة وغير موثقة كتظاهرة قلبية للحمى الرثوية.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">صحيح، التهاب الشغاف من مكونات التهاب القلب الرثوي الشامل.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">صحيح، التهاب التأمور قد يتظاهر بألم صدري أو انصباب.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">صحيح، التهاب العضلة القلبية قد يسبب قصور قلب.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">صحيح، قصور القلب قد ينجم عن التهاب القلب الرثوي الشديد.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التهاب القلب الرثوي قد يصيب الشغاف والعضلة والتأمور معاً (pancarditis) ويتظاهر بنفخات جديدة وقصور قلب والتهاب تأمور؛ قصر PR ليس من التظاهرات القلبية بل حصار الدرجة الأولى (إطالة PR) هو المعيار الصغير المرتبط بالحمى الرثوية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_148" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل ما يلي يسبب انحراف محور القلب للأيمن ما عدا:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات النظم والنقل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">رباعي فالو.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">رتق مثلث الشرف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تضيق رئوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الـ ASD ثانوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">بطين أيمن ثنائي المخرج مع تضيق صمام رئوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — رتق مثلث الشرف.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انحراف المحور نحو اليمين ينتج عادة عن ضخامة أو فرط عبء ضغطي/حجمي على البطين الأيمن. في رتق مثلث الشرف يغيب مدخل البطين الأيمن فيبقى ناقص التصنع، فيسيطر البطين الأيسر كهربائياً مسبباً انحرافاً يسارياً للمحور.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">رباعي فالو يسبب ضخامة بطين أيمن وانحراف يميني.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">التضيق الرئوي يرفع ضغط البطين الأيمن.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الـASD الثانوية تسبب فرط حمل حجمي للبطين الأيمن.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">بطين أيمن ثنائي المخرج مع تضيق رئوي يضخم البطين الأيمن.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">رتق مثلث الشرف يترافق مع نقص تصنع البطين الأيمن وسيطرة البطين الأيسر، لذا يسبب انحرافاً للمحور نحو اليسار وليس اليمين، خلافاً لمعظم آفات ضخامة البطين الأيمن.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_149" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">كل ما يلي يسبب بطء قلب جيبي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات النظم والنقل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">حاصرات بيتا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سالبوتامول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ارتفاع التوتر داخل القحف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قصور درق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الغثيان والإقياء.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — سالبوتامول.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> السالبوتامول منبه لمستقبلات بيتا الأدرينالية، فيرفع معدل تفريغ العقدة الجيبية ويسبب تسرعاً جيبياً كأثر جانبي شائع، وليس بطء قلب.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">حاصرات بيتا تثبط التنبيه الودي فتبطئ العقدة الجيبية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">ارتفاع الضغط داخل القحف يحرض منعكس كوشينغ المسبب لبطء القلب.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">قصور الدرق ينقص الاستقلاب والفعالية الودية فيبطئ القلب.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">الغثيان والإقياء يحرضان تنبيهاً مبهمياً مسبباً بطء القلب.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">السالبوتامول ناهض بيتا-2 يسبب تسرع قلب جيبي (وليس بطئاً) عبر التنبيه الودي، بعكس حاصرات بيتا التي تبطئ القلب.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_150" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">شاب عانى من تسرع فوق بطيني، تم التسريب الوريدي للأدينوزين ولم يتحسن وضغطه 60/90 الخطوة التالية:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات النظم والنقل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الاستمرار بالتسريب مع زيادة الجرعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صدمة كهربائية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ديجوكسين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">حاصر بيتا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الليدوكائين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — صدمة كهربائية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عدم استجابة النظم للأدينوزين مع وجود انخفاض ضغط شرياني يعني عدم استقرار ديناميكي دموي، وهذا يستوجب إنهاء التسرع فوراً عبر قلب النظم الكهربائي المتزامن بدلاً من الاستمرار بالمحاولات الدوائية التي تستغرق وقتاً وقد لا تنجح.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">زيادة جرعة الأدينوزين لا تفيد بعد الفشل وتضيع وقتاً ثميناً في حالة عدم استقرار.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">الديجوكسين بطيء المفعول ولا يناسب الحالات الإسعافية غير المستقرة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">حاصرات بيتا قد تزيد سوءاً في المريض غير المستقر ديناميكياً.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">الليدوكائين مخصص لاضطرابات النظم البطينية وليس فوق البطينية.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">عند وجود اضطراب ديناميكي شديد (توتر شرياني منخفض) مرافق للتسرع فوق البطيني، تكون الصدمة الكهربائية المتزامنة الإسعافية هي الخطوة التالية بغض النظر عن استجابة الأدينوزين.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_151" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">كل ما يلي من استطبابات علاج خوارج الانقباض ما عدا:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات النظم والنقل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">اللاعرضية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">وجود R/T.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">أكثر من 5/د.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">خوارج الانقباض بعد احتشاء العضلة القلبية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">أدت إلى تسرع.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — اللاعرضية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> خوارج الانقباض اللاعرضية عند شخص سليم القلب حميدة ولا تستلزم علاجاً؛ الاستطباب يكون فقط عند وجود أعراض شديدة أو علامات خطورة كوجود مؤشرات لاضطراب نظم خبيث أو ترافقها مع مرض قلبي عضوي (كاحتشاء حديث).</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">ظاهرة R/T تنذر بخطر تحريض تسرع أو رجفان بطيني فتستدعي العلاج.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">تواتر مرتفع (أكثر من 5/د) قد يترافق بإنذار سيئ عند مرضى القلب العضوي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">بعد الاحتشاء تترافق مع خطورة اضطراب نظم مهدد للحياة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">إذا أدت إلى تسرع قلب تصبح عرضية ومستطبة للعلاج.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">خوارج الانقباض البطينية شائعة عند الأصحاء ولا تحتاج علاجاً إلا إذا كانت عرضية بشدة، أو مترافقة مع علامات إنذارية سيئة كوجود ظاهرة R على T أو كثرة التواتر أو حدوثها بعد احتشاء العضلة القلبية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_171" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">مريض لديه ارتفاع ضغط شرياني، كل ما يلي من الممكن وجوده بالوصفة ما عدا:</span>
+                </div>
+                <span class="q-date-badge">ارتفاع الضغط الشرياني</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">سالبوتامول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فالسارتان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">النيفيديبين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الكابتوبريل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">بروبرانولول.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — سالبوتامول.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> السالبوتامول ناهض بيتا-2 اصطفائي يستخدم لعلاج التشنج القصبي، وليس من الأصناف الست العلاجية لارتفاع الضغط الشرياني المذكورة في المرجع.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">ARB من الأصناف الرئيسية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">حاصر كلس من الأصناف الرئيسية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">مثبط ACE من الأصناف الرئيسية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">حاصر بيتا من الأصناف الرئيسية.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">جميع أصناف خافضات الضغط الخمسة (مدرات، ARBs، حاصرات كلس، ACEi، حاصرات بيتا) واردة في وصفة المريض؛ السالبوتامول دواء تنفسي لا علاقة له بالضغط.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_197" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">كل ما يلي صحيح في التهاب التامور ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض التامور</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يزداد الألم بالاستلقاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يزداد الألم بالجلوس والانحناء للأمام.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نسمع احتكاكات تامورية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يزداد الألم بالسعال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">له علاقة بالحركات التنفسية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — يزداد الألم بالجلوس والانحناء للأمام.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الوضعية الصحيحة هي أن الألم يخف (لا يزداد) بالجلوس والانحناء للأمام لأن ذلك يقلل تماس التامور الملتهب بالجدار الصدري، لذا فإن العبارة B خاطئة وهي الاستثناء المطلوب.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">صحيح، الاستلقاء يزيد التماس ويفاقم الألم- C) صحيح، الاحتكاكات علامة مميزة لالتهاب التامور- D) صحيح، السعال يزيد الضغط داخل الصدر ويفاقم الألم- E) صحيح، الألم يرتبط بالحركات التنفسية بشكل نموذجي.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">ألم التهاب التامور يزداد بالاستلقاء والسعال والتنفس العميق ويخف بالجلوس والانحناء للأمام؛ الاحتكاك التاموري علامة مشخصة.</span>
+        </div>
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+        <div class="topic-container" data-year="2021" data-group-id="session-2">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="session-2">
+                    <div class="topic-title-text">دورة حزيران 2021</div>
+                    <span class="topic-counter">12 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_cardio_009" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">أسباب صدمة من منشأ قلبي، كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">التظاهرات السريرية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب تامور حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صمة رئوية كتلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">احتشاء عضلة قلبية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تسرع بطيني تال للاحتشاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قصور أبهري حاد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — التهاب تامور حاد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب التامور الحاد وحده، دون تطور إلى سطام تأموري (اندساف انصباب مضغوط)، لا يعيق الامتلاء البطيني بشكل كافٍ لإحداث انخفاض حرج في النتاج القلبي، وبالتالي لا يُصنَّف كسبب مباشر للصدمة القلبية المنشأ ما لم يتعقد بالدكاك.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">الصمة الرئوية الكتلية تعيق الجريان عبر الدوران الرئوي فجأة مسببة فشلاً بطينياً أيمن حاداً وصدمة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">احتشاء العضلة القلبية يُضعف القلوصية مباشرة، وهو السبب الأشيع للصدمة القلبية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">التسرع البطيني التالي للاحتشاء يعيق الامتلاء والقذف الفعالين.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">القصور الأبهري الحاد يسبب فرط حمل حجمي مفاجئ يفوق قدرة البطين على التعويض.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أسباب الصدمة القلبية: احتشاء العضلة القلبية، الصمة الرئوية الكتلية، السطام التأموري، التهاب شغاف الصمام التاجي، واضطرابات النظم الحادة (كالتسرع البطيني)؛ التهاب التامور الحاد غير المصحوب بسطام لا يسبب صدمة.</span>
+        </div>
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_cardio_040" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">الاختبار الأهم لتشخيص قصور القلب:</span>
+                </div>
+                <span class="q-date-badge">قصور القلب</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الأمواج فوق الصوتية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تخطيط القلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">صورة الصدر البسيطة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اختبار الجهد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">القصة المرضية المتأنية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الأمواج فوق الصوتية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يوفر الإيكو تقييماً تشريحياً ووظيفياً مباشراً للبطينين والصمامات، مما يجعله الاختبار الأكثر أهمية لتأكيد التشخيص وتحديد السبب.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">ECG قد يوجه للسبب لكنه غير نوعي - C) صورة الصدر تدعم لكنها غير كافية للتأكيد - D) اختبار الجهد يقيّم الإقفار أساساً - E) القصة المرضية تثير الشك لكنها ذاتية وغير كافية للتأكيد.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الإيكو يقيّم الوظيفة الانقباضية والانبساطية والآفات الصمامية معاً، وهو حجر الأساس التشخيصي عند كل مرضى قصور القلب.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_041" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">في قصور القلب المزمن، كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">قصور القلب</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">اضطرابات النظم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انخفاض البوتاسيوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فرط الصوديوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ارتفاع الكرياتنين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتفاع البوتاسيوم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — فرط الصوديوم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الاحتباس غير المتناسب للماء بسبب فرط إفراز الهرمون المضاد للإدرار أو استخدام المدرات يؤدي لنقص الصوديوم المصلي (دلالة سوء إنذار)، وليس فرط الصوديوم كما تنص العبارة الخاطئة.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">اضطرابات النظم شائعة بسبب اضطراب الشوارد والتفعيل الودي - B) نقص البوتاسيوم ناجم عن المدرات - D) القصور الكلوي بسبب سوء التروية الكلوية - E) فرط البوتاسيوم بسبب ACEI/سبيرونولاكتون وسوء الوظيفة الكلوية.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">في قصور القلب المتقدم يشيع نقص الصوديوم (سوء إنذار) وليس فرط الصوديوم، إضافة لاضطرابات البوتاسيوم (نقصاً أو فرطاً حسب العلاج) والقصور الكلوي واضطرابات النظم.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_078" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">التهاب التامور التالي للاحتشاء كل مما يلي صح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الداء الإكليلي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يعالج بمضادات الالتهاب اللاسيتروئيدية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يظهر بعد عدة أيام من احتشاء القلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يوجد احتكاكات تامورية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يسوء بالاستلقاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تفضل فيه المسكنات الأفيونية على مضادات الالتهاب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — يعالج بمضادات الالتهاب اللاسيتروئيدية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تزيد مضادات الالتهاب غير الستيرويدية من خطر تمزق العضلة القلبية وتشكل أم الدم البطينية عبر تأثيرها على شفاء النسيج المحتشي، لذلك تُتجنب وتُستبدل بالمسكنات الأفيونية في التهاب التامور بعد الاحتشاء، خلافاً لالتهاب التامور الحاد النموذجي حيث تُستخدم مضادات الالتهاب اللاستيرويدية بأمان.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">يظهر فعلاً بعد عدة أيام (اليوم 2-3) من الاحتشاء.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">الاحتكاكات التامورية علامة سريرية مميزة له.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">يتفاقم الألم فعلاً بالاستلقاء ويتحسن بالجلوس للأمام.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">تفضيل الأفيونيات على مضادات الالتهاب عبارة صحيحة.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">يشيع التهاب التامور في اليوم 2-3 بعد الاحتشاء مع ألم يسوء بالاستلقاء والشهيق واحتكاكات تامورية؛ تفضل المسكنات الأفيونية على مضادات الالتهاب اللاستيرويدية/الستيرويدية لأنها تزيد خطر تشكل أمهات الدم وتمزق العضلة القلبية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_079" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">كل مما يلي من اختلاطات احتشاء العضلة القلبية ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الداء الإكليلي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تمزق العضلات الحليمية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فتحة بين البطينين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">أم دم أبهرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب التامور.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قصور التاجي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — أم دم أبهرية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تنتج الاختلاطات الميكانيكية للاحتشاء عن نخر وضعف موضعي في نسيج العضلة القلبية أو أوتارها وعضلاتها الحليمية، بينما أم الدم الأبهرية تنشأ من تنكس أو ضعف في جدار الأبهر نفسه بآلية مختلفة تماماً (تصلب عصيدي، ارتفاع ضغط مزمن، أمراض النسيج الضام) ولا علاقة فيزيولوجية مرضية مباشرة لها بالاحتشاء العضلي.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">تمزق العضلة الحليمية اختلاط ميكانيكي معروف يسبب قصور تاجي حاد.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">الفتحة بين البطينين (تمزق الحاجز) اختلاط ميكانيكي كلاسيكي للاحتشاء.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">التهاب التامور اختلاط شائع خلال الأيام الأولى بعد الاحتشاء.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">القصور التاجي ينتج عن خلل أو تمزق العضلة الحليمية بعد الاحتشاء.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">اختلاطات الاحتشاء الميكانيكية: تمزق العضلة الحليمية، تمزق الحاجز بين البطينين، تمزق جدار البطين، بالإضافة لالتهاب التامور والقصور التاجي؛ أما أم الدم الأبهرية فمرض وعائي مستقل غير مرتبط بالاحتشاء.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_080" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">عوامل خطورة داء الشريان الإكليلي، كل مما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الداء الإكليلي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انخفاض LDL.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انخفاض HDL.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">السكري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ارتفاع التوتر الشرياني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتفاع LDL.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — انخفاض LDL.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يرتبط ارتفاع LDL بترسب الكوليسترول ضمن جدار الشريان وتشكل اللويحة العصيدية، وبالتالي فإن خفض تركيز LDL (سواء طبيعياً أو دوائياً بالستاتين) يقلل خطر الحوادث القلبية الوعائية بدلاً من زيادته، فهو عامل وقائي لا عامل خطورة.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">انخفاض HDL يفقد الجسم دوره الوقائي في نقل الكوليسترول العكسي فيرفع الخطورة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">السكري عامل خطورة قوي مستقل للتصلب العصيدي المنتشر.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">ارتفاع التوتر الشرياني يزيد الإجهاد على جدار الشريان ويسرع التصلب العصيدي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">ارتفاع LDL هو العامل الرئيسي المسبب لترسب العصيدة.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">عوامل خطورة التصلب العصيدي الرئيسية: ارتفاع LDL، انخفاض HDL، السكري، فرط ضغط الدم، التدخين، العمر والقصة العائلية؛ بينما انخفاض LDL عامل وقائي وليس عامل خطورة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_081" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">الألم النموذجي بخناق الصدر، كل مما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الداء الإكليلي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ألم شرسوفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ينتشر للعنق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قد يترافق مع غثيان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يسوء بالجهد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ينتشر للفك السفلي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ألم شرسوفي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ينتج ألم الذبحة عن انتشار الإحساس الحشوي القلبي عبر الجهاز العصبي الودي المشترك مع الجذور الشوكية العلوية (C8-T4)، مما يفسر انتشاره النموذجي للعنق والفك والذراع، بينما الألم الشرسوفي المعزول غير نمطي ويصعب تمييزه عن الأسباب الهضمية إلا في سياقات خاصة (احتشاء سفلي، سكري، كبار السن).</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">الانتشار للعنق من الانتشارات النموذجية لألم الذبحة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">الغثيان عرض مرافق شائع خاصة في الاحتشاء السفلي بسبب تحرض المبهم.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">التفاقم بالجهد هو الصفة الأساسية المميزة لخناق الصدر.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">الانتشار للفك السفلي من الانتشارات النموذجية المعروفة.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">ألم الذبحة النموذجي: ضاغط خلف القص، يتحرض بالجهد ويخف بالراحة/النتروغليسرين، ينتشر للعنق والفك السفلي والذراع، وقد يترافق بغثيان وتعرق؛ الألم الشرسوفي المعزول ليس نمطياً ويشير لتظاهر غير نموذجي أو سبب هضمي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_152" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">الاضطراب الأساسي في تخطيط القلب عند اضطراب نقص البوتاسيوم هو:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات النظم والنقل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">موجة U.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تأنف الموجة T.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">مركب QRS عريض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">غياب P.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تزحل ST.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — موجة U.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انخفاض البوتاسيوم خارج الخلية يبطئ إعادة الاستقطاب البطيني في الطور الأخير، مما يبرز الموجة U (تالية للموجة T) كتعبير عن تأخر إعادة استقطاب ألياف بوركنجي، وهي العلامة الأساسية والأكثر نوعية لنقص البوتاسيوم.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">تأنف الموجة T يشاهد ولكنه أقل نوعية من الموجة U.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">توسع QRS أكثر ارتباطاً بفرط البوتاسيوم لا نقصه.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">غياب P يشاهد في الرجفان الأذيني وليس نقص البوتاسيوم.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">تزحل ST علامة مرافقة ثانوية وليست الاضطراب الأساسي.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">نقص البوتاسيوم يظهر تخطيطياً بموجة U بارزة، تسطح الموجة T، وتطاول الفاصلة QU؛ عند الشدة يحدث تزحل ST وقد يستعد لاضطرابات نظم خطيرة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_153" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">اضطراب النظم الأشيع في التسمم الدرقي:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات النظم والنقل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الرجفان الأذيني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تسرع القلب الجيبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">رفرفة أذينية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التسرع البطيني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الرجفان البطيني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — تسرع القلب الجيبي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> زيادة هرمونات الدرق ترفع الحساسية للكاتيكولامينات وتزيد الاستقلاب القاعدي، فترفع معدل تفريغ العقدة الجيبية بشكل مستمر مسببة تسرعاً جيبياً وهو الأشيع بين اضطرابات النظم في هذه الحالة، بينما الرجفان الأذيني أشيع نوعياً كارتباط لكنه أقل حدوثاً إجمالاً.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الرجفان الأذيني معروف الارتباط بالتسمم الدرقي لكنه أقل شيوعاً من التسرع الجيبي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">الرفرفة الأذينية أقل شيوعاً بكثير. D وE: اضطرابات النظم البطينية نادرة نسبياً في هذا السياق.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تسرع القلب الجيبي يوجد عند غالبية مرضى التسمم الدرقي بسبب فرط الفعالية الودية والاستقلاب، بينما يحدث الرجفان الأذيني في نسبة أقل من المرضى (خصوصاً كبار السن).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_154" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن الرجفان الأذيني ما عدا:</span>
+                </div>
+                <span class="q-date-badge">اضطرابات النظم والنقل</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">شائع في آفات الصمام التاجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نستخدم الأميودارون للوقاية من النوب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">النوبي عبارة عن نوب متتقعة تنتهي لوحدها.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">في الرجفان الأذيني النوبي تنهي الهجمات دائماً بالعلاج الدوائي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">لا يمكن بالرجفان الأذيني سماع الصوت الرابع.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — في الرجفان الأذيني النوبي تنهي الهجمات دائماً بالعلاج الدوائي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> بحسب التصنيف القياسي، الشكل النوبي من الرجفان الأذيني يتميز تحديداً بانتهاء النوب ذاتياً دون تدخل علاجي، لذا فإن القول بأنها &quot;تنتهي دائماً بالعلاج الدوائي&quot; مناقض للتعريف الأساسي لهذا الشكل.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">صحيح، شائع في الداء التاجي الرثوي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">صحيح، الأميودارون يستخدم للوقاية من النوب.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">صحيح، هذا هو تعريف الشكل النوبي بالضبط.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">صحيح، غياب التقلص الأذيني الفعال يمنع سماع الصوت الرابع.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الرجفان الأذيني النوبي = نوب متقطعة تنتهي لوحدها عفوياً؛ المستمر يحتاج تدخلاً لإنهائه (دوائياً أو كهربائياً)؛ الدائم لا يُحاول فيه استعادة النظم الجيبي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_172" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">من استطبابات العلاج الدوائي للضغط الشرياني، كل مما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">ارتفاع الضغط الشرياني</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ضغط 140/90 في الزيارة الأولى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع ضغط مترافق مع فرط الضغط الشرياني الخبيث.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ارتفاع ضغط مترافق مع ضخامة البطين الأيسر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ارتفاع ضغط مترافق مع حوادث إقفارية عابرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتفاع ضغط مترافق مع بيلة بروتينية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ضغط 140/90 في الزيارة الأولى.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ضغط 140/90 في الزيارة الأولى وحده لا يشكل استطباباً مباشراً للعلاج الدوائي، بل يستوجب قياساً متنقلاً أو منزلياً وتقييماً شاملاً للخطورة القلبية الوعائية قبل اتخاذ القرار العلاجي.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">فرط الضغط الخبيث استطباب لعلاج فوري تخصصي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">ضخامة البطين الأيسر أذية عضو هدف تستطب العلاج.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الحوادث الإقفارية العابرة اختلاط وعائي يستطب العلاج.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">البيلة البروتينية أذية كلوية تستطب العلاج.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">حسب خوارزمية الجمعية البريطانية: ضغط 140/90-180/110 بزيارة واحدة يستدعي تأكيداً بقياس متنقل/منزلي وتقييم الخطورة قبل قرار العلاج، بينما الاختلاطات العضوية (خبيث، LVH، TIA، بيلة بروتينية) تستطب العلاج مباشرة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_cardio_173" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">فيما يتعلق بالمدرات، كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">ارتفاع الضغط الشرياني</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تخفف حمل قبلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يمكن مشاركة مدرات العروة مع حاصرات الخميرة القالبة للأنجيوتنسين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نستخدم سبيرنولاكتون إذا كان الكرياتينين 3.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نعطي مدرات العروة وريدياً في وذمة رئة حادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نستمر بالمدر ساعتين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — نستخدم سبيرنولاكتون إذا كان الكرياتينين 3.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عند كرياتينين مرتفع بشدة (مثل 3 ملغ/دل) يكون السبيرونولاكتون خطيراً بسبب تراكم البوتاسيوم الناجم عن نقص الطرح الكلوي، لذا يُتجنب استخدامه في هذه الحالة بدل اعتباره خياراً مناسباً.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">المدرات تخفف الحمل القبلي بطرح السوائل.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">مشاركة مدر عروة مع ACEi مشاركة شائعة ومقبولة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">مدرات العروة الوريدية أساسية بعلاج الوذمة الرئوية الحادة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">الاستمرار بالمدر لساعتين ممارسة سريرية معتادة.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">يضاف سبيرونولاكتون بجرعة منخفضة كمدر إضافي في المرحلة الرابعة من خوارزمية المعالجة، لكنه محظور نسبياً عند ارتفاع الكرياتينين (خطر فرط بوتاسيوم الدم القاتل).</span>
+        </div>
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "26 سؤال • 2 دورة امتحانية • 2021";
+        const originalDocTitle = "بنك الأسئلة - القلبية (دورات 2021)";
+        const subjectName = "القلبية";
+        const groupByMode = "session";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

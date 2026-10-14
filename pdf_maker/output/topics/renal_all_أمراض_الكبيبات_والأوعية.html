@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - الكلية (أمراض الكبيبات والأوعية)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #5B21B6;
+            --primary-dark: #3B0764;
+            --primary-rgb: 91, 33, 182;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - الكلية (أمراض الكبيبات والأوعية)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">التصنيف:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع التصنيفات (الكل - 19 سؤال)</option>
+                    <option value="topic-1">أمراض الكبيبات والأوعية (19 سؤال)</option>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل التصنيف المحدد (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">الكلية</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب المواضيع)</p>
+                <p class="stats-summary" id="statsSummary">19 سؤال • 1 مواضيع • 2018 - 2026</p>
+            </div>
+
+            <div class="index-section-title">فهرس المواضيع والتصنيفات</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="topic-1">
+                    <a href="#topic-1" class="index-row" data-group-id="topic-1" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018">
+                        <span class="index-topic-name">أمراض الكبيبات والأوعية</span>
+                        <span class="index-topic-meta">
+                            <span>2018 - 2026</span>
+                            <span class="index-count">19 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'topic-1', 'أمراض الكبيبات والأوعية')" title="تحميل أمراض الكبيبات والأوعية كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018" data-group-id="topic-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="topic-1">
+                    <div class="topic-title-text">أمراض الكبيبات والأوعية</div>
+                    <span class="topic-counter">19 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_renal_102" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">كل مما يلي صحيح عن المتلازمة النفروزية Nephrotic syndrome ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">لا يوجد أسطوانات كريات حمر بالبول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">زيادة القابلية للنزف بضياع عوامل التخثر في البول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ارتفاع شحوم الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ألبومين الدم أقل من 3 غ/دل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">بيلة بروتينية أكثر من 3-3.5 غ/24ساعة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — زيادة القابلية للنزف بضياع عوامل التخثر في البول.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> فقدان بروتينات منخفضة الوزن الجزيئي في البول يشمل مضادات التخثر الطبيعية كمضاد الترومبين III والبروتين S، مع زيادة تركيبية معاوضة لعوامل التخثر عالية الوزن الجزيئي والفيبرينوجين كبدياً، فتنتج حالة فرط قابلية للتخثر (خطر خثار وريدي كلوي وصمة رئوية) وليس زيادة نزف كما تذكر العبارة الخاطئة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح؛ غياب أسطوانات الكريات الحمر يميز النفروزية عن الالتهابية الكلوية. <b class="opt-letter-tag">C)</b> صحيح؛ تنبيه الكبد التعويضي يرفع الشحوم والكوليسترول. <b class="opt-letter-tag">D)</b> صحيح؛ نقص الألبومين جزء من معايير التشخيص. <b class="opt-letter-tag">E)</b> صحيح؛ عتبة البيلة البروتينية النفروزية أكثر من 3-3.5 غ/24 ساعة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">المتلازمة النفروزية = بيلة بروتينية أكثر من 3-3.5 غ/24 ساعة + ألبومين مصل أقل من 3 غ/دل + فرط شحوم الدم + وذمات، مع غياب أسطوانات الكريات الحمر (تميزها عن المتلازمة الالتهابية)، وترافقها فرط قابلية للتخثر وليس نزف.</span>
+        </div>
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_renal_99" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">كل ما يلي من أسباب ارتفاع ضغط من منشأ كلوي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">كلية متعددة الكيسات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تضيق الشريان الكلوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">كيسة قشرية بسيطة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">داء كلوي انتهائي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التهاب كبيبات حاد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — كيسة قشرية بسيطة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> فرط الضغط ذو المنشأ الكلوي ينجم إما عن نقص تروية كلوية موضعة (كما في تضيق الشريان الكلوي) يُحرّض إفراز الرينين، أو عن تخرب نسيج كلوي منتشر (كما في الكلية متعددة الكيسات، الداء الانتهائي، أو التهاب الكبيبات الحاد) يؤدي لاحتباس صوديوم وسوائل وتفعيل RAAS. الكيسة القشرية البسيطة آفة موضعة معزولة لا تخرب نسيجاً كافياً ولا تنقص التروية الكلوية الكلية، فلا ترتبط بفرط الضغط.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الكلية متعددة الكيسات تخرب النسيج الكلوي تدريجياً وتفعّل RAAS. <b class="opt-letter-tag">B)</b> تضيق الشريان الكلوي هو المثال الكلاسيكي لفرط الضغط الوعائي الكلوي المنشأ. <b class="opt-letter-tag">D)</b> الداء الكلوي الانتهائي يترافق بفرط ضغط شائع جداً عبر احتباس السوائل وتفعيل RAAS. <b class="opt-letter-tag">E)</b> التهاب الكبيبات الحاد من المظاهر المبكرة الشائعة للاضطرابات الكبيبية المسببة لفرط الضغط.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الكيسة الكلوية البسيطة آفة شائعة وسليمة لا تنشط جهاز الرينين-أنجيوتنسين ولا تسبب فرط ضغط؛ بخلاف الأمراض الكبيبية والوعائية والكيسية المعممة والداء الانتهائي التي تنقص التروية الكلوية الفعالة فتفعّل هذا الجهاز.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_92" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن المتلازمة النفروزية Nephrotic Syndrome، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تموز 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">لا يوجد اسطوانات كريات حمر بالبول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">زيادة القابلية للنزف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ألبومين الدم أقل من 3 غ/دل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ارتفاع شحوم الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">بيلة بروتينية أكثر من 3 3.5 غ/24 ساعة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — زيادة القابلية للنزف.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> البيلة البروتينية الشديدة تفقد بروتينات مضادة للتخثر منخفضة الوزن الجزيئي مع تنشيط تعويضي للعوامل المخثرة الكبدية، فتنتج حالة فرط تخثر سريرياً هامة، لا زيادة قابلية للنزف.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> غياب اسطوانات الكريات الحمر صحيح لأنها متلازمة غير التهابية كبيبياً؛ ألبومين أقل من ٣ غ/دل معيار تشخيصي؛ فرط شحوم الدم ناجم عن التنشيط الكبدي التعويضي؛ البيلة البروتينية أكثر من ٣-٣,٥ غ/٢٤ ساعة معيار تشخيصي أساسي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تفقد المتلازمة النفروزية عوامل مضادة للتخثر (كالأنتي ترومبين III) عبر البول محدثة حالة فرط قابلية للتخثر (خطر خثار وريدي كلوي وصمة رئوية)، وليست زيادة نزف.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_86" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">كل ما يلي قد يدل على أذية كبيبية عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">اسطوانات كريات بيض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع توتر شرياني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">بيلة دموية مجهرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">بيلة بروتينية 1 غ / 24 ساعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتفاع كرياتينين المصل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — اسطوانات كريات بيض.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> اسطوانات الكريات البيض تتشكل ضمن النبيبات نتيجة ارتشاح الكريات البيض في سياق خمج (كالتهاب حويضة وكلية) أو التهاب كلية خلالي، وهذا لا يعكس أذية على مستوى الكبيبة بل على مستوى النبيبات والخلال.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> ارتفاع التوتر الشرياني يرافق احتباس الصوديوم الناجم عن الأذية الكبيبية؛ البيلة الدموية المجهرية تعكس تسرب الدم عبر الشقوق في الغشاء القاعدي الكبيبي الملتهب؛ البيلة البروتينية تعكس اضطراب وظيفة الخلايا الرجلاء (القدمية)؛ ارتفاع الكرياتينين يعكس تراجع الترشيح الكبيبي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">اسطوانات الكريات الحمر والبيلة الدموية المشوهة الشكل هي العلامة النوعية للأذية الكبيبية (التهاب كبيبات)؛ أما اسطوانات الكريات البيض فتدل على خمج أو التهاب كلية خلالي وليس على إصابة كبيبية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_78" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">تؤدي الإصابة بالمتلازمة الكلائية (النفروزية) إلى كل ما يلي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فرط القابلية للتخثر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فقدان الغلوبولينات المناعية في البول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فرط كولسيترول الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ارتفاع صوديوم الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">زيادة الألبومين بالدم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — زيادة الألبومين بالدم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تسرب البروتينات منخفضة الوزن عبر الغشاء القاعدي الكبيبي المتضرر يشمل الألبومين والغلوبولينات المناعية وعوامل التخثر الطبيعية المضادة، فينتج نقص ألبومين الدم (وليس زيادته) مع تحريض تعويضي لتصنيع الكبد للبروتينات الشحمية مسبباً فرط كوليستيرول الدم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> فرط القابلية للتخثر ناتج عن فقدان مضادات التخثر الطبيعية (أنتيترومبين III) بالبول. فقدان الغلوبولينات المناعية بالبول يفسر شيوع الأخماج لدى هؤلاء المرضى. فرط كوليسترول الدم نتيجة زيادة تصنيع الكبد التعويضي. ارتفاع صوديوم الدم ليس موجودة نموذجية (الوذمة ناتجة عن احتباس الصوديوم والماء لا عن فرط صوديوم المصل).</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">رباعية المتلازمة الكلائية: بيلة بروتينية جسيمة (&gt;3.5غ/يوم)، نقص ألبومين الدم، وذمة، فرط كوليسترول الدم؛ يرافقها فرط قابلية للتخثر وفقدان غلوبولينات مناعية بالبول مما يزيد خطر الخمج والانصمام الوريدي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_80" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">في التهاب الكبب والكلية التالي للعقديات كل ما يلي صحيح ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">زيادة في حجم البول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تبدأ الوظيفة الكلوية بالتحسن عفوياً خلال 14 يوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ينخفض معدل الترشيح الكبيبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">سليم بشكل عام.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الآلية مناعية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — زيادة في حجم البول.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب كبب وكلية ما بعد العقديات (PSGN) يتظاهر كمتلازمة التهاب كبب كلوية حادة تترافق نموذجياً بنقص في نتاج البول (شح بول Oliguria) وليس زيادة في حجم البول (بوال)، وذلك نتيجة انخفاض معدل الرشح الكبيبي واحتباس الماء والصوديوم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تبدأ الوظيفة الكلوية بالتحسن عفوياً خلال أسبوعين (14 يوماً) لدى الغالبية العظمى. ينخفض معدل الترشيح الكبيبي بسبب الالتهاب وتكاثر الخلايا الكبيبية. المرض سليم وذو إنذار ممتاز بشكل عام خاصة لدى الأطفال. الآلية مناعية ناجمة عن تشكل معقدات مناعية واستقرارها في الكبب.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">PSGN مثال كلاسيكي على المتلازمة الالتهابية الكلوية: بيلة دموية، فرط ضغط شرياني، شح بول (لا بوال)، تحسن عفوي للوظيفة الكلوية خلال أسبوعين عند أغلب الأطفال، إنذار جيد عموماً، الآلية مناعية (ترسب معقدات مناعية).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_70" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">كل مايلي صحيح في المتلازمة النفروزية nephrotic syndrome ماعدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ألبومين الدم أقل من 3 غ/دل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع شحوم الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">زيادة القابلية للنزف بضياع عوامل التخثر في البول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">بيلة بروتينية أكثر من 3-3.5 غ/بول 24 ساعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">لا يوجد أسطوانات كريات حمر بالبول.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — زيادة القابلية للنزف بضياع عوامل التخثر في البول.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> البيلة البروتينية الضخمة تفقد بروتينات مضادة للتخثر (كمضاد الثرومبين III) أكثر مما تفقد عوامل التخثر نفسها، مما يخل بالتوازن لصالح فرط التخثر لا النزف، لذا فإن العبارة معكوسة وهي الاستثناء الصحيح.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> ألبومين أقل من 3غ/دل (<b class="opt-letter-tag">A)</b> معيار تشخيصي أساسي؛ ارتفاع شحوم الدم (<b class="opt-letter-tag">B)</b> نتيجة تعويضية كبدية لنقص الألبومين؛ بيلة بروتينية أكثر من 3-3.5غ/24سا (<b class="opt-letter-tag">D)</b> هي العتبة النفروزية القياسية؛ غياب أسطوانات الكريات الحمر (<b class="opt-letter-tag">E)</b> يميزها عن الأذية الكبيبية الالتهابية النموذجية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">فقدان مضاد الثرومبين III والبروتينات المضادة للتخثر في البول ضمن المتلازمة النفروزية يؤدي لحالة فرط تخثر (خطر خثار وريدي/الوريد الكلوي) وليس زيادة نزف.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_05" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن المتلازمة النفروزية النقية Nephrotic syndrome ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ألبومين الدم أقل من 3 غرام/دل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع توتر شرياني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">بيلة بروتينية أكثر من 3.5/3غ/24 ساعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ارتفاع شحوم الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">زيادة القابلية للخثارات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — ارتفاع توتر شرياني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يؤدي فرط نفوذية الغشاء القاعدي الكبيبي لخسارة الألبومين وانخفاض الضغط الجرمي، فتنتقل السوائل للحيز الخلالي محدثة وذمة ونقص حجم داخل وعائي، وهذا يميل لخفض ضغط الدم لا رفعه، خلافاً لما تذكره العبارة B وهي بذلك الاستثناء الصحيح.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> ألبومين المصل دون 3غ/دل من المعايير التشخيصية المعتمدة. <b class="opt-letter-tag">C)</b> البيلة البروتينية الجسيمة (&gt;3.5غ/24 ساعة) معيار تشخيصي أساسي. <b class="opt-letter-tag">D)</b> فرط كوليسترول الدم مظهر نموذجي ثابت. <b class="opt-letter-tag">E)</b> فقدان عوامل مضادة للتخثر بالبول يزيد فعلياً القابلية للخثار.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تتميز المتلازمة النفروزية بألبومين منخفض وبيلة بروتينية جسيمة وفرط شحوم وقابلية خثارية، بينما يكون ضغط الدم طبيعياً أو منخفضاً غالباً؛ فرط الضغط الشرياني سمة مميزة للمتلازمة الالتهابية الكلوية وليس النفروزية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_10" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل ما يلي من أعراض وعلامات التهاب الكبب والكلية ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">وذمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">بيلة كريات بيض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ارتفاع توتر شرياني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">بيلة دموية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">شح بول.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — بيلة كريات بيض.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ينجم التهاب الكبب والكلية عن أذية التهابية للغشاء القاعدي الكبيبي تُحدث تسرباً للكريات الحمراء إلى البول مع نقص GFR واحتباس صوديوم مسبباً الوذمة وفرط الضغط وشح البول، أما الكريات البيضاء بالبول فتعكس عادة عملية خمجية أو التهاباً خلالياً، لذا فهي الاستثناء الصحيح.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> احتباس الصوديوم الحاد يسبب الوذمة فعلياً. <b class="opt-letter-tag">C)</b> فرط الضغط الشرياني من المظاهر النموذجية بسبب احتباس السوائل. <b class="opt-letter-tag">D)</b> البيلة الدموية مع أسطوانات الكريات الحمراء سمة مميزة أساسية. <b class="opt-letter-tag">E)</b> انخفاض معدل الترشيح الكبيبي يسبب شح البول فعلياً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تتظاهر المتلازمة الالتهابية الكلوية ببيلة دموية وأسطوانات كريات حمراء ووذمة وفرط ضغط شرياني وشح بول نتيجة احتباس الصوديوم والماء؛ بيلة الكريات البيض تشير غالباً للخمج أو التهاب الكلية الخلالي وليست سمة نوعية لالتهاب الكبيبات.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_11" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">أي من أدوية الضغط التالية لا يجوز استعماله في تضيق الشريان الكلوي ثنائي الجانب:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">هيدرلازين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">مثبطات مستقبلات الأنجيوتنسين (ARBs).</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">مدرات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">حاصرات الكلس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">حاصرات بيتا.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — مثبطات مستقبلات الأنجيوتنسين (ARBs).</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يعتمد الحفاظ على ضغط الترشيح الكبيبي في تضيق الشريان الكلوي على التقبض الوعائي للشرين الصادر بوساطة الأنجيوتنسين II؛ فحصر هذا التأثير بواسطة ARBs يُسقط ضغط الترشيح بشكل حاد، ويصبح هذا الخطر كارثياً عند التضيق ثنائي الجانب لغياب كلية بديلة تعوض الترشيح.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الهيدرالازين آمن لأنه لا يؤثر على توتر الشرين الصادر. <b class="opt-letter-tag">C)</b> المدرات يمكن استخدامها بحذر لضبط الضغط دون تأثير مباشر على الترشيح. <b class="opt-letter-tag">D)</b> حاصرات الكلس لا تثبط جهاز الرينين أنجيوتنسين فهي آمنة نسبياً. <b class="opt-letter-tag">E)</b> حاصرات بيتا خيار آمن لا يعتمد على آلية الأنجيوتنسين.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تُمنع مثبطات الإنزيم المحول للأنجيوتنسين وحاصرات مستقبلات الأنجيوتنسين II في تضيق الشريان الكلوي ثنائي الجانب (أو أحادي على كلية وحيدة وظيفية) لخطر إحداث قصور كلوي حاد.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_13" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">كل مما يلي من أسباب ارتفاع ضغط الدم كلوي المنشأ عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب أوعية صغيرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب كلية خلالي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب كبب وكلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أدوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نخر أنبوبي مزمن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — نخر أنبوبي مزمن.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> النخر الأنبوبي المزمن (<b class="opt-letter-tag">E)</b> ليس من الأسباب الكلوية الكلاسيكية لفرط الضغط الشرياني لأنه أذية أنبوبية حادة العرض غالباً تنجم عن نقص التروية أو السمية الدوائية، ولا تترافق مع تنشيط مزمن لجهاز الرينين-أنجيوتنسين كما في الأمراض الكبيبية والخلالية والوعائية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> التهاب الأوعية الصغيرة يسبب التهاب كبيبات كلوية مترافق بفرط ضغط شرياني شائع. <b class="opt-letter-tag">B)</b> التهاب الكلية الخلالي المزمن يترافق بفرط ضغط شرياني مع صغر حجم الكليتين. <b class="opt-letter-tag">C)</b> التهاب الكبب والكلية من أشيع أسباب الفرط الضغطي الكلوي المنشأ. <b class="opt-letter-tag">D)</b> بعض الأدوية (كمثبطات إنزيم تحول الأنجيوتنسين بجرعات معينة أو غيرها) قد تسبب اضطراباً ضغطياً كلوي المنشأ.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">النخر الأنبوبي الحاد هو سبب شائع للأذية الكلوية الحادة، لكنه لا يترافق عادة بفرط ضغط شرياني بعكس الأمراض الكبيبية والوعائية والخلالية المزمنة التي تنشط جهاز الرينين - أنجيوتنسين.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_14" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">كل مما يلي من موجودات المتلازمة النفرروزية عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فرط كولسترول الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">بيلة بروتينية أكثر من 300 ملغ/ممول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">وذمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص ألبومين عن 30 غ/ل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">زيادة الحجم داخل الأوعية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — زيادة الحجم داخل الأوعية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في المتلازمة النفروزية يؤدي نقص ألبومين الدم الشديد إلى انخفاض الضغط الجرمي البلازمي، فيتسرب السائل من الأوعية إلى الحيز الخلالي محدثاً الوذمة، مما يؤدي إلى نقص الحجم داخل الأوعية وليس زيادته، وهذا ما ينشط جهاز الرينين-أنجيوتنسين ويزيد احتباس الصوديوم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> فرط كوليسترول الدم من الموجودات المميزة للمتلازمة النفروزية. <b class="opt-letter-tag">B)</b> بيلة بروتينية جسيمة (أكثر من 300 مغ/ممول PCR) هي المعيار التشخيصي الأساسي. <b class="opt-letter-tag">C)</b> الوذمة موجودة نموذجياً بسبب نقص الضغط الجرمي. <b class="opt-letter-tag">D)</b> نقص الألبومين عن 30 غ/ل هو المعيار المخبري المحدد للمتلازمة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تتظاهر المتلازمة النفروزية بـ: بيلة بروتينية &gt;300 مغ/ممول (PCR)، نقص ألبومين &lt;30غ/ل، وذمة، وفرط كوليسترول الدم؛ ويرافقها نقص الحجم داخل الأوعية (وليس زيادته) نتيجة هجرة السوائل خارج الأوعية بسبب نقص الضغط الجرمي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_24" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">كل مما يلي صحيح عن التهاب الكبب والكلية التالي للإصابة بالعقديات عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إنذاره جيد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يكون مستوى المتممة مرتفعاً خلال المرحلة الحادة من المرض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يتميز بارتفاع في ضغط الدم وظهور بيلة دموية مع وذمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يرتفع عيار ASLO (مضادات الستريبتوليزين O) في مصل معظم المرضى كمؤشر على عدوى سابقة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">أكثر شيوعاً عند الأطفال.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — يكون مستوى المتممة مرتفعاً خلال المرحلة الحادة من المرض.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تتشكل معقدات مناعية تستهلك بروتينات المتممة عبر السبيل الكلاسيكي والبديل، مما يؤدي إلى انخفاض تراكيز C3 وC4 في المصل خلال الطور الحاد للمرض، وليس ارتفاعها؛ وتعود هذه القيم للطبيعي عادة خلال أسابيع مع تحسن الوظيفة الكلوية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الإنذار جيد عموماً خاصة عند الأطفال مع شفاء عفوي. <b class="opt-letter-tag">C)</b> فرط الضغط الشرياني مع الوذمة من الموجودات النموذجية لمتلازمة الالتهاب الكلوي الحاد. <b class="opt-letter-tag">D)</b> إيجابية ASLO تدعم التشخيص بوجود إصابة عقدية سابقة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">انخفاض تراكيز المتممة C3 وC4 مع دليل مصلي على إصابة عقدية حديثة (ASLO إيجابي) هو من العلامات المميزة لالتهاب الكبب والكلية التالي للعقديات؛ الإنذار جيد عموماً مع شفاء عفوي خلال 10-14 يوماً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_25" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">المتلازمة النفروزية:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">وذمة مع ارتفاع شحوم مع بيلة بروتينية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فرط الضغط الشرياني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">البومين الدم أكثر من 30 غ/ل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">بيلة دموية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">لا يوجد فرط خثار.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">F.</span>
+                <span class="option-text">تعالج بالجراحة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — وذمة مع ارتفاع شحوم مع بيلة بروتينية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تؤدي الأذية الكبيبية إلى بيلة بروتينية شديدة تسبب نقص ألبومين الدم، مما يخفض الضغط الجرمي البلازمي ويولّد الوذمة؛ كما ينشط نقص الحجم الفعال محور الرينين-أنجيوتنسين مسبباً احتباس الصوديوم وفرط شحوم الدم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> فرط الضغط الشرياني أكثر توافقاً مع المتلازمة الكلوية الالتهابية (النفريتية) لا الكلائية. <b class="opt-letter-tag">C)</b> الألبومين في المتلازمة الكلائية أقل من ٣٠ غ/ل وليس أكثر. <b class="opt-letter-tag">D)</b> البيلة الدموية سمة نفريتية وليست نفروزية نموذجية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تشخص المتلازمة الكلائية ببيلة بروتينية جسيمة (PCR &gt; ٣٠٠ مغ/ممول أو بروتين بولي &gt; ٣ غ/٢٤ ساعة)، نقص ألبومين الدم (&lt; ٣٠ غ/ل)، وذمة، وفرط كوليسترول الدم.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_39" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">كل مما يلي صحيح في تضيق الشريان الكلوي أحادي الجانب عدا:</span>
+                </div>
+                <span class="q-date-badge">تشـــرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يحدث فرط ضغط شرياني خفيف وسهل الضبط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تحدث وذمة رئة بشكل متكرر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تدهور وظيفة الكلية عند استخدام الكابتوبريل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">بالفحص أو القصة المرضية يوجد داء وعائي محيطي في الأطراف السفلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الكليتين غير متناظرتين في الحجم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — يحدث فرط ضغط شرياني خفيف وسهل الضبط.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> فرط الضغط الناجم عن تضيق الشريان الكلوي ينجم عن تفعيل شديد لمحور الرينين-أنجيوتنسين-ألدوستيرون استجابة لنقص التروية الكلوية، فيكون عادة شديداً وصعب الضبط وليس خفيفاً وسهل الضبط.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> نوب وذمة الرئة المتكررة علامة نموذجية مذكورة في الإطار المرجعي. <b class="opt-letter-tag">C)</b> الكابتوبريل يزيل التقبض الوعائي الصادر التعويضي فيهبط الترشيح الكبيبي وتتدهور الوظيفة الكلوية. <b class="opt-letter-tag">D)</b> الداء الوعائي المحيطي شائع مرافقة لتصلب الشريان الكلوي العصيدي. <b class="opt-letter-tag">E)</b> عدم تناظر حجم الكليتين علامة مميزة موصوفة في المرجع.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">يوحي بتضيق الشريان الكلوي: فرط ضغط شديد حديث البدء أو صعب الضبط، عدم تناظر حجم الكليتين، نوب وذمة رئة متكررة، داء وعائي محيطي، وتدهور الوظيفة الكلوية مع مثبطات الإنزيم المحول للأنجيوتنسين.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_50" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">كل مما يلي صحيح في التهاب كبيبات الكلية سريع الترقي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يوجد شح بول في أغلب الحالات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تشاهد الآفات الهلالية في الخزعة الكلوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يفيد اختبار ASLO في تشخيصه.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">من أسبابه الذئبة الحمامية الجهازية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يفيد في تشخيصه عيار المتممة والغلوبيولينات المناعية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — يفيد اختبار ASLO في تشخيصه.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب كبيبات الكلية سريع الترقي يتظاهر بفقدان سريع للوظيفة الكلوية مع آفات هلالية بالخزعة، وتشمل أسبابه داء غود باستر والتهاب الأوعية الصغيرة والذئبة الحمامية الجهازية؛ أما ASLO فيرتبط بالإصابة السابقة بالمكورات العقدية ولا دور له في تشخيص RPGN.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> شح البول موجود في أغلب الحالات نتيجة شدة الأذية الكبيبية. <b class="opt-letter-tag">B)</b> الآفات الهلالية هي الموجودة النسيجية المميزة في الخزعة. <b class="opt-letter-tag">D)</b> الذئبة من الأسباب المعروفة لـ RPGN. <b class="opt-letter-tag">E)</b> عيار المتممة والغلوبولينات المناعية يساعد في تحديد السبب المستبطن.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">ASLO يفيد في تشخيص التهاب كبيبات الكلية التالي للإصابة بالمكورات العقدية، وليس في RPGN الذي تفيد فيه ANCA وANA وأضداد الغشاء القاعدي الكبيبي والمتممة والغلوبولينات المناعية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_57" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">تتميز المتلازمة الكلائية (النفروزية) النقية بما يلي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">البيلة الدموية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نقص الحجم داخل الأوعية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الوذمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص ألبومين المصل دون 30 غ/ل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">فرط كوليسترول المصل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — البيلة الدموية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> المتلازمة الكلائية النقية تنجم عن أذية معزولة بوظيفة الخلايا الرجلاء (كالداء قليل التبدلات) دون تخرب الغشاء القاعدي الكبيبي، فلا يحدث تسرب دم للبول، بخلاف الطيف الالتهابي (النفريتي) حيث تتشكل شقوق بالغشاء القاعدي تسبب البيلة الدموية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> نقص الحجم داخل الأوعية ينجم عن هبوط الألبومين ونقص الضغط الجرمي. <b class="opt-letter-tag">C)</b> الوذمة نتيجة احتباس الصوديوم ونقص الضغط الجرمي. <b class="opt-letter-tag">D)</b> نقص ألبومين المصل دون ٣٠ غ/ل معيار تشخيصي للمتلازمة الكلائية. <b class="opt-letter-tag">E)</b> فرط كوليسترول المصل نتيجة زيادة تصنيع الكبد التعويضي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">البيلة الدموية من مظاهر المتلازمة الالتهابية (النفريتية) وليست من مظاهر المتلازمة الكلائية النقية، التي تتميز بوذمة ونقص ألبومين وفرط كوليسترول ونقص حجم داخل الأوعية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_65" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">في التهاب الكبب والكلية التالي للعقديات كل ما يلي صحيح عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يبقى ألبومين الدم طبيعي عادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">أشيع عند الأطفال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ينتهي بقصور كلوي في كثير من الحالات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الوذمات والشح البولي والبيلة الدموية موجودات نموذجية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">إيجابي ASLO.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — ينتهي بقصور كلوي في كثير من الحالات.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الآلية مناعية بترسب معقدات مناعية بعد خمج عقدي، وتزول الاستجابة الالتهابية الحادة عادة خلال أسابيع مع شفاء وظيفي كامل عند معظم الأطفال، لذا فإن انتهاءه بقصور كلوي في &quot;كثير من الحالات&quot; عبارة غير صحيحة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> ألبومين الدم الطبيعي عادة (<b class="opt-letter-tag">A)</b> صحيح لأن البيلة البروتينية غالباً دون العتبة النفروزية؛ الأشيع عند الأطفال (<b class="opt-letter-tag">B)</b> صحيح وبائياً؛ الوذمات والشح البولي والبيلة الدموية (<b class="opt-letter-tag">D)</b> هي الثالوث النموذجي؛ ASLO الإيجابي (<b class="opt-letter-tag">E)</b> دليل على الخمج العقدي السابق.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التهاب الكبب والكلية التالي للعقديات (PSGN) شائع عند الأطفال، ينذر بشفاء تام في الغالبية العظمى من الحالات؛ التطور لقصور كلوي مزمن نادر وأكثر شيوعاً عند البالغين منه عند الأطفال.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_renal_69" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">في التهاب كبب وكلية تالي للانتان بالعقديات ما يلي صحيح عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بيلة دموية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع توتر شرياني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">شح بول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">بيلة بروتينية شديدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">وذمات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — بيلة بروتينية شديدة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الأذية الكبيبية في PSGN التهابية تكاثرية مع تسرب دموي بارز أكثر من تسرب بروتيني ضخم، فالنمط النموذجي هو بيلة دموية وارتفاع توتر شرياني وشح بول ووذمات مع بيلة بروتينية خفيفة، وليس بيلة بروتينية شديدة كما في المتلازمات النفروزية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> البيلة الدموية (<b class="opt-letter-tag">A)</b> والشح البولي (<b class="opt-letter-tag">C)</b> والوذمات (<b class="opt-letter-tag">E)</b> من الثالوث الكلاسيكي؛ ارتفاع التوتر الشرياني (<b class="opt-letter-tag">B)</b> شائع بسبب احتباس الصوديوم والماء.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">PSGN يتظاهر ببيلة بروتينية خفيفة إلى متوسطة (غير نفروزية عادة)، والبيلة البروتينية الشديدة (نفروزية) ليست من المظاهر النموذجية له.</span>
+        </div>
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "19 سؤال • 1 مواضيع • 2018 - 2026";
+        const originalDocTitle = "بنك الأسئلة - الكلية (أمراض الكبيبات والأوعية)";
+        const subjectName = "الكلية";
+        const groupByMode = "topic";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

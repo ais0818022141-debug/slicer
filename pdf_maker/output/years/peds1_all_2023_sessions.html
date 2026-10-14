@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - طب الأطفال 1 (دورات 2023)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0284C7;
+            --primary-dark: #0369A1;
+            --primary-rgb: 2, 132, 199;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - طب الأطفال 1 (دورات 2023)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">الدورة:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع الدورات (الكل - 16 سؤال)</option>
+                    <optgroup label="دورات سنة 2023 (16 سؤال)">
+                        <option value="year_2023">📅 جميع دورات 2023 (16 سؤال)</option>
+                        <option value="session-1">دورة 2023 تشرين (10 سؤال)</option>
+                        <option value="session-2">دورة 2023 آذار (6 سؤال)</option>
+                    </optgroup>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل الدورة المحددة (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">طب الأطفال 1</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب الدورات الامتحانية)</p>
+                <p class="stats-summary" id="statsSummary">16 سؤال • 2 دورة امتحانية • 2023</p>
+            </div>
+
+            <div class="index-section-title">فهرس الدورات الامتحانية (مرتبة من الأحدث إلى الأقدم)</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="session-1">
+                    <a href="#session-1" class="index-row" data-group-id="session-1" data-year="2023">
+                        <span class="index-topic-name">2023 تشرين</span>
+                        <span class="index-topic-meta">
+                            <span>6 مواضيع</span>
+                            <span class="index-count">10 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'session-1', 'دورة 2023 تشرين')" title="تحميل دورة 2023 تشرين كملف مستقل">⬇ تحميل</button>
+                </div>
+                <div class="index-row-wrapper" data-group-id="session-2">
+                    <a href="#session-2" class="index-row" data-group-id="session-2" data-year="2023">
+                        <span class="index-topic-name">2023 آذار</span>
+                        <span class="index-topic-meta">
+                            <span>4 مواضيع</span>
+                            <span class="index-count">6 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'session-2', 'دورة 2023 آذار')" title="تحميل دورة 2023 آذار كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2023" data-group-id="session-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="session-1">
+                    <div class="topic-title-text">دورة 2023 تشرين</div>
+                    <span class="topic-counter">10 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_peds1_022" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">يستطيع الطفل بعمر 7 أشهر ان يقوم بما يلي، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تطور الطفل الطبيعي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يجلس دون مساعدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ينقل الأشياء من يد ليد أخرى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يدير وجهه باتجاه الصوت.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تمتمة متعددة المقاطع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يشرب من الكأس.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — يشرب من الكأس.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> مهارة الشرب من الكأس بمفرده والتلويح (باي) هي مهارات اجتماعية وحركية دقيقة متقدمة يكتسبها الطفل نموذجياً بعمر السنة (12 شهراً)، ولا يمكنه القيام بها في عمر 7 أشهر.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> في عمر 7 أشهر، يكون التطور الروحي الحركي للطفل قادراً على إنجاز المهارات التالية (وهي صحيحة): الجلوس معتدلاً دون مساعدة، نقل الأشياء من يد إلى أخرى بسهولة، توجيه الرأس بدقة نحو مصدر الصوت، والتمتمة والمكاغاة بمقاطع صوتية متعددة.</div></div>
+        
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_peds1_023" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">أول الأشكال الهندسية التي يستطيع الطفل رسمها:</span>
+                </div>
+                <span class="q-date-badge">تطور الطفل الطبيعي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">المربع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">المثلث.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">المستطيل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الدائرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">شبه المنحرف.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — الدائرة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> وفقاً لمخططات التطور الحركي الدقيق للرسم، تعتبر (الدائرة) أول شكل هندسي مغلق يكتسب الطفل القدرة على نسخه ورسمه وذلك بعمر 3 سنوات.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يرسم الطفل المربع بعمر 4 سنوات، ويرسم المثلث بعمر 5 سنوات. المستطيل وشبه المنحرف من الأشكال المعقدة التي تحتاج لعمر مدرسي (بعمر 6 سنوات).
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> الترتيب التطوري للرسم بالنسخ: خط عمودي (سنتين)، دائرة (3 سنوات)، صليب (3.5 سنوات)، مربع (4 سنوات)، مثلث (5 سنوات).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_024" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">يتمكن 50% من الأطفال (العمر الوسيط) من المشي دون مساعدة بعمر:</span>
+                </div>
+                <span class="q-date-badge">تطور الطفل الطبيعي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">9 شهور.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">10 شهور.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">13 شهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">18 شهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">2 سنة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — 13 شهر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> لإجابة الصحيحة: &quot;C&quot; (13 شهر.) <div class="exp-section exp-clinical"><b class="exp-header-tag">الشرح:</b> يتراوح العمر الوسطي لاكتساب مهارة المشي المستقل دون مساعدة بين 12 إلى 15 شهراً (بثبات بعمر 15 شهراً)، بينما يُعتبر عمر 18 شهراً هو الحد الأحمر الحدي الفاصل (Red Flag) الذي إن تجاوز الطفل دون المشي يُشخص بتأخر حركي مرضي يستوجب الاستقصاء.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (10 شهور) يكون الطفل قادراً على الوقوف بالمساعدة والزحف والطوف حول الأثاث، و(سنتان) عمر متأخر يكتسب فيه الطفل مهارات كالركض وصعود ونزول الدرج بقدمين على كل درجة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_025" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">يعرف تأخر بزوغ الأسنان بعدم بزوغ أي سن بعد عمر:</span>
+                </div>
+                <span class="q-date-badge">تطور الطفل الطبيعي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">9 أشهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">10 أشهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">11 شهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">12 شهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">13 شهر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — 13 شهر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تبدأ الأسنان اللبنية بالبزوغ فيزيولوجياً بتسلسل يظهر فيه القواطع المركزية السفلية في الشهر 7 تليها القواطع المركزية العلوية في الشهر 8، ويُعرف تأخر التسنين السريري والحدي بعدم بزوغ أي سن لبني في جوف الفم حتى بلوغ الطفل عمر 13 شهراً.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_064" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">كل ما يلي من المظاهر الأساسية لمتلازمة داون الوليد ماعدا:</span>
+                </div>
+                <span class="q-date-badge">علم الوراثة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">أذنان صغيرتان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قذال مسطح مع وجود يافوخ خلفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فرط توتر عضلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">طيات فوق المآق الانسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">شقوق جفنية مائلة نحو الأعلى.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — فرط توتر عضلي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يُعد نقص التوتر العضلي (نقص المقوية) من الملامح السريرية والمظاهر الأساسية البارزة لدى ولدان متلازمة داون وليس فرط التوتر، وهو ما يُسبب لديهم تأخراً في المعالم الحركية والمشي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تُعتبر باقي الخيارات المذكورة من المظاهر السريرية المميزة والمعتمدة لمتلازمة داون؛ حيث يتظاهر الوليد بـ: قذال مسطح مع وجود يافوخ ثالث، شقوق جفنية مائلة نحو الأعلى، طيات أعلى المأق (طية جلدية تسير عبر الحافة الأنسية للشق الجفني)، وأذنان صغيرتان مع تشوه في صيوان الأذن.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تشمل المظاهر السريرية والمشاكل المرافقة الهامة لمتلازمة داون (ثلث الصبغي 21) وجود غصن راحي مفرد، وإصبع خامسة قصيرة ومنحنية، وفجوة صندل واسعة بين الأبحرين الأول والثاني، وبقع Brushfield في القزحية، وفم صغير ولسان متبارز، وجلد رقبة فضفاض، بالإضافة إلى العيوب القلبية الهامة حيث يُعد المرض القلبي الخلقي السبب الرئيسي للوفاة المبكرة لديهم وأشيعها عيوب القناة الأذينية البطينية (تشوه الوسادة عند 40%)، كما ترافقها عيوب هضمية كرتق الإثني عشري وداء هيرشبرونغ، وتتضمن المشاكل اللاحقة قصر القامة وخطر قصور الدرقية والداء البطني والابيضاض، ويُشخص مبكراً في الأسبوع 12-13 عبر الإيكو بقياس ثخانة النفرة (ثخانة الأنسجة الرخوة في ظهر العنق).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_076" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">أي من الموجودات التالية تتماشى مع إصابة الوليد بالحصبة الألمانية الخلقية أكثر من الإصابة بال CMV:</span>
+                </div>
+                <span class="q-date-badge">الطب حول الولادي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نقص الصفيحات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الضخامة الكبدية الطحالية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تأخر النمو داخل الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الساد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">فقر الدم الانحلالي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — الساد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الساد الخلقي (Cataract) ثنائي الجانب هو من الملامح الوصفية والمميزة لمتلازمة الحصبة الألمانية الخلقية (جزء من ثلاثية غريغ التي تضم الساد، الصمم، والآفات القلبية)، ولا يعتبر من التظاهرات النموذجية أو الشائعة لخمج الفيروس المضخم للخلايا (CMV) الذي يسبب غالباً صمماً حسياً عصبياً وتكلسات دماغية حول البطينات.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> نقص الصفيحات الدموية، الضخامة الكبدية الطحالية، فقر الدم الانحلالي، وتأخر النمو داخل الرحم هي كلها علامات سريرية مشتركة ومتقاطعة يمكن أن تشاهد بوضوح في كلا الخمجين (الحصبة الألمانية والـ CMV) ولا تعتبر علامات تفريقية كالساد.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_100" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">وليد 37 أسبوع حملي ظروف الولادة طبيعية حدث لديه تسرع تنفس 80/د بعد 4 ساعات من الولادة لا يوجد زرقة اصغاء الصدر طبيعي صورة الصدر تظهر فرط تهوية خفيف، التشخيص الأكثر احتمالا:</span>
+                </div>
+                <span class="q-date-badge">طب حديث الولادة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">داء الأغشية الهيالينية RDS.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تسرع تنفس عابر TTN.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فرط توتر رئوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">استنشاق عقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ريح صدرية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — تسرع تنفس عابر TTN.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> القصة السريرية (وليد بعمر 37 أسبوعاً، تسرع تنفس بدون زرقة، إصغاء طبيعي، وصورة صدر تبدي فرط تهوية خفيف أو احتقان سرتين) هي تظاهر نموذجي لمتلازمة الزلة التنفسية العابرة (رئة الوليد الرطبة) الناتجة عن تأخر ارتشاف السائل الرئوي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> داء الأغشية الهيالينية (RDS) يحدث غالباً لدى الخدج وتظهر صورة الصدر نقص تهوية ومظهر زجاج مغشى. استنشاق العقي يحدث في الحمل المديد وتظهر صورة الصدر كثافات غير متجانسة وتكون الزرقة شديدة. الريح الصدرية تظهر كشفافية زائدة مع غياب النسيج الرئوي في جهة الإصابة وانزياح المنصف. فرط التوتر الرئوي يسبب زرقة مركزية معندة على الأكسجين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_101" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">كل ما يلي من عوامل الخطورة لحدوث انتان عند الوليد ما عدا:</span>
+                </div>
+                <span class="q-date-badge">طب حديث الولادة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الخداج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تمزق الأغشية الباكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الولادة القيصرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الإقامة في شعبة الحواضن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الولادة الراضة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — الولادة القيصرية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الولادة القيصرية بحد ذاتها (خاصة مع أغشية سليمة) لا تشكل عامل خطورة لإنتان الوليد، بل على العكس قد تعتبر عاملاً واقياً من انتقال بعض الأخماج الصاعدة أو الموجودة في القناة التناسلية (مثل فيروس الحلأ البسيط).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> عوامل الخطورة الرئيسية التي تزيد من احتمالية حدوث الخمج الباكر أو المتأخر عند الوليد تشمل: الخداج (لنقص المناعة ونقص الأضداد الوالدية المعبرة)، تمزق الأغشية الباكر (أكثر من 18 ساعة قبل الولادة)، الولادة الراضة والمخاض العسير، الإقامة المديدة في شعبة الحواضن والعناية المركزة، وحمى الأم أثناء المخاض.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_125" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل ما يلي صحيح في الكواشيركور، ماعدا:</span>
+                </div>
+                <span class="q-date-badge">التغذية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">وذمات انطباعية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">عوز وارد بروتيني بشكل أساسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">طفل شديد الاستثارة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">جفاف الجلد وفقدان لمعان الشعر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الاحتفاظ بشهية طبيعية او زائدة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — الاحتفاظ بشهية طبيعية او زائدة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في داء الكواشيركور (الناجم بشكل رئيسي عن عوز الوارد البروتيني مع الحفاظ على وارد كربوهيدراتي)، يكون الطفل كئيباً، فاقد الشهية تماماً، وشديد الاستثارة. أما الاحتفاظ بشهية جيدة فهو من الملامح المميزة لداء السغل (Marasmus) الناتج عن عوز حروري شامل.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات صحيحة في الكواشيركور؛ حيث يتميز بظهور الوذمات الانطباعية (نتيجة نقص ألبومين الدم)، وجفاف الجلد وتقشره (التهاب جلد توسفي)، وفقدان لمعان الشعر وتبدل لونه (شعر محمر أو باهت)، ويترافق مع ضخامة كبدية تشحمية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_136" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">يشاهد خلع البلورة في أحد الأمراض الاستقلابية التالية:</span>
+                </div>
+                <span class="q-date-badge">أخطاء الاستقلاب الوراثية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الغاالكتوزيميا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الفركتوزيميا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">بيلة شراب القيقب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">بيلة الفينيل كيتون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">بيلة الهموموسيستين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — بيلة الهموموسيستين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تتميز بيلة الهوموسيستين (HOM) بمظاهر مشابهة لـ مارفان وتتظاهر وصفياً بـ خلع البلورة، طول القامة، صعوبات التعلم، ترقق العظام، والصمات الخثارية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تتظاهر الغالاكتوزيميا بـ يرقان ركودي وساد ثنائي الجانب ونقص سكر وضخامة كبدية، وتتظاهر الفركتوزيميا بـ نوب إقياء بعد إدخال سكر المائدة، وتسبب بيلة شراب القيقب اعتلال دماغ مميت خلال الأسبوع الأول من الولادة، بينما تتميز بيلة الفينيل كيتون بـ صعوبات التعلم والاختلاجات وصغر الرأس.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تُعد بيلة الهوموسيستين من الأمراض الاستقلابية الجسدية المتنحية، وتتميز بـ خلع البلورة وتلين العظام والخثار الوعائي، ويقوم تدبيرها العلاجي على إعطاء حمية ناقصة البروتين مع حمض الفوليك والبيريدوكسين (فيتامين B6).</div></div>
+        
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+        <div class="topic-container" data-year="2023" data-group-id="session-2">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="session-2">
+                    <div class="topic-title-text">دورة 2023 آذار</div>
+                    <span class="topic-counter">6 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_peds1_026" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">يعرف تأخر التسنين بعدم ظهور الأسنان بعمر:</span>
+                </div>
+                <span class="q-date-badge">تطور الطفل الطبيعي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">11 شهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">13 شهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">15 شهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">17 شهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">19 شهر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — 13 شهر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تبدأ الأسنان اللبنية بالبزوغ فيزيولوجياً بتسلسل يظهر فيه القواطع المركزية السفلية في الشهر 7 تليها القواطع المركزية العلوية في الشهر 8، ويُعرف تأخر التسنين السريري والحدي بعدم بزوغ أي سن لبني في جوف الفم حتى بلوغ الطفل عمر 13 شهراً.</div></div>
+        
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_peds1_027" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">يبدأ الطفل بالشرب من الكأس باستعمال يديه بعمر:</span>
+                </div>
+                <span class="q-date-badge">تطور الطفل الطبيعي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">10 شهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">12 شهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">14 شهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">16 شهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">18 شهر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — 12 شهر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يكتسب الطفل المهارات الاجتماعية والسلوكية كاستعمال يديه للشرب من الكأس، بالإضافة إلى مهارة التلويح بيده (باي باي)، بعمر 12 شهراً (سنة واحدة).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بعمر 10 أشهر يكتسب الطفل القدرة على التلويح والالتقاط الناضج بالأصابع (الإبهام والسبابة) ولكنه يشرب من الكأس بيده بعمر السنة؛ بينما بعمر 15-18 شهراً يتقدم لإطعام نفسه بالملعقة والمساعدة في خلع ملابسه، وبعمر سنتين يظهر اللعب الرمزي ويكون جافاً نهاراً وليلاً.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> معالم التطور الاجتماعي والسلوكي: الابتسام العفوي بعمر 6 أسابيع (وحد مرضي 8 أسابيع)، الخوف من الغرباء بعمر 7 أشهر (وحد مرضي 10 أشهر)، الشرب من الكأس والتلويح بعمر السنة، الإطعام بالملعقة بعمر 18 شهراً، واللعب المتوازي والدخول للتواليت دون مساعدة بعمر سنتين ونصف.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_054" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">العرض أو العلامة التي توجه لإصابة عصبية مهمة بعد رض الرأس عند الأطفال:</span>
+                </div>
+                <span class="q-date-badge">الحوادث والتسممات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فقد وعي لمدة أكثر من 5 ثا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فقد ذاكرة لمدة أكثر من 5 ثا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نوبة إقياء واحدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نعاس غير طبيعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">مكان السقوط أقل من متر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — نعاس غير طبيعي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يُعد النعاس غير الطبيعي أو تبدل مستوى الوعي والسلوك الشاذ من الأعراض والعلامات الهامة التي توجه لوجود إصابة عصبية مهمة بعد رض الرأس عند الأطفال وتستدعي التقييم والقبول الإسعافي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> فقدان الوعي أو فقدان الذاكرة يوجهان لإصابة عصبية مهمة عندما تتجاوز المدة 5 &quot;دقائق&quot; (مشاهد وموثق) وليس 5 ثوانٍ، ونوبة الإقياء الواحدة لا تُعد معياراً خطيراً بحد ذاتها بل تشترط الخطورة وجود 3 نوب أو أكثر من الإقياءات مع فواصل بينهما، كما تُعتبر آلية الإصابة خطرة عند السقوط من ارتفاع شاهق (أكثر من 3 أمتار) وليس أقل من متر.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تشمل الأعراض التي توجه لإصابة عصبية مهمة وتستدعي القبول بالمشفى: التعرض لإقياءات متكررة، الشكوى من صداع يزداد سوءاً، يصبح نومه أو سلوكه غير طبيعي، وتطور ضعف بجانب واحد من جسمه، وتُعد الاختلاجات وتدهور مقياس غلاسكو وعلامات كسر الجمجم المنخسف أو المفتوح وعلامات المعركة وعيون الباندا وتدمي غشاء الطبل من استطبابات إجراء الطبقي المحوري العاجل.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_055" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">تحتاج الحروق التالية عند الأطفال للتحويل لمركز متخصص بغض النظر عن مساحة الحرق، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">الحوادث والتسممات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">حروق الماء المغلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">حروق الأذنين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">حروق العينين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">حروق الأعضاء التناسلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">حروق المفاصل الكبيرة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — حروق الماء المغلي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تُعد حروق الماء المغلي (السائل المغلي) سبباً شائعاً للحروق السطحية أو ذات السماكة الجزئية، وتعتمد الحاجة لتحويلها أو قبولها بالمشفى على تقييم العمق والمساحة (إذا كانت ذات سماكة جزئية وتغطي أكثر من 5% من مساحة سطح الجسم)، بينما تُحول حروق الأماكن الخاصة مباشرةً إلى مراكز متخصصة بصرف النظر عن المساحة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يجب تحويل جميع حروق الوجه والأذنين والعينين واليدين والقدمين والأعضاء التناسلية والمنطقة العجانية والمفاصل الكبيرة إلى مركز متخصص بالحروق، حتى لو كانت مساحة الحرق أقل من 5% - 10%.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تشمل استطبابات القبول والتحويل إلى مركز متخصص بالحروق: تقييم الحروق ذات السماكة الجزئية التي تغطي أكثر من 5% من مساحة سطح الجسم، الحروق ذات السماكة الجزئية الأعمق والحروق التي تشمل كامل السماكة، بالإضافة لكافة حروق الأماكن الخاصة المذكورة آنفاً، مع البدء الإسعافي بتبريد الحرق بماء جارٍ مدة تصل حتى 20 دقيقة (مع تجنب برودة الجسم) وإعطاء المسكنات الوريدية أو الأفيونية عبر الأنف وتغطية الحرق بغلاف بلاستيكي، وتوفير الإعاضة بالسوائل الوريدية إذا تجاوزت مساحة الحرق 10%.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_065" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">من أعراض وعلامات الصبغي أكس الهش عند الأطفال:</span>
+                </div>
+                <span class="q-date-badge">علم الوراثة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">صغر الرأس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انسدال تاجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">صغر خصيتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص مقوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">صغر أذنين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — انسدال تاجي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يتظاهر الذكور المصابون بمتلازمة X الهش بملامح سريرية مميزة تشمل انسدال الصمام التاجي، رخاوة المفاصل، والجنف، بالإضافة إلى تأثيراتها العصبية والسلوكية كالذاتوية وفرط النشاط.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تتميز هذه المتلازمة بوجود رأس كبير (وليس صغر رأس)، وكبر خصيتين بعد البلوغ (وليس صغر خصيتين)، وأذنان كبيرتان مقلوبتان (وليس صغر أذنين)، بالإضافة إلى وجه طويل وفك سفلي متبارز وجبهة عريضة.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تُعد متلازمة X الهش ثاني أكثر الأسباب الجينية شيوعاً لصعوبات التعلم الوخيمة بعد متلازمة داون، وهي مسؤولة عن 3% من التخلف العقلي عند الذكور، وتتضمن أعراضها تظاهرات سلوكية كفرط النشاط والذاتوية والقلق.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_102" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">وليد تمام الحمل مع قصة استسقاء أمنيوسي، بعد الولادة كان لديه زلة تنفسية مع إلعاب، الإجراء التشخيصي المناسب:</span>
+                </div>
+                <span class="q-date-badge">طب حديث الولادة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">صور صدر بسيطة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إيكو قلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">غازات الدم الشريانية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">صور للصدر مع أنبوب أنفي معدي ظليل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">طبقي محوري للصدر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — صور للصدر مع أنبوب أنفي معدي ظليل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يوجه وجود الإلعاب المستمر (خروج رغوة من الفم) والزلة التنفسية المترافقة مع قصة استسقاء أمنيوسي بقوة إلى تشخيص رتق المريء.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الصور البسيطة وحدها لا تكفي لتأكيد رتق المريء دون الأنبوب الظليل، وغازات الدم تقيم الحالة التنفسية ولا تشخص الآفة التشريحية، وإيكو القلب يستخدم لنفي الآفات القلبية المرافقة ضمن تناذر VACTERL وليس لتشخيص الرتق المريئي مباشرة.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> يترافق رتق المريء غالباً مع ناسور رغامي مريئي سفلي (النمط C الأشيع)، ويعد الاستسقاء الأمنيوسي عند الأم العلامة الباكرة أثناء الحمل لعدم قدرة الجنين على ابتلاع السائل السلوي، ويجب منع الإرضاع فوراً لمنع ذات الرئة الاستنشاقية.</div></div>
+        
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "16 سؤال • 2 دورة امتحانية • 2023";
+        const originalDocTitle = "بنك الأسئلة - طب الأطفال 1 (دورات 2023)";
+        const subjectName = "طب الأطفال 1";
+        const groupByMode = "session";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

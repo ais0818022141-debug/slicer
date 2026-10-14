@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<style>
+body { font-size: 24px; direction: rtl; font-family: sans-serif; }
+.exp-opt-item { margin: 15px 0; }
+.bdi-isolate { unicode-bidi: isolate; }
+.span-plain { font-weight: bold; }
+</style>
+</head>
+<body>
+  <div id="test1" class="exp-opt-item">
+    <bdi class="bdi-isolate"><span id="t1_c">C</span><span id="t1_p">)</span></bdi>
+    <span>نص تجريبي</span>
+  </div>
+
+  <div id="test2" class="exp-opt-item">
+    <span class="span-plain"><span id="t2_c">C</span><span id="t2_p">)</span></span>
+    <span>نص تجريبي</span>
+  </div>
+
+  <div id="test3" class="exp-opt-item">
+    <span style="direction: rtl; unicode-bidi: embed;"><span id="t3_c">C</span><span id="t3_p">)</span></span>
+    <span>نص تجريبي</span>
+  </div>
+
+  <div id="test4" class="exp-opt-item">
+    <span style="display: inline-block; direction: ltr;"><span id="t4_c">C</span><span id="t4_p">)</span></span>
+    <span>نص تجريبي</span>
+  </div>
+
+  <div id="test5" class="exp-opt-item">
+    <span><span id="t5_c">C</span><span id="t5_p">)</span>&rlm;</span>
+    <span>نص تجريبي</span>
+  </div>
+
+  <div id="test6" class="exp-opt-item">
+    <span style="display: inline-flex; flex-direction: row;"><span id="t6_c">C</span><span id="t6_p">)</span></span>
+    <span>نص تجريبي</span>
+  </div>
+
+<script>
+  const results = {};
+  ['t1', 't2', 't3', 't4', 't5', 't6'].forEach(id => {
+    const c = document.getElementById(id + '_c').getBoundingClientRect();
+    const p = document.getElementById(id + '_p').getBoundingClientRect();
+    results[id] = {
+      c_left: Math.round(c.left),
+      p_left: Math.round(p.left),
+      visual: c.left > p.left ? 'C) [CORRECT]' : '(C [INVERTED]'
+    };
+  });
+  document.write('<pre id="RESULTS">' + JSON.stringify(results, null, 2) + '</pre>');
+</script>
+</body>
+</html>

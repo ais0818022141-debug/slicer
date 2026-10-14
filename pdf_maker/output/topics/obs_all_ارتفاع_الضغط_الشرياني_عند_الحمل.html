@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - التوليد (ارتفاع الضغط الشرياني عند الحمل)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #9D174D;
+            --primary-dark: #700B34;
+            --primary-rgb: 157, 23, 77;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - التوليد (ارتفاع الضغط الشرياني عند الحمل)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">التصنيف:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع التصنيفات (الكل - 30 سؤال)</option>
+                    <option value="topic-1">ارتفاع الضغط الشرياني عند الحمل (30 سؤال)</option>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل التصنيف المحدد (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">التوليد</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب المواضيع)</p>
+                <p class="stats-summary" id="statsSummary">30 سؤال • 1 مواضيع • 2018 - 2026</p>
+            </div>
+
+            <div class="index-section-title">فهرس المواضيع والتصنيفات</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="topic-1">
+                    <a href="#topic-1" class="index-row" data-group-id="topic-1" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018">
+                        <span class="index-topic-name">ارتفاع الضغط الشرياني عند الحمل</span>
+                        <span class="index-topic-meta">
+                            <span>2018 - 2026</span>
+                            <span class="index-count">30 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'topic-1', 'ارتفاع الضغط الشرياني عند الحمل')" title="تحميل ارتفاع الضغط الشرياني عند الحمل كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018" data-group-id="topic-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="topic-1">
+                    <div class="topic-title-text">ارتفاع الضغط الشرياني عند الحمل</div>
+                    <span class="topic-counter">30 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_obs_158" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">أي مما يلي يعتبر مميزاً لما قبل الارتعاج (Pre-Eclampsia):</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ارتفاع ضغط مع بيلة بروتينية بعد الأسبوع 20.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الهبوط المفاجئ للضغط بعد ارتفاعه.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ارتفاع الكرياتينين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">البيلة البروتينية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتفاع ضغط الدم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ارتفاع ضغط مع بيلة بروتينية بعد الأسبوع 20.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يرتكز التشخيص السريري الأكاديمي لما قبل الارتعاج (انسمام الحمل) على اجتماع ثنائية محددة: ارتفاع الضغط الشرياني (140/90 ملم زئبقي أو أكثر) مترافقاً مع ظهور بيلة بروتينية مرضية، وبشرط أساسي وجوهري أن يحدث هذا الترافق حصراً &quot;بعد الأسبوع 20&quot; من الحمل.</div></div>
+        
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_obs_159" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">سيدة حامل بالأسبوع 30 تعاني من وذمات معممة ونقص نمو جنيني. الضغط الشرياني لديها 160/95 ملم ز وبيلة بروتينية +++، هذه الحالة هي:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">سكري حملي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب كبد وكلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">وذمة مخاطية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انسمام حملي شديد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انسمام حملي خفيف.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — انسمام حملي شديد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تحقق هذه المريضة بوضوح معايير &quot;ما قبل الارتعاج الشديد&quot; أو الانسمام الحملي الشديد (Severe Pre-eclampsia) نظراً لبلوغ الضغط الشرياني الانقباضي عتبة 160 ملم زئبقي، وترافقه مع بيلة بروتينية غزيرة جداً (+++)، بالإضافة لوجود علامات إصابة وعائية مشيمية متقدمة تتمثل في تحدد ونقص نمو الجنين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_160" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">في متلازمة HELLP كل ما يلي صحيح ماعدا:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">من أخطر الاختلاطات في مقدمة الإرجاج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نسبة الوفيات مرتفعة نسبياً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يحدث اضطراب بتخثر الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أذية بنسيج الكبد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التدبير بالمراقبة فقط في العناية المشددة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — التدبير بالمراقبة فقط في العناية المشددة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة هيلب (HELLP) هي اختلاط إسعافي بالغ الخطورة لما قبل الارتعاج (تتألف من انحلال دم، ارتفاع إنزيمات الكبد، ونقص الصفيحات). تعتبر هذه الحالة استطباباً حتمياً لـ &quot;إنهاء الحمل الفوري&quot; (الولادة) بمجرد استقرار حالة الأم بغض النظر عن عمر الحمل. لذلك، فإن التدبير بـالمراقبة فقط دون إنهاء الحمل يعد خطأً طبياً قاتلاً يؤدي لتفاقم الأذية الكبدية والدموية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_161" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">فيما يتعلق بما قبل الارتعاج- الارتعاج: (إجابة واحدة صحيحة):</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ارتفاع توتر شرياني يزيد عن 140/90 وبيلة بروتينية 300 مغ/ بول 24 ساعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع توتر شرياني مع بيلة بروتينية قبل الأسبوع 20 من الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ارتفاع توتر شرياني بعد الأسبوع 20 من الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يمكن أن يحدث خارج أوقات الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">إنهاء الحمل لا يحسن الحالة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ارتفاع توتر شرياني يزيد عن 140/90 وبيلة بروتينية 300 مغ/ بول 24 ساعة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يصف هذا الخيار المعيار التشخيصي الرسمي والدقيق لما قبل الارتعاج، والذي يشترط (بعد الأسبوع 20): ارتفاع ضغط الدم ليكون 140/90 ملم زئبقي أو أكثر، بالإضافة لوجود بيلة بروتينية تبلغ قيمتها 300 ملغ أو أكثر ضمن تجميع بول 24 ساعة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الخيارات (B, C, D, <b class="opt-letter-tag">E)</b>: خاطئة؛ فهو يحدث بعد الأسبوع 20 (وليس قبله)، والضغط وحده غير كافٍ دون بيلة أو إصابة عضوية، وهو مرتبط بالحمل حصراً، وإنهاء الحمل هو العلاج الجذري الوحيد الذي يحسن الحالة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_162" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">الفيزيولوجيا المرضية لما قبل الارتعاج هي بشكل أساسي:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">توسع وعائي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تشنج وعائي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تمييع دم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">زيادة عوامل التخثر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">زيادة عدد الكريات الحمراء.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — تشنج وعائي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الحدث المركزي والآلية المرضية الأساسية في مقدمات الارتعاج هي حدوث خلل في وظيفة البطانة الغشائية يؤدي إلى &quot;تشنج وتقبض وعائي معمم&quot; (Vasospasm). هذا التشنج هو الذي يتسبب بارتفاع ضغط الدم، ونقص التروية الدموية للأعضاء الحيوية (المشيمة، الكلى، الدماغ، الكبد)، وظهور المضاعفات.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> توسع وعائي وتمييع دم (A, <b class="opt-letter-tag">C)</b>: هذا ما يحدث في الحمل الطبيعي السليم وليس في الارتعاج.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_163" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">قيمة البيلة البروتينية في ما قبل الارتعاج يجب أن تكون في بول 24 ساعة:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">100 ملغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">200 ملغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">300 ملغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">400 ملغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">500 ملغ.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — 300 ملغ.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> كما ذكرنا في التعريف المعياري، فإن القيمة الدنيا المطلوبة لتشخيص البيلة البروتينية المرضية في سياق ما قبل الارتعاج هي طرح 300 ملغ (0.3 غرام) أو أكثر من البروتين في تجميع بول 24 ساعة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_164" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">سبب الألم في المراق الأيمن في ما قبل الارتعاج هو:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تمطط محفظة الكبد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب بنكرياس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب مرارة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب أمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قرحة معدة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — تمطط محفظة الكبد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في الحالات الشديدة من ما قبل الارتعاج، يؤدي التشنج الوعائي ونقص التروية إلى حدوث وذمة، احتقان، ونزوف تحت محفظة الكبد (محفظة غليسون). وبما أن هذه المحفظة غنية جداً بالنهايات العصبية الحسية، فإن تمططها بسبب الوذمة أو النزف يسبب ألماً حاداً وممضاً في الربع العلوي الأيمن للبطن (أو الشرسوف)، وهو من أهم العلامات المنذرة بالخطر.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_165" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">كل مما يلي قد يشاهد في ما قبل الارتعاج الشديد ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ارتفاع كرياتينين المصل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">بيلة أوكزالات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نقص صفيحات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ارتفاع خمائر الكبد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ضغط يزيد عن 110/160.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — بيلة أوكزالات.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> بيلة الأوكزالات هي عرض يرتبط بتشكل الحصيات البولية الكلوية وليس لها أي ارتباط بآلية أو أعراض ما قبل الارتعاج.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات (A, C, D, <b class="opt-letter-tag">E)</b>: جميعها معايير واضحة لما قبل الارتعاج الشديد؛ حيث يشاهد ارتفاع الضغط الشديد (فوق 160/110)، وارتفاع الكرياتينين دلالة على الأذية الكلوية، بينما يشكل نقص الصفيحات وارتفاع خمائر الكبد جزءاً من متلازمة هيلب (HELLP).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_166" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">في حالات الإرجاج تتخذ التدابير التالية عدا:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تسريب الكلورثيازيد وريدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فتح طريق هوائي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فتح طريق وريدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إعطاء المرخيات بشكل وريدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تطبيق سلفات المغنزيوم وريديا.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — تسريب الكلورثيازيد وريدي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الكلورثيازيد (وهو من المدرات البولية) يُمنع إعطاؤه روتينياً في حالات الإرجاج وما قبل الإرجاج؛ لأن الآلية المرضية الأساسية تعتمد على التشنج الوعائي ونقص حجم البلازما (تركز الدم). إعطاء المدرات سيفاقم نقص الحجم ويؤدي لقصور مشيمي حاد ونقص في التروية الكلوية. تُعطى المدرات بحذر شديد فقط في حال اختلاط الحالة بوذمة رئة صريحة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> فتح طريق هوائي ووريدي (B, <b class="opt-letter-tag">C)</b>: خطوات إنعاش إسعافية إلزامية أولى لضمان الأكسجة ومنع استنشاق المفرزات. - سلفات المغنزيوم والمرخيات (D, <b class="opt-letter-tag">E)</b>: سلفات المغنزيوم هو الدواء النوعي المختار للوقاية من نوبات الإرجاج وعلاجها، وتستخدم المرخيات الوريدية للسيطرة على الاختلاجات الحادة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_167" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">الاختلاط الأكثر شيوعا في حالة ارتفاع الضغط المزمن والحمل هو:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الإرجاج وانفكاك المشيمة الباكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انبثاق الأغشية الباكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الإسقاط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الخداج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تحدد نمو الجنين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الإرجاج وانفكاك المشيمة الباكر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يترافق ارتفاع الضغط الشرياني المزمن بشكل رئيسي ومباشر مع خطورة عالية لتطور &quot;ما قبل الإرجاج المضاف&quot; (والذي قد يتطور لإرجاج)، بالإضافة لزيادة ملحوظة جداً في نسبة حدوث انفكاك المشيمة الباكر نتيجة التبدلات الوعائية المشيمية وتشنج الشرايين الحلزونية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات (B, C, D, <b class="opt-letter-tag">E)</b>: قد تحدث كعواقب ثانوية لارتفاع الضغط، لكن الإرجاج المضاف والانفكاك هما الاختلاطان النوعيان والأكثر شيوعاً وارتباطاً مباشراً بارتفاع الضغط المزمن.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_168" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">كل مايلي من مضاعفات واختلاطات اللاارتعاج (ما قبل الارتعاج) ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تناذر هيلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">زيادة تركيز الصوديوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">القصور الكلوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انفكاك المشيمة الباكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تحدد النمو الجنيني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — زيادة تركيز الصوديوم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ما قبل الارتعاج يترافق عادة مع &quot;نقص&quot; في تركيز الصوديوم (نقص صوديوم الدم) وفرط بوتاسيوم الدم نتيجة الخلل في الوظيفة الكلوية والوذمات، وليس زيادة في تركيز الصوديوم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> القصور الكلوي وانفكاك المشيمة (C, <b class="opt-letter-tag">D)</b>: اختلاطات وعائية حتمية في الحالات الشديدة نتيجة التشنج الوعائي. - تناذر هيلب وتحدد النمو (A, <b class="opt-letter-tag">E)</b>: من المضاعفات الكلاسيكية والمباشرة المرافقة لسير المرض.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_169" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">كل ما يلي صحيح في تدبير الإرجاج (الارتعاج) الشديد ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الراحة في غرفة هادئة مظلمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">اعطاء مدرات البول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">اعطاء خافضات الضغط وريديا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اعطاء سلفات المغنيزيوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انهاء الحمل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — اعطاء مدرات البول.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> كما أشرنا سابقاً، إعطاء مدرات البول روتينياً يعتبر إجراءً خاطئاً وغير آمن في الارتعاج الشديد لأنها تفاقم نقص الحجم الوعائي وتقلل التروية المشيمية، ولا تُستخدم إلا استثناءً في حالة وذمة الرئة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الراحة وتخفيف المنبهات (<b class="opt-letter-tag">A)</b>: ضرورية جداً في غرفة مظلمة لأن الضوء والأصوات تحرض نوبات الاختلاج. - خافضات الضغط والمغنزيوم والإنهاء (C, D, <b class="opt-letter-tag">E)</b>: تمثل الأعمدة الثلاثة الأساسية للتدبير (ضبط الضغط، منع الاختلاج، وتوليد المشيمة والجنين كعلاج جذري).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_170" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">كل مما يلي من الخطوات الرئيسية في تدبير اللاارتعاج (ما قبل الارتعاج) الشديد عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">غرفة هادئة ومظلمة في المشفى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">المراقبة قبل تمام الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">اعطاء خافضات الضغط وريديا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اعطاء سلفات المغنزيوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انهاء الحمل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — المراقبة قبل تمام الحمل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في حالات ما قبل الارتعاج &quot;الشديد&quot;، يُعتبر &quot;إنهاء الحمل الفوري&quot; (بعد استقرار حالة الأم بالخافضات والمغنزيوم) هو الإجراء الإلزامي بغض النظر عن عمر الحمل؛ لأن الانتظار والمراقبة حتى تمام الحمل يحمل خطراً مؤكداً بحدوث اختلاجات مميتة ونزف دماغي وموت الجنين داخل الرحم. المراقبة المديدة تُطبق فقط في الحالات الخفيفة أو المعتدلة بعيداً عن تمام الحمل.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_171" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">يعد الآتي من معايير تشخيص متلازمة هيلب، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بيلة بروتينية أقل من 300 ملغ في بول 24 ساعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فقر دم انحلالي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ارتفاع خمائر الكبد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اشتداد المنعكسات الوترية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نقص الصفيحات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — بيلة بروتينية أقل من 300 ملغ في بول 24 ساعة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة هيلب (HELLP) هي اختصار لثلاث مكونات حصرية: انحلال دم (H)، ارتفاع خمائر الكبد (EL)، ونقص صفيحات (LP). البيلة البروتينية ليست معياراً مشخصاً بحد ذاتها لمتلازمة هيلب، وقد تحدث المتلازمة مع بيلة خفيفة أو بدونها. (</div><div class="exp-section exp-note"><b class="exp-header-tag">ملاحظة:</b> اشتداد المنعكسات الوترية المذكور في الخيار D هو علامة سريرية لشدة ما قبل الارتعاج وليس معياراً مخبرياً لهيلب، ولكن تم اعتبار الخيار A هو المخالف للمعايير لكونه يحمل قيمة رقمية نافية لتعريف البيلة المرضية).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_172" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">الترياق النوعي لعلاج الانسمام بسلفات المغنزيوم هو:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">كبريتات الحديد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الديازيبام.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">المدرات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">غلوكونات البوتاسيوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">غلوكونات الكالسيوم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — غلوكونات الكالسيوم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يعتبر مركب (غلوكونات الكالسيوم) هو الترياق النوعي والمباشر الذي يُعطى وريدياً لمعاكسة التأثيرات السمية لسلفات المغنزيوم (كالضعف التنفسي، وتوقف القلب، وغياب المنعكسات الوترية العميقة).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الديازيبام (<b class="opt-letter-tag">B)</b>: هو دواء مهدئ ومضاد للاختلاج يُعطى كخط ثانٍ، ولكنه ليس ترياقاً للمغنزيوم. - المدرات (<b class="opt-letter-tag">C)</b>: تُسرع طرح المغنزيوم من الكلية ولكنها لا تعاكس تأثيره السمي الفوري على مستوى الوصل العصبي العضلي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_173" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">حامل عمرها 34 سنة في الأسبوع 35 من الحمل، الضغط 160/110 ملم زئبقي، بيلة بروتينية 3+ وظائف الكبد وعدد الصفيحات طبيعية، التدبير الأفضل:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">مراقبة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قيصرية باترة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نتروسيد الصوديوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">هيدرالايزين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">إنهاء الحمل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — إنهاء الحمل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> المريضة تعاني من (ما قبل ارتعاج شديد) نظراً لأن ضغطها بلغ 160/110 مع بيلة بروتينية شديدة (+++). وبما أن عمر الحمل قد تجاوز 34 أسبوعاً (هي في الأسبوع 35 وجنينها ناضج نسبياً)، فإن التدبير الأفضل والأساسي لمنع تطور الحالة إلى إرجاج صريح هو &quot;إنهاء الحمل وتوليدها&quot; (طبعاً يتم ذلك بعد إعطاء جرعة خافضات ضغط ومغنزيوم لتأمين استقرارها قبل الإنهاء). المراقبة وحدها في هذا العمر الحملي مع شدة المرض تعتبر خطأ طبياً.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_174" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">يعتبر وجود ارتفاع ضغط عند الحامل إذا اختلف عن قياس الزيارة السابقة:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الانقباضي &gt; 10 والانبساطي &gt; 5.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الانقباضي &gt; 15 والانبساطي &gt; 10.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الانقباضي &lt; 20 والانبساطي &lt; 10.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الانقباضي &gt; 25 والانبساطي &gt; 15.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الانقباضي &gt; 30 والانبساطي &gt; 15.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — الانقباضي &gt; 30 والانبساطي &gt; 15.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يُعرّف ارتفاع الضغط بحدوث زيادة في الضغط الانقباضي بمقدار 30 ملم زئبقي أو أكثر، أو الانبساطي بمقدار 15 ملم زئبقي أو أكثر عن قياسها الأساسي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_175" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">كل مما يلي يميز قرب حدوث الارتعاج (الإرجاج) ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">صداع قوي في منطقة القفا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">العمى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الغثيان والإقياء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">بيلة بروتينية +++.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ألم شرسوفي شديد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — الغثيان والإقياء.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يُعرف &quot;الإرجاج الوشيك&quot; (Imminent Eclampsia) بظهور علامات سريرية عصبية وبطنية صارخة تنذر بقرب حدوث نوبة الاختلاج، وتشمل: الصداع الشديد جداً (خاصة القفوي)، الأعراض البصرية كالعمى أو تشوش الرؤية، الألم الشرسوفي المبرح (بسبب تمطط محفظة الكبد)، واشتداد المنعكسات الوترية مع بيلة بروتينية شديدة. أما الغثيان والإقياء فهما من الأعراض الودية الشائعة جداً في الحمل السليم، ولا يعتبران بمفردهما علامة مميزة ونوعية لقرب الارتعاج.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_176" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">كل مما يلي من معايير ما قبل الإرجاج الشديد ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">وذمة رئوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">شح البول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تحدد النمو داخل الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">وذمات شديدة في الطرفين السفليين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">صداع شديد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — وذمات شديدة في الطرفين السفليين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تم إلغاء الوذمات في الطرفين السفليين من معايير تشخيص ما قبل الارتعاج الشديد؛ لأنها عرض فيزيولوجي شائع وطبيعي جداً لدى معظم الحوامل السليمات (بسبب انضغاط الأجوف السفلي واحتباس السوائل). المعايير المعتمدة للشدة تتضمن إصابة الأعضاء النبيلة مثل: وذمة الرئة، شح البول (قصور كلوي)، تحدد النمو (قصور مشيمي)، والصداع الشديد (إصابة عصبية).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_177" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">20.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن متلازمة هيلب ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انحلال دم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انخفاض صفيحات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">إنهاء الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أشيع خاصة عند الخروس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتفاع خمائر الكبد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — أشيع خاصة عند الخروس.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> &quot;ما قبل الارتعاج&quot; بشكله الكلاسيكي هو الأشيع عند الخروسات، بينما &quot;متلازمة هيلب HELLP&quot; (والتي تعتبر اختلاطاً شديداً) تشاهد بشكل أشيع وأكثر تواتراً عند &quot;عديدات الولادة&quot; وليس الخروسات.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات (A, B, <b class="opt-letter-tag">E)</b>: هي المكونات الثلاثة لاسم المتلازمة (Hemolysis انحلال الدم، Elevated Liver enzymes ارتفاع خمائر الكبد، Low Platelets انخفاض الصفيحات). - إنهاء الحمل (<b class="opt-letter-tag">C)</b>: هو الاستطباب العلاجي الحتمي بمجرد تشخيصها.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_178" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">21.</span>
+                    <span class="q-stem">كل مما يلي من مؤهبات ما قبل الإرجاج ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ارتفاع ضغط مزمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انبثاق اغشية باكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">خروسات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">مشعر كتلة الجسم أكبر من 35.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">متلازمة اضداد الفوسفوليبيد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — انبثاق اغشية باكر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انبثاق الأغشية الباكر (PROM) ليس عاملاً مؤهباً أو مسبباً لما قبل الارتعاج. بل على العكس، إن ما قبل الارتعاج قد يؤدي إلى مضاعفات تستدعي إنهاء الحمل باكراً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> عوامل الخطورة المؤهبة: تشمل العوامل عالية الخطورة (ارتفاع الضغط المزمن، متلازمة أضداد الفوسفوليبيد، أمراض الكلية)، وعوامل متوسطة الخطورة (الخروسات، والبدانة BMI &gt; 35).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_179" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">22.</span>
+                    <span class="q-stem">كل ما يلي صحيح عن سلفات المغنزيوم ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نراقب الصبيب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نراقب المنعكسات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يستخدم لعلاج ما قبل الإرجاج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يعاكس بغلوكونات الكالسيوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">آلية عمله تفعيل الصفيحات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — آلية عمله تفعيل الصفيحات.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> سلفات المغنزيوم يمتلك تأثيراً وقائياً للخلايا البطانية، ومن آليات عمله أنه &quot;يثبط&quot; تفعيل الصفيحات الدموية ويمنع تراكمها، ولا يقوم بتفعيلها أبداً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> المراقبة (A, <b class="opt-letter-tag">B)</b>: يطرح عن طريق الكلية لذا يجب مراقبة الصبيب البولي، ويرخي العضلات لذا تجب مراقبة المنعكسات الوترية لضمان عدم الوصول للجرعة السمية. - الترياق (<b class="opt-letter-tag">D)</b>: يعاكس سميته حصرياً بواسطة غلوكونات الكالسيوم.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_180" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">23.</span>
+                    <span class="q-stem">كل ما يلي صحيح في استطبابات إنهاء الحمل في ما قبل الإرجاج ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فقدان حاسة الشم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الإرجاج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الإملاص.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انفكاك مشيمة باكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انعدام جمجمة الجنين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — فقدان حاسة الشم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> فقدان حاسة الشم ليس له أي علاقة فيزيولوجية أو سريرية بتظاهرات أو اختلاطات ما قبل الارتعاج ولا يعتبر استطباباً لإنهاء الحمل.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الاستطبابات المذكورة (B, C, <b class="opt-letter-tag">D)</b>: الإرجاج، انفكاك المشيمة، وموت الجنين (الإملاص) هي استطبابات مطلقة للإنهاء. - انعدام جمجمة الجنين (<b class="opt-letter-tag">E)</b>: بما أن الجنين مصاب بتشوه غير متوافق مع الحياة، لا يوجد أي مبرر لتعريض حياة الأم لخطر ما قبل الارتعاج من أجل استمرار الحمل، فينهى فوراً.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_181" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">24.</span>
+                    <span class="q-stem">من عوامل خطورة ما قبل الارتعاج كل ما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الخروس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الحمل المتعدد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">البدانة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">العقم الثانوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">متلازمة أضداد الفوسفوليبيد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — العقم الثانوي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العقم الثانوي بحد ذاته لا يعتبر عاملاً مؤهباً لما قبل الارتعاج. (المقصود بالعامل المؤهب في هذه الناحية هو مرور فترة زمنية طويلة تتجاوز 10 سنوات على الحمل الأخير، وليس تشخيص العقم الثانوي).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات (A, B, C, <b class="opt-letter-tag">E)</b>: الخروس، الحمل المتعدد، البدانة المفرطة، ومتلازمة أضداد الفوسفوليبيد هي من صلب عوامل الخطورة الكلاسيكية المذكورة في المرجع بشكل صريح.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_182" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">25.</span>
+                    <span class="q-stem">من استطبابات إنهاء الحمل في ما قبل الإرجاج كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الإرجاج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نقص حدة البصر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الإملاص.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انفكاك المشيمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">وذمة رئة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — نقص حدة البصر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العرض البصري الذي يُعتبر استطباباً إسعافياً لإنهاء الحمل في ما قبل الارتعاج الشديد هو &quot;الاضطرابات البصرية&quot; مثل (العمى الجزئي، العتمات أو الذباب الطائر)، والتي تدل على أذية وعائية دماغية وشيكة. أما مجرد &quot;نقص حدة البصر&quot; (ضعف الرؤية العادي) فليس معياراً إنذارياً حاداً لإنهاء الحمل.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الإرجاج ووذمة الرئة والانفكاك والإملاص (A, C, D, <b class="opt-letter-tag">E)</b>: كلها تمثل استطباباً مطلقاً للتوليد.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_183" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">26.</span>
+                    <span class="q-stem">في الارتعاج كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تسبق النوبة بعلامات منذرة دوما.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">اختلاجات وسبات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">توليد الجنين غاية علاجية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يقل عدد الصفيحات الدموية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يتراجع معدل الرشح الكبي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — تسبق النوبة بعلامات منذرة دوما.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> هذه العبارة خاطئة؛ فبينما توجد غالباً علامات منذرة (كالصداع والألم الشرسوفي)، إلا أن الدراسات والمراجع تؤكد أن نوبة الارتعاج (الاختلاج) قد تحدث &quot;فجأة وبدون أي تحذير أو علامات منذرة سابقة&quot; في حوالي 10% إلى 30% من الحالات.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> توليد الجنين غاية علاجية (<b class="opt-letter-tag">C)</b>: صحيحة تماماً، التوليد هو العلاج الجذري الوحيد. - بقية الاختلاطات (B, D, <b class="opt-letter-tag">E)</b>: صحيحة وتمثل شدة الإصابة العصبية، والدموية، والكلوية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_184" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">27.</span>
+                    <span class="q-stem">في ما قبل الإرجاج ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يشخص في حال ارتفاع الضغط أكثر من 110 / 160 مع ارتفاع الكرياتينين أكثر من 20.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يعاكس سلفات البروتامين تأثير سلفات المغنيزيوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ظهوره قبل الأسبوع 20 يستوجب البحث عن آفات الطبقة المغذية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تنخفض الصفيحات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتفاع الضغط الشرياني أول تظاهراته.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — يعاكس سلفات البروتامين تأثير سلفات المغنيزيوم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عبارة خاطئة دوائياً؛ الترياق النوعي الذي يعاكس التأثير السمي لـ (سلفات المغنيزيوم) هو &quot;غلوكونات الكالسيوم&quot;. أما (سلفات البروتامين) فهو الترياق المخصص لمعاكسة تأثير مميع الدم (الهيبارين).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الظهور قبل الأسبوع 20 (<b class="opt-letter-tag">C)</b>: قاعدة مهمة؛ إذا ظهر ما قبل الارتعاج قبل الأسبوع 20 يجب الشك فوراً بوجود آفة في الأرومة المغذية مثل &quot;الرحى العدارية&quot;. - الخيار <b class="opt-letter-tag">A:</b> يحمل قيم تشخيص القصور الكلوي والضغط المعتمدة كمعايير للشدة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_185" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">28.</span>
+                    <span class="q-stem">في ما قبل الارتعاج كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ارتفاع خمائر الكبد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">بيلة بروتينية 50 ملغ في بول 24 ساعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عمى جزئي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص صفيحات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">اشتداد المنعكسات الوترية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — بيلة بروتينية 50 ملغ في بول 24 ساعة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يتطلب التشخيص السريري الأكاديمي لما قبل الارتعاج (انسمام الحمل) وجود بيلة بروتينية مرضية تزيد عن 300 ملغ في بول 24 ساعة. وبالتالي فإن قيمة 50 ملغ هي قيمة فيزيولوجية طبيعية تماماً ولا تحقق معيار التشخيص، مما يجعل العبارة خاطئة وهي المطلوبة. أما الاضطرابات الكبدية، والدموية (نقص الصفيحات)، والعصبية (عمى جزئي واشتداد منعكسات) فهي من معايير الإصابة الشديدة المعتمدة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_186" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">29.</span>
+                    <span class="q-stem">ما هي المدة التي تعطى فيها سلفات المغنزيوم في علاج ارتفاع التوتر الشرياني:</span>
+                </div>
+                <span class="q-date-badge">شباط 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">حتى عودة الضغط للطبيعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">حتى مغادرة المشفى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">24 ساعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">48 ساعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">حتى تستقر الحالة وتعود القيم المخبرية طبيعية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — 24 ساعة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في تدبير ما قبل الارتعاج الشديد والوقاية من نوبات الارتعاج (الاختلاج)، تُعطى سلفات المغنيزيوم وريدياً كجرعة تحميل متبوعة بجرعة وقائية محافظة ومستمرة لمدة 24 ساعة كاملة. وتبدأ هذه المدة (الـ 24 ساعة) من توقيت آخر نوبة اختلاجية حدثت، أو من توقيت الولادة وخروج الجنين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_obs_187" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">30.</span>
+                    <span class="q-stem">كل ما يلي من علامات ما قبل الإرجاج الشديد عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">شح بول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ألم شرسوفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نقص نمو داخل الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التخثر المنتشر داخل الأوعية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">وذمة شديدة بالطرفين السفليين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — وذمة شديدة بالطرفين السفليين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> وذمة الطرفين السفليين (وخاصة المسائية) تبديها معظم الحوامل السليمات نتيجة للضغط الميكانيكي على الوريد الأجوف السفلي واحتباس السوائل الفسيولوجي، ولذلك تم إلغاؤها من معايير التشخيص. أما شح البول (قصور كلوي)، الألم الشرسوفي (تمطط محفظة الكبد)، التخثر المنتشر (DIC)، وتحدد النمو (قصور مشيمي) فجميعها تعتبر من معايير وعلامات الشدة الخطيرة.</div></div>
+        
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "30 سؤال • 1 مواضيع • 2018 - 2026";
+        const originalDocTitle = "بنك الأسئلة - التوليد (ارتفاع الضغط الشرياني عند الحمل)";
+        const subjectName = "التوليد";
+        const groupByMode = "topic";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

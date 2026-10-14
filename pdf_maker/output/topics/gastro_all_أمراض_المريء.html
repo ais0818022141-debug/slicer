@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - الهضمية (أمراض المريء)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #B45309;
+            --primary-dark: #78350F;
+            --primary-rgb: 180, 83, 9;
+            --accent-gold: #D97706;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - الهضمية (أمراض المريء)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">التصنيف:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع التصنيفات (الكل - 25 سؤال)</option>
+                    <option value="topic-1">أمراض المريء (25 سؤال)</option>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل التصنيف المحدد (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">الهضمية</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب المواضيع)</p>
+                <p class="stats-summary" id="statsSummary">25 سؤال • 1 مواضيع • 2018 - 2026</p>
+            </div>
+
+            <div class="index-section-title">فهرس المواضيع والتصنيفات</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="topic-1">
+                    <a href="#topic-1" class="index-row" data-group-id="topic-1" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018">
+                        <span class="index-topic-name">أمراض المريء</span>
+                        <span class="index-topic-meta">
+                            <span>2018 - 2026</span>
+                            <span class="index-count">25 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'topic-1', 'أمراض المريء')" title="تحميل أمراض المريء كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018" data-group-id="topic-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="topic-1">
+                    <div class="topic-title-text">أمراض المريء</div>
+                    <span class="topic-counter">25 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_gastro_25" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">شكا مريض 65 سنة يعالج علاجاً كيماوياً Chemotherapy لسرطان كولون مشخص حديثاً، من عسرة بلع وبلع مؤلم، التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب مري بالمبيضات البيض Candida Esophagitis.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب مري بالحمضات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">لاارتخائية Achalasia.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب مري قلسي Reflux Esophagitis.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">سرطان مري.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — التهاب مري بالمبيضات البيض Candida Esophagitis.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العلاج الكيماوي يسبب كبتاً مناعياً وقلة عدلات ينشط تبرعم المبيضات البيض الموجودة طبيعياً بالفم والمري، فتسبب لويحات بيضاء وتقرحات مخاطية تؤدي لعسرة بلع وبلع مؤلم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التهاب المري بالحمضات يصيب الأطفال والشباب دون سياق كبت مناعي. اللاارتخائية تسبب عسرة بلع تدريجية للسوائل والجوامد دون بلع مؤلم بارز. التهاب المري القلسي يترافق بحرقة الفؤاد لا بالضرورة بسياق كبت مناعي حاد. سرطان المري نادر بهذا العمر القصير من التشخيص ولا يفسر السياق الكيميائي المباشر.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">المرضى تحت العلاج الكيماوي أو الستيروئيدات أو المصابون بالسكري أو HIV معرضون لداء المبيضات المريئي؛ عسر البلع يشير لإصابة مرافقة بالبلعوم والمريء. التشخيص سريري غالباً وقد يؤكد بالتنظير، والعلاج بمضادات الفطور الفموية (فلوكونازول).</span>
+        </div>
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_gastro_26" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">فيما يتعلق بداء القلس المعدي المريئي GERD أي مما يلي صحيح:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">معظم المرضى لديهم فتق حجابي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">معظم المرضى يستجيبون على العلاج الدوائي وإجراءات تغيير نمط الحياة والغذاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">معظم المرضى لديهم ربو معند.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">معظم المرضى يحتاجون عمل جراحي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">معظم المرضى لديهم التهاب مري.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — معظم المرضى يستجيبون على العلاج الدوائي وإجراءات تغيير نمط الحياة والغذاء.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تعديلات نمط الحياة (تخفيف الوزن، رفع رأس السرير، تجنب المحرضات) مع مضادات الحموضة أو H2 blockers أو PPI تخفف الأعراض وتشفي أغلب الحالات، مما يجعل الاستجابة للعلاج المحافظ هي القاعدة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> نسبة المرضى ذوي الفتق الحجابي ليست &quot;معظم&quot; الحالات بالضرورة. الربو المعند ليس السائد بين مرضى GERD. الحاجة للجراحة محصورة بالفاشلين على العلاج الدوائي أو الراغبين بتجنب PPI طويل الأمد. وجود التهاب مري بالتنظير ليس ثابتاً عند الغالبية (كثير منهم NERD).</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">لا يحتاج معظم المرضى لجراحة؛ مثبطات مضخة البروتون تشفي التهاب المري عند الغالبية العظمى وتعتبر العلاج المختار في الجزر الشديد.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_27" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">راجع مريض عمره 40 سنة قسم الإسعاف بإقياءات مدماة. بالفحص السريري وجد عنكبوت وعائي + ضخامة طحال، للتشخيص:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قرحة معدية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قرحة اثني عشرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">دوالي مريء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">داء كرون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ورم معدة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — دوالي مريء.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التشمع الكبدي يسبب فرط ضغط بابي يؤدي لتوسع الأوردة الجانبية (دوالي المري) والعنكبوت الوعائي وضخامة الطحال الاحتقانية؛ تمزق هذه الدوالي يسبب إقياءات دموية غزيرة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> القرحة المعدية لا تفسر العنكبوت الوعائي وضخامة الطحال. القرحة العفجية كذلك لا ترتبط بهذه العلامات الكبدية. داء كرون لا يسبب نزفاً علوياً دموياً بهذا النمط. ورم المعدة لا يفسر مجموعة العلامات الكبدية المرافقة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">العنكبوت الوعائي وضخامة الطحال يوجهان لتشمع كبدي وفرط ضغط بابي؛ نزف علوي دموي عند هذا السياق هو دوالي مريئية حتى يثبت العكس.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_28" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">العلاج الأكثر فعالية وفائدة في القلس المعدي المريئي هو:</span>
+                </div>
+                <span class="q-date-badge">تموز 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الرانيتيدين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سيميتيدين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">بانتوبرازول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الميتوكلوبراميد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">هيدروكسيد الألمنيوم والمغنزيوم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — بانتوبرازول.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تثبط PPI بشكل لا رجوع عنه إنزيم H+/K+ ATPase في الخلايا الجدارية المعدية، مما يحقق كبتاً حمضياً أعمق وأطول من حاصرات H2، فيحقق شفاء المخاطية المريئية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الرانيتيدين حاصر H2 أضعف تأثيراً من PPI. سيميتيدين حاصر H2 أيضاً وأقل فعالية وله تفاعلات دوائية أكثر. الميتوكلوبراميد مقوي حركي لا يعالج السبب الحمضي مباشرة. مضادات الحموضة (ألمنيوم/مغنزيوم) تخفف الأعراض مؤقتاً دون شفاء التهاب المري.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">PPI (كالبانتوبرازول) تحدث شفاء التهاب المري عند الغالبية العظمى وتعتبر العلاج المختار في الجزر الشديد، بخلاف مضادات H2 ومضادات الحموضة التي تخفف الأعراض فقط دون شفاء ثابت.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_29" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">مريض 40 سنة يزن 90 كغ وطوله 160 سم، يعاني من ارتفاع توتر شرياني مضبوط بالعلاج بحاصرات بيتا يراجع بقصة حرقة خلف القص، يوصى بكل مما يلي، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تموز 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">رفع رأس السرير.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تجنب التدخين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عدم الاستلقاء بعد الطعام مباشرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تخفيف الوزن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">إيقاف حاصرات بيتا.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — إيقاف حاصرات بيتا.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> حاصرات بيتا لا تنقص توتر المصرة المريئية السفلية بشكل مسبب للجزر، وإيقافها قد يعرض المريض لمضاعفات قلبية وعائية دون فائدة تذكر على GERD، لذلك لا تُوصى بإيقافها.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> رفع رأس السرير ينقص الجزر الليلي وهو موصى به. الإقلاع عن التدخين ينقص القلس عبر رفع توتر المصرة. تجنب الاستلقاء المباشر بعد الطعام ينقص القلس بعد الوجبات. تخفيف الوزن (BMI مرتفع هنا) ينقص الضغط داخل البطن وبالتالي القلس.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تدابير نمط الحياة في GERD: تخفيف الوزن، رفع رأس السرير، تجنب الاستلقاء بعد الطعام، الإقلاع عن التدخين؛ حاصرات بيتا لا تفاقم GERD وضبط التوتر الشرياني له أولوية سريرية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_30" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">واحد من العبارات التالية صحيحة فيما يتعلق بداء القلس المعدي المريئي GERD:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">معظم المرضى لديهم التهاب مري بالتنظير الهضمي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">معظم المرضى لديهم فتق حجابي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يعد سببا رئيسيا للألم الصدري غير القلبي NCCP.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">العلاج الاساسي هو بالأدوية المقوية للحركية Prokinetics.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يعد سببا رئيسيا لسرطان المري.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — يعد سببا رئيسيا للألم الصدري غير القلبي NCCP.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> القلس الحمضي يحرض مستقبلات الألم في المري مسبباً ألماً صدرياً يشبه الألم القلبي (NCCP)، ويُعد GERD من أكثر الأسباب غير القلبية شيوعاً لهذا العرض بعد استبعاد الأسباب القلبية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> كثير من المرضى لديهم أعراض دون التهاب مري ناظوري (NERD). وجود فتق حجابي ليس ثابتاً عند الجميع أو الأغلبية دوماً بشكل حصري للتشخيص. العلاج الأساسي PPI لا Prokinetics. GERD لا يعد سبباً رئيسياً لسرطان المري بل مريء باريت اختلاط نادر نسبياً هو الرابط الأقوى.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">كثير من مرضى GERD لا يظهرون التهاب مري بالتنظير أو فتق حجابي؛ العلاج الأساسي هو PPI لا المقويات الحركية؛ GERD من أهم أسباب NCCP ويجب استبعاد السبب القلبي أولاً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_31" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">كل مما يلي يفاقم اعراض القلس المعدي المريئي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">البيض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">البندورة المطبوخة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الفواكه الحامضة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">المشروبات الغازية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الشوكولا.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — البيض.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الشوكولا والكافيين والدهون تنقص توتر المصرة المريئية السفلية محرضة القلس، والأطعمة الحامضة (حمضيات، بندورة) تخرش المخاطية مباشرة، بينما البيض ليس له مثل هذا التأثير الكيميائي أو الهرمولي على المصرة أو المخاطية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> البندورة المطبوخة حامضة ومحرضة معروفة. الفواكه الحامضة تخرش المخاطية مباشرة وتزيد الأعراض. المشروبات الغازية تزيد التمدد المعدي والضغط داخل البطن. الشوكولا تنقص توتر المصرة السفلية وتحرض القلس.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تجنب الأطعمة الدسمة، الشوكولا، الكافيين، الحمضيات، البندورة، والمشروبات الغازية ينقص أعراض القلس؛ البيض ليس من المحرضات المعروفة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_32" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">واحد مما يلي يشير إلى البلع المؤلم:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قلس معدي مريئي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فتق حجابي كبير.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب مري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تضيق مري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">أكلازيا.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — التهاب مري.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الالتهاب المخاطي المريئي يسبب تعرية وتقرحات في الطبقة المخاطية، فيصبح تحفيز مستقبلات الألم بمرور اللقمة الغذائية أو حتى السوائل مؤلماً بشكل مباشر (odynophagia).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> القلس المعدي المريئي يسبب حرقة أكثر من بلع مؤلم مباشر إلا عند وجود التهاب مري شديد مرافق. فتق حجابي كبير يسبب أعراض انسدادية أو قلسية لا بلعاً مؤلماً نوعياً. تضيق المري يسبب عسرة بلع انسدادية للجوامد دون ألم مباشر بالبلع بالضرورة. الأكلازيا تسبب عسرة بلع تدريجية للسوائل والجوامد دون بلع مؤلم كعرض أساسي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">البلع المؤلم يختلف عن عسرة البلع، ويوجه غالباً لالتهاب مري (خمجي، دوائي، كاوي) بخلاف الأسباب الانسدادية أو الحركية التي تسبب عسرة بلع دون ألم مباشر بالبلع.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_33" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل مما يلي صحيح عن القلس المعدي المريئي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يترافق بارتجاع الأطعمة عند الاستلقاء الظهري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يتظاهر بحرقة خلف القص دائماً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قد يترافق بسعال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">المعيار الذهبي للتشخيص هو قياس حموضة المري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الأدوية الأكثر فعالية هي PPI.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — يتظاهر بحرقة خلف القص دائماً.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تتفاوت تظاهرات GERD (حرقة، ارتجاع، سعال، NCCP) حسب شدة القلس وحساسية المريء، فبعض المرضى يظهرون أعراضاً غير نموذجية دون حرقة فؤاد واضحة، مما يجعل &quot;حرقة الفؤاد دائماً&quot; عبارة غير صحيحة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> ارتجاع الأطعمة عند الاستلقاء الظهري تظاهرة معروفة وصحيحة لـGERD. السعال المزمن اختلاط تنفسي معروف مرافق للقلس. قياس pH المريء 24 ساعة هو المعيار الذهبي التشخيصي فعلاً. PPI هي الأدوية الأكثر فعالية في شفاء التهاب المري وضبط الأعراض.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">GERD قد يتظاهر بالسعال أو ارتجاع الطعام أثناء الاستلقاء دون حرقة فؤاد دائماً؛ مراقبة pH المريء لـ24 ساعة هي المعيار الذهبي، وPPI الأكثر فعالية علاجياً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_34" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">الاستقصاء الرئيسي لتشخيص لا ارتخائية المريء هو:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التنظير الهضمي العلوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الصورة البسيطة للصدر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الصورة الظليلة للمريء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قياس ضغوط المريء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قياس Ph المريء.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — قياس ضغوط المريء.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> قياس ضغوط المري يسجل مباشرة فشل ارتخاء المصرة السفلية أثناء البلع وغياب الحركات الحوية الطبيعية، وهما المعيارين التشخيصيين الوظيفيين المحددين لللاارتخائية، فهو الاستقصاء الأدق تشخيصياً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التنظير الهضمي العلوي يستخدم لاستبعاد سبب انسدادي عضوي (كالسرطان) وليس لتأكيد التشخيص الوظيفي. الصورة البسيطة للصدر قد تظهر مستوى هواء-سائل لكنها غير تشخيصية نوعياً. الصورة الظليلة توجه للتشخيص لكنها ليست الاستقصاء التأكيدي النهائي. قياس pH المريء يستخدم لتشخيص القلس الحمضي لا اضطرابات الحركة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">اللاارتخائية: فرط توتر المصرة المريئية السفلية مع فشل ارتخائها وغياب الحركات الحوية الفعالة؛ قياس الضغط المريئي يؤكد التشخيص، بينما التصوير الظليل يظهر توسعاً مع &quot;منقار طائر&quot;.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_35" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">يشكو مريض (67) سنة من عسرة بلع بدأت بالجوامد وترقت ثم أصبحت للسوائل والجوامد مع نقص وزن 6 كغ. ما هو الاستقصاء التالي الأكثر أهمية لوضع التشخيص:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تصوير طبقي محوري متعدد الشرائح للصدر والبطن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صورة صدر بسيطة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تنظير هضمي علوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تصوير مقطعي بوزتروني pet-scan.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قياس ضغوط المريء.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — تنظير هضمي علوي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الطبيعة التقدمية لعسرة البلع من الجوامد نحو السوائل مع نقص وزن كبير عند مسن توجه بشدة نحو انسداد عضوي خبيث (سرطان المري)، والتنظير الهضمي العلوي يسمح بالرؤية المباشرة وأخذ خزعة تشخيصية نوعية فوراً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التصوير الطبقي المحوري يفيد في التقييم بعد التشخيص النسيجي لتحديد المرحلة لا لوضع التشخيص الأولي. صورة الصدر البسيطة غير كافية لتشخيص آفة مريئية. PET-scan يستخدم لتقييم الانتشار بعد تأكيد التشخيص لا كخط أول. قياس ضغوط المري يفيد في تشخيص اضطرابات الحركة لا في استبعاد الآفة الانسدادية الخبيثة المشتبهة هنا.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">عسرة بلع تقدمية (جوامد ثم سوائل) + نقص وزن + عمر متقدم = علامات منذرة لسرطان المري؛ التنظير الهضمي العلوي مع الخزعة هو الاستقصاء الأول لتأكيد التشخيص وأخذ الخزعة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_36" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">شكا شاب 21 سنة، بدون سوابق مرضية أو أعراض مريئية سابقة من ألم خلف القص ينتشر للظهر يزداد بالشهيق مع بلع مؤلم حتى لكميات صغيرة من السوائل بالاستجواب تبين أنه يتناول أحيانا Ibuprofen للآلام العضلية، التشخيص الأرجح هو:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب مريء بالمبيضات البيض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قلس معدي مريئي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب مريء دوائي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">متلازمة مالوري وايس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ورم مريء.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — التهاب مريء دوائي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انحشار حبة الإيبوبروفين في المري (غالباً بسبب تناولها بكمية قليلة من الماء أو الاستلقاء الفوري) يسبب تماساً مطولاً موضعياً مع المخاطية، مما يؤدي لتآكل وتقرح كيميائي موضعي، فيسبب ألماً خلف القص وبلعاً مؤلماً حاداً حتى للسوائل دون قصة مريئية سابقة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التهاب المري بالمبيضات يحدث في سياق كبت مناعي وهو غير موجود هنا. القلس المعدي المريئي يسبب أعراضاً مزمنة متكررة لا نوبة حادة مرتبطة بدواء محدد. متلازمة مالوري وايس تترافق بإقياءات شديدة سابقة وتظهر بنزف هضمي لا بألم وعسرة بلع معزولين. ورم المري نادر جداً بهذا العمر الشاب ولا يفسر البداية الحادة المرتبطة بتناول الدواء.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الأدوية المسببة لالتهاب المري الدوائي: البوتاسيوم، NSAIDs، البيسفوسفونات؛ الانحشار فوق منطقة ضيق فيزيولوجي (كعند قوس الأبهر) مع بلع الحبة دون كمية كافية من الماء أو قبل الاستلقاء يزيد الخطورة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_37" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">واحد مما يلي يشير إلى البلع المؤلم:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قلس معدي مريئي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فتق حجابي كبير.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب مري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تضيق مري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتجاع مري.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — التهاب مري.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يسبب الالتهاب تخريش وتقرح المخاطية المريئية، فيصبح مرور اللقمة الطعامية أو حتى اللعاب مؤلماً بشكل مباشر أثناء فعل البلع.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> القلس المعدي المريئي يسبب حرقة الفؤاد وليس بالضرورة ألماً أثناء البلع نفسه - <b class="opt-letter-tag">B)</b> الفتق الحجابي غالباً لا عرضي - <b class="opt-letter-tag">D)</b> التضيق المريئي يسبب عسر بلع غير مؤلم عادة - <b class="opt-letter-tag">E)</b> الارتجاع المريئي يسبب أعراض قلسية دون ألم بلع مباشر.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">عسر البلع يعني صعوبة البلع، بينما البلع المؤلم odynophagia هو ألم أثناء البلع ويترافق نموذجياً مع التهاب المريء (خمجي، كاوٍ، دوائي، أو هضمي).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_38" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">يعد الآتي من الآفات المؤهبة للتسرطن في المريء ماعدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متلازمة بلومر فينسون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب المريء القلسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب المريء بالكاويات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب المريء الشعاعي المزمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التهاب المريء الايوزيني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — التهاب المريء الايوزيني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب المريء الايوزيني حالة تحسسية مناعية تصيب الأطفال والبالغين الشباب وتستجيب على الستيروئيدات الموضعية، دون أن يترافق بخطر متزايد للتحول الخبيث كما هو الحال في الآفات الأخرى المذكورة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> بلومر-فينسون يؤهب للسرطانة الحرشفية - <b class="opt-letter-tag">B)</b> القلس المزمن يؤدي لمريء باريت وهو حالة ما قبل سرطانية - <b class="opt-letter-tag">C)</b> الكاويات تسبب تضيقات وتؤهب للسرطانة الحرشفية لاحقاً - <b class="opt-letter-tag">D)</b> التهاب المريء الشعاعي المزمن من عوامل الخطر المعروفة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الآفات المؤهبة لسرطان المريء: متلازمة بلومر-فينسون، مريء باريت (نتيجة التهاب المريء القلسي المزمن)، التهاب المريء بالكاويات، والتهاب المريء الشعاعي المزمن. أما التهاب المريء الايوزيني فيسبب عسر بلع دون علاقة مثبتة بالتسرطن.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_39" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">يستخدم كل مما يلي في معالجة التهاب المري الجزري ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">Omeprazole.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">Rabeprazole.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">Pantoprazole.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">Amoxicillin.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">Esomeprazole.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — Amoxicillin.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تحدث مثبطات مضخة البروتون شفاء التهاب المريء عند الغالبية العظمى من المرضى عبر تثبيط إفراز الحمض المعدي بشكل فعال وطويل الأمد.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> A، B، C، <b class="opt-letter-tag">E)</b> جميعها مثبطات مضخة بروتون فعالة في شفاء التهاب المري الجزري.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">مثبطات مضخة البروتون (أوميبرازول، رابيبرازول، بانتوبرازول، إيزوميبرازول) هي حجر الأساس في علاج التهاب المريء القلسي؛ الأموكسيسيلين صاد حيوي لا دور علاجي مباشر له هنا.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_40" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">في داء الجزر المعدي المريئي GERD (إجابة خاطئة وحيدة):</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">شائع أثناء الأشهر الأولى للحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">شدة وتواتر اللذع لا تنبئ بدرجة أذية المريء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قد يحدث بدون فتق حجابي انزلاقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يترافق دائماً بالتهاب مريء هضمي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">هو مرض مزمن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — يترافق دائماً بالتهاب مريء هضمي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يمكن أن يحدث الجزر بدون أذية مخاطية واضحة عند التنظير، إذ تتراوح الموجودات من السوي إلى تقرح شديد دون علاقة وثيقة بشدة الأعراض، لذا فإن الترافق الدائم بالتهاب مريء غير صحيح.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> شائع في الحمل بسبب زيادة الضغط داخل البطن - <b class="opt-letter-tag">B)</b> صحيح، ضعف الترابط بين الشدة والأذية معروف - <b class="opt-letter-tag">C)</b> يحدث الجزر دون فتق حجابي انزلاقي أحياناً - <b class="opt-letter-tag">E)</b> هو فعلاً مرض مزمن ينكس غالباً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">ضعف الترافق بين شدة الأعراض والموجودات التنظيرية سمة أساسية في GERD؛ التنظير والفحص النسيجي الطبيعيان لا ينفيان وجود المرض.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_41" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">أفضل علاج لالتهاب المريء القلسي هو:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">مضادات حموضة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">مثبطات مضخة البروتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">مضادات هيستامين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ميتوكلوبراميد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الألجينات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — مثبطات مضخة البروتين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تثبط مثبطات مضخة البروتون إفراز الحمض المعدي بشكل فعال وطويل الأمد عبر تثبيط الخطوة النهائية لإفراز الحمض في الخلايا الجدارية، مما يسمح بشفاء المخاطية الملتهبة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> مضادات الحموضة تخفف الأعراض فقط دون شفاء - <b class="opt-letter-tag">C)</b> مضادات الهيستامين أقل فعالية من PPIs - <b class="opt-letter-tag">D)</b> ميتوكلوبراميد منشط حركي مساعد وليس علاجاً أساسياً - <b class="opt-letter-tag">E)</b> الألجينات تخفف الأعراض دون شفاء الالتهاب.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">PPIs تشفي التهاب المريء عند الغالبية العظمى وتعتبر العلاج المختار في الجزر الشديد، بخلاف مضادات الحموضة والألجينات التي تخفف الأعراض دون إحداث شفاء.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_42" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">رجل 65 سنة مدخن 5 باكيت بالسنة، لديه منذ شهرين عسر بلع على الجوامد مترقية ثم أصبحت على السوائل أيضاً والفحص السريري لديه سوي الإجراء التالي:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تنظير هضمي علوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قياس ضغوط المريء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تخطيط حركية المريء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">صورة ظليلة للسبيل الهضمي العلوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قياس Ph المريء.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — تنظير هضمي علوي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التطور السريع (خلال شهرين) من عسر بلع للجوامد إلى السوائل عند مدخن كثيف مسن يشير بقوة لآفة انسدادية عضوية تضيّقية، والتنظير يسمح بالرؤية المباشرة وأخذ خزعة للتشخيص النسيجي واستبعاد الخباثة فوراً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> قياس الضغط يستخدم لتشخيص اضطرابات الحركة وليس أولوية هنا - <b class="opt-letter-tag">C)</b> تخطيط حركية المريء ليس الخطوة الأولى - <b class="opt-letter-tag">D)</b> الصورة الظليلة أقل حساسية من التنظير ولا تسمح بأخذ خزعة - <b class="opt-letter-tag">E)</b> قياس pH يستخدم لتشخيص GERD غير المؤكد وليس هنا.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">عسر بلع مترقٍ من الصلب إلى السائل عند مريض مسن مدخن هو عرض إنذاري يوجه لسرطان المريء؛ التنظير مع الخزعة هو الاستقصاء المختار.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_43" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">من اختلاطات الجزر المعدي المريئي، كل ما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فقر دم كبير الكريات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إسهال مزمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب مري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نخر سني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">مري باريت.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — فقر دم كبير الكريات.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> النزف المزمن من التهاب المريء أو التآكلات يؤدي لفقد دم مزمن وفقر دم بعوز الحديد (صغير الكريات)، وليس فقر دم كبير الكريات الذي ينجم عن عوز B12/فولات وليس له علاقة بآلية GERD.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> الإسهال المزمن قد يحدث كعرض مرافق نادر - <b class="opt-letter-tag">C)</b> التهاب المري اختلاط أساسي مباشر - <b class="opt-letter-tag">D)</b> نخر سني ناتج عن تماس الحمض القالس بالأسنان - <b class="opt-letter-tag">E)</b> مريء باريت اختلاط معروف للجزر المزمن.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">اختلاطات GERD: التهاب المريء، مريء باريت، فقر دم بعوز الحديد (وليس كبير الكريات)، نخر سني، وتضيق مريئي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_44" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">20.</span>
+                    <span class="q-stem">راجعك رجل يبلغ من العمر 55 عاماً يعاني من عسرة بلع للمواد الصلبة منذ شهرين، التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب مري ومعدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سرطان مري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">لا ارتخائية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">جزر معدي مريئي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التهاب معدة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — سرطان مري.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يصف النص أن سرطان المريء يظهر بعسر بلع مترقٍ غير مؤلم للأطعمة الصلبة، وهذا يطابق تماماً عرض المريض (55 عاماً، عسر بلع صلب منذ شهرين)، مما يجعله التشخيص الأرجح الذي يستدعي استبعاده أولاً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> التهاب مري ومعدة لا يسبب عادة عسر بلع مترقٍ صافٍ - <b class="opt-letter-tag">C)</b> اللاارتخائية تسبب عسر بلع متقطع للصلب والسائل معاً منذ البداية - <b class="opt-letter-tag">D)</b> GERD يسبب حرقة وقلس أكثر من عسر بلع مترقٍ - <b class="opt-letter-tag">E)</b> التهاب المعدة لا يفسر عسر البلع.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">عسر بلع مترقٍ غير مؤلم للأطعمة الصلبة عند مريض حول سن الخمسين هو العرض النموذجي لسرطان المريء ويستوجب تنظيراً مع خزعة فوراً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_45" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">21.</span>
+                    <span class="q-stem">كل مما يلي صحيح في الجزر المعدي المريئي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">حرقة الفؤاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">القلس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">امتلاء الفم الفجائي باللعاب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إسهال مزمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التنظير الهضمي السوي ينفي الإصابة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — التنظير الهضمي السوي ينفي الإصابة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تتراوح الموجودات التنظيرية في GERD من السوي إلى الالتهاب الشديد دون علاقة وثيقة بالأعراض، لذا فإن التنظير الطبيعي لا ينفي التشخيص، ويجب الاعتماد على القصة السريرية أو مراقبة pH عند الشك.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> حرقة الفؤاد عرض رئيسي صحيح - <b class="opt-letter-tag">B)</b> القلس عرض رئيسي صحيح - <b class="opt-letter-tag">C)</b> امتلاء الفم الفجائي باللعاب عرض معروف بسبب فرط إفراز اللعاب استجابة لجزر الحمض - <b class="opt-letter-tag">D)</b> الإسهال المزمن قد يرافق الحالة كعرض غير نموذجي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">ضعف الترافق بين الموجودات التنظيرية والأعراض في GERD مبدأ أساسي؛ التنظير والفحص النسيجي الطبيعيان لا يستبعدان المرض.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_46" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">22.</span>
+                    <span class="q-stem">كل الأدوية التالية يجب تجنبها بالقلس المعدي المريئي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">مضادات الكولين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نتروغليسرين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ديازيبام.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">حاصرات بيتا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">حاصرات الكلس.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — حاصرات بيتا.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تعمل مضادات الكولين والنترات وحاصرات الكلس والبنزوديازيبينات على إرخاء مصرة المريء السفلية وتخفيض توترها، مما يسهل حدوث الجزر، بينما لا يوجد لحاصرات بيتا تأثير مماثل مثبط لتوتر المصرة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> مضادات الكولين ترخي المصرة وتزيد الجزر - <b class="opt-letter-tag">B)</b> النتروغليسرين موسع يرخي العضلات الملساء بما فيها المصرة - <b class="opt-letter-tag">C)</b> الديازيبام يرخي التوتر العضلي العام - <b class="opt-letter-tag">E)</b> حاصرات الكلس ترخي العضلات الملساء وتخفض توتر المصرة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الأدوية التي ترخي مصرة المريء السفلية وتفاقم الجزر تشمل: مضادات الكولين، النترات، حاصرات الكلس، البنزوديازيبينات؛ حاصرات بيتا ليست من هذه المجموعة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_47" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">23.</span>
+                    <span class="q-stem">امرأة عمرها 32 سنة مصابة بظاهرة رينو وتعاني من لذع وقلس منذ يومين. ما هي الآلية الأرجح في تفسير أعراض هذه الحالة:</span>
+                </div>
+                <span class="q-date-badge">شباط 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">وجود الهيليكوباكتر البوابية في المخاطية المعدية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">هبوط ضغط المصرة المريئية السفلية (LES).</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">زيادة إفراز الحامض المعدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص الحركات التمعجية في الثلث العلوي من المري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تشنج عضلي مريئي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — هبوط ضغط المصرة المريئية السفلية (LES).</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في التصلب الجهازي يحل النسيج الليفي محل العضلات الملساء للمريء، فيضعف توتر مصرة المريء السفلية LES ويقل فعاليتها، مما يسمح بجزر محتويات المعدة ويفسر اللذع والقلس، وظاهرة رينو مظهر شائع مرافق لهذا المرض الجهازي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الملوية البوابية غير مرتبطة بظاهرة رينو أو بهذه الآلية - <b class="opt-letter-tag">C)</b> لا يوجد دليل على فرط إفراز الحمض في التصلب الجهازي، الآلية ميكانيكية لا إفرازية - <b class="opt-letter-tag">D)</b> نقص الحركة التمعجية بالثلث العلوي يسبب عسر بلع وليس هو الآلية الرئيسية للقلس هنا - <b class="opt-letter-tag">E)</b> تشنج المريء يسبب ألماً صدرياً نوبياً وليس القلس المزمن.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التصلب الجهازي (تصلب الجلد) يستبدل الطبقة العضلية المريئية بنسيج ليفي، مما يضعف توتر المصرة السفلية ويسبب حرقة فؤاد وقلس والتهاب مريء وتضيقات؛ ظاهرة رينو من أشيع المظاهر المرافقة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_48" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">24.</span>
+                    <span class="q-stem">سيدة بعمر 50 سنة تعاني من عسرة بلع مترددة منذ 5 سنوات على السوائل والجوامد مع آلام خلف القص التشخيص الأكثر احتمالاً:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تشنج مري معمم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">اكالازيا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب مري هضمي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">سرطان مري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">فتق انزلاقي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — تشنج مري معمم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التقلصات المريئية غير المنسقة والقوية في التشنج المعمم تعيق مرور كل من السوائل والجوامد معاً منذ البداية (خلافاً للأسباب الانسدادية التي تصيب الصلب أولاً)، وتسبب ألماً خلف القص شبيهاً بالذبحة الصدرية نتيجة التشنج العضلي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> اكالازيا تسبب عسر بلع مترقٍ مع توسع مريئي وغياب الحرقة عادة، لكن الألم الصدري أقل نموذجية والمسار أبطأ باطراد لا تردد - <b class="opt-letter-tag">C)</b> التهاب مري هضمي يسبب حرقة وليس عسر بلع متردد لخمس سنوات - <b class="opt-letter-tag">D)</b> سرطان المريء يسبب عسر بلع مترقياً غير مؤلم للصلب بشكل أساسي، لا مترددًا لخمس سنوات - <b class="opt-letter-tag">E)</b> الفتق الانزلاقي يسبب أعراض قلسية لا عسر بلع متردد بهذا النمط.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التشنج المريئي المعمم يسبب عسر بلع متقطع لكل من السوائل والجوامد مع ألم صدري نوبي شبيه بالذبحة؛ يفيد النترات أو حاصرات الكلس (النيفيديبين).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_gastro_49" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">25.</span>
+                    <span class="q-stem">كل ما يلي من اختلاطات القلس المعدي المريئي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تضيق مري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إسهال مزمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">سرطانة مري شائكة الخلايا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نخر أسنان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">بحة صوت.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — سرطانة مري شائكة الخلايا.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الجزر المزمن يسبب التهاب المريء، مريء باريت (حؤول أسطواني)، وقد يتطور الأخير لسرطانة غدية، وليس سرطانة شائكة الخلايا التي ترتبط بعوامل أخرى كالتدخين والكحول.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> التهاب المريء المزمن يؤدي لتليف وتضيق مريئي حقيقي. <b class="opt-letter-tag">B)</b> البحة وتخريش الحنجرة اختلاط تنفسي معروف للقلس خارج المريء. <b class="opt-letter-tag">D)</b> تآكل مينا الأسنان اختلاط موصوف للقلس الحمضي المزمن. <b class="opt-letter-tag">E)</b> بحة الصوت من مظاهر القلس خارج المريء بتخريش الحنجرة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">القلس المزمن يستعرض للأذية الظهارية والتليف والحؤول (مريء باريت) لا لخلل التنسج الحرشفي؛ السرطان المرافق لباريت هو الغدي وليس شائك الخلايا.</span>
+        </div>
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "25 سؤال • 1 مواضيع • 2018 - 2026";
+        const originalDocTitle = "بنك الأسئلة - الهضمية (أمراض المريء)";
+        const subjectName = "الهضمية";
+        const groupByMode = "topic";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

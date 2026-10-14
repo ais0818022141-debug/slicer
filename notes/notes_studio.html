@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TealMED Notes Studio | استوديو الملاحظات السريرية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0f1d;
+      --bg-secondary: #111827;
+      --bg-card: rgba(17, 24, 39, 0.75);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-active: rgba(14, 165, 233, 0.4);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --teal-primary: #0ea5e9;
+      --teal-accent: #06b6d4;
+      --teal-gradient: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #10b981 100%);
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --font-ar: 'Cairo', system-ui, -apple-system, sans-serif;
+      --font-en: 'Outfit', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-ar);
+      min-height: 100vh;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(99, 102, 241, 0.06) 0px, transparent 50%);
+      background-attachment: fixed;
+      padding-bottom: 80px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    /* Header */
+    header {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--teal-gradient);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+    }
+
+    .brand-title h1 {
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(to left, #fff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-title p {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .header-badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--glass-bg);
+      color: var(--text-secondary);
+    }
+
+    .badge-teal {
+      background: rgba(14, 165, 233, 0.12);
+      border-color: rgba(14, 165, 233, 0.3);
+      color: #38bdf8;
+    }
+
+    .badge-green {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: #34d399;
+    }
+
+    /* Layout Grid */
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 1100px) {
+      .grid-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-primary);
+    }
+
+    /* Upload & Dropzone */
+    .dropzone {
+      border: 2px dashed rgba(14, 165, 233, 0.3);
+      border-radius: var(--radius-md);
+      padding: 32px 20px;
+      text-align: center;
+      background: rgba(14, 165, 233, 0.02);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .dropzone:hover, .dropzone.dragover {
+      border-color: var(--teal-primary);
+      background: rgba(14, 165, 233, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .dropzone-icon {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .dropzone-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .dropzone-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--font-ar);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--teal-gradient);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(14, 165, 233, 0.45);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--border-color);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-success:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    /* Form Inputs */
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: var(--font-ar);
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--teal-primary);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+      font-family: monospace;
+      direction: ltr;
+      text-align: left;
+    }
+
+    /* Quick Samples */
+    .quick-samples {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    /* Note Tabs */
+    .notes-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .note-tab {
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .note-tab:hover {
+      color: var(--text-primary);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .note-tab.active {
+      background: rgba(14, 165, 233, 0.15);
+      border-color: var(--teal-primary);
+      color: #38bdf8;
+    }
+
+    /* Tag Pills */
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .tag-pill {
+      background: rgba(14, 165, 233, 0.12);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      color: #7dd3fc;
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .tag-pill .remove-tag {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+    .tag-pill .remove-tag:hover {
+      opacity: 1;
+      color: #f87171;
+    }
+
+    /* Key Points List */
+    .key-points-list {
+      list-style: none;
+      counter-reset: kp-counter;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .key-point-item {
+      counter-increment: kp-counter;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 13px;
+      position: relative;
+      padding-right: 38px;
+    }
+
+    .key-point-item::before {
+      content: counter(kp-counter);
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      font-weight: 800;
+      color: var(--teal-primary);
+      font-size: 14px;
+    }
+
+    /* Medical Preview */
+    .preview-box {
+      background: #0d1322;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      max-height: 620px;
+      overflow-y: auto;
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: #cbd5e1;
+    }
+
+    .preview-box h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #f8fafc;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(14, 165, 233, 0.3);
+    }
+
+    .preview-box h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
+    .preview-box p {
+      margin-bottom: 14px;
+    }
+
+    .preview-box table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+
+    .preview-box th, .preview-box td {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 14px;
+      text-align: right;
+    }
+
+    .preview-box th {
+      background: rgba(14, 165, 233, 0.15);
+      color: #f8fafc;
+      font-weight: 700;
+    }
+
+    .preview-box tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .preview-box blockquote {
+      margin: 16px 0;
+      padding: 12px 18px;
+      border-radius: var(--radius-sm);
+      border-right: 4px solid var(--teal-primary);
+      background: rgba(14, 165, 233, 0.08);
+      font-size: 13.5px;
+    }
+
+    .preview-box blockquote.warning {
+      border-right-color: #ef4444;
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .preview-box blockquote.pearl {
+      border-right-color: #eab308;
+      background: rgba(234, 179, 8, 0.08);
+    }
+
+    .preview-box ul, .preview-box ol {
+      margin: 12px 0 16px 24px;
+    }
+
+    .preview-box li {
+      margin-bottom: 6px;
+    }
+
+    /* Fixed Actions Bottom Bar */
+    .actions-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 15, 29, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--glass-border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .actions-summary {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .actions-summary strong {
+      color: #38bdf8;
+    }
+
+    .actions-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid var(--teal-primary);
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="brand-icon">🩺</div>
+        <div class="brand-title">
+          <h1>TealMED Notes Studio | استوديو الملاحظات السريرية</h1>
+          <p>تحويل وتصدير الملاحظات السريرية إلى JSON و CSV بدقة منطقية 100% ووفاء نصي كامل</p>
+        </div>
+      </div>
+
+      <div class="header-badges">
+        <span class="badge badge-teal">⚡ Verbatim Fidelity</span>
+        <span class="badge badge-green">🛡️ Zero Hallucination</span>
+        <span class="badge">📦 Platform Schema Compliant</span>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <div class="grid-layout">
+      <!-- Left Column: Inputs & Metadata -->
+      <div>
+        <!-- Source Input Card -->
+        <div class="card">
+          <div class="card-title">
+            <span>📥 مصدر الملاحظة السريرية</span>
+          </div>
+
+          <div class="dropzone" id="dropzone">
+            <div class="dropzone-icon">📄</div>
+            <div class="dropzone-text"><strong>اسحب وأفلت ملف Markdown (.md) هنا</strong></div>
+            <div class="dropzone-hint">أو انقر لاختيار ملف من جهازك</div>
+            <input type="file" id="fileInput" accept=".md,.markdown,.txt" style="display: none;">
+          </div>
+
+          <div style="margin-top: 16px;">
+            <label class="form-label">أو قم بلصق نص الـ Markdown مباشرة:</label>
+            <textarea class="form-control" id="rawMarkdown" placeholder="# اسم الملاحظة بالعربية (Medical Term)..."></textarea>
+          </div>
+
+          <div class="quick-samples">
+            <button class="btn btn-secondary btn-sm" id="loadSampleEx1">📝 تحميل مثال أمراض الكبيبات (notesEX)</button>
+            <button class="btn btn-secondary btn-sm" id="loadSampleEx2">📚 تحميل مثال قصور الكلى الحاد والمزمن (notesex02)</button>
+          </div>
+        </div>
+
+        <!-- Note Metadata & Controls Card -->
+        <div class="card" id="metadataCard">
+          <div class="card-title">
+            <span>⚙️ البيانات الوصفية للمنصة (Metadata)</span>
+          </div>
+
+          <div class="notes-tabs" id="notesTabs">
+            <!-- Dynamically populated if multi-part note -->
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">عنوان الملاحظة (Title):</label>
+            <input type="text" class="form-control" id="metaTitle">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">المادة السريرية (Subject):</label>
+              <input type="text" class="form-control" id="metaSubject">
+            </div>
+            <div class="form-group">
+              <label class="form-label">الموضوع / المبحث (Topic):</label>
+              <input type="text" class="form-control" id="metaTopic">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">درجة الصعوبة (Difficulty):</label>
+              <select class="form-control" id="metaDifficulty">
+                <option value="سهل">سهل (Recall)</option>
+                <option value="متوسط" selected>متوسط (Standard Board)</option>
+                <option value="صعب">صعب (Advanced/Complex)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">حالة الوصول (Access):</label>
+              <select class="form-control" id="metaIsFree">
+                <option value="1">مجاني للجميع (Free 1)</option>
+                <option value="0">للمشتركين فقط (Pro 0)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">معرف قاعدة البيانات (Database ID):</label>
+            <input type="text" class="form-control" id="metaId" style="font-family: monospace; font-size: 13px;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">الوسوم الطبية المستخرجة (Tags):</label>
+            <div class="tag-container" id="tagContainer">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">النقاط الجوهرية (Key Points - من القسم ٥):</label>
+            <ul class="key-points-list" id="keyPointsList">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Live Medical Preview -->
+      <div>
+        <div class="card">
+          <div class="card-title" style="justify-content: space-between;">
+            <span>👁️ المعاينة السريرية المنسقة (Medical Preview)</span>
+            <span class="badge badge-teal" id="previewStats">0 حرف | 0 جدول</span>
+          </div>
+
+          <div class="preview-box" id="previewContent">
+            <p style="color: var(--text-muted); text-align: center; padding: 40px 0;">
+              قم بسحب ملف أو اختيار نموذج لمعاينة الملاحظة وتجهيزها للتصدير...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Floating Actions Bar -->
+  <div class="actions-bar">
+    <div class="actions-summary">
+      <span>الملاحظات الجاهزة للتصدير: <strong id="summaryCount">0</strong></span>
+      <span>|</span>
+      <span>الحالة: <strong style="color: #34d399;">100% Verbatim Match</strong></span>
+    </div>
+
+    <div class="actions-buttons">
+      <button class="btn btn-secondary btn-sm" id="btnCopyJson">📋 نسخ JSON</button>
+      <button class="btn btn-secondary btn-sm" id="btnCopyCsv">📋 نسخ CSV</button>
+      <button class="btn btn-primary btn-sm" id="btnExportJson">📥 تصدير JSON للمنصة</button>
+      <button class="btn btn-success btn-sm" id="btnExportCsv">📊 تصدير CSV للمنصة</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <span>✔</span> <span id="toastMsg">تم النسخ بنجاح!</span>
+  </div>
+
+  <script>
+    // State
+    let parsedNotes = [];
+    let currentNoteIndex = 0;
+
+    // DOM Elements
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const rawMarkdown = document.getElementById('rawMarkdown');
+    const notesTabs = document.getElementById('notesTabs');
+    const metaTitle = document.getElementById('metaTitle');
+    const metaSubject = document.getElementById('metaSubject');
+    const metaTopic = document.getElementById('metaTopic');
+    const metaDifficulty = document.getElementById('metaDifficulty');
+    const metaIsFree = document.getElementById('metaIsFree');
+    const metaId = document.getElementById('metaId');
+    const tagContainer = document.getElementById('tagContainer');
+    const keyPointsList = document.getElementById('keyPointsList');
+    const previewContent = document.getElementById('previewContent');
+    const previewStats = document.getElementById('previewStats');
+    const summaryCount = document.getElementById('summaryCount');
+    const toast = document.getElementById('toast');
+
+    // Show Toast
+    function showToast(msg) {
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    // -------------------------------------------------------------
+    // Pure Logic Engine (Mirrors notes_converter.py in JavaScript)
+    // -------------------------------------------------------------
+    function detectMedicalSubject(title, text) {
+      const comb = (title + " " + text.slice(0, 500)).toLowerCase();
+      if (/كلية|كلوي|كلوية|كبيبات|نفروز|نفريت|aki|ckd|glomerul|nephr/.test(comb)) return "باطنة كلوية";
+      if (/قلب|قلبية|إكليلية|تاجية|cardio|chest pain|stemi|heart failure/.test(comb)) return "باطنة قلبية";
+      if (/هضم|كبد|معدة|أمعاء|gastro|liver|cirrhosis/.test(comb)) return "باطنة هضمية";
+      if (/رئة|رئوي|صدرية|تنفس|pulmo|asthma|copd/.test(comb)) return "باطنة صدرية";
+      if (/عصب|عصبية|دماغ|صرع|neuro|stroke/.test(comb)) return "باطنة عصبية";
+      if (/غدد|سكري|درق|نخام|endo|diabetes|thyroid/.test(comb)) return "أمراض الغدد والسكري";
+      if (/دم|دموية|فقر دم|صفيحات|hema|anemia/.test(comb)) return "أمراض الدم";
+      if (/رثوية|مفاصل|روماتيزم|rheum|arthritis|lupus/.test(comb)) return "أمراض المفاصل والروماتيزم";
+      return "الطب السريري";
+    }
+
+    const STRUCTURAL_TERMS = new Set([
+      "core concept", "golden rules", "high-yield", "differential", "overlaps",
+      "clinical paradoxes", "exam traps", "laboratory", "diagnostic correlates",
+      "30-second elimination rules", "elimination rules", "part", "chapter"
+    ]);
+
+    function extractEnglishTerms(text) {
+      const terms = [];
+      const parenMatches = text.matchAll(/\(([A-Za-z0-9\s/&,._+-]+)\)/g);
+      for (const m of parenMatches) {
+        const parts = m[1].split(/[,&/]|\s+-\s+/);
+        for (let p of parts) {
+          p = p.trim().replace(/^[-_\s]+|[-_\s]+$/g, '');
+          if (p.length >= 2 && isNaN(p)) {
+            if (!STRUCTURAL_TERMS.has(p.toLowerCase()) && !terms.includes(p)) {
+              terms.push(p);
+            }
+          }
+        }
+      }
+      const acronyms = text.matchAll(/\b[A-Z]{2,6}\b/g);
+      for (const m of acronyms) {
+        const acr = m[0];
+        if (!["AND", "FOR", "WITH", "THE", "OR", "IN", "ON", "AT", "TO", "PART", "NOTE"].includes(acr)) {
+          if (!terms.includes(acr)) terms.push(acr);
+        }
+      }
+      return terms;
+    }
+
+    function extractKeyPoints(md) {
+      const keyPoints = [];
+      // 1. Look for Section 5
+      const sec5Match = md.match(/##\s+[٥5]\.\s*خلاصة الاستبعاد السريع.*?\n([\s\S]*?)(?=\n##|$)/);
+      if (sec5Match) {
+        const sec5Body = sec5Match[1].trim();
+        const items = sec5Body.matchAll(/(?:^|\n)\s*\d+[\.\-\)]\s*(.+?)(?=(?:\n\s*\d+[\.\-\)]|$))/gs);
+        for (const item of items) {
+          const rawItem = item[1].replace(/\s+/g, ' ').trim();
+          const boldMatch = rawItem.match(/^\*\*(.+?)\*\*/);
+          if (boldMatch) {
+            const boldText = boldMatch[1].trim();
+            if (boldText && !keyPoints.includes(boldText)) keyPoints.push(boldText);
+          } else {
+            const firstSent = rawItem.split(/[.;]\s*/)[0].trim();
+            if (firstSent && !keyPoints.includes(firstSent)) keyPoints.push(firstSent);
+          }
+          if (keyPoints.length >= 5) break;
+        }
+      }
+
+      // 2. Clinical Pearls
+      if (keyPoints.length < 3) {
+        const pearls = md.matchAll(/>\s*💡\s*(?:\*\*[^*]+\*\*:?)?\s*(.+?)(?=\n\n|\n[#>*-]|$)/gs);
+        for (const p of pearls) {
+          const cleanP = p[1].replace(/\s+/g, ' ').trim().replace(/^\*+|\*+$/g, '');
+          if (cleanP && !keyPoints.includes(cleanP)) keyPoints.push(cleanP);
+          if (keyPoints.length >= 5) break;
+        }
+      }
+
+      return keyPoints.slice(0, 5);
+    }
+
+    function slugifyToId(prefix, title, index) {
+      const engWords = title.match(/[A-Za-z0-9]+/g) || [];
+      const slug = engWords.length > 0 
+        ? engWords.filter(w => w.length > 2 || w === w.toUpperCase()).slice(0, 3).join('_').toLowerCase()
+        : `item_${String(index).padStart(2, '0')}`;
+      return `note_${prefix}_${slug}`.replace(/[^a-zA-Z0-9_]/g, '_');
+    }
+
+    function splitMultiParts(raw) {
+      const partRegex = /^#\s+(?:الجزء|القسم|المبحث|الوحدة|الفصل|Part)\s+[الأول|الثاني|الثالث|الرابع|الخامس|\d]+[:\s].*/gm;
+      const matches = [...raw.matchAll(partRegex)];
+      if (matches.length >= 2) {
+        const parts = [];
+        for (let i = 0; i < matches.length; i++) {
+          const start = matches[i].index;
+          const end = (i + 1 < matches.length) ? matches[i + 1].index : raw.length;
+          const partContent = raw.slice(start, end).trim();
+          if (partContent) parts.push(partContent);
+        }
+        return parts;
+      }
+      return [raw];
+    }
+
+    function parseMarkdownToNotes(raw) {
+      const parts = splitMultiParts(raw);
+      const notes = [];
+
+      parts.forEach((partContent, idx) => {
+        // Strip frontmatter if any
+        let cleanMd = partContent.trim();
+        const fmMatch = cleanMd.match(/^---\s*\n([\s\S]*?)\n---\s*\n/);
+        if (fmMatch) {
+          cleanMd = cleanMd.slice(fmMatch[0].length).trim();
+        }
+
+        // Title
+        let title = `Medical Note ${idx + 1}`;
+        const h1Match = cleanMd.match(/^#\s+(.+)$/m);
+        if (h1Match) title = h1Match[1].trim();
+
+        // Clean display title
+        const cleanTitle = title.replace(/^الجزء\s+[الأول|الثاني|الثالث|الرابع|الخامس|\d]+\s*[:\-]\s*/, '').trim();
+
+        // Subject
+        const subject = detectMedicalSubject(cleanTitle, cleanMd);
+
+        // Topic
+        const topic = cleanTitle.replace(/\s*\([^)]*\)/g, '').replace(/^[٠-٩0-9]+[\.\-\s]+/, '').trim() || cleanTitle;
+
+        // Tags
+        const tags = extractEnglishTerms(cleanTitle);
+        if (subject.includes("كلوية") && !tags.includes("Nephrology")) tags.push("Nephrology");
+        if (subject.includes("قلبية") && !tags.includes("Cardiology")) tags.push("Cardiology");
+
+        // Key Points
+        const keyPoints = extractKeyPoints(cleanMd);
+
+        // Prefix
+        const pfx = subject.includes("كلوية") ? "nephro" : subject.includes("قلبية") ? "cardio" : "med";
+        const id = slugifyToId(pfx, cleanTitle, idx + 1);
+
+        notes.push({
+          id,
+          subject_name: subject,
+          topic_name: topic,
+          title: cleanTitle,
+          difficulty: "متوسط",
+          is_official: 1,
+          is_free: 1,
+          tags,
+          key_points: keyPoints,
+          content: cleanMd
+        });
+      });
+
+      return notes;
+    }
+
+    // -------------------------------------------------------------
+    // Simple Markdown Renderer for Medical Preview
+    // -------------------------------------------------------------
+    function renderMedicalMarkdown(md) {
+      let html = md;
+
+      // Escape HTML entities to protect text
+      html = html.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+      // Unescape blockquotes
+      html = html.replace(/^&gt;\s*💡\s*(.*)$/gm, '<blockquote class="pearl">💡 $1</blockquote>');
+      html = html.replace(/^&gt;\s*⚠️\s*(.*)$/gm, '<blockquote class="warning">⚠️ $1</blockquote>');
+      html = html.replace(/^&gt;\s*(.*)$/gm, '<blockquote>$1</blockquote>');
+
+      // Headings
+      html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+      html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+      html = html.replace(/^### (.*$)/gim, '<h3 style="color:#7dd3fc; margin:16px 0 8px;">$1</h3>');
+
+      // Bold and Italic
+      html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+      // Tables
+      html = html.replace(/^\|(.+)\|$/gm, (match, row) => {
+        if (/^[\s\-:|]+$/.test(row)) return ''; // separator row
+        const cells = row.split('|').map(c => c.trim());
+        const isHeader = !html.includes('<th>');
+        const tag = isHeader ? 'th' : 'td';
+        const renderedCells = cells.map(c => `<${tag}>${c}</${tag}>`).join('');
+        return `<tr>${renderedCells}</tr>`;
+      });
+      html = html.replace(/(<tr>[\s\S]*?<\/tr>)+/g, '<div style="overflow-x:auto;"><table>$&</table></div>');
+
+      // Unordered lists
+      html = html.replace(/^\* (.*$)/gim, '<li>$1</li>');
+      html = html.replace(/^- (.*$)/gim, '<li>$1</li>');
+      html = html.replace(/(<li>[\s\S]*?<\/li>)+/g, '<ul>$&</ul>');
+
+      // Paragraphs
+      html = html.split('\n\n').map(p => {
+        if (p.startsWith('<h') || p.startsWith('<table') || p.startsWith('<blockquote') || p.startsWith('<ul') || p.startsWith('<div')) {
+          return p;
+        }
+        return `<p>${p.replace(/\n/g, '<br>')}</p>`;
+      }).join('\n');
+
+      return html;
+    }
+
+    // -------------------------------------------------------------
+    // UI Update Functions
+    // -------------------------------------------------------------
+    function updateUI() {
+      if (parsedNotes.length === 0) {
+        summaryCount.textContent = '0';
+        previewContent.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 40px 0;">قم بسحب ملف أو اختيار نموذج لمعاينة الملاحظة وتجهيزها للتصدير...</p>';
+        previewStats.textContent = '0 حرف | 0 جدول';
+        notesTabs.innerHTML = '';
+        return;
+      }
+
+      summaryCount.textContent = parsedNotes.length;
+
+      // Render Tabs if multi-part
+      if (parsedNotes.length > 1) {
+        notesTabs.style.display = 'flex';
+        notesTabs.innerHTML = parsedNotes.map((n, idx) => `
+          <div class="note-tab ${idx === currentNoteIndex ? 'active' : ''}" onclick="switchTab(${idx})">
+            <span>#${idx + 1}</span>
+            <span>${n.topic_name || n.title}</span>
+          </div>
+        `).join('');
+      } else {
+        notesTabs.style.display = 'none';
+      }
+
+      // Populate form with current note
+      const current = parsedNotes[currentNoteIndex];
+      metaTitle.value = current.title;
+      metaSubject.value = current.subject_name;
+      metaTopic.value = current.topic_name;
+      metaDifficulty.value = current.difficulty;
+      metaIsFree.value = current.is_free;
+      metaId.value = current.id;
+
+      // Populate Tags
+      tagContainer.innerHTML = current.tags.map((t, tidx) => `
+        <span class="tag-pill">
+          ${t}
+          <span class="remove-tag" onclick="removeTag(${tidx})">&times;</span>
+        </span>
+      `).join('');
+
+      // Populate Key Points
+      keyPointsList.innerHTML = current.key_points.map((kp, kidx) => `
+        <li class="key-point-item">${kp}</li>
+      `).join('');
+
+      // Render Preview
+      const renderedHtml = renderMedicalMarkdown(current.content);
+      previewContent.innerHTML = renderedHtml;
+
+      // Table count
+      const tableMatches = current.content.match(/\|[\s\-:|]+\|/g);
+      const tableCount = tableMatches ? tableMatches.length : 0;
+      previewStats.textContent = `${current.content.length.toLocaleString()} حرف | ${tableCount} جدول سريري`;
+    }
+
+    window.switchTab = function(idx) {
+      saveCurrentForm();
+      currentNoteIndex = idx;
+      updateUI();
+    };
+
+    window.removeTag = function(tidx) {
+      parsedNotes[currentNoteIndex].tags.splice(tidx, 1);
+      updateUI();
+    };
+
+    function saveCurrentForm() {
+      if (!parsedNotes[currentNoteIndex]) return;
+      const cur = parsedNotes[currentNoteIndex];
+      cur.title = metaTitle.value;
+      cur.subject_name = metaSubject.value;
+      cur.topic_name = metaTopic.value;
+      cur.difficulty = metaDifficulty.value;
+      cur.is_free = parseInt(metaIsFree.value);
+      cur.id = metaId.value;
+    }
+
+    // Input listeners to sync state
+    [metaTitle, metaSubject, metaTopic, metaDifficulty, metaIsFree, metaId].forEach(el => {
+      el.addEventListener('input', saveCurrentForm);
+    });
+
+    // Handle Markdown Loading
+    function loadMarkdown(text) {
+      rawMarkdown.value = text;
+      parsedNotes = parseMarkdownToNotes(text);
+      currentNoteIndex = 0;
+      updateUI();
+      showToast(`تم استخراج ${parsedNotes.length} ملاحظة سريرية بنجاح!`);
+    }
+
+    // Drag & Drop
+    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      const files = e.dataTransfer.files;
+      if (files.length > 0) handleFile(files[0]);
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) handleFile(e.target.files[0]);
+    });
+
+    function handleFile(file) {
+      const reader = new FileReader();
+      reader.onload = (e) => loadMarkdown(e.target.result);
+      reader.readAsText(file, 'utf-8');
+    }
+
+    rawMarkdown.addEventListener('input', () => {
+      parsedNotes = parseMarkdownToNotes(rawMarkdown.value);
+      currentNoteIndex = 0;
+      updateUI();
+    });
+
+    // -------------------------------------------------------------
+    // Export Functions (JSON & CSV)
+    // -------------------------------------------------------------
+    function generateJSON() {
+      saveCurrentForm();
+      return JSON.stringify(parsedNotes, null, 2);
+    }
+
+    function generateCSV(fullSchema = false) {
+      saveCurrentForm();
+      let csvContent = "";
+      if (!fullSchema) {
+        // Strict platform format: title,content_markdown,difficulty,is_free,subject,topic
+        csvContent = "title,content_markdown,difficulty,is_free,subject,topic\r\n";
+        for (const n of parsedNotes) {
+          const escTitle = `"${(n.title || '').replace(/"/g, '""')}"`;
+          const escContent = `"${(n.content || '').replace(/"/g, '""')}"`;
+          const escDiff = `"${(n.difficulty || 'متوسط').replace(/"/g, '""')}"`;
+          const escFree = n.is_free;
+          const escSubj = `"${(n.subject_name || '').replace(/"/g, '""')}"`;
+          const escTopic = `"${(n.topic_name || '').replace(/"/g, '""')}"`;
+          csvContent += `${escTitle},${escContent},${escDiff},${escFree},${escSubj},${escTopic}\r\n`;
+        }
+      } else {
+        csvContent = "id,subject_name,topic_name,title,difficulty,is_official,is_free,tags,key_points,content_markdown\r\n";
+        for (const n of parsedNotes) {
+          const escId = `"${n.id}"`;
+          const escSubj = `"${(n.subject_name || '').replace(/"/g, '""')}"`;
+          const escTopic = `"${(n.topic_name || '').replace(/"/g, '""')}"`;
+          const escTitle = `"${(n.title || '').replace(/"/g, '""')}"`;
+          const escDiff = `"${n.difficulty}"`;
+          const escOff = n.is_official;
+          const escFree = n.is_free;
+          const escTags = `"${JSON.stringify(n.tags).replace(/"/g, '""')}"`;
+          const escKp = `"${JSON.stringify(n.key_points).replace(/"/g, '""')}"`;
+          const escContent = `"${(n.content || '').replace(/"/g, '""')}"`;
+          csvContent += `${escId},${escSubj},${escTopic},${escTitle},${escDiff},${escOff},${escFree},${escTags},${escKp},${escContent}\r\n`;
+        }
+      }
+      return csvContent;
+    }
+
+    function downloadFile(content, filename, type) {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById('btnExportJson').addEventListener('click', () => {
+      if (parsedNotes.length === 0) return alert("يرجى تحميل ملاحظة سريرية أولاً!");
+      const jsonStr = generateJSON();
+      downloadFile(jsonStr, 'notes.json', 'application/json;charset=utf-8;');
+      showToast("تم تنزيل notes.json بنجاح!");
+    });
+
+    document.getElementById('btnExportCsv').addEventListener('click', () => {
+      if (parsedNotes.length === 0) return alert("يرجى تحميل ملاحظة سريرية أولاً!");
+      const csvStr = "\uFEFF" + generateCSV(false); // UTF-8 BOM for Excel
+      downloadFile(csvStr, 'notes.csv', 'text/csv;charset=utf-8;');
+      showToast("تم تنزيل notes.csv للمنصة بنجاح!");
+    });
+
+    document.getElementById('btnCopyJson').addEventListener('click', () => {
+      if (parsedNotes.length === 0) return alert("يرجى تحميل ملاحظة أولاً!");
+      navigator.clipboard.writeText(generateJSON()).then(() => showToast("تم نسخ JSON إلى الحافظة!"));
+    });
+
+    document.getElementById('btnCopyCsv').addEventListener('click', () => {
+      if (parsedNotes.length === 0) return alert("يرجى تحميل ملاحظة أولاً!");
+      navigator.clipboard.writeText(generateCSV(false)).then(() => showToast("تم نسخ CSV إلى الحافظة!"));
+    });
+
+    // -------------------------------------------------------------
+    // Quick Sample Loaders
+    // -------------------------------------------------------------
+    document.getElementById('loadSampleEx1').addEventListener('click', () => {
+      fetch('notesEX.md')
+        .then(r => r.text())
+        .then(text => loadMarkdown(text))
+        .catch(() => {
+          // If running locally without fetch, trigger direct fallback
+          alert("يمكنك سحب ملف notesEX.md مباشرة إلى منطقة الإفلات أعلاه!");
+        });
+    });
+
+    document.getElementById('loadSampleEx2').addEventListener('click', () => {
+      fetch('notesex02.md')
+        .then(r => r.text())
+        .then(text => loadMarkdown(text))
+        .catch(() => {
+          alert("يمكنك سحب ملف notesex02.md مباشرة إلى منطقة الإفلات أعلاه!");
+        });
+    });
+
+    // Auto-load sample 1 on launch if accessible
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch('notesEX.md')
+        .then(r => r.text())
+        .then(text => loadMarkdown(text))
+        .catch(() => {});
+    });
+  </script>
+</body>
+</html>

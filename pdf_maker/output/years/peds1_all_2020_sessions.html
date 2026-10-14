@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - طب الأطفال 1 (دورات 2020)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0284C7;
+            --primary-dark: #0369A1;
+            --primary-rgb: 2, 132, 199;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - طب الأطفال 1 (دورات 2020)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">الدورة:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع الدورات (الكل - 17 سؤال)</option>
+                    <optgroup label="دورات سنة 2020 (17 سؤال)">
+                        <option value="year_2020">📅 جميع دورات 2020 (17 سؤال)</option>
+                        <option value="session-1">دورة 2020 تشرين (7 سؤال)</option>
+                        <option value="session-2">دورة 2020 حزيران (10 سؤال)</option>
+                    </optgroup>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل الدورة المحددة (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">طب الأطفال 1</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب الدورات الامتحانية)</p>
+                <p class="stats-summary" id="statsSummary">17 سؤال • 2 دورة امتحانية • 2020</p>
+            </div>
+
+            <div class="index-section-title">فهرس الدورات الامتحانية (مرتبة من الأحدث إلى الأقدم)</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="session-1">
+                    <a href="#session-1" class="index-row" data-group-id="session-1" data-year="2020">
+                        <span class="index-topic-name">2020 تشرين</span>
+                        <span class="index-topic-meta">
+                            <span>5 مواضيع</span>
+                            <span class="index-count">7 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'session-1', 'دورة 2020 تشرين')" title="تحميل دورة 2020 تشرين كملف مستقل">⬇ تحميل</button>
+                </div>
+                <div class="index-row-wrapper" data-group-id="session-2">
+                    <a href="#session-2" class="index-row" data-group-id="session-2" data-year="2020">
+                        <span class="index-topic-name">2020 حزيران</span>
+                        <span class="index-topic-meta">
+                            <span>7 مواضيع</span>
+                            <span class="index-count">10 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'session-2', 'دورة 2020 حزيران')" title="تحميل دورة 2020 حزيران كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2020" data-group-id="session-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="session-1">
+                    <div class="topic-title-text">دورة 2020 تشرين</div>
+                    <span class="topic-counter">7 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_peds1_005" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">كل مما يلي من أسباب ضخامة الكبد عند الأطفال عدا:</span>
+                </div>
+                <span class="q-date-badge">القصة والفحص السريري</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">أدواء خزن الغليكوجين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قصور القلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انتان بالابشتاين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">داء زلاقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ابيضاض لمفاوي حاد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — داء زلاقي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الداء الزلاقي هو اعتلال معوي مناعي ذاتي يسبب متلازمة سوء امتصاص تتظاهر بإسهال دهني ونقص وزن وفشل نمو، ولا يسبب ضخامة كبدية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> أدواء خزن الغليكوجين تسبب تراكماً استقلابياً في الكبد. قصور القلب يسبب احتقاناً كبدياً وريدياً. إنتان إبشتاين بار (EBV) يسبب ضخامة كبدية طحالية كجزء من داء وحيدات النوى. الابيضاض اللمفاوي الحاد يسبب ارتشاحاً ورمياً في الجملة الشبكية البطانية.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تجس الحافة السفلية للكبد طبيعياً 1-2 سم تحت الحافة الضلعية عند الرضع، وتعتبر الضخامة الكبدية الطحالية من أهم العلامات السريرية لارتشاح الجملة الشبكية البطانية بالخباثات أو الأخماج.</div></div>
+        
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_peds1_034" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">كل مما يلي صحيح بالنسبة للتطور الروحي الحركي عند الأطفال عدا:</span>
+                </div>
+                <span class="q-date-badge">تطور الطفل الطبيعي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يبتسم بعمر أسبوعين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يلوّح بعمر السنة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يمسك كأس ماء بكلتا يديه بعمر سنة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الطفل جاف نهاراً بعمر 2 سنة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يأكل بالملعقة بعمر 1.5 سنة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — يبتسم بعمر أسبوعين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يبتسم الطفل عفوياً بعمر 6 إلى 8 أسابيع (الشهر الثاني)، ويُعتبر عدم الابتسام الاجتماعي بعد عمر 8 أسابيع حداً أحمر (تأخر مرضي)، ولذلك يستحيل أن يتطور نموذجياً بعمر أسبوعين (والذي يكتفي فيه بمتابعة الوجه أو الضوء بوضوح).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تمثل الخيارات الأخرى مهارات اجتماعية وسلوكية صحيحة؛ حيث يلوح (باي باي) ويشرب من الكأس باستعمال يديه بعمر السنة (12 شهراً)، يطعم نفسه بالملعقة بنجاح بعمر 18 شهراً، ويكون جافاً نهاراً وليلاً مع ضبط كامل للمصرات البولية والشرجية بعمر السنتين.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> الترتيب التطوري الاجتماعي والسلوكي: يبتسم عفوياً (6-8 أسابيع)، يفضل أمه ويخاف من الغرباء (7 أشهر)، يلعب لعبة التخفي &quot;بوه&quot; والتلويح (10 أشهر)، يشرب من الكأس (سنة)، يطعم نفسه بالملعقة (18 شهراً)، يلعب لعباً رمزيّاً وتفاعلياً متوازياً (سنتين)، ويدخل التواليت بمفرده دون مساعدة (سنتين ونصف).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_047" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">طفل مع صدمة تأقية أول إجراء:</span>
+                </div>
+                <span class="q-date-badge">الحالات الإسعافية عند الأطفال</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ايبنفرين حقن عضلي 1:1000.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ايبنفرين حقن تحت الجلد 1:1000.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ديكساميتازون وريدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">كلورفينيرامين فموي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ديهيدروفينيرامين وريدي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ايبنفرين حقن عضلي 1:1000.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التدبير الإسعافي الحاسم والمنقذ للحياة كخط علاجي فوري أول في الصدمة التأقية (Anaphylaxis) هو الحقن العضلي (IM) للأدرينالين (الإيبنفرين) بتركيز 1:1000 في الفخذ، لسرعة امتصاصه وكفاءته في عكس التوسع الوعائي والتشنج القصبي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الحقن تحت الجلد (SC) بطيء الامتصاص في الصدمة وضعف التروية. الستيروئيدات (ديكساميتازون) ومضادات الهيستامين (كلورفينيرامين) هي علاجات مساعدة وتأثيرها بطيء ولا تنقذ الحياة فوراً من الهط الدوراني.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> جرعة الأدرينالين العضلي هي 0.01 مل/كغ (بحد أقصى 0.5 مل)، ويمكن تكرارها كل 5-15 دقيقة بالتزامن مع تقييم ABCDE، إعطاء الأكسجين، والسوائل البلورانية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_048" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">كل مما يلي من أسباب الصدمة بنقص الحجم عدا:</span>
+                </div>
+                <span class="q-date-badge">الحالات الإسعافية عند الأطفال</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قصور قلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إسهالات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انتان دم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">حماض سكري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نزف.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — قصور قلب.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يُعد &quot;قصور القلب&quot; سبباً رئيساً لحدوث الصدمة قلبية المنشأ (Cardiogenic Shock) الناجمة عن عجز العضلة القلبية عن الضخ، وليس سبباً لصدمة نقص الحجم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تندرج باقي الخيارات ضمن أسباب صدمة نقص الحجم (Hypovolemic Shock)؛ حيث ينجم نقص الحجم عن الضياع الهضمي للسوائل كالإسهال والإقياءات أو التجفاف، أو الضياع البولي كما في الحماض السكري (الكيتوني)، أو فقدان الدم الناجم عن الرضوض أو النزف، بالإضافة إلى إنتان الدم الذي يسبب صدمة نقص حجم وسوء توزيع السوائل نتيجة التسرب الشعري.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تُعرف الصدمة بأنها عجز الدوران عن تأمين الاحتياجات الاستقلابية للنسج، ويُعد الأطفال معرضين جداً لفقد السوائل لأن حاجتهم أكبر (نسبة السطح إلى الحجم أعلى ومعدل الاستقلاب القاعدي أعلى)، ويتم تدبير نقص الحجم بالتعويض المباشر بالسوائل داخل الأوعية عبر إعطاء محلول ملحي 0.9% أو دم بجرعة 20 مل/كغ (تُكرر عند الضرورة)، وفي حال عدم التحسن والقبول بالعناية المشددة: إذا كان الضغط منخفضاً يُعطى الأدرينالين، أما إذا كان الضغط طبيعياً فنُعطي مقويات العضلة القلبية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_083" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">وليد بعمر 3 أسابيع، قصة حويصلات منتشرة على الوجه والعينين مترافق بترفع حروري وذات رئة شديدة. التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">الطب حول الولادي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">داخل الرحم CMV.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">حصبة ألمانية داخل الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">حماق داخل الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انتان حول الولادة بالحلأ البسيط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الخمج بالعنقوديات المذهبة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — انتان حول الولادة بالحلأ البسيط.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الاندفاعات الحويصلية على قاعدة حمامية في الوجه والعينين والمترافقة مع أعراض جهازية كالتهاب الدماغ أو ذات الرئة تمثل السير السريري الوصفي لخمج الحلأ البسيط (HSV) المكتسب حول الولادة أثناء المرور بقناة الولادة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الفيروس المضخم للخلايا يسبب صمماً وتكلسات حول البطينات ولا يسبب حويصلات. الحصبة الألمانية تسبب ساداً وآفات قلبية. الحماق الخلقي يسبب ندبات وضمور أطراف. العنقوديات تسبب قوباء فقاعية.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> يعالج الوليد المصاب إسعافياً بالأسيكلوفير الوريدي لمدة 14-21 يوماً للوقاية من العقابيل العصبية الشديدة أو الوفاة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_108" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">كل مما يلي من أسباب اليرقان غير المقترن عند وليد بعمر 5 أيام عدا:</span>
+                </div>
+                <span class="q-date-badge">طب حديث الولادة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">عوز G6PD.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">رتق المسالك الصفراوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يرقان فيزيولوجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انحلال ABO.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انتان بولي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — رتق المسالك الصفراوية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يؤدي رتق المسالك الصفراوية إلى يرقان ركودي يرتفع فيه البيليروبين &quot;المقترن&quot; (المباشر) بسبب الانسداد الميكانيكي ومنع وصول الصفراء للأمعاء، ويترافق مع براز أبيض وبول داكن.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الأسباب الأخرى تسبب يرقاناً غير مقترن (بيليروبين غير مباشر) وتشمل: اليرقان الفيزيولوجي (يبلغ ذروته في اليوم الخامس)، الانحلال الدموي (تنافر زمر ABO وعوز G6PD)، والإنتانات البولية الخفية التي قد تتظاهر بيرقان مديد غير مقترن.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تقييم اليرقان في الأسبوع الثاني وما بعده يعتمد على معايرة البيليروبين المباشر؛ فأي ارتفاع فوق 2 ملغ/دل يوجه للرتق أو التهاب الكبد الوليدي ويستدعي تدخلاً سريعاً قبل 60 يوماً.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_109" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">كل مما يلي صحيح عن الزلة التنفسية العابرة عدا:</span>
+                </div>
+                <span class="q-date-badge">طب حديث الولادة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">أشيع ما تحدث بعد القيصرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">أشيع سبب للزلة عند الوليد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">سببها تأخر عودة ارتشاف السائل بالرئتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص تهوية رئوية في صورة الصدر البسيطة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تتظاهر خلال الساعات الأولى من الولادة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — نقص تهوية رئوية في صورة الصدر البسيطة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في الزلة التنفسية العابرة عند الوليد (رئة الوليد الرطبة)، تظهر صورة الصدر الشعاعية &quot;فرط تهوية&quot; وليس نقص تهوية، بالإضافة إلى احتقان السرتين وامتلاء الشقوق الفصية بالسائل.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تعتبر أشيع سبب للزلة عند الوليد بتمام الحمل، وتحدث وتكثر بوضوح بعد الولادات القيصرية لغياب عصر الصدر وطرد السائل، وتنتج إمراضياً عن تأخر ارتشاف السائل الرئوي، وتتظاهر خلال الساعات الأولى من الولادة.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تعالج الحالة بشكل داعم عبر تقديم الأكسجين وتتراجع عفوياً خلال 24-72 ساعة دون ترك عقابيل، ويجب دائماً نفي الإنتان الدموي الباكر قبل وضع التشخيص النهائي.</div></div>
+        
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+        <div class="topic-container" data-year="2020" data-group-id="session-2">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="session-2">
+                    <div class="topic-title-text">دورة 2020 حزيران</div>
+                    <span class="topic-counter">10 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_peds1_006" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">كل مما يلي من ملامح قصور القلب عند الرضع عدا:</span>
+                </div>
+                <span class="q-date-badge">القصة والفحص السريري</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ضخامة طحال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ضخامة كبد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الانتانات التنفسية المتكررة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نظم الخبب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ضعف رضاعة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ضخامة طحال.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يؤدي قصور القلب الأيمن عند الرضع إلى احتقان وريدي جهازي يتظاهر بشكل رئيسي ووصفي بضخامة كبدية، بينما لا يسبب قصور القلب المنعزل ضخامة طحالية مرافقة عادةً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تسرع القلب وتسرع التنفس والتعرق أثناء الإرضاع هي آليات معاوضة باكرة، وضعف الرضاعة وصعوبتها ينتج عن الزلة والتعب مما يسبب فشل نمو، ونظم الخبب ناتج عن تسرع القلب مع ظهور الصوت الثالث، وجميعها ملامح أساسية لقصور القلب.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تبقرط الأصابع لا يشاهد في قصور القلب الحاد، وإنما يرتبط بالآفات القلبية المزرقة المزمنة أو الآفات الرئوية المقيحة وتليف الكبد.</div></div>
+        
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_peds1_007" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">كل مما يلي من مميزات القصة والفحص السريري في ممارسة طب الأطفال عدا:</span>
+                </div>
+                <span class="q-date-badge">القصة والفحص السريري</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الأسئلة الموجهة حسب عمر الطفل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انتهاز فترة هدوء الطفل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الاستقصاءات الشعاعية أساسية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يجب أن يكون الفحص دقيق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يحتاج الفحص إلى مهارة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — الاستقصاءات الشعاعية أساسية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الاستقصاءات الشعاعية والمخبرية تعتبر خطوات مساعدة ومتممة تطلب حسب التوجه، وليست من الخطوات &quot;الأساسية&quot; المبدئية التي يعتمد عليها أخذ القصة المرضية وإجراء الفحص السريري للطفل.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> مقاربة الطفل طبياً تتطلب مهارة عالية، وتعتمد على انتهاز فترات هدوء الطفل لفحص الأعضاء الحيوية، وتوجيه الأسئلة بدقة لتناسب عمر وتطور الطفل، مع وجوب أن يكون الفحص دقيقاً وشاملاً لكافة الأجهزة.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> ترتيب الفحص عند الأطفال يختلف عن البالغين، حيث نترك الفحوص المزعجة (كفحص الحلق والأذنين بالمنظار) لنهاية الفحص السريري للحفاظ على هدوء وتعاون الطفل.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_035" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">كل مما يلي صحيح بالنسبة للتطور الروحي الحركي عند طفل طبيعي عمره 18 شهراً عدا:</span>
+                </div>
+                <span class="q-date-badge">تطور الطفل الطبيعي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يتحدث جملة من كلمتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يحمل الملعقة ويأكل بها.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">المشي بثبات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يتحدث 6 كلمات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يشير إلى جزئين من جسده.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — يتحدث جملة من كلمتين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يكتسب الطفل القدرة على ضم كلمتين معاً ليصنع عبارة بسيطة بعمر 20 إلى 24 شهراً (سنتين)، وليس بعمر 18 شهراً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تمثل الخيارات الأخرى مهارات يتوافق معها عمر 18 شهراً؛ حيث يمشي بثبات ومفرد دون مساعدة (بين 12-15 شهراً)، ويمتلك حصيلة لغوية من 6 إلى 10 كلمات مفردة، ويشير لأجزاء جسده عند تسميتها، ويطعم نفسه بالملعقة بنجاح ويشير للشيء الذي يريده ويساعد في خلع ملابسه.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تذكر التسلسل اللغوي والحدود الحمراء (Red Flags): ينطق 2-3 كلمات ذات معنى بعمر السنة (12 شهراً)، ويمتلك 6-10 كلمات بعمر 18 شهراً (ويُعتبر عدم قول كلمة مفردة بعمر 18 شهراً خطاً أحمر)، ويصنع عبارة من كلمتين بعمر السنتين (وعدم ضم كلمتين بعمر 24 شهراً خط أحمر)، ويركب جملة من 3-4 كلمات بعمر سنتين ونصف إلى 3 سنوات، ويُعد &quot;تخطيط السمع&quot; الخطوة الاستقصائية الأولى والأهم عند أي تأخر لغوي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_038" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">كل مما يلي صحيح في الشلل الدماغي عند الأطفال عدا:</span>
+                </div>
+                <span class="q-date-badge">المشكلات التطورية والطفل ذو الاحتياجات الخاصة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">اضطرابات معرفية ادراكية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يترافق باضطرابات اختلاجية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">أشيع سبب هو الخمج الخلقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الاضطراب عائد إلى شذوذ غير مترقي في الدماغ النامي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">أشيع سبب هو نقص الأكسجة حول الولادة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — أشيع سبب هو نقص الأكسجة حول الولادة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يعتبر الاعتقاد بأن نقص الأكسجة حول الولادة هو السبب الأشيع للشلل الدماغي مفهوماً خاطئاً؛ حيث تشير الإحصاءات إلى أنه يشكل حوالي 10% فقط من الحالات، بينما تعود الغالبية العظمى (80%) لأسباب ما قبل ولادية كالأخماج الخلقية، التشوهات البنيوية، والاضطرابات الجينية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الشلل الدماغي (CP) هو بالفعل &quot;اضطراب حركي ووضعي غير مترقٍ&quot; (ثابت الأذية) يصيب الدماغ النامي، ولكنه يترافق بشكل شائع جداً مع شذوذات مرافقة كالاختلاجات (الصرع)، والاضطرابات المعرفية والإدراكية (التخلف العقلي)، ومشاكل التغذية والبلع.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> النمط التشنجي هو الأشيع، ويترافق النمط &quot;الشللي المزدوج التشنجي&quot; بشدة مع الخداج وأذية تلين المادة البيضاء المحيطة بالبطينات (PVL)، بينما يترافق النمط عسر الحركة مع اليرقان النووي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_049" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">كل من الاستقصاءات التالية تجرى لطفل لديه غيبوبة عدا:</span>
+                </div>
+                <span class="q-date-badge">الحالات الإسعافية عند الأطفال</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">صورة الصدر البسيطة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التصوير المقطعي المحوسب CT.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">غلوكوز الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">كلس الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الشوارد – الصوديوم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — صورة الصدر البسيطة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> لا تقدم صورة الصدر البسيطة أي فائدة تشخيصية مباشرة في المقاربة الإسعافية الأولى لطفل مصاب بغيبوبة مجهولة السبب، حيث يتجه البحث فوراً نحو الأسباب العصبية والاستقلابية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الاستقصاءات الإلزامية السريعة لمقاربة السبات (الغيبوبة) تشمل: الطبقي المحوري (CT) لنفي النزف والوذمة والأورام، سكر الدم (لأن نقص السكر سبب صاعق وعكوس للسبات)، وشوارد الدم (كالصوديوم والكالسيوم والمغنيزيوم) لكشف الاضطرابات الاستقلابية المسببة لاعتلال الدماغ.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> يشمل تقييم السبات السريع مقياس غلاسكو (أو تقييم AVPU)، ويجب دائماً إجراء بزل قطني (LP) لنفي التهاب السحايا أو الدماغ بشرط التأكد من غياب علامات ارتفاع التوتر داخل القحف التي تمنع البزل.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_058" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">طفل بعمر 3 سنوات سقط على الأرض وارتطم رأسه بالأرض بقوة. أسعف إلى المشفى وأجريت له الفحوص السريرية وكانت طبيعية. نطلب من الأهل العودة إلى المشفى بعد تخريج الطفل في الحالات التالية عدا:</span>
+                </div>
+                <span class="q-date-badge">الحوادث والتسممات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">اقياء لمرة واحدة فقط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">شكى من صداع يزداد سوءاً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">أصبح نومه غير طبيعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أصبح سلوكه غير طبيعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تطور لديه ضعف بجانب واحد من جسمه.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — اقياء لمرة واحدة فقط.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تُعد نوبة الإقياء المفرطة لمرة واحدة بعد رض الرأس ارتكاساً شائعاً لا يُشكل بحد ذاته علامة خطورة تستدعي العودة الإسعافية، بينما تشترط المعايير الخطيرة وجود 3 نوب أو أكثر من الإقياءات مع فواصل بينهما.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تُعتبر الخيارات الأخرى من الأعراض والعلامات الهامة التي توجه لإصابة عصبية مهمة بعد رض الرأس عند الأطفال وتستدعي القبول أو العودة الفورية للمشفى؛ وتتضمن الشكوى من صداع يزداد سوءاً، أن يصبح نومه غير طبيعي، أن يصبح سلوكه غير طبيعي، وتطور ضعف بجانب واحد من جسمه.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تشمل العلامات والأعراض الأخرى التي توجه لإصابة عصبية مهمة وتستدعي المراقبة أو التصوير: فقدان الوعي أكثر من 5 دقائق (مشاهد وموثق)، فقدان الذاكرة أكثر من 5 دقائق، آلية إصابة خطرة (كالسقوط من ارتفاع أعلى من 3 أمتار أو حادث سير بسعر عالية)، وجود كسر منخسف أو مفتوح أو تسرب السائل الدماغي الشوكي، وتدهور مقياس غلاسكو.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_084" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">ما يلي من الأخماج التي تصيب الحامل وتسبب تشوهات جنينية داخل الرحم عدا:</span>
+                </div>
+                <span class="q-date-badge">الطب حول الولادي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الفيروس المضخم للخلايا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الحلأ النطاقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الحصبة الألمانية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فيروس الحلأ البسيط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">داء المقوسات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — فيروس الحلأ البسيط.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ينتقل خمج فيروس الحلأ البسيط (HSV) إلى الوليد بشكل أساسي كخمج &quot;مكتسب حول الولادة&quot; أثناء مروره عبر القناة التناسلية المخموجة، ولا يصنف نموذجياً كخمج يسبب تشوهات خلقية جنينية داخل الرحم عبر المشيمة كباقي زمرة TORCH.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الفيروس المضخم للخلايا (CMV)، الحصبة الألمانية، داء المقوسات القندية، والحلأ النطاقي (الحماق) هي كلها أخماج تنتقل عبر المشيمة لتصيب الجنين داخل الرحم وتسبب متلازمات خلقية وتشوهات عضوية وتكلسات دماغية.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> للوقاية من خمج الحلأ البسيط حول الولادة، يُستطب إجراء ولادة قيصرية للأم التي تمتلك آفات حلئية تناسلية فعالة أو بوادر خمج وقت المخاض.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_085" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">كل مما يلي من الملامح السريرية للإنتانات داخل الرحم عدا:</span>
+                </div>
+                <span class="q-date-badge">الطب حول الولادي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ساد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صمم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">صغر الرأس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">صغر القلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الضخامة الكبدية الطحالية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — صغر القلب.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الإنتانات المكتسبة داخل الرحم (كالحصبة الألمانية وغيرها) قد تسبب تشوهات قلبية بنيوية أو آفات كبقاء القناة الشريانية وضخامة القلب، لكنها لا تترافق مع صغر القلب.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الساد (في الحصبة الألمانية)، الصمم الحسي العصبي (في CMV والحصبة الألمانية)، صغر الرأس (في CMV)، والضخامة الكبدية الطحالية (في معظم أخماج TORCH) هي جميعها ملامح نموذجية تميز الإنتانات المكتسبة داخل الرحم.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تسبب هذه الإنتانات أيضاً تكلسات داخل الدماغ (محيطية في المقوسات وحول البطينات في CMV)، وموه الرأس، والتهاب الشبكية والمشيمية، وتأخر النمو داخل الرحم.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_110" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">بالنسبة لشلل ارب كل مما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">طب حديث الولادة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إصابة الجذور العصبية C5-6.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قد يترافق مع شلل العصب الحجابي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">شلل رخو.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اليد بوضعية تبعيد ودوران خارجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">اليد بوضعية الكب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — اليد بوضعية تبعيد ودوران خارجي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في شلل إرب (إصابة الجذور الرقبية العلوية C5-C6)، تتخذ اليد وضعية وصفية (يد النادل) تتميز بكونها بوضعية &quot;تقريب&quot; ودوران &quot;داخلي&quot; مع كب الساعد، وليس تبعيداً ودوراناً خارجياً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يحدث الشلل الرخو نتيجة أذية الضفيرة العضدية في المخاض العسير أو المجيء المقعدي، وقد يترافق مع أذية العصب الحجابي (شلل الحجاب الحاجز). اليد تكون بوضعية الكب.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> في شلل إرب يغيب منعكس مورو وتغيب حركة الذراع بينما تكون حركة الأصابع (القبض) سليمة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_111" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">كل مما يلي صحيح في التهاب الأمعاء والكولون المنخر عند الأطفال عدا:</span>
+                </div>
+                <span class="q-date-badge">طب حديث الولادة</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">زيادة معدل الحدوث عند الخدج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">معدل إصابة أعلى عند الخدج الذين يتناولون الحليب الصناعي المشتق من حليب البقر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">دعم الحليب بالبروبيوتيكس لا أهمية له.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">العلاج بالتغذية الوريدية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قد يحدث تهوي في جدر الأمعاء.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — دعم الحليب بالبروبيوتيكس لا أهمية له.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> أثبتت الدراسات الطبية أن دعم الحليب بالبروبيوتيكس (البكتيريا النافعة) يحمل عاملاً وقائياً هاماً جداً يقلل من خطر الإصابة بالتهاب الكولون النخري (NEC) عند الخدج، مما يجعل نفي أهميته خياراً خاطئاً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يزداد معدل الحدوث عند الخدج، وخاصة الذين يعتمدون على التغذية الصناعية (حليب البقر)، وتتضمن المعالجة إيقاف التغذية الفموية والاعتماد على التغذية الوريدية والصادات، ويظهر شعاعياً تهوي جدار الأمعاء.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> يتظاهر المرض باكراً بعدم تحمل التغذية، ثمالة معدية صفراوية، وتطبل بطن مع براز مدمى. الانثقاب المعوي (هواء حر تحت الحجاب) يستدعي الجراحة الإسعافية.</div></div>
+        
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "17 سؤال • 2 دورة امتحانية • 2020";
+        const originalDocTitle = "بنك الأسئلة - طب الأطفال 1 (دورات 2020)";
+        const subjectName = "طب الأطفال 1";
+        const groupByMode = "session";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

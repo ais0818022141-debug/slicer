@@ -1,0 +1,2467 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - العينية (أمراض العدسة والزرق)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B1818;
+            --primary-dark: #5A0F0F;
+            --primary-rgb: 139, 24, 24;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - العينية (أمراض العدسة والزرق)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">التصنيف:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع التصنيفات (الكل - 32 سؤال)</option>
+                    <option value="topic-1">أمراض العدسة والزرق (32 سؤال)</option>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل التصنيف المحدد (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">العينية</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب المواضيع)</p>
+                <p class="stats-summary" id="statsSummary">32 سؤال • 1 مواضيع • 2018 - 2026</p>
+            </div>
+
+            <div class="index-section-title">فهرس المواضيع والتصنيفات</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="topic-1">
+                    <a href="#topic-1" class="index-row" data-group-id="topic-1" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018">
+                        <span class="index-topic-name">أمراض العدسة والزرق</span>
+                        <span class="index-topic-meta">
+                            <span>2018 - 2026</span>
+                            <span class="index-count">32 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'topic-1', 'أمراض العدسة والزرق')" title="تحميل أمراض العدسة والزرق كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018" data-group-id="topic-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="topic-1">
+                    <div class="topic-title-text">أمراض العدسة والزرق</div>
+                    <span class="topic-counter">32 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_optho_065" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">العلامة الصحيحة في الزرق الولادي لطفل عمره ثلاثة أشهر هي:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الصلبة رقيقة ومزرقة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تشققات في غشاء بومان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فحص زاوية الغرفة الأمامية يظهر حلقة كايزر فليشر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يتراوح قطر القرنية بين 9.5 - 9 ملم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">بيت أمامي ضحل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الصلبة رقيقة ومزرقة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ارتفاع الضغط المزمن داخل العين لدى الرضيع يسبب تمدداً في جدران المقلة غير المكتملة الصلابة، فتترقق الصلبة ويظهر اللون الأزرق للعنبة تحتها، وهذه علامة موثوقة للزرق الخلقي عند الرضع، لذلك خيار (<b class="opt-letter-tag">A)</b> هو الصحيح.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">B)</b> خاطئ، التشققات تحدث في غشاء ديسميه (خطوط هاب) وليس غشاء بومان. (<b class="opt-letter-tag">C)</b> خاطئ، حلقة كايزر-فلايشر علامة لداء ويلسون وليست للزرق الولادي. (<b class="opt-letter-tag">D)</b> خاطئ، قطر القرنية في الزرق الولادي يكون كبيراً (&gt;11 ملم) لا 9-9.5 ملم. (<b class="opt-letter-tag">E)</b> خاطئ، الغرفة الأمامية في الزرق الولادي تكون عميقة وليست ضحلة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الزرق الولادي (عين البقر): كبر حجم المقلة، صلبة رقيقة مزرقة، قطر قرنية &gt;11 ملم قبل عمر سنة، خطوط هاب (تمزق ديسميه)، وغشاء باركان مع غرفة أمامية عميقة (غير ضحلة).</span>
+        </div>
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_optho_066" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">مريضة تشكو من تدنٍ في حدة البصر في العين اليمنى مع ألم عيني شديد، تبين بالفحص وجود مفرزات مائية واحتقان هدبي مع ضحالة في الغرفة الأمامية ووذمة في القرنية وتوسع حدقة وعدم تفاعلها للنور. التشخيص المرجح هو:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهابملتحمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قرحة قرنية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب قزحية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نزف تحت الملتحمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">هجمة زرق حادة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — هجمة زرق حادة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انسداد زاوية الغرفة الأمامية المفاجئ يمنع تصريف الخلط المائي فيرتفع الضغط داخل العين بشكل حاد، مسبباً وذمة قرنية وضحالة الغرفة الأمامية وشلل العضلة العاصرة للحدقة (توسع حدقي ثابت) مع ألم شديد وتدنٍ بصري، وهذه الصورة مطابقة تماماً لهجمة الزرق الحاد (خيار <b class="opt-letter-tag">E)</b>.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">A)</b> خاطئ، التهاب الملتحمة لا يسبب ضحالة الغرفة الأمامية ولا توسع الحدقة. (<b class="opt-letter-tag">B)</b> خاطئ، قرحة القرنية لا تترافق عادة بتوسع حدقي وثبات تفاعلها. (<b class="opt-letter-tag">C)</b> خاطئ، التهاب القزحية يسبب تقبض الحدقة وليس توسعها. (<b class="opt-letter-tag">D)</b> خاطئ، نزف تحت الملتحمة حالة لا مؤلمة ولا تؤثر على الحدقة أو القرنية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">هجمة الزرق الحاد: ألم عيني شديد، تدنٍ مفاجئ بالبصر، احتقان هدبي، غرفة أمامية ضحلة، وذمة قرنية، وحدقة نصف متوسعة ثابتة لا تتفاعل للضوء - حالة إسعافية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_067" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">كل الأدوية التالية تعطى في علاج الزرق البدئي مفتوح الزاوية، ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بيلوكاربين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">مانیتول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تيمولول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">لانانو بروست.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">دزولامید.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — مانیتول.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> المانيتول عامل مفرط التناضح يُعطى وريدياً لخفض الضغط داخل العين بسرعة في الحالات الإسعافية الحادة (كهجمة الزرق مغلق الزاوية)، وليس دواءً للعلاج المزمن المستمر للزرق البدئي مفتوح الزاوية، لذلك هو الخيار الشاذ (<b class="opt-letter-tag">B)</b>.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">A)</b> صحيح، البيلوكاربين مقبض حدقة يُستخدم في POAG. (<b class="opt-letter-tag">C)</b> صحيح، تيمولول حاصر بيتا أساسي في علاج POAG. (<b class="opt-letter-tag">D)</b> صحيح، لاتانوبروست من مضاهيات البروستاغلاندين المستخدمة في POAG. (<b class="opt-letter-tag">E)</b> صحيح، دورزولاميد مثبط كربونيك أنهيدراز موضعي يُستخدم في POAG.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">علاج الزرق البدئي مفتوح الزاوية المزمن يعتمد على القطرات الموضعية طويلة الأمد (حاصرات بيتا، مضاهيات البروستاغلاندين، مقبضات الحدقة، مثبطات الكربونيك أنهيدراز)؛ أما العوامل مفرطة التناضح كالمانيتول فتُستخدم إسعافياً في هجمات الزرق الحاد مغلق الزاوية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_068" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">كل مما يلي صحيح فيما يتعلق بالساد الولادي، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يتظاهر بحدقة بيضاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">من أشكاله الساد القطبي الأمامي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تتصف الكثافة بازدياد حجمها بشكل سريع لتشمل كامل العدسة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">من أشكاله الساد النووي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يعالج الساد التام جراحياً باكراً ما أمكن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — تتصف الكثافة بازدياد حجمها بشكل سريع لتشمل كامل العدسة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> خلافاً للساد المكتسب (كالشيخي) الذي يتطور ويزداد تدريجياً، فإن كثافة الساد الولادي ثابتة منذ نشوئها ولا تكبر لتشمل كامل العدسة، لذلك فإن وصفها بالازدياد السريع في الحجم مخالف لطبيعتها المرضية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، الحدقة البيضاء علامة مميزة له. <b class="opt-letter-tag">B)</b> صحيح، الساد القطبي الأمامي من أشكاله. <b class="opt-letter-tag">D)</b> صحيح، الساد النووي من أشكاله. <b class="opt-letter-tag">E)</b> صحيح، الساد التام (الكثيف) يعالج جراحياً باكراً خوفاً من الغمش.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الساد الولادي كثافة عدسية ثابتة الحجم تتشكل ضمن الرحم أو بعد الولادة بفترة قصيرة، تتظاهر بالحدقة البيضاء (عين القطة)، وعلاجه الجراحي الباكر إلزامي لتجنب الغمش.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_069" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">يتميز الزرق البدئي مفتوح الزاوية بكل مما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تبدلات في الساحة البصرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع ضغط العين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تقعر في حليمة العصب البصري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التصاقات خلفية 360 درجة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">زاوية غرفة أمامية مفتوحة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — التصاقات خلفية 360 درجة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الزرق البدئي مفتوح الزاوية ينجم عن استحالة في التربيق مع بقاء الزاوية مفتوحة تشريحياً، دون أي التصاق أو انسداد ميكانيكي، لذلك فإن الالتصاقات الخلفية المحيطية 360 درجة (وهي علامة التهابية أو من مضاعفات إغلاق الزاوية) لا تُعد من سماته.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، تبدلات الساحة البصرية من معايير التشخيص. <b class="opt-letter-tag">B)</b> صحيح، ارتفاع الضغط أساسي في الآلية الإمراضية. <b class="opt-letter-tag">C)</b> صحيح، التقعر الحليمي علامة اعتلال العصب الزرقي. <b class="opt-letter-tag">E)</b> صحيح، الزاوية مفتوحة تشريحياً بالتعريف.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">POAG: زاوية مفتوحة، ارتفاع ضغط العين، اعتلال عصب بصري زرقي (تقعر)، وعيوب مميزة بالساحة البصرية؛ الالتصاقات الخلفية ليست من سماته.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_070" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">كل ما يلي هو من أسباب الساد الولادي والساد الخلقي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الاضطرابات الاستقلابية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">النزلة الوافدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التوكسوبلازموم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب الملتحمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التعرض للاشعة السينية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — التهاب الملتحمة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تنشأ كثافة الساد الولادي عن اضطراب استقلابي أو إنتان يصيب العدسة أثناء التطور الجنيني أو عن أذية إشعاعية مباشرة، أما التهاب الملتحمة فهو إصابة سطحية للملتحمة لا تشارك في استقلاب أو شفافية العدسة، فلا علاقة سببية له بالساد.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، كالغالاكتوزيميا ونقص جارات الدرق. <b class="opt-letter-tag">B)</b> صحيح، الحصبة الألمانية إنتان رحمي مؤهب. <b class="opt-letter-tag">C)</b> صحيح، من الإنتانات الرحمية المسببة. <b class="opt-letter-tag">E)</b> صحيح، الأشعة المؤينة من الأسباب الفيزيائية المعروفة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أسباب الساد الولادي: اضطرابات استقلابية (غالاكتوزيميا)، إنتانات داخل الرحم (حصبة ألمانية، توكسوبلازموز، مضخم للخلايا)، وتعرض للأشعة المؤينة؛ الالتهابات الملتحمية ليست سبباً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_071" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">كل ما يلي صحيح في مرحلة الساد المنتبج ماعدا:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يمكن ان يتطور حسر البصر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يمكن ان يرتفع الضغط داخل العين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تشوش الرؤية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يزداد حجم العدسة لامتصاصها الماء من الخلط المائي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يزداد خطر انفصال الشبكية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — يزداد خطر انفصال الشبكية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في هذه المرحلة تمتص العدسة الماء من الخلط المائي فيزداد حجمها وتندفع القزحية للأمام، مما يضيق الزاوية ويرفع الضغط داخل العين (زرق انسدادي)، وهذه الآلية لا تترافق بزيادة خطر انفصال الشبكية الذي هو اختلاط جراحي أو رضي منفصل تماماً عن انتباج العدسة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، الانتباج يسبب حسراً في البصر. <b class="opt-letter-tag">B)</b> صحيح، انسداد الزاوية يرفع الضغط داخل العين. <b class="opt-letter-tag">C)</b> صحيح، تشوش الرؤية من الأعراض المرافقة. <b class="opt-letter-tag">D)</b> صحيح، هذه هي آلية الانتباج بالتحديد.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الساد المنتبج: امتصاص الخلط المائي يزيد حجم العدسة فيسبب حسر بصر وضحالة الغرفة الأمامية وارتفاع الضغط (زرق شكل العدسة)؛ لا علاقة له مباشرة بانفصال الشبكية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_072" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">الإجابة الصحيحة في هجمة الزرق الحادة مغلق الزاوية هي:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قرنية رائقة مع غرفة أمامية متوسطة العمق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">احتقان شديد وخاصة حول اللم (الحوف).</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">حدقة مقبضة غير متفاعلة للضوء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نزف في الزجاجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتفاع خفيف في الضغط داخل المقلة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — احتقان شديد وخاصة حول اللم (الحوف).</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الارتفاع المفاجئ والشديد لضغط العين نتيجة انسداد التربيق بالقزحية المحيطية يسبب احتقاناً وعائياً هدبياً واضحاً وشديداً بشكل خاص حول منطقة اللم (الحوف)، وهو من العلامات المميزة سريرياً لتفريق هذه الحالة عن التهابات العين الأخرى.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> خاطئ، القرنية تصبح وذمية معتمة وليست رائقة، والغرفة الأمامية ضحلة وليست متوسطة. <b class="opt-letter-tag">C)</b> خاطئ، الحدقة بيضوية نصف متسعة وليست مقبضة. <b class="opt-letter-tag">D)</b> خاطئ، لا يوجد نزف زجاجي في هذه الحالة. <b class="opt-letter-tag">E)</b> خاطئ، الارتفاع في الضغط شديد جداً (50-100 ملم ز) وليس خفيفاً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">هجمة الزرق الحاد: ألم شديد، احتقان هدبي حول اللم، وذمة قرنية، حدقة بيضوية نصف متسعة غير متفاعلة، وضغط عين مرتفع جداً (50-100 ملم ز).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_073" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">الإجابة الصحيحة في الزرق البدئي مفتوح الزاوية هي:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">لا تظهر تبدلات في الساحة البصرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع الضغط داخل المقلة أكثر مما تحمله أنسجة العين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يوجد تماس قزحي – قرني محيطي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">العلاج جراحي إسعافي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">مرض عرضي مما يؤدي إلى كشفه مبكراً.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — ارتفاع الضغط داخل المقلة أكثر مما تحمله أنسجة العين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الآلية الأساسية هي عدم توازن بين إنتاج الخلط المائي وتصريفه بسبب استحالة التربيق، فيرتفع الضغط داخل المقلة إلى درجة تفوق قدرة تحمل النسج العينية (خاصة العصب البصري)، مما يؤدي تدريجياً لاعتلال عصبي زرقي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> خاطئ، تظهر تبدلات مميزة في الساحة البصرية مع تقدم المرض. <b class="opt-letter-tag">C)</b> خاطئ، التماس القزحي القرني المحيطي يخص الزرق مغلق الزاوية وليس مفتوح الزاوية. <b class="opt-letter-tag">D)</b> خاطئ، العلاج دوائي بدئياً وليس جراحياً إسعافياً. <b class="opt-letter-tag">E)</b> خاطئ، المرض لا عرضي غالباً مما يؤخر تشخيصه.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">POAG ينجم عن ارتفاع ضغط العين متجاوزاً قدرة تحمل أنسجة العصب البصري، وهو مرض مزمن غير عرضي حتى مراحل متقدمة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_074" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">كل ما يلي من أعراض الساد الشيخي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يصاب المريض بقصور (حسر) البصر ناجم عن زيادة القوة الكاسرة للعدسة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">شفع وتعدد رؤية وحيد الجانب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">رؤية نقاط سوداء في الساحة البصرية متحركة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص حدة البصر التدريجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">عشاوة ليلية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — رؤية نقاط سوداء في الساحة البصرية متحركة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تنجم أعراض الساد الشيخي عن تبعثر الأشعة الضوئية وزيادة القوة الكاسرة الناتجة عن كثافات العدسة نفسها، أما رؤية نقاط سوداء متحركة بالساحة البصرية فهي عرض مرتبط بأمراض الزجاجي أو الشبكية (كالانحلال الزجاجي أو انفصال الشبكية) وليست ناجمة عن كثافة العدسة، </div><div class="exp-section exp-note"><b class="exp-header-tag">ملاحظة:</b> ورد أحد الخيارات في الامتحان &quot;يصاب المريض بقصو بصر&quot; وليس حسر بصر كخطأ إملائي وتم حذف السؤال.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، زيادة القوة الكاسرة تسبب حسر بصر ثانوي. <b class="opt-letter-tag">B)</b> صحيح، عدم تجانس الكثافة العدسية يسبب شفعاً وحيد الجانب. <b class="opt-letter-tag">D)</b> صحيح، النقص التدريجي لحدة البصر هو العرض الرئيسي. <b class="opt-letter-tag">E)</b> صحيح، العشاوة الليلية تحدث في الإصابة المحيطية للعدسة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أعراض الساد الشيخي: نقص تدريجي لحدة البصر، حسر بصر مكتسب، شفع أحادي الجانب، وعشاوة ليلية في الإصابة المحيطية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_075" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">كل ما يلي صحيح في الزرق الولادي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">المعالجة جراحية دوماً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">دماع وخوف من الضياء وتشنج أجفان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يوجد خطوط هاب في القرنية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اعطاء قطرات خافضة لضغط العين مدى الحياة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">كبر قطر القرنية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — اعطاء قطرات خافضة لضغط العين مدى الحياة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> بما أن الزرق الولادي البدئي ناجم عن سوء تطور تشريحي في زاوية الغرفة الأمامية (غشاء باركان)، فإن العلاج الدوائي لا يصحح هذا الخلل التشريحي، لذلك يكون العلاج جراحياً دوماً (خزع الزاوية أو الترابيق)، ولا يوجد استطباب لإعطاء قطرات خافضة للضغط مدى الحياة كعلاج نهائي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، العلاج جراحي دوماً في هذا المرض. <b class="opt-letter-tag">B)</b> صحيح، من التظاهرات السريرية النموذجية. <b class="opt-letter-tag">C)</b> صحيح، خطوط هاب هي تمزقات في غشاء ديسميه المميزة. <b class="opt-letter-tag">E)</b> صحيح، كبر قطر القرنية علامة مرضية أساسية (عين البقر).</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الزرق الولادي: دماع، رهاب ضوئي، تشنج أجفان، خطوط هاب، كبر قطر القرنية؛ العلاج جراحي دوماً (خزع الزاوية/الترابيق).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_076" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">كل ما يلي في علاج هجمة الزرق مغلق الزاوية عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">مانيتول Mannitol وريدياً و هي مادة مفرطة الحلولية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تعطى خافطات الضغط الموضعية مثل التيمولول.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">مسكن للألم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اسيتازولاميد وريدياً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">البيلوكاربين بهدف توسيع الحدقة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — البيلوكاربين بهدف توسيع الحدقة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> البيلوكاربين ناهض مسكاريني يُحدث تقبضاً في العضلة العاصرة للحدقة، فيسحب القزحية المحيطية بعيداً عن التربيق ويساعد على فتح الزاوية، وبالتالي فإن استخدامه بهدف توسيع الحدقة هو عكس آليته الدوائية والغاية العلاجية منه تماماً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، المانيتول مادة مفرطة الحلولية تخفض الضغط سريعاً. <b class="opt-letter-tag">B)</b> صحيح، حاصرات بيتا الموضعية جزء من العلاج البدئي. <b class="opt-letter-tag">C)</b> صحيح، الألم الشديد يستدعي مسكنات. <b class="opt-letter-tag">D)</b> صحيح، الأسيتازولاميد الوريدي ينقص إفراز الخلط المائي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">علاج هجمة الزرق الحاد: مانيتول وأسيتازولاميد وريدياً، تيمولول موضعياً، ومسكنات؛ البيلوكاربين يُعطى كمقبض حدقة (Miotic) لفتح الزاوية، وليس لتوسيعها.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_077" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">كل ما يلي صحيح في مرحلة الساد شديد النضج Hypermature عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يزداد عمق الغرفة الامامية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ينقص تمييه العدسة فيزداد حجمها.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تسقط النواة الى الاسفل ويسمى في هذه المرحلة ساد مورغاني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يرى الساد ابيض الى بني عدا النواة تبدو سمراء اللون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">مع الزمن يتميع القشر وترق المحفظة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — ينقص تمييه العدسة فيزداد حجمها.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في هذه المرحلة تفقد العدسة الماء (جفاف) نتيجة تسرب القشر المتميع عبر المحفظة المترققة، فينقص حجمها وليس العكس، وهذا ما يفسر ازدياد عمق الغرفة الأمامية في هذه المرحلة (خلافاً للساد المنتبج الذي يزداد فيه الحجم بامتصاص الماء).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، نقص حجم العدسة يزيد عمق الغرفة الأمامية. <b class="opt-letter-tag">C)</b> صحيح، سقوط النواة يُسمى ساد مورغاني. <b class="opt-letter-tag">D)</b> صحيح، اللون الأبيض إلى البني مع نواة سمراء وصفي لهذه المرحلة. <b class="opt-letter-tag">E)</b> صحيح، تميع القشر وترقق المحفظة سمة أساسية لهذه المرحلة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الساد مفرط النضج (Hypermature): تميع القشر وترقق المحفظة، جفاف العدسة ونقص حجمها (عمق الغرفة الأمامية يزداد)، وقد تهبط النواة (ساد مورغاني).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_078" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">يعد الساد اختلاطاً للآتي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">السكري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">رض كليل على العين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الستيروئيدات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">داء غريف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التهاب القزحية والجسم الهدبي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — داء غريف.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يحدث الساد الثانوي نتيجة اضطراب استقلابي مباشر في العدسة (كما في السكري)، أو أذية سمية/التهابية موضعية (الستيروئيدات، التهاب العنبة)، أو رضية مباشرة، بينما داء غريف هو اضطراب مناعي درقي يصيب النسج الحجاجية وخارج العين (كالجحوظ واعتلال العضلات خارج المقلة) دون آلية معروفة تسبب تكثف العدسة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، السكري يسبب ساداً نووياً مبكراً. <b class="opt-letter-tag">B)</b> صحيح، الرض الكليل من أسباب الساد الرضي (كثافة الوردة). <b class="opt-letter-tag">C)</b> صحيح، الستيروئيدات تسبب ساداً تحت المحفظة الخلفي. <b class="opt-letter-tag">E)</b> صحيح، التهاب العنبة الأمامي المزمن هو الأشيع بين أسباب الساد الثانوي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أسباب الساد الثانوي الشائعة: السكري، الستيروئيدات، الرض الكليل، والالتهابات العنبية المزمنة؛ داء غريف ليس من أسبابه المعروفة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_079" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">راجعت سيدة 50 سنة تعاني من صداع وألم شديد بالعين اليسرى مع عدم وضوح الرؤية وهالات لونية، بالفحص بيت أمامي ضحل وحدقة بيضوية وضغط عين 65 ملم ز واحتقان هدبي، التشخيص هو:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب ملتحمة قيحي حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب شريان صدغي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب قزحية وجسم هدبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قرحة قرنية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">هجمة زرق حاد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — هجمة زرق حاد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> اجتماع الألم الشديد والصداع والهالات الملونة (بسبب وذمة القرنية) مع ضحالة الغرفة الأمامية والحدقة البيضوية والضغط المرتفع جداً (65 ملم ز) والاحتقان الهدبي يشكل الصورة السريرية الكلاسيكية لهجمة الزرق الحاد الناتجة عن انغلاق مفاجئ للزاوية بآلية الحصار الحدقي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> خاطئ، التهاب الملتحمة القيحي لا يسبب ارتفاعاً بهذه الشدة بضغط العين ولا ضحالة بالغرفة الأمامية. <b class="opt-letter-tag">B)</b> خاطئ، التهاب الشريان الصدغي يسبب صداعاً صدغياً دون تبدلات بيت أمامي أو ضغط عين كهذه. <b class="opt-letter-tag">C)</b> خاطئ، التهاب القزحية يترافق عادة بانخفاض أو ضغط طبيعي وليس هذا الارتفاع الشديد. <b class="opt-letter-tag">D)</b> خاطئ، قرحة القرنية تترافق بألم وإفرازات دون هذا الارتفاع الحاد بالضغط.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الثلاثية التشخيصية: صداع وألم عيني حاد مع هالات ملونة، غرفة أمامية ضحلة وحدقة بيضوية، وضغط عين مرتفع جداً (&gt;50-70 ملم ز) مع احتقان هدبي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_080" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">في الزرق البدئي مفتوح الزاوية:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ارتفاع الضغط داخل المقلة أكثر مما تتحمله أنسجة العين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يوجد تماس قزحي - قرني محيطي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">لا تظهر تبدلات في الساحة البصرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">العلاج جراحي إسعافي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">مرض عرضي مما يؤدي إلى كشفه مبكراً.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ارتفاع الضغط داخل المقلة أكثر مما تتحمله أنسجة العين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الزرق البدئي مفتوح الزاوية ينجم عن نقص تصريف الخلط المائي بسبب استحالة في شبكة الترابيق، مما يرفع الضغط داخل المقلة إلى درجة تتجاوز قدرة تحمل ألياف العصب البصري فيحدث تخرب زرقي تدريجي دون انغلاق الزاوية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">B)</b> التماس القزحي القرني المحيطي يميز الزرق مغلق الزاوية وليس المفتوح. (<b class="opt-letter-tag">C)</b> الساحة البصرية تتأثر بشكل نموذجي (عتمة بيجروم، درجة رون) وليس العكس. (<b class="opt-letter-tag">D)</b> العلاج بدئياً دوائي وليس جراحياً إسعافياً. (<b class="opt-letter-tag">E)</b> المرض غير عرضي في معظم مراحله وهذا سبب تأخر تشخيصه لا تفسير مبكر.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">POAG مرض ثنائي الجانب صامت سريرياً حتى مراحل متقدمة، تبقى فيه الزاوية مفتوحة وعناصرها الأربعة مرئية بالتنظير.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_081" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">يحدث اختلاط في إحدى المراحل من تطور الساد:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ساد بدئي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ساد تحت محفظة خلفية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ساد غير ناضج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ساد منتبج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ساد نووي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — ساد منتبج.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في الساد المنتبج تمتص العدسة الخلط المائي فيزداد حجمها وتنتبج، فتدفع القزحية للأمام وتنقص عمق الغرفة الأمامية بشكل حاد، مما يسد زاوية التصريف ويحدث هجمة زرق حادة مغلق الزاوية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">A)</b> الساد البدئي (غير الناضج) لا يترافق باختلاطات زرقية حادة. (<b class="opt-letter-tag">B)</b> الساد تحت المحفظة الخلفي يؤثر على الرؤية دون اختلاط زرقي مباشر. (<b class="opt-letter-tag">C)</b> الساد غير الناضج مستقر نسبياً دون تبدل حاد بعمق الغرفة الأمامية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الساد المنتبج: تنتبج العدسة بامتصاص الماء، تندفع القزحية أمامياً فتضيق الزاوية وقد تسبب هجمة زرق حادة (زرق شكل العدسة).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_082" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">يصادف انزياح العدسة من مكانها الطبيعي في الحالات التالية عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بيلة الهيموسيستيئين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الرض العيني الشديد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">مد البصر عالي الدرجة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">متلازمة مارفان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">عين البقر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — مد البصر عالي الدرجة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> مد البصر عالي الدرجة لا يُعد من أسباب انزياح العدسة المعروفة؛ الأسباب الحقيقية تشمل اضطرابات النسيج الضام والألياف المعلقة (مارفان، بيلة الهوموسيستئين) أو الرض المباشر الذي يمزق هذه الألياف.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">A)</b> بيلة الهوموسيستئين سبب وراثي مثبت لانتباذ العدسة. (<b class="opt-letter-tag">B)</b> الرض العيني الشديد يمزق الأربطة المعلقة ويسبب خلعاً مكتسباً. (<b class="opt-letter-tag">D)</b> متلازمة مارفان سبب وراثي كلاسيكي لانتباذ العدسة نحو الأعلى.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أسباب انتباذ العدسة: الرض، بيلة الهوموسيستئين، متلازمة مارفان، عين البقر (الزرق الخلقي)؛ أما الحسر (وليس المد) هو المرتبط بها من أسواء الانكسار.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_083" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">يمكن أن يحدث الساد كاختلاط لكل مما يلي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">السكري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب القزحية والجسم الهدبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الاستخدام المطول للستيروئيدات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">داء غريف العيني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الرضوض.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — داء غريف العيني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> داء غريف العيني هو اعتلال مناعي يصيب العضلات والنسج الحجاجية والعصب البصري ولا يسبب تكثفاً استقلابياً أو التهابياً في العدسة، بخلاف السكري (ساد نووي مبكر) والالتهاب العنبي المزمن والستيروئيدات التي تحدث تكثفاً مباشراً في ألياف العدسة أو محفظتها.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">A)</b> الداء السكري يسبب ساداً نووياً مبكراً. (<b class="opt-letter-tag">B)</b> التهاب القزحية والجسم الهدبي المزمن أشيع سبب للساد الثانوي. (<b class="opt-letter-tag">C)</b> الاستخدام المطول للستيروئيدات يسبب ساداً تحت المحفظة الخلفي. (<b class="opt-letter-tag">E)</b> الرضوض تسبب كثافة الوردة الرضية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أسباب الساد الثانوي الشائعة: السكري، التهاب العنبة المزمن، الستيروئيدات، الرضوض؛ داء غريف العيني (الجحوظ الدرقي) ليس منها.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_084" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">20.</span>
+                    <span class="q-stem">يترافق الزرق المزمن المفتوح الزاوية مع كل مما يلي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">زيادة تقعر العصب البصري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع الضغط داخل المقلة أكثر من 21 ملم زئبقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ترى عناصر الزاوية الأربعة بتنظير الزاوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">غرفة أمامية قليلة العمق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تبدلات في الساحة البصرية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — غرفة أمامية قليلة العمق.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في الزرق المزمن مفتوح الزاوية تكون الآلية استحالة في شبكة الترابيق وليس انسداداً ميكانيكياً للزاوية، لذا تبقى الغرفة الأمامية بعمقها الطبيعي، بخلاف الزرق مغلق الزاوية حيث تكون الغرفة ضحلة بسبب الحصار الحدقي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">A)</b> زيادة تقعر العصب البصري علامة تشخيصية أساسية. (<b class="opt-letter-tag">B)</b> الضغط أعلى من 21 ملم زئبقي معيار تشخيصي. (<b class="opt-letter-tag">C)</b> رؤية عناصر الزاوية الأربعة تؤكد بقاء الزاوية مفتوحة. (<b class="opt-letter-tag">E)</b> تبدلات الساحة البصرية (عتمة بيجروم، درجة رون) من علامات الترقي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">POAG: زاوية مفتوحة، عمق غرفة أمامية طبيعي، عناصر الزاوية الأربعة مرئية بالتنظير، مع تقعر عصبي وتبدلات ساحة بصرية عند الضغط &gt;21.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_085" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">21.</span>
+                    <span class="q-stem">كل مما يلي يشاهد في نوبة الزرق الحادة عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قرنية شفافة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تدني رؤية مفاجئ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">صداع صدغي مع غثيان وإقياء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ارتفاع الضغط داخل العين حتى 70.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ضحالة الغرفة الأمامية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — قرنية شفافة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الارتفاع المفاجئ والشديد بالضغط داخل العين يؤدي لتسرب السائل إلى سدى القرنية فتصبح وذمية عاتمة وليست شفافة، وهذا ما يفسر تدني الرؤية المفاجئ والهالات حول الأضواء التي يشكو منها المريض.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">B)</b> تدني الرؤية المفاجئ من التظاهرات الأساسية للهجمة الحادة. (<b class="opt-letter-tag">C)</b> الصداع الصدغي مع الغثيان والإقياء أعراض مرافقة نموذجية. (<b class="opt-letter-tag">D)</b> الضغط قد يصل حتى 70 ملم زئبقي أو أكثر في الهجمة الحادة. (<b class="opt-letter-tag">E)</b> ضحالة الغرفة الأمامية علامة مميزة للحصار الحدقي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">نوبة الزرق الحاد: ضغط مرتفع جداً (حتى 70-100)، وذمة قرنية، حدقة بيضوية نصف متسعة، ضحالة غرفة أمامية، صداع وغثيان وإقياء.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_086" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">22.</span>
+                    <span class="q-stem">كل مما يلي من أسباب الساد الولادي عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انسمام حملي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">غالاكتوزيميا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">المقوسات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">وراثة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">حصبة ألمانية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — انسمام حملي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الانسمام الحملي (تسمم الحمل) اضطراب وعائي أمومي لا يسبب أذية استقلابية أو خمجية مباشرة لعدسة الجنين، بخلاف الاضطرابات الاستقلابية (غالاكتوزيميا) أو الوراثية أو الإنتانات الخمجية داخل الرحم التي تصيب العدسة أثناء تكونها.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">B)</b> الغالاكتوزيميا سبب استقلابي مثبت (ساد قطرة الزيت). (<b class="opt-letter-tag">C)</b> داء المقوسات من الإنتانات ضمن الرحم المسببة للساد الولادي. (<b class="opt-letter-tag">D)</b> الوراثة (طفرة جسدية سائدة) سبب شائع للساد الولادي ثنائي الجانب. (<b class="opt-letter-tag">E)</b> الحصبة الألمانية من أشهر الإنتانات الجنينية المسببة للساد.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أسباب الساد الولادي: وراثة، غالاكتوزيميا، إنتانات ضمن الرحم (حصبة ألمانية، مقوسات، مضخم للخلايا، حماق)؛ الانسمام الحملي لا يسبب ساداً ولادياً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_087" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">23.</span>
+                    <span class="q-stem">يصادف انزياح العدسة من مكانها في الحالات التالية ماعدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بيلة الهوموسيستئين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">متلازمة مارفان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الرض العيني الشديد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">مد البصر عالي الدرجة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">عين البقر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — مد البصر عالي الدرجة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> مد البصر عالي الدرجة لا يترافق آلياً مع ضعف الأربطة المعلقة للعدسة، بخلاف الاضطرابات الوراثية للنسيج الضام (مارفان، بيلة الهوموسيستئين) أو الرض المباشر أو تمدد المقلة في عين البقر التي تشد الألياف المعلقة وتسبب انزياح العدسة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">A)</b> بيلة الهوموسيستئين سبب وراثي كلاسيكي لانتباذ العدسة. (<b class="opt-letter-tag">B)</b> متلازمة مارفان تترافق بخلع عدسة نحو الأعلى مع ثلمة استوائية مميزة. (<b class="opt-letter-tag">C)</b> الرض العيني الشديد يمزق الأربطة المعلقة مباشرة. (<b class="opt-letter-tag">E)</b> عين البقر (تمدد المقلة بالزرق الخلقي) يشد الأربطة المعلقة ويسبب الانتباذ.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أسباب انتباذ العدسة: بيلة الهوموسيستئين، مارفان، الرض الشديد، عين البقر (الزرق الخلقي)؛ مد البصر عالي الدرجة ليس منها.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_088" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">24.</span>
+                    <span class="q-stem">يترافق الزرق المزمن مفتوح الزاوية مع كل مايلي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نرى عناصر الزاوية الأربعة بتنظير الزاوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الغرفة الأمامية قليلة العمق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تبدلات في الساحة البصرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">زيادة تقعر القرص البصري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتفاع الضغط داخل المقلة أعلى من 21 ملم زئبقي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الغرفة الأمامية قليلة العمق.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في الزرق المزمن مفتوح الزاوية تكون الآلية استحالة في شبكة الترابيق وليس انسداداً ميكانيكياً للزاوية، لذا تبقى الغرفة الأمامية بعمقها الطبيعي، بخلاف الزرق مغلق الزاوية حيث تكون الغرفة ضحلة بسبب الحصار الحدقي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">A)</b> رؤية عناصر الزاوية الأربعة تؤكد بقاء الزاوية مفتوحة. (<b class="opt-letter-tag">C)</b> تبدلات الساحة البصرية من علامات ترقي المرض. (<b class="opt-letter-tag">D)</b> زيادة تقعر القرص البصري علامة تشخيصية أساسية. (<b class="opt-letter-tag">E)</b> الضغط أعلى من 21 ملم زئبقي معيار تشخيصي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">POAG: زاوية مفتوحة، عمق غرفة أمامية طبيعي، عناصر الزاوية الأربعة مرئية بالتنظير، مع تقعر عصبي وتبدلات ساحة بصرية عند الضغط &gt;21.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_089" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">25.</span>
+                    <span class="q-stem">في الساد كل مما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">في تكثف محيط العدسة يشعر المريض بعشاوة ليلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">في الساد مفرط النضج يحدث تميع في القشر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">في الساد المنتبج يحدث زرق تآقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">في الساد الناضج يكون عمق الغرفة الأمامية طبيعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">في الساد المنتبج يكون هناك نقص في عمق الغرفة الأمامية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — في الساد المنتبج يحدث زرق تآقي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العبارة الخاطئة تنسب الزرق التآقي للساد المنتبج، بينما الساد المنتبج يسبب فعلياً زرقاً مغلق الزاوية (شكل العدسة) نتيجة اندفاع القزحية أمامياً وضيق الزاوية؛ أما الزرق التآقي (الانحلالي) فينجم عن تسرب بروتينات العدسة عبر محفظة مترققة في الساد مفرط النضج.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> (<b class="opt-letter-tag">A)</b> تكثف محيط العدسة (القشري) يسبب عشاوة ليلية فعلاً. (<b class="opt-letter-tag">B)</b> الساد مفرط النضج يترافق بتميع القشر فعلاً. (<b class="opt-letter-tag">D)</b> عمق الغرفة الأمامية طبيعي في الساد الناضج فعلاً. (<b class="opt-letter-tag">E)</b> الساد المنتبج ينقص عمق الغرفة الأمامية فعلاً بسبب اندفاع القزحية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الساد المنتبج يسبب زرق شكل العدسة (مغلق الزاوية حاد)، بينما الساد مفرط النضج يسبب الزرق التآقي (الانحلالي) أو الآلي بتسرب بروتينات العدسة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_090" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">26.</span>
+                    <span class="q-stem">تصادف كل العلامات التالية أثناء هجمة الزرق الحادة عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">احتقان الملتحمة أشده هدبي حول الحوف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتفاع ضغط العين حتى 70 ملمز.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">وذمة في القرنية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">حدقة نصف متسعة متفاعلة للنور.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ضحالة في الغرفة الأمامية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — حدقة نصف متسعة متفاعلة للنور.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> إقفار وأذية العضلة العاصرة للحدقة الناجم عن الارتفاع الحاد والشديد في الضغط داخل المقلة يؤدي إلى شلل حركي حدقي، فتصبح الحدقة نصف متسعة وغير متفاعلة للنور، لا متفاعلة كما ورد في الخيار D.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> احتقان هدبي حول الحوف علامة نموذجية صحيحة. <b class="opt-letter-tag">B)</b> ارتفاع الضغط الشديد (حتى 70 ملمز) علامة مميزة. <b class="opt-letter-tag">C)</b> وذمة القرنية تحدث بسبب الارتفاع الحاد للضغط. <b class="opt-letter-tag">E)</b> ضحالة الغرفة الأمامية من أهم العلامات.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">في هجمة الزرق الحاد: حدقة بيضوية نصف متسعة **غير متفاعلة** للنور (وليست متفاعلة)، مع ضغط عين قد يصل حتى 70-100 ملمز.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_091" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">27.</span>
+                    <span class="q-stem">كل مما يلي صحيح بالساد المكتسب المرتبط بالعمر عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يبدو الساد القشري على شكل كثافات محيطية إسفينية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يترافق الساد النووي مع حسر البصر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يترافق الساد تحت المحفظة الخلفية بارتفاع ضغط العين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">من أشكاله ساد شجرة الميلاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يترافق ساد مورغاني مع تميع القشر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — يترافق الساد تحت المحفظة الخلفية بارتفاع ضغط العين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الساد تحت المحفظة الخلفي يتوضع أمام المحفظة الخلفية مباشرة ويترافق بوهج وتدني رؤية القريب، لكنه لا يسبب أي تغير في حجم العدسة أو عمق الغرفة الأمامية، وبالتالي لا يرفع ضغط العين، على عكس ما ورد في الخيار C.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الساد القشري يبدأ بكثافات إسفينية محيطية، صحيح. <b class="opt-letter-tag">B)</b> الساد النووي يزيد القوة الكاسرة مسبباً حسر بصر، صحيح. <b class="opt-letter-tag">D)</b> ساد شجرة الميلاد من أشكال الساد المكتسب، صحيح. <b class="opt-letter-tag">E)</b> ساد مورغاني يترافق بتميع القشر وغوص النواة، صحيح.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الساد تحت المحفظة الخلفي **لا** يرفع ضغط العين؛ ارتفاع الضغط يحدث في الساد المنتبج (غير الناضج) والساد مفرط النضج.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_092" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">28.</span>
+                    <span class="q-stem">كل مما يلي من أسباب الساد الولادي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الإصابة بالحصبة الألمانية أثناء الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الانسمام الحملي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الغالاكتوزيميا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الإصابة بداء المقوسات أثناء الحمل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الوراثة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الانسمام الحملي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الساد الولادي ينجم عن أخماج الحمل (الحصبة الألمانية، المقوسات، الفيروس المضخم للخلايا)، اضطرابات استقلابية (الغالاكتوزيميا)، أو وراثة سائدة؛ أما الانسمام الحملي (تسمم الحمل) فهو اضطراب وعائي أمومي لا يصيب شفافية عدسة الجنين.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الحصبة الألمانية خمج رحمي مثبت مرتبط بالساد الولادي. <b class="opt-letter-tag">C)</b> الغالاكتوزيميا سبب استقلابي كلاسيكي (ساد قطرة الزيت). <b class="opt-letter-tag">D)</b> داء المقوسات خمج رحمي مسبب للساد. <b class="opt-letter-tag">E)</b> الوراثة السائدة سبب أساسي في ثلثي الحالات.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الانسمام الحملي (Pre-eclampsia) لا يُعد من أسباب الساد الولادي، خلافاً للأخماج داخل الرحم والاضطرابات الاستقلابية والوراثة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_093" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">29.</span>
+                    <span class="q-stem">تصادف كل العلامات التالية أثناء هجمة الزرق الحادة عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">وذمة في القرنية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">احتقان الملتحمة أشده هدبي حول الحوف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">حدقة نصف متسعة وغير متفاعلة للنور.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ضحالة في الغرفة الأمامية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتفاع ضغط العين حتى 30 ملمز.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — ارتفاع ضغط العين حتى 30 ملمز.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الانسداد الحاد والكامل لزاوية الغرفة الأمامية يمنع تصريف الخلط المائي بشكل كامل ومفاجئ، فيقفز الضغط داخل المقلة إلى قيم عالية جداً تتجاوز 50-70 ملمز، وليس لقيمة معتدلة كـ 30 ملمز.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> وذمة القرنية علامة أساسية في الهجمة الحادة. <b class="opt-letter-tag">B)</b> الاحتقان الهدبي حول الحوف علامة نموذجية. <b class="opt-letter-tag">C)</b> الحدقة نصف المتسعة غير المتفاعلة صحيحة. <b class="opt-letter-tag">D)</b> ضحالة الغرفة الأمامية من العلامات الثابتة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">ضغط العين في هجمة الزرق الحاد يكون مرتفعاً جداً (50-100 ملمز عادة)؛ القيمة 30 ملمز منخفضة جداً لا تتوافق مع الصورة السريرية للهجمة الحادة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_094" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">30.</span>
+                    <span class="q-stem">يمكن أن يحدث الساد كاختلاط لكل ما يلي عدا:</span>
+                </div>
+                <span class="q-date-badge">شباط 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الستيروئيدات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">داء غريف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب القزحية والجسم الهدبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">السكري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الرضوض.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — داء غريف.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> داء غريف يصيب أساساً العضلات الحركية للعين والنسيج الحجاجي والعصب البصري (الاعتلال العضلي والجحوظ)، دون وجود آلية استقلابية أو التهابية مباشرة تؤثر على شفافية العدسة، خلافاً للستيروئيدات والسكري والالتهاب العنبي المزمن.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الستيروئيدات تسبب ساداً تحت محفظياً خلفياً ثم أمامياً، صحيح. <b class="opt-letter-tag">C)</b> التهاب القزحية والجسم الهدبي المزمن الأشيع سبباً للساد الثانوي. <b class="opt-letter-tag">D)</b> الداء السكري يسبب ساداً نووياً مبكر الحدوث.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الساد الثانوي يترافق بالستيروئيدات، الداء السكري، والتهاب القزحية والجسم الهدبي المزمن (الأشيع)؛ داء غريف (الدرقي العيني) ليس سبباً مباشراً للساد.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_095" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">31.</span>
+                    <span class="q-stem">تعالج هجمة الزرق الحادة بما يلي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">مانيتول وريدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ستيروئيد موضعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">خزع قزحية محيطي بالليزر بعد انتهاء الهجمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أسيتازولاميد وريدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">موسعات الحدقة (قطرة أتروبين وقطرة تيمولول).</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — موسعات الحدقة (قطرة أتروبين وقطرة تيمولول).</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> موسعات الحدقة (كالأتروبين) تزيد من تقبب القزحية للأمام وتُفاقم الحصار الحدقي وانسداد الزاوية، بينما الهدف العلاجي هو تضييق الحدقة (بيلوكاربين) لشد القزحية المحيطية وفتح الزاوية وتخفيض الضغط.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> المانيتول الوريدي يخفض الضغط بآلية فرط التناضح. <b class="opt-letter-tag">B)</b> الستيروئيد الموضعي يخفف الالتهاب المرافق. <b class="opt-letter-tag">C)</b> خزع القزحية بالليزر هو العلاج النهائي بعد صفاء القرنية. <b class="opt-letter-tag">D)</b> الأسيتازولاميد الوريدي يُنقص إفراز الخلط المائي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تُعالج الهجمة الحادة بمقبضات الحدقة (بيلوكاربين) لا بموسعاتها؛ توسيع الحدقة يزيد إغلاق الزاوية سوءاً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_optho_096" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">32.</span>
+                    <span class="q-stem">إن ظهور الساد في عين واحدة فقط مع بقاء العدسة الأخرى شفافة تماماً يجب أن يدعو إلى استقصاء ما يلي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">وجود سوابق التهابية في تلك العين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">متلازمة تغاير الصباغ لفوكس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">السوابق الرضية على العين المصابة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الاستخدام المديد للستيروئيدات الجهازية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">وجود إصابة ورمية في تلك العين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — الاستخدام المديد للستيروئيدات الجهازية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الستيروئيدات الجهازية تصل للعدسة عبر الدوران الجهازي فتؤثر على كلتا العينين معاً (ساد تحت محفظي خلفي ثنائي الجانب)، بخلاف الأسباب الموضعية كالرض أو الالتهاب أو الورم التي تصيب عيناً واحدة فقط.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> السوابق الالتهابية (التهاب عنبة مزمن أحادي) سبب معروف للساد أحادي الجانب. <b class="opt-letter-tag">B)</b> متلازمة تغاير الصباغ لفوكس سبب كلاسيكي للساد أحادي الجانب. <b class="opt-letter-tag">C)</b> سوابق الرض سبب موضعي أحادي الجانب. <b class="opt-letter-tag">E)</b> الأورام العنبية سبب موضعي أحادي الجانب.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أسباب الساد أحادي الجانب: الرض، الالتهاب (سوابق التهابية)، الورم، ومتلازمة تغاير الصباغ لفوكس؛ الستيروئيدات الجهازية المديدة تسبب ساداً **ثنائي الجانب**.</span>
+        </div>
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "32 سؤال • 1 مواضيع • 2018 - 2026";
+        const originalDocTitle = "بنك الأسئلة - العينية (أمراض العدسة والزرق)";
+        const subjectName = "العينية";
+        const groupByMode = "topic";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

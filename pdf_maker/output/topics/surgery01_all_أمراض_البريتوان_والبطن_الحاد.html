@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - الجراحة 1 (أمراض البريتوان والبطن الحاد)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B1818;
+            --primary-dark: #5A0F0F;
+            --primary-rgb: 139, 24, 24;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - الجراحة 1 (أمراض البريتوان والبطن الحاد)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">التصنيف:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع التصنيفات (الكل - 19 سؤال)</option>
+                    <option value="topic-1">أمراض البريتوان والبطن الحاد (19 سؤال)</option>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل التصنيف المحدد (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">الجراحة 1</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب المواضيع)</p>
+                <p class="stats-summary" id="statsSummary">19 سؤال • 1 مواضيع • 2018 - 2025</p>
+            </div>
+
+            <div class="index-section-title">فهرس المواضيع والتصنيفات</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="topic-1">
+                    <a href="#topic-1" class="index-row" data-group-id="topic-1" data-year="2025 2024 2023 2022 2021 2020 2019 2018">
+                        <span class="index-topic-name">أمراض البريتوان والبطن الحاد</span>
+                        <span class="index-topic-meta">
+                            <span>2018 - 2025</span>
+                            <span class="index-count">19 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'topic-1', 'أمراض البريتوان والبطن الحاد')" title="تحميل أمراض البريتوان والبطن الحاد كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2025 2024 2023 2022 2021 2020 2019 2018" data-group-id="topic-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="topic-1">
+                    <div class="topic-title-text">أمراض البريتوان والبطن الحاد</div>
+                    <span class="topic-counter">19 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_surgery01_177" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">راجع مريض قسم الإسعاف بشكوى ألم بطني شديد ومفاجئ منذ ساعة، بالفحص السريري البطن خشبي، يوجد هلال غازي تحت الحجاب الحاجز الأيمن في صورة الصدر، التشخيص الأكثر احتمالاً:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب طرق صفراوية صاعد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب زائدة دودية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب مرارة حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انثقاب حشا أجوف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التهاب معدة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — انثقاب حشا أجوف.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انثقاب جدار المعدة أو العفج يسمح بتسرب الهواء والمحتوى الهضمي إلى الجوف البريتواني، فيتجمع الهواء الحر تحته الحجاب مشكلاً الهلال الغازي المميز إشعاعياً، بينما يسبب التسرب الكيميائي الحاد تخريشاً صفاقياً شديداً يتظاهر سريرياً بتقلص عضلي لا إرادي (البطن الخشبي).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التهاب الطرق الصفراوية الصاعد يترافق بيرقان وحرارة دون هواء حر تحت الحجاب؛ التهاب الزائدة الدودية يسبب ألماً حرقفياً أيمن دون هواء حر أو بطن خشبي معمم عادة؛ التهاب المرارة الحاد يسبب ألماً مراقياً أيمن موضعاً دون هواء حر؛ التهاب المعدة يسبب ألماً شرسوفياً دون علامات انثقاب.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الهواء الحر تحت الحجاب الحاجز (Free air / crescent sign) على صورة الصدر الشاقفة عرض نوعي لانثقاب حشا أجوف (غالباً قرحة هضمية مثقوبة)؛ البطن الخشبي يعكس التهاب صفاق كيميائي/جرثومي منتشر.</span>
+        </div>
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_surgery01_178" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">تدبير مريض لديه بطن خشبية وعلى صورة الصدر يوجد هلال غازي تحت الحجاب الحاجر هو:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فتح بطن أو تنظير بطن إسعافي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ايكو للبطن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">طبقي محوري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تنظير هضمي علوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">لقمة باريتية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — فتح بطن أو تنظير بطن إسعافي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الهلال الغازي تحت الحجاب يدل على وجود هواء حر ضمن جوف البريتوان ناتج عن انثقاب حشا أجوف، وترافقه مع بطن خشبية (علامة التهاب بريتوان كيميائي حاد) يجعل التشخيص مؤكداً سريرياً وشعاعياً، فلا حاجة لمزيد من الاستقصاءات بل التداخل الجراحي الإسعافي المباشر.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> الإيكو لا يضيف شيئاً وقد يؤخر التدبير. <b class="opt-letter-tag">C)</b> الطبقي المحوري غير ضروري لتأكيد تشخيص واضح إسعافياً. <b class="opt-letter-tag">D)</b> التنظير الهضمي العلوي قد يزيد الانثقاب ويُفاقم تسرب الهواء والسوائل. <b class="opt-letter-tag">E)</b> اللقمة الباريتية خطيرة وممنوعة في الانثقاب لأنها تسبب التهاب بريتوان كيميائي إضافي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">البطن الخشبية (تقفع العضلات) + الهلال الغازي تحت الحجاب على صورة الصدر = التهاب بريتوان ثانوي لانثقاب حشا أجوف، والتدبير فتح بطن أو تنظير بطن إسعافي مباشرة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_179" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">يعد الآتي من الحالات غير الجراحية المقلدة للبطن الحاد الجراحي في الشرسوف، ما عدا: (آذار 2023):</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قصور الكظر الحاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب المعدة والأمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">حصيات كلوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نوبة فقر دم منجلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انسداد معوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — انسداد معوي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الحالات المقلدة (medical mimics) تسبب ألماً بطنياً شديداً دون آفة جراحية حقيقية تستوجب التداخل، بينما انسداد الأمعاء هو سبب بطني جراحي فعلي (آلية انسدادية حقيقية) وليس تقليداً لحالة جراحية، فلا يصح تصنيفه مع المقلدات.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> قصور الكظر الحاد يقلد البطن الحاد دون آفة جراحية. <b class="opt-letter-tag">B)</b> التهاب المعدة والأمعاء سبب طبي شائع مقلد. <b class="opt-letter-tag">C)</b> الحصيات الكلوية (القولنج الكلوي) تقلد الألم الشرسوفي/الجانبي. <b class="opt-letter-tag">D)</b> نوبة فقر الدم المنجلي قد تسبب ألماً بطنياً حاداً دون آفة جراحية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">من الحالات الطبية المقلدة للبطن الحاد الشرسوفي: قصور الكظر الحاد، التهاب المعدة والأمعاء، حصيات كلوية، ونوبة فقر دم منجلي؛ أما انسداد الأمعاء فهو حالة جراحية حقيقية وليست مقلدة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_180" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">كل ما يلي يدخل في التشخيص التفريقي لألم حاد في الشرسوف عدا: (أيلول 2022):</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب بنكرياس حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">احتشاء عضلة قلبية سفلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قولنج مراري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">داء كرون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">احتشاء مساريقي علوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — داء كرون.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> داء كرون يتظاهر عادة بألم في الحفرة الحرقفية اليمنى أو حول السرة (تبعاً لإصابته اللفائفية الطرفية الشائعة) وليس الشرسوف، بينما بقية الخيارات أسباب معروفة ومباشرة لألم الشرسوف الحاد.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> التهاب البنكرياس الحاد سبب كلاسيكي للألم الشرسوفي. <b class="opt-letter-tag">B)</b> احتشاء العضلة القلبية السفلي يُحاكي الألم الشرسوفي. <b class="opt-letter-tag">C)</b> القولنج المراري يتوضع غالباً بالشرسوف والربع العلوي الأيمن. <b class="opt-letter-tag">E)</b> الاحتشاء المساريقي العلوي يسبب ألماً شرسوفياً غير متناسب مع الفحص.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الألم الشرسوفي الحاد: قرحة هضمية، التهاب بنكرياس، احتشاء قلبي سفلي، قولنج مراري، إقفار مساريقي علوي؛ داء كرون ليس من التشاخيص النموذجية لهذا الموقع.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_181" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">الطريقة المفضلة لتشخيص انثقاب حشا أجوف هي: (أيلول 2022):</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إيكو بطن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تنظير معدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">صورة ظليلة للمعدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">MRI.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">صورة بطن بسيطة بوضعية الوقوف مع إظهار الحجابين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — صورة بطن بسيطة بوضعية الوقوف مع إظهار الحجابين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عند انثقاب حشا أجوف يتسرب الهواء من لمعة الأنبوب الهضمي إلى جوف البريتوان ويتجمع تحت الحجاب الحاجز بسبب خفته، فتُظهره الصورة الشعاعية البسيطة بوضعية الوقوف كهلال غازي، وهذا يجعلها الوسيلة المفضلة الأولى سريعاً وبتكلفة منخفضة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الإيكو غير حساس لرؤية الهواء الحر غالباً. <b class="opt-letter-tag">B)</b> تنظير المعدة قد يزيد الانثقاب وهو خطير في هذه الحالة. <b class="opt-letter-tag">C)</b> الصورة الظليلة للمعدة ممنوعة لخطر تسرب المادة الظليلة للبريتوان. <b class="opt-letter-tag">D)</b> الـ MRI غير عملي إسعافياً ولا يُعد الخيار الأول.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الهلال الغازي تحت الحجاب على الصورة الشعاعية البسيطة الواقفة هو العلامة المرجعية لتشخيص انثقاب حشا أجوف، وهي سريعة ومتاحة وغير باضعة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_182" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">مريضة 50 سنة مصابة بحبن متوسط الشدة من شهرين، كل ما يلي صحيح للتشخيص ما عدا: (أيلول 2022):</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الفحوص المخبرية والتصوير الطبقي المحوسب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">القصة السريرية والفحص السريري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فتح البطن الاستقصائي الباكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">عيار الواسمات الورمية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تنظير البطن الاستقصائي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — فتح البطن الاستقصائي الباكر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يُتبع نهج تدريجي غير باضع في تقييم الحبن يبدأ بالقصة السريرية والفحص، ثم الفحوص المخبرية والشعاعية والواسمات الورمية، وينتقل لتنظير البطن فقط عند تعذر التشخيص، ولا يُستخدم فتح البطن الاستقصائي الباكر كخطوة تشخيصية أولية لكونه باضعاً وغير ضروري في أغلب الحالات.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، الفحوص المخبرية والتصوير الطبقي من خطوات التقييم الأساسية. <b class="opt-letter-tag">B)</b> صحيح، القصة والفحص السريري هما نقطة الانطلاق. <b class="opt-letter-tag">D)</b> صحيح، عيار الواسمات الورمية جزء من الاستقصاء. <b class="opt-letter-tag">E)</b> صحيح، تنظير البطن الاستقصائي هو الخيار الأخير عند تعذر التشخيص، وليس فتح البطن.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تشخيص سبب الحبن يعتمد تصاعدياً على: القصة والفحص السريري، الفحوص المخبرية والتصوير (CT)، الواسمات الورمية، وأخيراً تنظير البطن الاستقصائي إذا تعذر التشخيص؛ أما فتح البطن الاستقصائي الباكر فليس من خطوات التشخيص الروتينية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_183" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">مريض 30 سنة، حدثت لديه بداية مفاجئة لألم بطني شرسوفي خلال ثواني، كل مما يلي يدخل في التشخيص التفريقي عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب زائدة دودية حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انسداد مساريقي حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب بنكرياس حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">احتشاء عضلة قلبية سفلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تمزق أم دم شريان أبهري بطني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — التهاب زائدة دودية حاد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب الزائدة الدودية له بداية تدريجية (غير مفاجئة) تبدأ بألم حشوي حول السرة ثم ينتقل تدريجياً للحفرة الحرقفية اليمنى بعد ساعات، مما يجعله لا يتوافق مع نمط الألم المفاجئ خلال ثوانٍ، وبالتالي يُستبعد من التشخيص التفريقي لهذه الحالة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الانسداد المساريقي الحاد يسبب ألماً مفاجئاً شديداً بسبب نقص التروية الحاد؛ التهاب البنكرياس الحاد قد يبدأ بشكل حاد وشرسوفي؛ احتشاء العضلة القلبية السفلي يقلد الألم الشرسوفي الحاد المفاجئ؛ تمزق أم دم الأبهر البطني يسبب ألماً مفاجئاً شديداً بسبب النزف الحاد.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">بدء الألم المفاجئ (ثواني) يشير لانثقاب أو تمزق أو احتشاء (احتشاء عضلة قلبية، احتشاء مساريقي، تمزق أم دم أبهري)، بينما التهاب الزائدة الدودية يكون ألمه تدريجياً يبدأ حول السرة وينتقل خلال 4-8 ساعات للحفرة الحرقفية اليمنى.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_184" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">مريضة شابة نفساء منذ أسبوع، راجعت بألم بطني سفلي حاد منذ ساعة، كل ما يلي يدخل في التدبير عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">طبقي محوري للبطن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إجراء فحوص مخبرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">صورة بطن بالوقوف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إعطاء المسكنات والمراقبة في المنزل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">إيكو بطن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — إعطاء المسكنات والمراقبة في المنزل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> إعطاء المسكنات والمراقبة في المنزل دون تقييم يؤدي إلى تأخير التشخيص وإخفاء تطور الأعراض في حالة بطن حادة قد تكون خطيرة (كإنتان نفاسي أو مضاعفات جراحية)، ولذلك فهو ليس جزءاً من التدبير الصحيح بل ممنوع.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الطبقي المحوري للبطن يفيد في تحديد السبب وتوضع الآفة؛ الفحوص المخبرية ضرورية لتقييم الإنتان والحالة العامة؛ صورة البطن بالوقوف تكشف انسداداً أو هواءً حراً؛ الإيكو البطني يفيد في تقييم الحوض والأعضاء التناسلية والبطنية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أي ألم بطني حاد عند النفساء يُعامل كبطن حاد حقيقي يتطلب استقصاءً جراحياً كاملاً (فحوص مخبرية وشعاعية)؛ تأجيل التشخيص بإعطاء مسكنات والمراقبة المنزلية خطأ لأنه يُخفي الأعراض ويؤخر التشخيص.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_185" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">الاستقصاء الأفضل لتشخيص انثقاب الحشا الأجوف:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">صورة بسيطة بوضعية الوقوف مع إظهار قبتي الحجاب الحاجز.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التصوير الظليل للمعدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">CT.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التنظير الهضمي العلوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — صورة بسيطة بوضعية الوقوف مع إظهار قبتي الحجاب الحاجز.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انثقاب الحشا الأجوف يؤدي لتسرب الهواء داخل اللمعة إلى جوف البريتوان، فيتجمع تحت الحجاب الحاجز بسبب خفة وزنه، وتُظهره الصورة الشعاعية البسيطة بوضعية الوقوف كهلال غازي تحت إحدى قبتي الحجاب أو كلتيهما، وهي وسيلة سريعة وغير باضعة ومتاحة إسعافياً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التصوير الظليل للمعدة قد يزيد تسرب المادة الظليلة إلى جوف البريتوان فيُمنع في الاشتباه بانثقاب؛ الـCT أكثر حساسية لكنه ليس الأول لأنه أبطأ وأقل توفراً إسعافياً من الصورة البسيطة؛ التنظير الهضمي العلوي مُضاد استطباب لأنه يزيد الانثقاب باستنشاق الهواء.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الصورة البسيطة بوضعية الوقوف مع إظهار قبتي الحجاب الحاجز تكشف الهلال الغازي تحت الحجاب (هواء حر ضمن جوف البريتوان) وهي الطريقة المفضلة لتشخيص انثقاب الحشا الأجوف.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_186" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">مريض يعاني من ألم شرسوفي حاد، كل مما يلي يدخل في التشخيص التفريقي عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قرحة باريت.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">احتشاء عضلة قلبية سفلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب بنكرياس حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فتق غاصص.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">احتشاء مساريقي علوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — قرحة باريت.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> مري (قرحة) باريت هو تبدل حميد مزمن في مخاطية المري السفلي ناتج عن ارتجاع معدي مريئي مزمن، ولا يسبب ألماً بطنياً حاداً مفاجئاً، لذلك لا يدخل في التشخيص التفريقي للألم الشرسوفي الحاد.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> احتشاء العضلة القلبية السفلي يقلد الألم الشرسوفي الحاد كلاسيكياً؛ التهاب البنكرياس الحاد سبب مباشر وشائع للألم الشرسوفي؛ الفتق الغاصص قد يسبب ألماً شرسوفياً حاداً عند انحصار عروة معوية؛ الاحتشاء المساريقي العلوي يسبب ألماً شرسوفياً حاداً وشديداً بسبب نقص التروية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الألم الشرسوفي الحاد إما التهاب بنكرياس حاد أو قولنج مراري أو قرحة مثقوبة أو احتشاء عضلة قلبية؛ قرحة باريت (مري باريت) ليست سبباً لألم بطني حاد بل هي حالة تنكسية مزمنة في مخاطية المري.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_187" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">كل مما يلي يعد تشخيصاً تفريقياً لكتلة حوضية يمنى عند شابة عمرها 25 سنة عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">كتلة معوية منغلفة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب زائدة دودية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">داء كرون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">كيسة مبيضية متضخمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">سرطان أعور.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — كتلة معوية منغلفة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الانغلاف المعوي (Intussusception) هو مرض شائع بشكل أساسي عند الرضع والأطفال الصغار بسبب سبب مجهول غالباً أو فرط تنسج لمفاوي، بينما عند البالغين نادر جداً ويحتاج سبباً عضوياً كورم، لذلك لا يُعد تشخيصاً تفريقياً معتاداً لكتلة حوضية يمنى عند شابة 25 سنة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التهاب الزائدة الدودية قد يشكل كتلة زائدية جساسة في الحفرة الحرقفية اليمنى؛ داء كرون يسبب كتلة التهابية في المنطقة اللفائفية الأعورية؛ كيسة المبيض المتضخمة أو الملتفة تُجس ككتلة حوضية يمنى؛ سرطان الأعور قد يتظاهر بكتلة جساسة في الحفرة الحرقفية اليمنى.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">كتلة الحفرة الحرقفية اليمنى عند الشابات: التهاب الزائدة (كتلة زائدية)، داء كرون، كيسة مبيضية متضخمة، سرطان الأعور؛ الانغلاف المعوي حالة أكثر شيوعاً عند الأطفال الرضع وليست تشخيصاً تفريقياً نموذجياً لكتلة حوضية عند شابة 25 سنة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_190" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">كل ما يلي صحيح في البطن الحاد ما عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يمكن أن ينجم عن أسباب جراحية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يعرف كبداية حديثة أو مفاجئة للألم البطني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يكون ألما جديداً دائماً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يحتاج دائما للتداخل الجراحي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التقييم الجراحي مبرر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — يحتاج دائما للتداخل الجراحي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> نسبة كبيرة من حالات البطن الحاد (حوالي نصف الحالات) تعود لأسباب طبية بحتة كالقولنج الكلوي أو التهاب البنكرياس الحاد التي تعالج محافظة دون جراحة، مما ينفي أن كل حالات البطن الحاد تحتاج تداخلاً جراحياً، فهذه العبارة خاطئة وهي الإجابة الصحيحة على السؤال (ما عدا).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يمكن أن ينجم البطن الحاد عن أسباب جراحية فعلاً (صحيح)؛ تعريف البطن الحاد هو بداية حديثة أو مفاجئة للألم البطني (صحيح)؛ يكون الألم جديداً دائماً ولا يتجاوز الأسبوع (صحيح)؛ التقييم الجراحي الإسعافي مبرر دوماً لاستبعاد الحالات الخطيرة (صحيح).</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">50% من حالات البطن الحاد سببها طبي غير جراحي (قولنج كلوي، التهاب بنكرياس)، و20% فقط سببها جراحي مباشر (زائدة، مرارة)؛ إذاً البطن الحاد لا يحتاج دائماً للتداخل الجراحي رغم أنه يستوجب دوماً تقييماً جراحياً إسعافياً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_188" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">شابة عمرها 25 سنة شكت من ألم مفاجئ في الحفرة الحرقفية اليمنى، مع شحوب، وهبوط ضغط، وتسرع قلب مع حرارة طبيعية، التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">تشـــرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب زائدة دودية حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب ملحقات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قولنج حالبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تمزق حمل هاجر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تمزق أم دم الشريان الحرقفي الأيمن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — تمزق حمل هاجر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تمزق الحمل الهاجر يسبب نزفاً داخل الصفاق حاداً يؤدي لعلامات صدمة نقص حجم (شحوب، هبوط ضغط، تسرع قلب) دون ترفع حروري لأن الآلية نزفية وليست إنتانية، وهذا يميزه عن الحالات الالتهابية التي تترافق بحمى.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التهاب الزائدة الدودية الحاد يترافق عادة بحمى وألم تدريجي وليس صدمة نزفية مفاجئة؛ التهاب الملحقات يترافق بحمى وإفرازات مهبلية غالباً؛ القولنج الحالبي يسبب ألماً مغصياً متقطعاً منتشراً للأربية دون صدمة نزفية؛ تمزق أم دم الشريان الحرقفي الأيمن نادر جداً في هذا العمر مقارنة بالحمل الهاجر.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">ألم مفاجئ في الحفرة الحرقفية مع شحوب وهبوط ضغط وتسرع قلب مع حرارة طبيعية عند شابة في سن الإنجاب = تمزق حمل هاجر (نزف داخل الصفاق) حتى يثبت العكس؛ يجب نفي الحمل دوماً (β-hCG) عند كل شابة بألم حوضي حاد.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_189" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">الاستقصاء الأول عند مريض لديه انثقاب حشا أجوف:</span>
+                </div>
+                <span class="q-date-badge">تشـــرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تنظير هضمي علوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صورة ظليلة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">CT.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">صورة بسيطة للصدر بوضعية الوقوف مع إظهار قبتي الحجاب الحاجز.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — صورة بسيطة للصدر بوضعية الوقوف مع إظهار قبتي الحجاب الحاجز.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تسرب الهواء من الحشا المثقوب إلى جوف البريتوان يتجمع تحت الحجاب الحاجز، وتُظهره صورة الصدر البسيطة بوضعية الوقوف بسرعة وبساطة كخطوة أولى إسعافية قبل اللجوء لوسائل أكثر تعقيداً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التنظير الهضمي العلوي مضاد استطباب لأنه يفاقم الانثقاب؛ الصورة الظليلة تحمل خطر تسرب المادة الظليلة للبريتوان؛ الـCT أدق لكنه ليس الاستقصاء الأول لبطء إجرائه مقارنة بالصورة البسيطة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الاستقصاء الأول والأسرع عند الاشتباه بانثقاب حشا أجوف هو الصورة الشعاعية البسيطة للصدر بوضعية الوقوف مع إظهار قبتي الحجاب الحاجز، للبحث عن الهلال الغازي تحت الحجاب.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_191" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">رجل 40 سنة، بطن خشبي، صورة البطن البسيطة أظهرت وجود هواء حر ضمن جوف البريتوان، الإجراء الأفضل:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فتح بطن أو تنظير بطن إسعافي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تنظير هضمي علوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">رحضة باريتية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تنظير هضمي سفلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التصوير الطبقي المحوري للبطن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — فتح بطن أو تنظير بطن إسعافي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> وجود هواء حر ضمن جوف البريتوان مترافقاً مع صلابة بطنية (بطن خشبي) يدل على انثقاب حشا أجوف مع التهاب بريتوان معمم، وهذا من استطبابات التداخل الجراحي الإسعافي المطلقة، فيُجرى فتح بطن أو تنظير بطن استقصائي إسعافي فوراً دون تأخير بإجراء استقصاءات إضافية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التنظير الهضمي العلوي مضاد استطباب لأنه يفاقم الانثقاب ويدخل هواء إضافياً؛ الرحضة البريتوانية لا دور لها في تشخيص مؤكد بانثقاب؛ التنظير الهضمي السفلي لا علاقة له بالحالة العلوية المشتبهة؛ التصوير الطبقي المحوري يؤخر التداخل الجراحي الإسعافي غير المبرر مع تشخيص مؤكد سريرياً وشعاعياً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">بطن خشبي + هلال غازي تحت الحجاب على الصورة البسيطة = انثقاب حشا أجوف مؤكد، وهو استطباب مطلق لفتح بطن أو تنظير بطن إسعافي دون تأخير لأي استقصاء إضافي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_192" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">مريض عمره 30 سنة حدثت لديه بداية مفاجئة لألم بطني (خلال ثواني) شرسوفي حاد، يدخل ما يلي بالتشخيص التفريقي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب البنكرياس الحاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الانسداد المساريقي الحاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">احتشاء العضلة القلبية السفلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب زائدة دودية حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تمزق أم دم الشريان الأبهري البطني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — التهاب زائدة دودية حاد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب الزائدة الدودية يبدأ بألم حشوي تدريجي حول السرة ينتقل خلال 4-8 ساعات إلى الحفرة الحرقفية اليمنى، وهذا النمط التدريجي يتعارض مع صفة &quot;البدء المفاجئ خلال ثوانٍ&quot; المذكورة في السؤال، لذلك يُستبعد من هذا التشخيص التفريقي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التهاب البنكرياس الحاد قد يبدأ بشكل حاد وشرسوفي مفاجئ؛ الانسداد المساريقي الحاد يسبب ألماً مفاجئاً شديداً؛ احتشاء العضلة القلبية السفلي يقلد الألم الشرسوفي المفاجئ؛ تمزق أم دم الأبهر البطني يسبب ألماً مفاجئاً شديداً بسبب النزف الحاد.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">بدء الألم خلال ثوانٍ يوجه لانثقاب أو تمزق أو احتشاء (بنكرياس حاد، انسداد مساريقي، احتشاء قلبي سفلي، تمزق أم دم أبهري)؛ التهاب الزائدة الدودية له بدء تدريجي على ساعات وليس ثوانٍ.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_193" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">كل ما يلي حالات بطن حاد تحتاج لتداخل جراحي فوري عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب البنكرياس الحاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تمزق حمل هاجر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انفتال كيسة مبيض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب الزائدة الدودية الحاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انثقاب حشا أجوف في البطن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — التهاب البنكرياس الحاد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب البنكرياس الحاد آلية مرضية التهابية غير انسدادية غالباً، وعلاجه الأساسي محافظ (صيام، سوائل وريدية، مسكنات، مراقبة) في الحالات الخفيفة والمتوسطة، ولا يستوجب تداخلاً جراحياً فورياً إلا في حالات نادرة كالنخر المخموج، لذلك لا يندرج ضمن حالات البطن الحاد المستوجبة لجراحة إسعافية فورية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تمزق حمل هاجر يسبب نزفاً داخل الصفاق يستوجب جراحة إسعافية فورية؛ انفتال كيسة المبيض يقطع التروية عن المبيض ويستوجب تداخلاً إسعافياً فورياً لإنقاذ العضو؛ التهاب الزائدة الدودية الحاد علاجه استئصال جراحي إسعافي؛ انثقاب حشا أجوف استطباب مطلق لفتح بطن إسعافي فوري.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التهاب البنكرياس الحاد يُعالج بشكل محافظ (دعم، تعويض سوائل، مراقبة) وليس بجراحة إسعافية فورية إلا في حالات مضاعفات نوعية (نخر مخموج)؛ بينما تمزق الحمل الهاجر، انفتال كيسة المبيض، التهاب الزائدة، وانثقاب الحشا الأجوف تستوجب جراحة إسعافية فورية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_194" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">يتظاهر الخراج الحوضي بما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قد تشاهد أعراض تخريشية مستقيمية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الألم المنتشر للكتف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قد تشاهد أعراض تخريشية بولية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الأعراض العامة (الترفع الحروري، والعرواءات والإعياء).</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قد يكون السبب زائدة دودية ملتهبة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الألم المنتشر للكتف.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الألم المنتشر (المُحال) للكتف ينجم عن تخريش السطح السفلي للحجاب الحاجز الذي يُعصَّب من العصب الحجابي (الجذور العنقية C3-C5) المشترك في تعصيب منطقة الكتف، وهذا يحدث في الخراجات تحت الحجاب أو تخريش الحجاب وليس في الخراج الحوضي البعيد عن الحجاب، لذلك لا يُعد من تظاهراته.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الأعراض التخريشية المستقيمية (تنسّم، إسهال) تحدث من مجاورة الخراج للمستقيم؛ الأعراض التخريشية البولية (عسر تبول، تكرر) تحدث من مجاورته للمثانة؛ الأعراض العامة الإنتانية (حمى، عرواءات، إعياء) شائعة في أي خراج؛ التهاب الزائدة الدودية سبب شائع لتشكل خراج حوضي بعد انثقابها أو تشكل كتلة زائدية متقيحة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الخراج الحوضي يتظاهر بأعراض تخريشية مستقيمية وبولية، أعراض عامة إنتانية (حمى، عرواءات، إعياء)، وقد ينجم عن زائدة دودية ملتهبة؛ أما الألم المنتشر للكتف فهو علامة نموذجية لتخريش الحجاب الحاجز (كما في خراج تحت الحجاب أو التهاب المرارة) وليس للخراج الحوضي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_surgery01_195" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">يتظاهر الخراج الحوضي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قد يكون السبب زائدة دودية ملتهبة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الألم المنتشر للكتف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الأعراض العامة (حرارة، عرواءات، إعياء).</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قد تشاهد أعراض تخريشية مستقيمية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قد تشاهد أعراض تخريشية بولية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الألم المنتشر للكتف.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الخراج الحوضي يتوضع في جوف دوغلاس مجاوراً للمستقيم والمثانة، فيسبب تخريشاً موضعياً (إسهال، زحير، تكرر بول) مع أعراض إنتانية عامة، أما الألم المنتشر للكتف فهو علامة تخريش الحجاب الحاجز (كما في خراج تحت الحجاب أو التهاب مرارة) وليس من علامات الخراج الحوضي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الزائدة الملتهبة سبب شائع لتشكل خراج حوضي. <b class="opt-letter-tag">C)</b> الأعراض الإنتانية العامة شائعة في أي خراج داخل بطني. <b class="opt-letter-tag">D)</b> التخريش المستقيمي (زحير، إسهال) شائع لمجاورة المستقيم. <b class="opt-letter-tag">E)</b> التخريش البولي (عسرة تبول، تكرر) شائع لمجاورة المثانة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الخراج الحوضي غالباً تال لالتهاب زائدة دودية ملتهبة أو ملحقات، ويعطي أعراضاً تخريشية مستقيمية وبولية مع حمى وعرواءات.</span>
+        </div>
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "19 سؤال • 1 مواضيع • 2018 - 2025";
+        const originalDocTitle = "بنك الأسئلة - الجراحة 1 (أمراض البريتوان والبطن الحاد)";
+        const subjectName = "الجراحة 1";
+        const groupByMode = "topic";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

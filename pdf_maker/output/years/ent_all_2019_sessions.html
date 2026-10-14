@@ -1,0 +1,2218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - الأذنية (دورات 2019)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0D9488;
+            --primary-dark: #115E59;
+            --primary-rgb: 13, 148, 136;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - الأذنية (دورات 2019)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">الدورة:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع الدورات (الكل - 26 سؤال)</option>
+                    <optgroup label="دورات سنة 2019 (26 سؤال)">
+                        <option value="year_2019">📅 جميع دورات 2019 (26 سؤال)</option>
+                        <option value="session-1">دورة تشرين 2019 (13 سؤال)</option>
+                        <option value="session-2">دورة شباط 2019 (13 سؤال)</option>
+                    </optgroup>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل الدورة المحددة (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">الأذنية</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب الدورات الامتحانية)</p>
+                <p class="stats-summary" id="statsSummary">26 سؤال • 2 دورة امتحانية • 2019</p>
+            </div>
+
+            <div class="index-section-title">فهرس الدورات الامتحانية (مرتبة من الأحدث إلى الأقدم)</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="session-1">
+                    <a href="#session-1" class="index-row" data-group-id="session-1" data-year="2019">
+                        <span class="index-topic-name">تشرين 2019</span>
+                        <span class="index-topic-meta">
+                            <span>7 مواضيع</span>
+                            <span class="index-count">13 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'session-1', 'دورة تشرين 2019')" title="تحميل دورة تشرين 2019 كملف مستقل">⬇ تحميل</button>
+                </div>
+                <div class="index-row-wrapper" data-group-id="session-2">
+                    <a href="#session-2" class="index-row" data-group-id="session-2" data-year="2019">
+                        <span class="index-topic-name">شباط 2019</span>
+                        <span class="index-topic-meta">
+                            <span>7 مواضيع</span>
+                            <span class="index-count">13 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'session-2', 'دورة شباط 2019')" title="تحميل دورة شباط 2019 كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2019" data-group-id="session-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="session-1">
+                    <div class="topic-title-text">دورة تشرين 2019</div>
+                    <span class="topic-counter">13 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_ent_049" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">كل ما يلي في التهاب الأذن الخارجية الخبيث (النخري) صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأذن والسمعيات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">العامل المسبب هو العقديات الرئوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يمكن تشخيصه بومضان العظام.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يحدث غالباً في المرضى السكريين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يتظاهر بألم شديد وعميق في الأذن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يتميز بوجود نسيج حبيبي عند الوصل العظمي الغضروفي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — العامل المسبب هو العقديات الرئوية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الزائفة الزنجارية هي العامل الجرثومي الأشيع المسبب لهذا الخمج النخري الغازي في العظم الصدغي عند السكريين المسنين، وليست العقديات الرئوية، وهذا ما يجعل الخيار A خاطئاً وهو المطلوب كاستثناء.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> صحيحة، الومضان العظمي (بالغاليوم أو التكنيشيوم) يفيد بتقييم امتداد وشفاء الخمج العظمي. <b class="opt-letter-tag">C)</b> صحيحة، يحدث غالباً عند السكريين خاصة غير المضبوطين. <b class="opt-letter-tag">D)</b> صحيحة، الألم العميق الشديد المستمر علامة واسمة للحالة. <b class="opt-letter-tag">E)</b> صحيحة، النسيج الحبيبي عند الوصل العظمي الغضروفي علامة فحص مميزة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">العامل الممرض الأساسي لالتهاب الأذن الخارجية الخبيث هو الزائفة الزنجارية (وأحياناً الفطور)؛ يحدث غالباً بالسكريين المسنين، ويشخص بالومضان العظمي، ويتميز بنسيج حبيبي عند الوصل العظمي الغضروفي مع ألم عميق شديد.</span>
+        </div>
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_ent_050" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">مريضة 32 سنة تعاني من نقص سمع بالأذنين أشده بالأذن اليمنى متدرج منذ عدة سنوات، قصة عائلية لنقص سمع مبكر- فحص غشاء الطبل طبيعي- اختبار رينيه سلبي بالجهتين – إختبار ويبر نحو الأذن اليمنى – التشخيص الأكثر إحتمالاً:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأذن والسمعيات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نقص سمع مناعي ذاتي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تصلب ركابة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">داء منيير.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب أذن وسطى مصلي مزمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التهاب أذن وسطى قيحي مزمن سليم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">F.</span>
+                <span class="option-text">سدادة صملاخية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — تصلب ركابة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تثبيت قاعدة الركابة بالبؤر التصلبية يعيق انتقال الصوت ميكانيكياً من الأذن الوسطى إلى الداخلية محدثاً نقص سمع توصيلي تدريجي متناظر نسبياً لكن بدرجات متفاوتة بين الأذنين، مع سلامة تامة لغشاء الطبل والصفة الوراثية القوية التي تفسر القصة العائلية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> نقص السمع المناعي الذاتي حسي عصبي ويترقى بأيام لأشهر وليس بسنوات بشكل توصيلي هادئ. <b class="opt-letter-tag">C)</b> داء منيير يعطي نقص سمع حسي عصبي نوبي مع دوار وطنين، لا توصيلياً مترقياً هادئاً. <b class="opt-letter-tag">D)</b> الالتهاب المصلي المزمن يظهر عادة بموجودات فحص غير طبيعية (سوية سائلة أو كمود) خلافاً لغشاء الطبل الطبيعي هنا. <b class="opt-letter-tag">E)</b> الالتهاب القيحي المزمن السليم يترافق دوماً بانثقاب في غشاء الطبل، وهو غائب هنا.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تصلب الركابة نموذجي عند امرأة شابة: نقص سمع توصيلي تدريجي (أشد بجانب)، غشاء طبل طبيعي، رينيه سلبية بالجهتين، ويبر نحو الأذن الأسوأ سمعاً، وقصة عائلية لنقص سمع مبكر.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_051" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">كل ما يلي صحيح في التهاب الأذن الوسطى المصلي ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأذن والسمعيات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يصيب الأطفال المصابين بانشقاق شراع الحنك.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يمكن أن تشير الإصابة وحيدة الجانب عند البالغ إلى سرطان بلعوم أنفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تستطب الجراحة في حال استمرار وجود السائل لأكثر من 3 أشهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اختبار المعاوقة نموذج AD.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يؤدي إلى نقص سمع توصيلي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — اختبار المعاوقة نموذج AD.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> النمط AD (ذو ذروة عالية) يدل على انخلاع أو تفرق اتصال عظيمات السمع، وليس على وجود انصباب خلف الطبلة؛ بينما التهاب الأذن الوسطى المصلي يعطي مخططاً من النمط B المسطح بسبب وجود سائل يعيق حركة الطبلة، لذلك فإن ذكر &quot;AD&quot; هنا خاطئ ويمثل الاستثناء الصحيح.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، انشقاق شراع الحنك يسبب خللاً وظيفياً بنفير أوستاش فيؤهب للإصابة - <b class="opt-letter-tag">B)</b> صحيح، الانصباب أحادي الجانب عند الكهل يستوجب نفي سرطان البلعوم الأنفي - <b class="opt-letter-tag">C)</b> صحيح، استمرار السائل أكثر من 3 أشهر استطباب جراحي - <b class="opt-letter-tag">E)</b> صحيح، الانصباب يسبب نقص سمع توصيلي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التهاب الأذن الوسطى المصلي يسبب نقص سمع توصيلي دون ألم أو احمرار بالغشاء الطبلي؛ نمط المعاوقة السمعية النموذجي هو B (مسطح) وليس AD.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_096" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">كل مما يلي صحيح في داء البوليبات الأنفية عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأنف والجيوب الأنفية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">أحادي الجانب عادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نسبة النكس عالية بعد الإستئصال الجراحي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يستجيب بشكل جيد على الستيروئيدات الفموية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يشاهد عند الأطفال في الداء الكيسي الليفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يترافق مع الربو التحسسي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — أحادي الجانب عادة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> داء البوليبات الأنفية غالباً ثنائي الجانب وليس أحادياً (كل بوليب أحادي الجانب هو استطباب لأخذ خزعة لتحري الخباثة لأنه غير نموذجي)، لذلك الخيار A خاطئ ويمثل الجواب الصحيح لسؤال &quot;ماعدا&quot;.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> صحيح، نسبة النكس عالية بعد الاستئصال الجراحي | <b class="opt-letter-tag">C)</b> صحيح، يستجيب جيداً للستيروئيدات الفموية | <b class="opt-letter-tag">D)</b> صحيح، يشاهد عند الأطفال في الداء الكيسي الليفي | <b class="opt-letter-tag">E)</b> صحيح، يترافق مع الربو التحسسي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">البوليبات الأنفية غالباً ثنائية الجانب التهابية المنشأ؛ نسبة النكس بعد الاستئصال عالية، وتستجيب جيداً للستيروئيدات الفموية، وتشاهد عند الأطفال المصابين بالتليف الكيسي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_097" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">مريض شاب تعرض لحادث سير مع رض على الرأس منذ 3 أيام، راجع بشكوى سيلان أنف مائي غزير من الجهة اليمنى أثناء السجود، كل ما يلي صحيح في التدبير عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأنف والجيوب الأنفية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">مراقبة الحرارة والعلامات السحائية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نشاهد نز csf من الأذن، ويكون تأكيد التشخيص من خلال إجراء تحليل بيتا 2 ترانسفيرين من السيلان الأنفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">دكة أنفية عقيمة مشربة بالصادات لإيقاف السيلان الأنفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تجنب النف والكبس والانحناء للأمام.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">وضعية نصف الجلوس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">F.</span>
+                <span class="option-text">العلاج محافظ بأغلب الحالات مع راحة في السرير.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — دكة أنفية عقيمة مشربة بالصادات لإيقاف السيلان الأنفي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الدك الأنفي (حتى لو كان عقيماً ومشرباً بالصادات) مضاد استطباب مطلق في سيلان CSF لأنه قد ينقل الإنتان عبر ناسور السحايا إلى داخل القحف مسبباً التهاب سحايا أو تناذر الصدمة الانسمامية، لذلك الخيار C خاطئ ويمثل الجواب الصحيح لسؤال &quot;ماعدا&quot;.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، تراقب الحرارة والعلامات السحائية لكشف التهاب السحايا الباكر | <b class="opt-letter-tag">B)</b> صحيح، تحليل B2 transferrin هو التأكيد التشخيصي النوعي | <b class="opt-letter-tag">D)</b> صحيح، يجب تجنب النفخ والكبس لتفادي زيادة السيلان | <b class="opt-letter-tag">E)</b> صحيح، وضعية نصف الجلوس تقلل الضغط داخل القحف.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تدبير CSF leak الرضي: وضعية نصف الجلوس + تجنب النفخ والكبس والانحناء + مراقبة الحرارة والعلامات السحائية + صادات وقائية؛ يُمنع منعاً باتاً الدك الأنفي خوفاً من نقل الإنتان للسحايا (تناذر الصدمة الانسمامية).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_098" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">كل ما يلي صحيح في التهاب الجيوب الفطري ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأنف والجيوب الأنفية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يشاهد النمط الغازي الحاد عند السكريين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يعالج النمط التحسسي بالجراحة التنظيرية والستيروئيدات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تغزو الكرة الفطرية الغشاء المخاطي والعظم المحيط بالجيوب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يترافق الشكل التحسسي مع بوليبات أنفية منتشرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يحتاج النمط الغازي الحاد معالجة بمضادات الفطور الوريدية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — تغزو الكرة الفطرية الغشاء المخاطي والعظم المحيط بالجيوب.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الكرة الفطرية تصنف ضمن التهاب الجيوب الفطري غير الغازي، حيث يبقى الفطر محصوراً في لمعة الجيب دون أي غزو للغشاء المخاطي أو العظم المحيط، لذلك العبارة C خاطئة وهي الجواب الصحيح لسؤال &quot;ماعدا&quot;.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، النمط الغازي الحاد يشاهد عند السكريين | <b class="opt-letter-tag">B)</b> صحيح، النمط التحسسي يعالج بالجراحة التنظيرية والستيروئيدات | <b class="opt-letter-tag">D)</b> صحيح، الشكل التحسسي يترافق مع بوليبات أنفية منتشرة | <b class="opt-letter-tag">E)</b> صحيح، النمط الغازي الحاد يحتاج مضادات فطور وريدية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التهاب الجيوب الفطري غير الغازي (الكرة الفطرية والتحسسي) يبقى محصوراً داخل لمعة الجيب؛ الغزو للمخاطية والعظم والأوعية يحدث حصراً في الأنماط الغازية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_115" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">شاب 21 سنة راجع الإسعاف برعاف من الجهة اليسرى مستمر، بالفحص السريري لوحظ وعاء صغير نازف من منطقة ليتل (ضفيرة كسيلباخ). التدبير الأمثل:</span>
+                </div>
+                <span class="q-date-badge">أورام الأنف والبلعوم الأنفي والرعاف</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الدك الأنفي الخلفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الكي بنترات الفضة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التصميم الشرياني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الدك الأنفي الأمامي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ربط الشريان الوتدي الحنكي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الكي بنترات الفضة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عند تحديد وعاء صغير نازف بوضوح في منطقة ليتل، يكون الكي الموضعي بنترات الفضة (كاوٍ كيميائي) هو الإجراء الأمثل والأقل بضعاً لإيقاف النزف مباشرة من مصدره المحدد.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الدك الأنفي الخلفي يُستخدم للرعاف الخلفي الغزير غير المسيطر عليه، وهو مفرط هنا. <b class="opt-letter-tag">C)</b> التصميم الشرياني إجراء متقدم يُحجز للحالات المعندة. <b class="opt-letter-tag">D)</b> الدك الأنفي الأمامي يُستخدم عند عدم تحديد مصدر النزف بدقة، وهو أقل تحديداً من الكي المباشر. <b class="opt-letter-tag">E)</b> ربط الشريان الوتدي الحنكي يُلجأ إليه في الرعاف الخلفي الغزير المعند فقط.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">90% من حالات الرعاف تنشأ من منطقة ليتل (ضفيرة كيسلباخ) الأمامية؛ ووجود وعاء صغير نازف محدد فيها يُدبر بالكي الكيميائي بنترات الفضة مباشرة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_131" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">شاب 24 سنة يعاني من ألم بلعوم شديد وصعوبة بلع مع ارتفاع بدرجة الحرارة ووهن عام وضزز، بالفحص السريري لوحظ تقيح شديد باللوزة اليمنى مع اندفاع اللوزة المصابة واللهاة نحو الجانب المقابل، التشخيص:</span>
+                </div>
+                <span class="q-date-badge">أمراض الفم والبلعوم واللوزتين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب اللوزات القيحي الحاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">خناق فانسان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">خراج حول اللوزة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">داء وحيدات النوى الخمجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">خراج خلف البلعوم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — خراج حول اللوزة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انتشار الإنتان وحشي محفظة اللوزة يشكل تجمعاً قيحياً يدفع اللوزة المصابة إنسياً وأمامياً مع دفع اللهاة للجانب المقابل، مترافقاً بالضزز نتيجة تخريش العضلات الجناحية، مما يفسر كامل الصورة السريرية.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> التهاب اللوزات القيحي الحاد لا يسبب اندفاعاً وحيد الجانب للوزة واللهاة؛ <b class="opt-letter-tag">B)</b> خناق فانسان تقرح موضعي دون اندفاع بنيوي؛ <b class="opt-letter-tag">D)</b> داء وحيدات النوى لا يسبب اندفاعاً وحيد الجانب؛ <b class="opt-letter-tag">E)</b> الخراج خلف البلعوم لا يدفع اللوزة أو اللهاة جانبياً بل يبرز الجدار الخلفي للبلعوم.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">اندفاع اللوزة واللهاة نحو الجانب السليم مع الضزز وصوت البطاطا الساخنة علامات مفتاحية لخراج حول اللوزة، وهو أشيع اختلاط إنتاني لالتهاب اللوزتين الحاد.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_148" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل مما يلي يدل على الخباثة في أورام الغدة النكفية ما عدا: (مكرر):</span>
+                </div>
+                <span class="q-date-badge">أمراض وأورام الغدد اللعابية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الإنتشار ضمن الفص السطحي للغدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ضحامة العقد اللمفية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">شلل العصب الوجهي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">النمو السريع للورم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الارتشاح باتجاه الجلد.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الإنتشار ضمن الفص السطحي للغدة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الفص السطحي هو موقع تشريحي شائع لأورام النكفة السليمة والخبيثة على حد سواء، فوجود الورم فيه لا يميز السلوك الخبيث عن السليم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> صحيح، ضخامة العقد اللمفية علامة خباثة. <b class="opt-letter-tag">C)</b> صحيح، شلل العصب الوجهي علامة خباثة. <b class="opt-letter-tag">D)</b> صحيح، النمو السريع علامة خباثة. <b class="opt-letter-tag">E)</b> صحيح، الارتشاح الجلدي علامة خباثة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">علامات خباثة النكفة: ضخامة العقد، شلل الوجهي، النمو السريع، الارتشاح الجلدي؛ الامتداد للفص السطحي ليس منها.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_170" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">طفل 3 سنوات راجع الطوارئ بصرير شهيقي حاد مع ارتفاع حرارة وإلعاب وصعوبة شديدة بالبلع. كل ما يلي صحيح في التدبير ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الحنجرة واضطرابات الصوت والأورام</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">خزع رغامى في بعض الحالات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صادات حيوية جهازية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ستيروئيدات جهازية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تنبيب رغامي مباشرة في غرفة العمليات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تقييم سريري دقيق بمرآة الحنجرة لتأكيد التشخيص.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — تقييم سريري دقيق بمرآة الحنجرة لتأكيد التشخيص.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> أي تحريض ميكانيكي على منطقة لسان المزمار الملتهب والمتوذم (كوضع مرآة الحنجرة) قد يُحدث تشنج حنجري وانسداداً تاماً ومفاجئاً للطريق الهوائي، لذلك يُمنع هذا الإجراء خارج غرفة العمليات المجهزة للتنبيب الطارئ.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح - قد يُحتاج لخزع الرغامى في الحالات الشديدة. <b class="opt-letter-tag">B)</b> صحيح - الصادات الجهازية جزء أساسي من العلاج (المستدمية النزلية). <b class="opt-letter-tag">C)</b> صحيح - الستيروئيدات الجهازية تُعطى لتخفيف الوذمة. <b class="opt-letter-tag">D)</b> صحيح - التنبيب يتم في غرفة العمليات لتأمين الطريق الهوائي بأمان.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">عند الشك بالتهاب لسان المزمار يُمنع فحص البلعوم بخافض اللسان أو بمرآة الحنجرة خارج غرفة العمليات؛ يُنقل الطفل مباشرة لتأمين طريق هوائي (تنبيب/خزع رغامى) تحت ظروف مضبوطة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_171" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">رضيع بعمر 6 أشهر يعاني من صرير شهيقي يزداد أثناء الإرضاع وتتحسن بوضعية الاستلقاء البطني. التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">أمراض الحنجرة واضطرابات الصوت والأورام</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">عنش حنجري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تلين حنجرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انسداد أنف خلفي خلقي أحادي الجانب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ورم وعائي تحت المزمار.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">شلل حبال صوتية ثنائي الجانب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">F.</span>
+                <span class="option-text">شق شراع الحنك.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — تلين حنجرة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> رخاوة النسج فوق المزمار وانطواء لسان المزمار على نفسه أثناء الشهيق (شكل حرف أوميغا) يسبب صريراً شهيقياً يتفاقم بزيادة جريان الهواء (الرضاعة، البكاء) ويتحسن بالوضعية الانبطاحية التي تقلل انخماص الأنسجة الرخوة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> العنش الحنجري يترافق ببحة صوت وليس فقط بصرير يتحسن بالوضعية. <b class="opt-letter-tag">C)</b> رتق المنعر الخلقي يترافق بزرقة تتحسن بالبكاء وليس بالوضعية. <b class="opt-letter-tag">D)</b> الورم الوعائي تحت المزمار يعطي صريراً ثنائي الطور دون علاقة بالوضعية. <b class="opt-letter-tag">E)</b> الشلل الثنائي للحبال يسبب صريراً شديداً مستمراً دون تحسن وضعي مميز.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تلين الحنجرة هو الأشيع كسبب للصرير الشهيقي عند الولدان، يسوء بالبكاء والرضاعة والاستلقاء الظهري ويتحسن بوضعية الاستلقاء البطني، ويتراجع تلقائياً غالباً بنهاية السنة الأولى.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_172" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">في التهاب لسان المزمار ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الحنجرة واضطرابات الصوت والأورام</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التشخيص باستخدام مرآة الحنجرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تنبيب في غرفة العمليات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ستيروئيدات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">صادات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قد نحتاج لخزع رغامى إسعافي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — التشخيص باستخدام مرآة الحنجرة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> أي محاولة فحص مباشر (مرآة أو خافض لسان) قد تُحرّض تشنجاً حنجرياً وانسداداً تنفسياً كاملاً ومفاجئاً بسبب الوذمة الشديدة للسان المزمار، لذلك يُستبدل هذا الفحص بالتنظير الحذر في غرفة العمليات المجهزة للتنبيب الفوري.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> صحيح - يُجرى التنبيب في غرفة العمليات لتأمين الطريق الهوائي بأمان. <b class="opt-letter-tag">C)</b> صحيح - الستيروئيدات تُستخدم لتخفيف الوذمة. <b class="opt-letter-tag">D)</b> صحيح - الصادات الوريدية أساسية في العلاج. <b class="opt-letter-tag">E)</b> صحيح - قد يُحتاج لخزع رغامى إسعافي عند فشل التنبيب أو تعذره.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تشخيص التهاب لسان المزمار يعتمد على الصورة السريرية (الوضعية الثلاثية، الإلعاب، التسمم العام) والتنظير الذي يُجرى حصراً في غرفة العمليات؛ لا يُجرى الفحص بمرآة الحنجرة أو خافض اللسان لخطر الانسداد التام.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_191" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">طفل 6 سنوات، كتلة أسفل الذقن على الخط الناصف للعنق تقيس 1*2 سم، تتعرض للإنتان والتقيح المتكرر، متحركة عمودياً مع البلع وإخراج اللسان، التشخيص:</span>
+                </div>
+                <span class="q-date-badge">إسعافات مجرى الهواء وكتل العنق</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ضفيدعة غاطسة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">كيسة غلصمية نمط ثاني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عقدة لمفاوية تحت الذقن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">كيسة نظيرة بشرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">كيسة درقية لسانية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — كيسة درقية لسانية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تتعرض الكيسة الدرقية اللسانية للإنتان والتقيح المتكرر لكونها كيسة مغلقة قد تتجمع فيها المفرزات، وتبقى حركيتها مع البلع ومد اللسان هي العلامة الحاسمة للتشخيص رغم وجود الالتهاب المرافق.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الضفيدعة الغاطسة توضعها تحت اللسان في أرضية الفم. <b class="opt-letter-tag">B)</b> الكيسة الغلصمية من النمط الثاني توضعها وحشي عند حآفة العضلة القصية الترقوية الخشائية. <b class="opt-letter-tag">C)</b> العقدة اللمفاوية تحت الذقن لا تتحرك بهذه الطريقة المميزة مع اللسان. <b class="opt-letter-tag">D)</b> كيسة نظيرة البشرة لا ترتبط حركياً بالبلع أو اللسان.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الالتهاب والتقيح المتكرر شائع في الكيسة الدرقية اللسانية، ولا ينفي التشخيص؛ العلاج النهائي جراحي بالاستئصال الكامل مع القسم المتوسط من العظم اللامي.</span>
+        </div>
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+        <div class="topic-container" data-year="2019" data-group-id="session-2">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="session-2">
+                    <div class="topic-title-text">دورة شباط 2019</div>
+                    <span class="topic-counter">13 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_ent_052" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">البث الصوتي الأذني:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأذن والسمعيات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فحص شخصي لتقييم نقص السمع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يستخدم للمسح السمعي عند حديثي الولادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يستخدم عند الأطفال فوق عمر السنة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يمكن من خلاله تحديد العتبة السمعية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يتطلب تعاون المريض.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — يستخدم للمسح السمعي عند حديثي الولادة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يعتمد الاختبار على تسجيل الأصوات المتولدة من الخلايا المشعرة الخارجية بالقوقعة، وهو غير راض وسهل الإجراء وغير متأثر بالنوم، مما يجعله الوسيلة المثالية للمسح السمعي الشامل عند الولدان لاكتشاف نقص السمع الخلقي باكراً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> خاطئ، فهو فحص موضوعي لا شخصي - <b class="opt-letter-tag">C)</b> خاطئ، يُستخدم بشكل رئيسي عند الولدان لا فوق عمر السنة - <b class="opt-letter-tag">D)</b> خاطئ، لا يحدد العتبة السمعية بعكس تخطيط جذع الدماغ - <b class="opt-letter-tag">E)</b> خاطئ، لا يتطلب تعاون المريض إطلاقاً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">البث الصوتي الأذني فحص موضوعي لا يتطلب تعاون المريض، ويستخدم كاختبار ماسح للسمع عند حديثي الولادة؛ غيابه يدل على نقص سمع من منشأ حلزوني.</span>
+        </div>
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_ent_053" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">في التهاب الأذن الخارجية القيحي الحاد ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأذن والسمعيات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تضيق شديد في مجرى السمع الظاهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يترافق مع ذات عظم ونقي بالعظم الصدغي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يترافق مع ألم بالصيوان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أشيع في فصل الصيف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">العامل المسبب العصيات الزرق والعنقوديات المذهبة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — يترافق مع ذات عظم ونقي بالعظم الصدغي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب الأذن الخارجية القيحي الحاد البسيط هو خمج سطحي في جلد قناة السمع لا يتجاوزها، بينما ذات العظم والنقي بالعظم الصدغي هي اختلاط خطير يميز التهاب الأذن الخارجية الخبيث الناجم عادة عن الزائفة الزنجارية عند مضعفي المناعة والسكريين، لذلك يعتبر الخيار B غير صحيح في سياق الالتهاب الحاد البسيط.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، الوذمة والتوذم يسببان تضيق المجرى - <b class="opt-letter-tag">C)</b> صحيح، الألم بتحريك الصيوان علامة مميزة - <b class="opt-letter-tag">D)</b> صحيح، أشيع صيفاً بسبب السباحة والرطوبة - <b class="opt-letter-tag">E)</b> صحيح، هما العاملان الممرضان الأشيعان.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التهاب الأذن الخارجية الحاد خمج سطحي محدود بجلد القناة والصيوان؛ أما امتداده إلى ذات عظم ونقي بالعظم الصدغي فهو سمة مميزة للشكل الخبيث (النخري) عند السكريين المسنين، وليس للالتهاب البسيط.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_054" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">كل ما يلي صحيح في التهاب الأذن الوسطى المصلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأذن والسمعيات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يعتبر أشيع أسباب نقص السمع المكتسب عند الولدان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قد يكون السبب عند البالغين ورم بلعوم الأنفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يترافق مع احتقان وتوذم واحمرار غشاء الطبل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قد يكون السبب انشقاق شراع الحنك.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">مخطط المعاوقة نموذج B.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — يترافق مع احتقان وتوذم واحمرار غشاء الطبل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب الأذن الوسطى المصلي ينجم عن انسداد وظيفي أو ميكانيكي لنفير أوستاش دون خمج فعال، فيكون الغشاء الطبلي كامداً مع سوية سائلة غازية دون احتقان أو احمرار، بخلاف التهاب الأذن الوسطى الحاد الذي يترافق مع احتقان وتوسع وعائي والتهاب فعلي بالغشاء.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، أشيع سبب نقص سمع مكتسب عند الولدان - <b class="opt-letter-tag">B)</b> صحيح، عند البالغين قد يكون بسبب ورم بلعوم أنفي - <b class="opt-letter-tag">D)</b> صحيح، انشقاق شراع الحنك سبب معروف - <b class="opt-letter-tag">E)</b> صحيح، نمط المعاوقة B هو النموذجي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">لا يترافق التهاب الأذن الوسطى المصلي مع احتقان أو توذم أو احمرار الغشاء الطبلي؛ هذه الموجودات تشير إلى التهاب الأذن الوسطى الحاد.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_055" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">كل ما يلي صحيح في تصلب الركابة ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأذن والسمعيات</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">غالباً ثنائي الجانب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">المعاوقة السمعية نموذج As.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قد يسبب نقص سمع حسي عصبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">أشيع عند الذكور.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — أشيع عند الذكور.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تصلب الركابة مرض وراثي يصيب النساء أكثر من الرجال بضعف تقريباً، وترتبط شدة الأعراض بالحمل والاستروجين، لذلك فإن نسبة كونه أشيع عند الذكور مقولة خاطئة تمثل الاستثناء المطلوب.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، غالباً ثنائي الجانب - <b class="opt-letter-tag">B)</b> صحيح، النمط As هو النموذجي مع غياب المنعكس الركابي - <b class="opt-letter-tag">C)</b> صحيح، قد يمتد للقوقعة مسبباً مكوناً حسياً عصبياً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تصلب الركابة أشيع عند الإناث بنسبة 2:1 مقارنة بالذكور، ويزداد سوءاً في الحمل والمعالجة بالإستروجين.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_071" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">أسباب شلل العصب الوجهي المحيطية ما يلي عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأذن العصبية والدوار والعصب الوجهي</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">داء المنطقة الأذني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">شلل بل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نزف جذع الدماغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الكسور المعترضة للعظم لصدغي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ورم بالنكفة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — نزف جذع الدماغ.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> نزف جذع الدماغ يصيب العصب الوجهي في مساره فوق النووي مسبباً شللاً مركزياً (يصيب الربع السفلي المعاكس مع سلامة الجبهة)، وليس شللاً محيطياً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> داء المنطقة الأذني سبب محيطي بعد العظم الصدغي - <b class="opt-letter-tag">B)</b> شلل بل سبب محيطي ضمن العظم الصدغي - <b class="opt-letter-tag">D)</b> الكسور المعترضة سبب محيطي ضمن العظم الصدغي - <b class="opt-letter-tag">E)</b> ورم النكفة سبب محيطي بعد العظم الصدغي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">نزف جذع الدماغ سبب مركزي (فوق نووي) للشلل الوجهي، بينما داء المنطقة الأذني، شلل بل، الكسور المعترضة، وأورام النكفة أسباب محيطية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_099" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">كل ما يلي صحيح في كسر قاعدة الجمجمة عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأنف والجيوب الأنفية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نز سائل من الأنف والأذن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الأنبوب الأنفي المعدي مضاد استطباب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">العلاج محافظ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">علامة الراكون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">دك الأنف.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — دك الأنف.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> كسر قاعدة الجمجمة الأنسي يسبب تمزقاً في السحايا مؤدياً لسيلان CSF من الأنف أو الأذن، وعلاج هذه الحالة محافظ في معظم الحالات، لكن دك الأنف ممنوع لأنه يعيق تصريف السائل ويزيد خطر الإنتان الصاعد نحو السحايا.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، سيلان CSF قد يظهر من الأنف أو الأذن حسب موقع الكسر. <b class="opt-letter-tag">B)</b> صحيح، الأنبوب الأنفي المعدي مضاد استطباب خشية اختراق قاعدة الجمجمة. <b class="opt-letter-tag">C)</b> صحيح، معظم الحالات الرضية تشفى بالعلاج المحافظ. <b class="opt-letter-tag">D)</b> صحيح، علامة الراكون من علامات كسر قاعدة الجمجمة المميزة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">يُمنع دك الأنف قطعياً عند نز CSF خوفاً من نقل الإنتان للسحايا (تناذر الصدمة الانسمامية)؛ كما يُمنع الأنبوب الأنفي المعدي في كسور قاعدة الجمجمة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_100" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">استدعيت إلى قسم الحواضن من أجل وليد بعمر عدة ساعات، تطور لديه نوب متكررة من نقص أكسجة مع زلة وزرقة بعد مرور فترة طبيعية أثناء البكاء، التشخيص الأكثر احتمالاً:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأنف والجيوب الأنفية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انسداد منعرين خلقي ثنائي الجانب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انسداد منعر خلقي أحادي الجانب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عنش حنجري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تلين حنجرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التهاب لسان المزمار.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — انسداد منعرين خلقي ثنائي الجانب.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> حديثو الولادة معتمدون على التنفس الأنفي، فانسداد المنعرين الخلقي يمنع مرور الهواء عبر الأنف مسبباً نوب نقص أكسجة وزرقة تتحسن فقط عند فتح الفم بالبكاء، وتسوء أثناء محاولة الرضاعة لانسداد الأنف بالتزامن مع إغلاق الفم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">B)</b> الانسداد أحادي الجانب يتظاهر متأخراً وبشكل أخف دون زرقة إسعافية. <b class="opt-letter-tag">C)</b> العنش الحنجري يسبب صريراً شهيقياً وليس نوب زرقة مرتبطة بالإرضاع تتحسن بالبكاء. <b class="opt-letter-tag">D)</b> تلين الحنجرة يتحسن بالاستلقاء البطني لا بالبكاء ويتظاهر بصرير مزمن. <b class="opt-letter-tag">E)</b> التهاب لسان المزمار حالة مكتسبة متأخرة عند الرضع الأكبر وليست عند الوليد بعمر ساعات.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">رتق المنعر ثنائي الجانب هو إسعاف وليدي: زرقة وزلة تنفسية تتحسن بالبكاء وتسوء أثناء الإرضاع؛ يُشخص بإدخال أنبوب أنفي معدي وCT، ويُعالج بتأمين طريق هوائي فموي ثم الجراحة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_101" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">كل ما يلي صحيح في التهاب الجيوب الفطري التحسسي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الأنف والجيوب الأنفية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">أشيع بالجيب الفكي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">العامل المسبب الرشاشيات السود.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تعالج بالامفوتريسين B وريدياً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تشاهد الأيوزينات بالالتهاب التحسسي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يعالج التحسسي بالستيروئيدات الموضعية والجراحة التنظيرية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — تعالج بالامفوتريسين B وريدياً.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العلاج بالأمفوتريسين B الوريدي يُستطب في التهاب الجيوب الفطري الغازي الحاد عند مضعفي المناعة كالسكريين، أما النمط الأرجي فهو ارتكاس مناعي غير غازٍ للأنسجة، وعلاجه الأساسي هو الجراحة التنظيرية مع الستيروئيدات لتخفيف الالتهاب التحسسي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، الجيب الفكي هو الأشيع إصابة. <b class="opt-letter-tag">B)</b> صحيح، الرشاشيات السود هي العامل المسبب الأشيع. <b class="opt-letter-tag">D)</b> صحيح، تشاهد الإيوزينيات وبلورات شاركو-ليدن في النسيج المرضي. <b class="opt-letter-tag">E)</b> صحيح، العلاج النوعي هو الستيروئيدات الموضعية/الجهازية مع الجراحة التنظيرية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التهاب الجيوب الفطري الأرجي علاجه النوعي جراحة تنظيرية + ستيروئيدات طويلة الأمد، وليس مضادات الفطور الوريدية التي تُحجز للنمط الغازي عند مضعفي المناعة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_132" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل ما يلي من استطبابات استئصال اللوزات ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الفم والبلعوم واللوزتين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب كبب وكلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">جائحة شلل الأطفال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">حمى رثوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">متلازمة توقف التنفس الانسدادي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — جائحة شلل الأطفال.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> أثناء تفشي وباء شلل الأطفال تُؤجل الجراحة تجنباً لزيادة قابلية انتقال أو تفعيل الفيروس عبر الرض الجراحي في منطقة حلقة والدير اللمفاوية، لذلك تُعد مضاد استطباب وليست استطباباً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> التهاب كبب وكلية تال لالتهاب لوزات متكرر استطباب نسبي معترف به؛ <b class="opt-letter-tag">C)</b> الحمى الرثوية المتكررة استطباب نسبي؛ <b class="opt-letter-tag">D)</b> متلازمة توقف التنفس الانسدادي استطباب مطلق/نسبي مقبول.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تُؤجل جراحة استئصال اللوزتين أثناء انتشار الأوبئة كوباء شلل الأطفال، وهذا من مضادات الاستطباب المؤقتة المذكورة صراحة في المرجع.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_149" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">كل ما يلي صحيح في علامات الخباثة لأورام النكفة ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض وأورام الغدد اللعابية</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">شلل العصب الوجهي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الألم في النكفة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ضخامة العقد اللمفاوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إصابة ذيل النكفة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">النمو السريع للورم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — إصابة ذيل النكفة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ذيل النكفة موقع تشريحي شائع الإصابة بالأورام السليمة (كورم وارتون)، فذكره ضمن التوضع لا يحمل دلالة على الخباثة بخلاف علامات السلوك الغازي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح، شلل العصب الوجهي علامة خباثة. <b class="opt-letter-tag">B)</b> صحيح، الألم بالنكفة علامة خباثة. <b class="opt-letter-tag">C)</b> صحيح، ضخامة العقد اللمفاوية علامة خباثة. <b class="opt-letter-tag">E)</b> صحيح، النمو السريع علامة خباثة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">ذيل النكفة هو الموقع النموذجي لورم وارتون السليم، وإصابته لا تدل على الخباثة بعكس الألم والشلل الوجهي والنمو السريع.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_173" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">كل ما يلي صحيح في شلل الحبل الصوتي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أمراض الحنجرة واضطرابات الصوت والأورام</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الشلل من منشأ مركزي قد يسبب نوب استنشاق متكررة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">أم دم أبهر بطني تسبب شلل الحبل الأيمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">أحادي الجانب يسبب بحة صوت.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ثنائي الجانب يسبب صرير شهيقي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — أم دم أبهر بطني تسبب شلل الحبل الأيمن.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العصب الحنجري الراجع الأيسر يمر ضمن الصدر ملتفاً حول قوس الأبهر، فأي آفة صدرية كأم دم الأبهر الصدري تضغط عليه مسببة شلل الحبل الأيسر؛ أما أم دم الأبهر البطني فهي بعيدة تماماً عن مسار العصب ولا تسبب أي شلل حنجري.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> صحيح - الشلل المركزي (إصابة المبهم) يسبب نوب استنشاق متكررة بسبب فقد الحس فوق المزماري. <b class="opt-letter-tag">C)</b> صحيح - الشلل أحادي الجانب يسبب بحة كعرض رئيسي. <b class="opt-letter-tag">D)</b> صحيح - الشلل ثنائي الجانب يسبب صريراً شهيقياً وزلة تنفسية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">انضغاط العصب الحنجري الراجع بكتلة منصفية كأم دم الأبهر الصدري يسبب شلل الحبل الصوتي الأيسر (لطول مساره الصدري)؛ أم دم الأبهر البطني لا علاقة له بشلل الحنجرة لأنه خارج مسار العصب.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_174" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">راجع طفل الإسعاف بأعراض ترفع حروري وحالة إعياء وصرير شهيقي وإلعاب التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">أمراض الحنجرة واضطرابات الصوت والأورام</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الخناق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تلين حنجرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">العنش الحنجري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب لسان المزمار.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — التهاب لسان المزمار.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> العدوى الجرثومية الحادة (المستدميات النزلية غالباً) تسبب وذمة سريعة وشديدة في لسان المزمار، مما يؤدي إلى الصورة الإسعافية المفاجئة بالحمى الشديدة والإلعاب وصعوبة البلع والصرير، دون سبق إنتان تنفسي علوي تدريجي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <b class="opt-letter-tag">A)</b> الخناق (الدفتريا) يترافق بغشاء بلعومي وسخ ملتصق وليس ببدء مفاجئ حاد كهذا. <b class="opt-letter-tag">B)</b> تلين الحنجرة يصيب الرضع دون ترفع حروري أو إلعاب. <b class="opt-letter-tag">C)</b> العنش الحنجري آفة خلقية مزمنة لا تسبب صورة إنتانية حادة كهذه.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التهاب لسان المزمار هو حالة إسعافية تتظاهر بترفع حروري شديد، حالة عامة سيئة (انسمامية)، إلعاب، ألم بلعوم شديد، وصرير شهيقي، دون بحة صوت (بعكس الخانوق).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_ent_192" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">أشيع تشوهات الأقواس الغلصمية هو تشوهات القوس:</span>
+                </div>
+                <span class="q-date-badge">إسعافات مجرى الهواء وكتل العنق</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الثالثة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الثانية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الأولى.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الرابعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">السادسة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الثانية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يحدث معظم تشوهات الأقواس الغلصمية بسبب فشل الانغلاق الطبيعي لجيب عنق القوس الثاني (الجيب العنقي)، مما يجعل تشوهات القوس الثاني (كيسة، ناسور، جيب) هي الأشيع تشريحياً وسريرياً مقارنة ببقية الأقواس.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> A، C، D، <b class="opt-letter-tag">E)</b> تشوهات الأقواس الأولى والثالثة والرابعة والسادسة نادرة مقارنة بالقوس الثاني، وكل منها له توضع تشريحي مختلف وأقل شيوعاً في الممارسة السريرية.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الكيسة الغلصمية من النمط الثاني هي الأشيع سريرياً، وتتوضع في القسم الأمامي للعضلة القصية الترقوية الخشائية.</span>
+        </div>
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "26 سؤال • 2 دورة امتحانية • 2019";
+        const originalDocTitle = "بنك الأسئلة - الأذنية (دورات 2019)";
+        const subjectName = "الأذنية";
+        const groupByMode = "session";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,2241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - طب الأطفال 1 (طب حديث الولادة)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0284C7;
+            --primary-dark: #0369A1;
+            --primary-rgb: 2, 132, 199;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - طب الأطفال 1 (طب حديث الولادة)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">التصنيف:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع التصنيفات (الكل - 29 سؤال)</option>
+                    <option value="topic-1">طب حديث الولادة (29 سؤال)</option>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل التصنيف المحدد (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">طب الأطفال 1</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب المواضيع)</p>
+                <p class="stats-summary" id="statsSummary">29 سؤال • 1 مواضيع • 2018 - 2026</p>
+            </div>
+
+            <div class="index-section-title">فهرس المواضيع والتصنيفات</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="topic-1">
+                    <a href="#topic-1" class="index-row" data-group-id="topic-1" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018">
+                        <span class="index-topic-name">طب حديث الولادة</span>
+                        <span class="index-topic-meta">
+                            <span>2018 - 2026</span>
+                            <span class="index-count">29 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'topic-1', 'طب حديث الولادة')" title="تحميل طب حديث الولادة كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018" data-group-id="topic-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="topic-1">
+                    <div class="topic-title-text">طب حديث الولادة</div>
+                    <span class="topic-counter">29 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_peds1_089" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">وليد تمام الحمل بوزن ولادة 3.7 كغ، ولادة قيصرية ظروف الحمل طبيعية، الطفل لديه زلة تنفسية وسحب بين الأضلاع بعمر ساعتين، باقي الفحص طبيعي وصورة الصدر طبيعية، ما هو التشخيص المحتمل:</span>
+                </div>
+                <span class="q-date-badge">2026 أيار</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ريح صدرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">استنشاق عقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فتق حجابي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ذات رئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">زلة تنفسية عابرة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — زلة تنفسية عابرة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> القصة السريرية (ولادة قيصرية لوليد تمام الحمل، بدء الأعراض التنفسية باكراً خلال ساعتين، مع فحص عام طبيعي وصورة صدر سليمة أو غير نوعية) تشخص متلازمة &quot;الزلة التنفسية العابرة&quot; (TTN) أو رئة الوليد الرطبة، والناتجة عن غياب عصر الصدر في قناة الولادة وتأخر ارتشاف السائل الرئوي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الريح الصدرية تظهر شعاعياً كغياب للعلامات الوعائية، استنشاق العقي يحدث غالباً في الحمول المديدة ويترافق مع صورة صدر بتكثفات وفرط تهوية، ذات الرئة تترافق غالباً مع إنتان أو علامات مرضية عامة، والفتق الحجابي يظهر شعاعياً بوجود عرى معوية بالصدر مع بطن زورقي.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تُعالج الزلة التنفسية العابرة بشكل داعم فقط (أكسجين عند الحاجة)، وتتحسن الحالة ذاتياً وبسرعة خلال 24-72 ساعة. لا تستخدم الصادات الحيوية روتينياً إلا في حال وجود شك سريري قوي بإنتان (وهنا يجب طلب زرع دم).</div></div>
+        
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_peds1_090" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">أي من الموجودات التالية عند الخدج تستدعي الاستقصاء والتدبير:</span>
+                </div>
+                <span class="q-date-badge">2026 أيار</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الأطراف بوضع البسط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">برودة وزرقة نهايات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التنفس الدوري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">عدد ضربات القلب 70 د/د.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">عدد مرات التنفس 60 د/د.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — عدد ضربات القلب 70 د/د.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> المعدل الطبيعي لسرعة قلب الوليد يتراوح بين 120-160 (أو 100 كحد أدنى للراحة). تعتبر سرعة 70 ضربة/دقيقة &quot;بطء قلب صريح&quot; يستوجب تدخلاً وإنعاشاً فورياً للبحث عن نقص الأكسجة أو نوب توقف التنفس.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بسط الأطراف (الرخاوة) أمر طبيعي وفيزيولوجي لعدم نضج مقوية الخديج. التنفس الدوري سليم طالما لم يترافق بزرقة. سرعة التنفس 60 تقع في الحد الأعلى للطبيعي. برودة وزرقة النهايات (زرقة محيطية) ظاهرة وعائية سليمة وشائعة جداً.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> القاعدة الذهبية في العناية المركزة للخدج (NICU): &quot;بطء القلب عند الخديج يعادل نوبة توقف تنفس حتى يثبت العكس&quot;. يستلزم الأمر فوراً تحفيز الرضيع، تأمين الطريق الهوائي، والتحقق من الأكسجة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_091" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">وليد تمام الحمل، إرضاعه والدي، عمره 4 أيام، لديه لون يرقاني يصل لأعلى الجذع، بدون أي موجودات مرضية، زمرة دمه O سلبي، وزمرة دم الأم A+، أي من التدابير التالية تناسب حالة هذا الوليد:</span>
+                </div>
+                <span class="q-date-badge">2026 أيار</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">مراقبة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إيقاف الإرضاع الوالدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">معالجة ضوئية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إعطاء فينوبربيتال.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تبديل دم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — مراقبة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> حالة الطفل ممتازة سريرياً (لا موجودات مرضية)، ظهر اليرقان في وقت فيزيولوجي (اليوم الرابع)، واليرقان خفيف يقتصر على أعلى الجذع. مناعياً: الطفل O- والأم A+، ما ينفي أي احتمال لتنافر الزمر ABO أو الريزوس. التشخيص هو يرقان فيزيولوجي سليم يكتفى بمراقبته ودعم الإرضاع.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> المعالجة الضوئية وتبديل الدم تستطب لليرقان الانحلالي أو الارتفاعات السمية العالية في البيليروبين. إعطاء الفينوباربيتال معالجة قديمة وغير مستطبة. إيقاف الإرضاع الوالدي إجراء خاطئ وممنوع حتى في يرقان حليب الأم السليم.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> لتقييم اليرقان وليدياً، يجب التمييز بين الفيزيولوجي (يبدأ بعد 24 ساعة، صحة جيدة، غير مباشر) والمرضي (خلال أول 24 ساعة، ارتفاع سريع، أو مقترن). القرار بالعلاج الضوئى لا يعتمد فقط على الانتشار الجلدي بل على قياس البيليروبين ووضعه على مخططات (Nomograms) خاصة بعمر الطفل الساعي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_092" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">العلامة الشعاعية التي لا تتوافق مع الزلة التنفسية العابرة هي:</span>
+                </div>
+                <span class="q-date-badge">2025 كانون</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">احتقان السرتين الرئويتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ارتسام الشقوق بين الفصية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فرط التهوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ضخامة خفيفة في ظل القلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتشاحات شبكية عقيدية منتشرة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — ارتشاحات شبكية عقيدية منتشرة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الارتشاحات الشبكية العقيدية المنتشرة التي تعطي &quot;مظهر الزجاج المغشى&quot; هي العلامة الشعاعية الوصفية لمتلازمة العسرة التنفسية الحادة (RDS / داء الأغشية الهيالينية) الناتجة عن نقص السورفاكتانت عند الخدج، ولا تتوافق أبداً مع الزلة العابرة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تحدث الزلة العابرة (رئة الوليد الرطبة) بسبب تأخر ارتشاف السوائل الرئوية، وتبدي صورة الصدر فيها علامات وصفية تشمل: احتقان السرتين الرئويتين، امتلاء الشقوق بين الفصية بالسائل، فرط تهوية (انخفاض حجاب حاجز)، وضخامة خفيفة عابرة في ظل القلب.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> الزلة العابرة هي أشيع سبب للعسرة التنفسية عند ولدان تمام الحمل، وتكثر بشكل خاص بعد الولادات القيصرية الباردة (لغياب الانضغاط الصدري في قناة الولادة)، وتشفى عفوياً خلال 24-72 ساعة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_093" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">خديج 30 أسبوع لديه أنين وطحة بعمر 2 ساعة بعد الولادة، شخص له متلازمة العسرة التنفسية الحادة، المعالجة الأساسية لهذه الحالة:</span>
+                </div>
+                <span class="q-date-badge">2025 كانون</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نقل دم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صادات واسعة الطيف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ميتيل بريدنيزولون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تهوية آلية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">إعطاء سورفاكتانت.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — إعطاء سورفاكتانت.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> السبب المرضي الجوهري لمتلازمة العسرة التنفسية الحادة (RDS) عند الخدج (30 أسبوعاً) هو عوز أو غياب مادة السورفاكتانت المانعة لانخماص الأسناخ. لذا، يعتبر إعطاء السورفاكتانت (الطبيعي أو الصناعي) داخل الرغامى هو &quot;المعالجة الأساسية والنوعية&quot; لتعويض النقص.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> التهوية الآلية أو الـ CPAP هي معالجات &quot;داعمة&quot; ضرورية للمحافظة على الأكسجة والضغط الإيجابي ولكنها لا تعالج السبب الأساسي. الصادات واسعة الطيف تعطى كإجراء وقائي أو لنفي ذات الرئة المرافقة، ونقل الدم لا دور له هنا.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> للوقاية من هذه المتلازمة، تُعطى الأم المهددة بمخاض باكر حقن الكورتيكوستيرويدات (مثل بيتاميثازون أو ديكساميثازون) قبل 24-48 ساعة من الولادة لتحريض نضج الرئتين وتصنيع السورفاكتانت لدى الجنين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_094" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">أشيع تظاهر رئوي عند الخدج:</span>
+                </div>
+                <span class="q-date-badge">2025 كانون</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">عسر تنسج رئة وقصبات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نوب توقف تنفس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ذات رئة خلقية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ريح صدرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">استنشاق العقي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — نوب توقف تنفس.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تعتبر نوب توقف التنفس (Apnea of prematurity) هي التظاهر التنفسي &quot;الأكثر شيوعاً&quot; لدى الخدج، وتحدث فيزيولوجياً بسبب عدم نضج مراكز التحكم بالتنفس في جذع الدماغ، وتزداد نسبة حدوثها كلما قل العمر الحملي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> عسر تنسج الرئة والقصبات (BPD) هو اختلاط مزمن ومرض يتطور لاحقاً بسبب التهوية الآلية المديدة وسمية الأكسجين، وليس تظاهراً بدئياً. استنشاق العقي هو متلازمة تخص بشكل شبه حصري ولدان تمام الحمل أو الحمل المديد ولا تحدث عند الخدج.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تُعرّف نوبة توقف التنفس بأنها انقطاع التنفس لأكثر من 20 ثانية، أو لأقل من 20 ثانية إذا ترافقت مع بطء قلب (أقل من 100 نبضة/دقيقة) أو زرقة. ويعتمد العلاج الدوائي المحرض لمركز التنفس على مشتقات الكزانتين (الكافيين).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_095" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">وليد مصاب بنقص الكلس أي مما يلي تعد اقل الأعراض مشاهدة عنده:</span>
+                </div>
+                <span class="q-date-badge">2024 تشرين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">النقرزة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الاختلاج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نوب زرقة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">علامة تشيفوستك.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">غياب الأعراض.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — علامة تشيفوستك.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> علامة تشيفوستك (تقلص عضلات الوجه عند قرع العصب الوجهي) وعلامة تروسو هما علامتان سريريتان نموذجيتان لنقص الكالسيوم عند الأطفال الكبار والبالغين، لكنهما &quot;نادرتا المشاهدة جداً&quot; وغير موثوقتين عند حديثي الولادة لعدم نضج الجملة العصبية العضلية لديهم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> نقص الكالسيوم عند الوليد يتظاهر بأعراض استثارة عصبية عضلية حقيقية تشمل النقرزة (الهياج والرجفان)، الاختلاجات، ونوبات توقف التنفس المسببة للزرقة، كما قد يمر بشكل لا عرضي تماماً ويكتشف مخبرياً فقط، ولذلك تعتبر هذه الخيارات مشاهدة وشائعة مقارنة بعلامة تشيفوستك النادرة.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> أشيع أسباب نقص الكلس الباكر (خلال أول 3 أيام) تشمل: الخداج، وليد الأم السكرية، والاختناق حول الولادة. ويعالج إسعافياً بحقن غلوكونات الكالسيوم 10% وريدياً ببطء مع المراقبة القلبية لتجنب بطء القلب.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_096" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">جميع المظاهر التالية ترافق النزف داخل البطينات عند الوليد عدا:</span>
+                </div>
+                <span class="q-date-badge">2024 تشرين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نوب توقف التنفس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الاختلاج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تسرع القلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">السبات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">حماض استقلابي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — تسرع القلب.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يعمل النزف داخل البطينات كآفة شاغلة للحيز ترفع التوتر داخل القحف مما يطلق منعكس كوشينغ الذي يتظاهر ببطء القلب (Bradycardia) وليس تسرعه كآلية معاوضة مع ارتفاع الضغط الشرياني.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> نوبات توقف التنفس، الاختلاجات، الحماض الاستقلابي، والسبات جميعها علامات مرافقة لتأذي الدماغ أو الصدمة في سياق النزف.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> يصيب النزف داخل البطينات الخدج غالبا ويشخص بدقة عبر الإيكو عبر اليافوخ، وقد يترك عقابيل عصبية ويحتاج لتداخل جراحي في حال تطور استسقاء دماغ.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_097" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">وليد لأم سكرية ولادة طبيعية، بعد الولادة بعدة ساعات حدث لديه اختلاج معمّم لمدة 3 دقائق، السبب الأكثر احتمالاً للاختلاج لديه هو:</span>
+                </div>
+                <span class="q-date-badge">2024 أيار</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نقص سكر الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نقص الكلس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نقص المغنيزيوم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انتان Sepsis.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نقص أكسجة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — نقص سكر الدم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يشيع نقص سكر الدم العابر في اليوم الأول من الحياة عند ولدان الأمهات السكريات نتيجة فرط إنسولين الدم الجنيني، وهو السبب الأشيع والأكثر احتمالا لإحداث نوب الاختلاج المعمم في الساعات الأولى.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> نقص الكلس ونقص المغنيزيوم يحدثان في أوقات متأخرة قليلا (بعد 24-48 ساعة). الإنتان يحتاج لفترة أطول للتظاهر ويترافق مع حرارة أو خمول. نقص الأكسجة يظهر فور الولادة بضائقة تنفسية وتدني مشعر أبغار.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تتم الوقاية من هذا الاختلاط بالبدء بالإطعام المبكر والمراقبة اللصيقة لسكر الدم أول 24 ساعة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_098" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">واحدة من التظاهرات التالية تقل مشاهدتها عند الخدج:</span>
+                </div>
+                <span class="q-date-badge">2024 أيار</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متلازمة العسرة التنفسية الحادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب كولون نخري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فقر دم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص كلس الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ذات رئة بالعقي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — ذات رئة بالعقي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تحدث متلازمة استنشاق العقي حصريا تقريبا لدى ولدان الحمل المديد أو تمام الحمل نتيجة الشدة ونقص الأكسجة الذي يطلق منعكس التغوط، وتندر مشاهدتها جدا عند الخدج لعدم نضج هذا المنعكس.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الخديج عالي الخطورة للإصابة بمتلازمة العسرة التنفسية (RDS) بسبب عوز السورفاكتانت، والتهاب الكولون النخري (NEC)، وفقر الدم، ونقص الكلس والنزف داخل البطينات الدماغية.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> من المشاكل الطبية الهامة الأخرى عند الخدج بقاء القناة الشريانية سالكة (PDA)، واعتلال الشبكية الخداجي (ROP)، ونوب توقف التنفس وبطء القلب.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_099" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">تطور عند وليد بعد عدة ساعات من ولادة قيصرية بسبب انبثاق جيب مياه باكر تثبط عام ورفض رضاعة مع حرارة، كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">2024 أيار</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تتماشى الحالة مع انتان دم باكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">العوامل الممرضة المتوقعة هي العصيات سلبية الغرام والعقديات B.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يجرى له زرع دم وفحص سائل دماغي شوكي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">سلبية الـ CRP عنده تنفي انتان الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يعالج تخبيرياً بالمضادات سيفوتاكسيم وامبيسيلين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — سلبية الـ CRP عنده تنفي انتان الدم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> لا تنفي سلبية الـ CRP وجود إنتان الدم الباكر لأنه بروتين ارتكاسي يحتاج بين 12 إلى 24 ساعة ليرتفع في المصل، وتتطلب الحالة قيمتين طبيعيتين متتاليتين في غياب الأعراض لنفي الخمج.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> بقية الخيارات صحيحة تماما حيث يزداد خطر الإنتان الباكر بانبثاق الأغشية الباكر، وأشيع مسبباته العقديات B والإشريكية الكولونية، ويجب أخذ زرع دم وبزل قطني والبدء بالصادات التجريبية واسعة الطيف فورا.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> الإنتان الباكر (خلال 48 ساعة) مصدره صاعد من القناة التناسلية ويتظاهر بعسرة تنفسية وضعف رضاعة وعدم ثباتية الحرارة، والبديل العلاجي الأمثل هو بنزيل بنسلين أو أمبيسيلين مع جنتامايسين أو سيفوتاكسيم.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_100" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">وليد 37 أسبوع حملي ظروف الولادة طبيعية حدث لديه تسرع تنفس 80/د بعد 4 ساعات من الولادة لا يوجد زرقة اصغاء الصدر طبيعي صورة الصدر تظهر فرط تهوية خفيف، التشخيص الأكثر احتمالا:</span>
+                </div>
+                <span class="q-date-badge">2023 تشرين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">داء الأغشية الهيالينية RDS.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تسرع تنفس عابر TTN.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فرط توتر رئوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">استنشاق عقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ريح صدرية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — تسرع تنفس عابر TTN.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> القصة السريرية (وليد بعمر 37 أسبوعاً، تسرع تنفس بدون زرقة، إصغاء طبيعي، وصورة صدر تبدي فرط تهوية خفيف أو احتقان سرتين) هي تظاهر نموذجي لمتلازمة الزلة التنفسية العابرة (رئة الوليد الرطبة) الناتجة عن تأخر ارتشاف السائل الرئوي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> داء الأغشية الهيالينية (RDS) يحدث غالباً لدى الخدج وتظهر صورة الصدر نقص تهوية ومظهر زجاج مغشى. استنشاق العقي يحدث في الحمل المديد وتظهر صورة الصدر كثافات غير متجانسة وتكون الزرقة شديدة. الريح الصدرية تظهر كشفافية زائدة مع غياب النسيج الرئوي في جهة الإصابة وانزياح المنصف. فرط التوتر الرئوي يسبب زرقة مركزية معندة على الأكسجين.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_101" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">كل ما يلي من عوامل الخطورة لحدوث انتان عند الوليد ما عدا:</span>
+                </div>
+                <span class="q-date-badge">2023 تشرين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الخداج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تمزق الأغشية الباكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الولادة القيصرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الإقامة في شعبة الحواضن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الولادة الراضة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — الولادة القيصرية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الولادة القيصرية بحد ذاتها (خاصة مع أغشية سليمة) لا تشكل عامل خطورة لإنتان الوليد، بل على العكس قد تعتبر عاملاً واقياً من انتقال بعض الأخماج الصاعدة أو الموجودة في القناة التناسلية (مثل فيروس الحلأ البسيط).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> عوامل الخطورة الرئيسية التي تزيد من احتمالية حدوث الخمج الباكر أو المتأخر عند الوليد تشمل: الخداج (لنقص المناعة ونقص الأضداد الوالدية المعبرة)، تمزق الأغشية الباكر (أكثر من 18 ساعة قبل الولادة)، الولادة الراضة والمخاض العسير، الإقامة المديدة في شعبة الحواضن والعناية المركزة، وحمى الأم أثناء المخاض.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_102" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">وليد تمام الحمل مع قصة استسقاء أمنيوسي، بعد الولادة كان لديه زلة تنفسية مع إلعاب، الإجراء التشخيصي المناسب:</span>
+                </div>
+                <span class="q-date-badge">2023 آذار</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">صور صدر بسيطة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إيكو قلب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">غازات الدم الشريانية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">صور للصدر مع أنبوب أنفي معدي ظليل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">طبقي محوري للصدر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — صور للصدر مع أنبوب أنفي معدي ظليل.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يوجه وجود الإلعاب المستمر (خروج رغوة من الفم) والزلة التنفسية المترافقة مع قصة استسقاء أمنيوسي بقوة إلى تشخيص رتق المريء.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الصور البسيطة وحدها لا تكفي لتأكيد رتق المريء دون الأنبوب الظليل، وغازات الدم تقيم الحالة التنفسية ولا تشخص الآفة التشريحية، وإيكو القلب يستخدم لنفي الآفات القلبية المرافقة ضمن تناذر VACTERL وليس لتشخيص الرتق المريئي مباشرة.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> يترافق رتق المريء غالباً مع ناسور رغامي مريئي سفلي (النمط C الأشيع)، ويعد الاستسقاء الأمنيوسي عند الأم العلامة الباكرة أثناء الحمل لعدم قدرة الجنين على ابتلاع السائل السلوي، ويجب منع الإرضاع فوراً لمنع ذات الرئة الاستنشاقية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_103" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">وليد تمام الحمل، تطور لديه لون يرقاني منذ اليوم الأول بعد الولادة وكان البيليروبين الكلي 5.6 مع/دسل بعد 12 ساعة من الولادة و 22 مغ/دسل بعمر 18 ساعة، الأم O إيجابي والطفل B إيجابي، كومبس المباشر إيجابي ضعيف، التشخيص الأكثر احتمالاً:</span>
+                </div>
+                <span class="q-date-badge">2022 أيلول</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تنافر ABO.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يرقان حليب الثدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">غالاكتوزيميا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تنافر RH.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">كريغلر نجار.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — تنافر ABO.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> اليرقان الذي يظهر في أول 24 ساعة من الحياة هو يرقان مرضي وانحلالي دائماً. الزمر الدموية (الأم O والطفل <b class="opt-letter-tag">B)</b> تحقق شرط التنافر، وإيجابية اختبار كومبس المباشر الضعيفة هي السمة الوصفية المخبرية لتنافر ABO.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تنافر عامل الريزوس (Rh) مستبعد تماماً لأن كليهما (موجب). يرقان حليب الثدي لا يظهر في اليوم الأول بل بعد الأسبوع الأول وهو سليم. الغالاكتوزيميا تتظاهر بساد ونقص سكر وضخامة كبدية مبكرة. متلازمة كريغلر نجار تسبب يرقاناً لا انحلالياً ويكون تفاعل كومبس فيها سلبياً.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> الانحلال بتنافر الزمر ABO يصيب الحمل الأول عادة (لأن أضداد IgG الطبيعية موجودة مسبقاً لدى الأم)، بينما تنافر الريزوس يحتاج لحمل أو إجهاض سابق لتحسيس الأم ولا يصيب الحمل الأول النموذجي، ويكون اختبار كومبس فيه إيجابياً بشدة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_104" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">كل ما يلي صحيح في متلازمة العسرة التنفسية عند الوليد RDS ما عدا:</span>
+                </div>
+                <span class="q-date-badge">2022 أيلول</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تسرع تنفس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">طحة زفيرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">زرقة لا تستجيب جيداً على O2.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تظهر الأعراض بعد 6 ساعات من الولادة عادةً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">منظر الزجاج المغشى على صورة الصدر الشعاعية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — تظهر الأعراض بعد 6 ساعات من الولادة عادةً.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في متلازمة العسرة التنفسية (RDS) الناجمة عن نقص أو غياب السورفاكتانت عند الخدج، تبدأ الأعراض وتتظاهر بشكل نموذجي &quot;مباشرة عند الولادة أو خلال الساعات الأولى (أول 4 ساعات)&quot;، وتتفاقم تدريجياً، ولا تتأخر لتظهر بعد 6 ساعات.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تسرع التنفس والطحة الزفيرية هما آليات فيزيولوجية معاوضة يبذلها الخديج لزيادة الضغط الإيجابي نهاية الزفير (PEEP) ومنع انخماص الأسناخ. الزرقة المعندة على الأكسجين تحدث في الحالات الشديدة، ومنظر الزجاج المغشى (الشبكي الحبيبي) هو العلامة الشعاعية الوصفية للرئة المخموصة.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> للوقاية من الـ RDS، تُعطى الأم الحامل المهددة بولادة مبكرة حقن الكورتيكوستيرويدات (ديكساميتازون) قبل الولادة بـ 24-48 ساعة لتحريض نضج رئتي الجنين. ويعالج الوليد المصاب بإعطاء السورفاكتانت عبر الرغامى وتطبيق التهوية بضغط إيجابي (CPAP).</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_105" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">يمكن لوليد الأم السكرية أن يتعرض لكل مما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">2022 آذار</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فرط كلس الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">متلازمة التراجع الذيلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تأخر نمو داخل الرحم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">احمرار الدم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الجنين العرطل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — فرط كلس الدم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يتعرض وليد الأم السكرية لاضطرابات استقلابية حادة في الأيام الأولى من الحياة تشمل بشكل وصفي نقص سكر الدم، نقص الكالسيوم (Hypocalcemia)، ونقص المغنيزيوم، ولا يحدث لديه فرط كلس الدم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> كثرة الحمر (احمرار الدم) شائعة جداً وتنتج عن نقص الأكسجة النسيجية الجنينية المعاوض بزيادة الإريثروبويتين. الجنين العرطل (عملقة الجنين) ينتج عن فرط إنسولين الدم الباني للنسج. تأخر النمو داخل الرحم قد يحدث إذا كانت الأم مصابة بداء سكري متقدم مع اعتلال أوعية دقيقة ومضاعفات كلوية. متلازمة التراجع الذيلي هي التشوه الخلقي الأكثر نوعية وارتباطاً بالداء السكري الوالدي.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> الوليد لأم سكرية يكون عالي الخطورة للإصابة بمتلازمة العسرة التنفسية (RDS) بسبب تداخل الإنسولين المرتفع مع اصطناع ونضج السورفاكتانت الرئوي، كما تزداد لديه نسبة حدوث التشوهات القلبية بشكل ملحوظ.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_106" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">خديج بعمر 28 أسبوع عانى من عدم تحمل تغذية كل ما يلي يدل على التهاب كولون نخري لديه ما عدا:</span>
+                </div>
+                <span class="q-date-badge">2021 تشرين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ثمالة معدية صفراوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">توقف التنفس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الدم بالبراز إيجابي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تهوي جدار الأمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يرقان.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — يرقان.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> لا يُعد اليرقان من العلامات الباكرة أو السريرية الموجهة لتشخيص التهاب الأمعاء والكولون النخري (NEC)، بل هو تظاهر شائع لأسباب انحلالية واستقلابية أخرى.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يتظاهر التهاب الكولون النخري نموذجياً بعلامات هضمية باكرة تشمل عدم تحمل التغذية، ثمالة معدية أو إقياءات صفراوية، تطبل بطن، وبراز مدمى إيجابي، وسرعان ما يتطور لنوبات توقف تنفس وصدمة.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> العلامة الشعاعية الوصفية الباكرة للمرض هي &quot;توسع العرى المعوية&quot;، تليها العلامة المشخصة وهي &quot;تهوي جدار الأمعاء&quot;، وفي الحالات المتقدمة يظهر تهوي في وريد الباب أو هواء حر تحت الحجاب الحاجز دلالة على الانثقاب الذي يستطب التداخل الجراحي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_107" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">وليد حمل مديد (43 أسبوع حملي) مع قصة تعقي سائل أمنيوسي، تطورت لديه زلة تنفسية بعد الولادة بـ 6 ساعات واستمرت 5 أيام ولم تستجب على الأكسجة، صورة صدر طبيعية، التشخيص الأرجح:</span>
+                </div>
+                <span class="q-date-badge">2021 حزيران</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ذات رئة استنشاقية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب قصيبات حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">متلازمة العسرة التنفسية RDS.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فرط توتر رئوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">استنشاق العقي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — فرط توتر رئوي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة فرط التوتر الرئوي المستمر عند الوليد (PPHN) تحدث غالباً كاختلاط لاستنشاق العقي لدى ولدان الحمل المديد، وتتميز سريرياً بزرقة وزلة تنفسية شديدة &quot;معندة على الأكسجة&quot; نتيجة استمرار التحويلة من الأيمن للأيسر، وتكون صورة الصدر أحياناً طبيعية ولا تتناسب مع شدة الزرقة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> استنشاق العقي وذات الرئة الاستنشاقية تتظاهران بصورة صدر غير طبيعية (كثافات غير متجانسة). متلازمة العسرة التنفسية (RDS) تصيب الخدج وتبدي صورة زجاج مغشى. التهاب القصيبات يصيب الرضع الأكبر سناً.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> يعالج فرط التوتر الرئوي الوليدي بالتهوية الآلية وإعطاء أوكسيد النتريك الإنشاقي (iNO) كموسع وعائي رئوي نوعي، أو وضع الطفل على (ECMO) في الحالات المستعصية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_108" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">20.</span>
+                    <span class="q-stem">كل مما يلي من أسباب اليرقان غير المقترن عند وليد بعمر 5 أيام عدا:</span>
+                </div>
+                <span class="q-date-badge">2020 تشرين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">عوز G6PD.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">رتق المسالك الصفراوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يرقان فيزيولوجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انحلال ABO.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انتان بولي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — رتق المسالك الصفراوية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يؤدي رتق المسالك الصفراوية إلى يرقان ركودي يرتفع فيه البيليروبين &quot;المقترن&quot; (المباشر) بسبب الانسداد الميكانيكي ومنع وصول الصفراء للأمعاء، ويترافق مع براز أبيض وبول داكن.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الأسباب الأخرى تسبب يرقاناً غير مقترن (بيليروبين غير مباشر) وتشمل: اليرقان الفيزيولوجي (يبلغ ذروته في اليوم الخامس)، الانحلال الدموي (تنافر زمر ABO وعوز G6PD)، والإنتانات البولية الخفية التي قد تتظاهر بيرقان مديد غير مقترن.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تقييم اليرقان في الأسبوع الثاني وما بعده يعتمد على معايرة البيليروبين المباشر؛ فأي ارتفاع فوق 2 ملغ/دل يوجه للرتق أو التهاب الكبد الوليدي ويستدعي تدخلاً سريعاً قبل 60 يوماً.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_109" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">21.</span>
+                    <span class="q-stem">كل مما يلي صحيح عن الزلة التنفسية العابرة عدا:</span>
+                </div>
+                <span class="q-date-badge">2020 تشرين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">أشيع ما تحدث بعد القيصرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">أشيع سبب للزلة عند الوليد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">سببها تأخر عودة ارتشاف السائل بالرئتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص تهوية رئوية في صورة الصدر البسيطة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تتظاهر خلال الساعات الأولى من الولادة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — نقص تهوية رئوية في صورة الصدر البسيطة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في الزلة التنفسية العابرة عند الوليد (رئة الوليد الرطبة)، تظهر صورة الصدر الشعاعية &quot;فرط تهوية&quot; وليس نقص تهوية، بالإضافة إلى احتقان السرتين وامتلاء الشقوق الفصية بالسائل.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تعتبر أشيع سبب للزلة عند الوليد بتمام الحمل، وتحدث وتكثر بوضوح بعد الولادات القيصرية لغياب عصر الصدر وطرد السائل، وتنتج إمراضياً عن تأخر ارتشاف السائل الرئوي، وتتظاهر خلال الساعات الأولى من الولادة.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تعالج الحالة بشكل داعم عبر تقديم الأكسجين وتتراجع عفوياً خلال 24-72 ساعة دون ترك عقابيل، ويجب دائماً نفي الإنتان الدموي الباكر قبل وضع التشخيص النهائي.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_110" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">22.</span>
+                    <span class="q-stem">بالنسبة لشلل ارب كل مما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">2020 حزيران</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إصابة الجذور العصبية C5-6.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قد يترافق مع شلل العصب الحجابي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">شلل رخو.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">اليد بوضعية تبعيد ودوران خارجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">اليد بوضعية الكب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — اليد بوضعية تبعيد ودوران خارجي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في شلل إرب (إصابة الجذور الرقبية العلوية C5-C6)، تتخذ اليد وضعية وصفية (يد النادل) تتميز بكونها بوضعية &quot;تقريب&quot; ودوران &quot;داخلي&quot; مع كب الساعد، وليس تبعيداً ودوراناً خارجياً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يحدث الشلل الرخو نتيجة أذية الضفيرة العضدية في المخاض العسير أو المجيء المقعدي، وقد يترافق مع أذية العصب الحجابي (شلل الحجاب الحاجز). اليد تكون بوضعية الكب.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> في شلل إرب يغيب منعكس مورو وتغيب حركة الذراع بينما تكون حركة الأصابع (القبض) سليمة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_111" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">23.</span>
+                    <span class="q-stem">كل مما يلي صحيح في التهاب الأمعاء والكولون المنخر عند الأطفال عدا:</span>
+                </div>
+                <span class="q-date-badge">2020 حزيران</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">زيادة معدل الحدوث عند الخدج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">معدل إصابة أعلى عند الخدج الذين يتناولون الحليب الصناعي المشتق من حليب البقر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">دعم الحليب بالبروبيوتيكس لا أهمية له.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">العلاج بالتغذية الوريدية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قد يحدث تهوي في جدر الأمعاء.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — دعم الحليب بالبروبيوتيكس لا أهمية له.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> أثبتت الدراسات الطبية أن دعم الحليب بالبروبيوتيكس (البكتيريا النافعة) يحمل عاملاً وقائياً هاماً جداً يقلل من خطر الإصابة بالتهاب الكولون النخري (NEC) عند الخدج، مما يجعل نفي أهميته خياراً خاطئاً.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يزداد معدل الحدوث عند الخدج، وخاصة الذين يعتمدون على التغذية الصناعية (حليب البقر)، وتتضمن المعالجة إيقاف التغذية الفموية والاعتماد على التغذية الوريدية والصادات، ويظهر شعاعياً تهوي جدار الأمعاء.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> يتظاهر المرض باكراً بعدم تحمل التغذية، ثمالة معدية صفراوية، وتطبل بطن مع براز مدمى. الانثقاب المعوي (هواء حر تحت الحجاب) يستدعي الجراحة الإسعافية.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_112" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">24.</span>
+                    <span class="q-stem">كل مما يلي يؤهب لمتلازمة العسرة التنفسية ما عدا:</span>
+                </div>
+                <span class="q-date-badge">2019 تشرين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الخداج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">وليد الأم السكرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">طفرة في تصنيع السورفاكتانت.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إعطاء الستيروئيدات للأم قبل الولادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الذكور أكثر من الإناث.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — إعطاء الستيروئيدات للأم قبل الولادة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> إعطاء الستيروئيدات القشرية (كالديكساميتازون) للأم الحامل المهددة بولادة مبكرة يعتبر عاملاً &quot;وقائياً&quot;، حيث يحرض نضج الرئتين وتصنيع السورفاكتانت الجنيني، وبالتالي &quot;يقلل&quot; بشكل كبير من معدل حدوث متلازمة العسرة التنفسية (RDS) ولا يؤهب لها.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> العوامل التي تؤهب وترفع من خطر الإصابة بالـ RDS تشمل: الخداج (السبب الأول لنقص السورفاكتانت)، وليد الأم السكرية (فرط الإنسولين يثبط نضج السورفاكتانت)، جنس الذكور، والولادة القيصرية الباردة بدون مخاض، والطفرات الجينية في بروتينات السورفاكتانت.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تتظاهر الـ RDS تسرع تنفس، سحب، طحة زفيرية، وزرقة مباشرة بعد الولادة، وتبدي صورة الصدر مظهر الزجاج المغشى، والتدبير الأساسي هو تطبيق الـ CPAP وإعطاء السورفاكتانت عبر الرغامى.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_113" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">25.</span>
+                    <span class="q-stem">كل مما يلي من المخاطر الشائعة عند الخدج ما عدا:</span>
+                </div>
+                <span class="q-date-badge">2019 تشرين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">متلازمة العسرة التنفسية الحادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">بقاء القناة الشريانية سالكة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">النزف داخل البطينات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">استنشاق العقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التهاب الكولون النخري.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — استنشاق العقي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> متلازمة استنشاق العقي (MAS) هي اختلاط يخص بشكل شبه حصري ولدان &quot;الحمل المديد&quot; (أكثر من 42 أسبوعاً) أو تمام الحمل الذين يتعرضون لنقص أكسجة وشدة تطلق منعكس التغوط، وتندر جداً رؤيتها عند الخدج لعدم نضج هذا المنعكس العصبي المعوي لديهم.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الخديج (المولود قبل 37 أسبوعاً) عالي الخطورة لمجموعة من الاختلاطات الوصفية التي تشمل: متلازمة العسرة التنفسية (نقص السورفاكتانت)، بقاء القناة الشريانية سالكة (PDA)، النزف داخل البطينات الدماغية (IVH)، والتهاب الأمعاء والكولون النخري (NEC).
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> من المشاكل الإضافية الشائعة جداً عند الخدج: نوبات توقف التنفس، انخفاض الحرارة (لنقص الشحم البني)، نقص سكر وكلس الدم، اعتلال الشبكية الخداجي (ROP)، والإنتانات.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_114" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">26.</span>
+                    <span class="q-stem">كل ما يلي يؤدي إلى اختلاجات عند الوليد عدا:</span>
+                </div>
+                <span class="q-date-badge">2019 شباط</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نقص سكر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نقص كلس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نزف دماغي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فقر دم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نقص أكسجة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — فقر دم.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> لا يعتبر فقر الدم بحد ذاته سبباً مباشراً أو محرضاً للاختلاجات عند حديثي الولادة، في حين تشمل الأسباب الرئيسية للاختلاج الوليدي كلاً من اعتلال الدماغ الإقفاري بنقص الأكسجة (السبب الأشيع)، والنزف داخل القحف، والاضطرابات الاستقلابية كنقص سكر الدم ونقص الكلس ونقص المغنيزيوم، بالإضافة إلى الأخماج واليرقان النووي.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> نقص السكر ونقص الكلس ونقص الأكسجة والنزف الدماغي هي جميعها من الأسباب النموذجية الموثقة والمباشرة لإحداث نوب اختلاجية عصبية عند الوليد بسبب تأثيرها الحاد على الاستقلاب والتروية الدماغية.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> تظهر الاختلاجات الوليدية غالباً بحركات غير نموذجية كالرمش المستمر، حركات المص والمضغ، أو حركات التجديف بالدراجة، ويكون الاستقصاء الأول والأهم هو قياس سكر الدم الإسعافي لنفي نقص السكر وتدبيره فوراً.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_115" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">27.</span>
+                    <span class="q-stem">وليد لديه تورم في العظم الجداري الأيسر بعد الولادة كل ما يلي لديه ما عدا:</span>
+                </div>
+                <span class="q-date-badge">2019 شباط</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إصابة عظم واحد فقط.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">قد يحدث كسر خطي بالجمجمة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يزول خلال 24 ساعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يحدث التكلس بنهاية الأسبوع الثاني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">غير متوفر في المصدر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — يزول خلال 24 ساعة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يشير التورم المقتصر على العظم الجداري الأيسر (الذي لا يتجاوز الدروز) إلى الورم الدموي الرأسي (Cephalhematoma)، وهو نزف تحت السمحاق يحتاج لأسابيع (من أسبوعين إلى ثلاثة أشهر) حتى يرتشف ويزول، ولا يزول خلال 24 ساعة (وهي ميزة الحدبة المصلية الدموية).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> يتميز الورم الدموي الرأسي بكونه يصيب عظاماً مفردة فقط (لا يعبر الخطوط الدرزية)، وقد يترافق بنسبة 10-25% مع كسر خطي في الجمجمة تحته، ومع بدء ارتشافه قد يتكلس حوافه بنهاية الأسبوع الثاني معطياً إحساساً بوجود انخفاض مركزي.
+</div><div class="exp-section exp-tarmim"><b class="exp-header-tag">ترميم امتحاني:</b> الحدبة المصلية الدموية (Caput succedaneum) هي وذمة في النسيج تحت الجلد الرخو، تتجاوز الدروز، تتواجد عند الولادة مباشرة، وتزول عفوياً خلال 24-48 ساعة.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_116" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">28.</span>
+                    <span class="q-stem">في التهاب الكولون النخري كل ما يلي صحيح عدا:</span>
+                </div>
+                <span class="q-date-badge">2018 تشرين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الخداجة عامل مؤهب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الصدمة علامة باكرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">يفيد إعطاء Probiotics مع الحليب في الوقاية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يجب إيقاف التغذية الفموية بمجرد التشخيص.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تهوي جدار الأمعاء وتوسع العرى المعوية بالصورة الشعاعية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الصدمة علامة باكرة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تُعد الصدمة وتدهور الحالة العامة من العلامات السريرية &quot;المتأخرة&quot; والمهددة للحياة في التهاب الكولون النخري (NEC)، وتدل على حدوث انثقاب معوي أو إنتان دم شديد، وليست من العلامات الباكرة.
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> تشمل العلامات الباكرة عدم تحمل الرضاعة والإقياء والبراز المدمى. يشكل الخداج العامل المؤهب الأهم. أثبت إعطاء البروبيوتيكس مع الحليب فعاليته في الوقاية وخفض معدل الإصابة. يجب إيقاف التغذية الفموية فوراً عند الاشتباه بالتشخيص وتطبيق تغذية وريدية وصادات. تظهر صورة الصدر والبطن علامات وصفية تشمل توسع العرى المعوية وتهوي جدار الأمعاء.</div></div>
+        
+    </div>
+    </div>
+    <div class="question-card" id="q_peds1_117" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">29.</span>
+                    <span class="q-stem">من أسباب اليرقان عند الوليد كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">2018 تشرين</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">داء تكور الكريات الوراثي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الداء الانحلالي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الانتان الخلقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">عوز G6PD.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الداء المنجلي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — الداء المنجلي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> لا يتسبب فقر الدم المنجلي بحدوث انحلال دم أو يرقان في فترة حديث الولادة إطلاقاً، والسبب في ذلك أن الخضاب الجنيني (HbF) يكون هو المهيمن والمسيطر ويحمي الكريات الحمراء، ولا تبدأ الأعراض نموذجياً إلا بعد عمر 5 إلى 6 أشهر عندما يُستبدل بالخضاب المنجلي (HbS).
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> داء تكور الكريات الوراثي، الداء الانحلالي المناعي (كتنافر زمر ABO والريزوس)، الإنتانات والأخماج الخلقية، وعوز إنزيم G6PD هي جميعها أسباب رئيسية وموثقة لإحداث انحلال دم ويرقان باكر أو مديد في فترة الوليد.</div></div>
+        
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "29 سؤال • 1 مواضيع • 2018 - 2026";
+        const originalDocTitle = "بنك الأسئلة - طب الأطفال 1 (طب حديث الولادة)";
+        const subjectName = "طب الأطفال 1";
+        const groupByMode = "topic";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

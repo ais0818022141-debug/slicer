@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - الجراحة الصدرية (أمراض وجراحة الجنب)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0284C7;
+            --primary-dark: #075985;
+            --primary-rgb: 2, 132, 199;
+            --accent-gold: #D97706;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .opt-letter-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - الجراحة الصدرية (أمراض وجراحة الجنب)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">التصنيف:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع التصنيفات (الكل - 16 سؤال)</option>
+                    <option value="topic-1">أمراض وجراحة الجنب (16 سؤال)</option>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل التصنيف المحدد (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">الجراحة الصدرية</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب المواضيع)</p>
+                <p class="stats-summary" id="statsSummary">16 سؤال • 1 مواضيع • 2018 - 2025</p>
+            </div>
+
+            <div class="index-section-title">فهرس المواضيع والتصنيفات</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="topic-1">
+                    <a href="#topic-1" class="index-row" data-group-id="topic-1" data-year="2025 2024 2023 2022 2021 2020 2019 2018">
+                        <span class="index-topic-name">أمراض وجراحة الجنب</span>
+                        <span class="index-topic-meta">
+                            <span>2018 - 2025</span>
+                            <span class="index-count">16 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'topic-1', 'أمراض وجراحة الجنب')" title="تحميل أمراض وجراحة الجنب كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2025 2024 2023 2022 2021 2020 2019 2018" data-group-id="topic-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="topic-1">
+                    <div class="topic-title-text">أمراض وجراحة الجنب</div>
+                    <span class="topic-counter">16 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_thoracic_surgery_14" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">أفضل علاج لتقيح الجنب المحجب:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بزل جنب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">صادات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تفجير صدر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تقشير جنب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">مضادات وذمة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — تقشير جنب.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في الطور المحجب تتشكل حجب وألياف سميكة تحصر الرئة وتمنع تصريف القيح عبر المفجر البسيط، مما يستدعي إجراء تقشير للجنب (Decortication) وتجريف الحجب عبر تنظير الصدر (VATS) أو فتح الصدر لتحرير الرئة.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> بزل الجنب يقتصر على المرحلة الأولى غير المختلطة وغير المحجبة.
+
+<b class="opt-letter-tag">B)</b> الصادات وحدها عاجزة عن اختراق التجمعات القيحية المحجبة والتخلص منها.
+
+<b class="opt-letter-tag">C)</b> تفجير الصدر لا يستطيع تفريغ الأجواف المتعددة المعزولة بالحجب الليفية.
+
+<b class="opt-letter-tag">E)</b> مضادات الوذمة لا دور علاجي لها في إزالة الانصبابات القيحية المحجبة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">يعالج تقيح الجنب المحجب جراحياً بتقشير الجنب وتجريف الحجب والأجواف لتحرير الرئة المحصورة والسماح لها بإعادة التمدد.</span>
+        </div>
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_thoracic_surgery_15" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">ألم صدري أيمن مفاجئ مع ضيق تنفس لدى شاب طويل نحيل مدخن يدل على:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">صمة رئوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ريح صدرية عفوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ذات جنب حادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تسلخ أبهر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">سل جنبي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — ريح صدرية عفوية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ينجم الألم والزلة عن انبثاق مفاجئ لفقاعات أو حويصلات هوائية قمية تحت الجنب الحشوية، مما يدخل الهواء إلى جوف الجنب ويعدم الضغط السلبي مؤدياً لانخماص الرئة وظهور متلازمة استرواحية.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> الصمة الرئوية تترافق عادة مع ركودة وريدية أو سوابق خثار وتتظاهر بنفث دم وخفوت دون فرط وضاحة.
+
+<b class="opt-letter-tag">C)</b> ذات الجنب الحادة تترافق بارتفاع حروري واحتكاكات جنبية إصغائية وبدء تدريجي.
+
+<b class="opt-letter-tag">D)</b> تسلخ الأبهر يسبب ألماً تمزيقياً ينتشر بين لوحي الكتف ويغلب لدى كهول مفرطي الضغط.
+
+<b class="opt-letter-tag">E)</b> سل الجنب يتظاهر سريرياً بأعراض جهازية مزمنة كالحمى والتعرق الليلي ونقص الوزن.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">حدوث ألم صدري حاد ومفاجئ مع زلة تنفسية لدى شاب طويل ونحيل ومدخن يوجه مباشرة إلى الريح الصدرية العفوية الناجمة عن تمزق فقاعات هوائية تحت الجنب.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_16" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">ألم صدري أيمن فجائي وزلة تنفسية لدى شاب طويل نحيل مدخن يغلب أن تكون:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ريح صدرية عفوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انصباب جنب دموي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تمزق مريء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تشنج عضلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">سرطان رئة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ريح صدرية عفوية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يؤدي التدخين ونقص التروية النسبي في قمم الرئتين لدى الأفراد طوال القامة إلى ضعف جدر الأسناخ وتشكل فقاعات قمية تنبثق فجأة، محررة الهواء داخل جوف الجنب ومحدثة ألماً فجائياً وزلة.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">B)</b> انصباب الجنب الدموي يحدث غالباً تلو الرضوض النافذة أو الكليلة ويترافق بأصمية بالقرع.
+
+<b class="opt-letter-tag">C)</b> تمزق المري يتلو قيئاً عنيفاً أو إجراءً تنظيرياً ويترافق بانتفاخ تحت الجلد والتهاب منصف.
+
+<b class="opt-letter-tag">D)</b> التشنج العضلي لا يترافق مع زلة تنفسية فجائية ولا مع علامات فيزيائية استرواحية.
+
+<b class="opt-letter-tag">E)</b> سرطان الرئة ورم يندر في الشباب ويتظاهر بأعراض مزمنة كالسعال المستمر ونقص الوزن.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تعتبر بنية الشاب الطويل النحيل مع التدخين أشيع بيئة لحدوث تمزق الفقاعات الهوائية القمية وتطور الريح الصدرية العفوية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_17" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">كل ما يلي صحيح في الريح الصدرية الموترة ما عدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تصادف عادة احتقان أوردة العنق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تحدث مترافقة مع الريح الصدرية المفتوحة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قد يدخل المريض بصدمة قبلية المنشأ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يجب وضع التشخيص سريرياً.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التدبير الأولي الإسعافي ببزل الصدر بالإبرة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — تحدث مترافقة مع الريح الصدرية المفتوحة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تتميز الريح الموترة بحبس الهواء وارتفاع الضغط الجنبي الإيجابي المستمر، بينما تسمح الريح الصدرية المفتوحة بتبادل الهواء بالاتجاهين عبر جرح نافذ واسع في جدار الصدر، فلا تتطور لريح موترة إلا إذا أُغلق الجرح بضماد محكم تماماً.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> احتقان أوردة العنق علامة مميزة تنتج عن انضغاط الأوردة الكبيرة والأذينتين وإعاقة العود الوريدي.
+
+<b class="opt-letter-tag">C)</b> تؤدي إعاقة العود الوريدي وانخفاض النتاج القلبي الحاد إلى صدمة قلبية المنشأ (قبلية المنشأ).
+
+<b class="opt-letter-tag">D)</b> يجب وضع التشخيص سريرياً فوراً على سرير المريض دون إضاعة الوقت بطلب صورة صدر بسيطة.
+
+<b class="opt-letter-tag">E)</b> التدبير الإسعافي الأولي المنقذ للحياة هو بزل الصدر بإبرة ثخينة لتحويلها إلى ريح بسيطة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الريح الصدرية الموترة حالة إسعافية تشخص سريرياً وتعالج بالبزل الفوري بإبرة ثخينة في الورب الثاني، وتحدث بآلية صمام وحيد الاتجاه يحبس الهواء داخل الجنب.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_18" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">كل ما يلي صحيح في التدبير الجراحي للريح الصدرية العفوية، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يجرى تحت التخدير العام.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">إجراء إيثاق جنب باستئصال الجنب الحشوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التنظير الصدري المساعد بالفيديو هي الطريقة المفضلة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يخفض التدبير الجراحي معدل النكس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يجب إجراء طبقي محوري للصدر قبل الجراحة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — إجراء إيثاق جنب باستئصال الجنب الحشوية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يقتصر استئصال الجنب على الوريقة الجدارية (Parietal Pleurectomy) لتحريض تشكل التصاقات ليفية مانعة للنكس، في حين يُمنع استئصال الجنب الحشوية لالتصاقها الحميم بالنسيج الرئوي وخطر إحداث تمزقات أسناخ ونزف شديد وتسريب هوائي واسع.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> يجرى العمل الجراحي تحت التخدير العام وتنبيب رغامي بأنبوب ثنائي اللمعة لخمص الرئة المصابة.
+
+<b class="opt-letter-tag">C)</b> التنظير الصدري المساعد بالفيديو (VATS) هو الطريقة المفضلة والأقل إحداثاً للرض.
+
+<b class="opt-letter-tag">D)</b> يخفض التدبير الجراحي باستئصال الآفات وإيثاق الجنب معدل النكس بشكل كبير.
+
+<b class="opt-letter-tag">E)</b> يجب إجراء طبقي محوري للصدر لتقييم وجود وتوزع الفقاعات والكيسات في الرئتين.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">يشمل علاج الريح الصدرية العفوية جراحياً استئصال الفقاعات مع إيثاق الجنب، وتستأصل الجنب الجدارية وليس الحشوية عند تكرر النكس.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_19" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">أفضل علاج للريح الصدرية الناكسة عند شاب 25 سنة هو:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تفجير صدر بأنبوب كبير.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تفجير صدر مع تطبيق ضغط سلبي على الزجاجة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">حقن الستربتوكيناز في الجنب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">العلاج جراحي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">إيثاق الجنب ببخ التالك.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — العلاج جراحي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تتجاوز نسبة النكس بعد الهجمة الثانية 50% مع فشل الطرق المحافظة، مما يستوجب التدخل الجراحي لاستئصال الفقاعات الهوائية القمية المسؤولة عن التسريب وإجراء إيثاق جنب ميكانيكي لمنع تكرار الهجمات نهائياً.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> تفجير الصدر بأنبوب يفرغ الهواء بالهجمة الحادة فقط ولكنه لا يمنع النكس المستقبلي.
+
+<b class="opt-letter-tag">B)</b> تفجير الصدر مع الضغط السلبي يعيد تمدد الرئة مؤقتاً دون معالجة الفقاعات المسببة.
+
+<b class="opt-letter-tag">C)</b> حقن الستربتوكيناز يستطب لحل العلقات والألياف في التقيح أو التدمي وليس للريح الصدرية.
+
+<b class="opt-letter-tag">E)</b> إيثاق الجنب الكيميائي ببخ التالك غير محبذ في الآفات السليمة لدى الشباب لتجنب الالتصاقات الشديدة المعيقة لأي عمل جراحي مستقبلي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الريح الصدرية الناكسة استطباب صريح للعلاج الجراحي (VATS) عبر استئصال الفقاعات وإجراء إيثاق ميكانيكي لوريقتي الجنب.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_20" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">اختر العلاج الأنسب للريح الصدرية العفوية الشاملة لنصف الصدر:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إعطاء الأوكسجين بقناع مع جهاز آمبو.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">عملية فتح صدر واستئصال فقاعات من قمة الرئة وإيثاق الجنب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">إيثاق الجنب بالتالك.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تفجير الصدر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">بزل الجنب في الورب الثاني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — تفجير الصدر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تؤدي الريح الصدرية الشاملة لنصف الصدر إلى انخماص رئوي كامل يهدد التبادل الغازي، مما يستلزم تفجير الصدر عبر أنبوب صدري لإفراغ الهواء واستعادة الضغط السلبي داخل الجنب لضمان عودة انتشار الرئة.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> إعطاء الأكسجين بقناع مع آمبو يزيد الضغط داخل الطرق الهوائية وقد يفاقم التسريب ويفجر ريحاً موترة.
+
+<b class="opt-letter-tag">B)</b> فتح الصدر وإيثاق الجنب لا يستطب كخط أول للهجمة الأولى بل يُحفظ للنكس أو فشل التفجير.
+
+<b class="opt-letter-tag">C)</b> إيثاق الجنب بالتالك غير مرغوب فيه كعلاج أولي لآفة سليمة تحدث للمرة الأولى.
+
+<b class="opt-letter-tag">E)</b> بزل الورب الثاني بالإبرة إجراء تفريغي للريح الموترة الإسعافية أو الجزئية وليس علاجاً شاملاً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تعالج الريح الصدرية العفوية الشاملة (أكثر من 30% من الحجم) في هجمتها الأولى بوضع أنبوب تفجير الصدر الموصول بدسام مائي وحيد الاتجاه.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_21" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">التدبير الأفضل للريح الصدرية الشاملة لنصف الصدر:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بزل ورب ثاني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">استئصال الفقاعة وإيثاق الجنب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">إيثاق كيميائي بحقن التالك.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">إعطاء أوكسجين O2.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تفجير صدر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — تفجير صدر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يتيح تفجير الصدر عبر الأنبوب الصدري تصريف الهواء المتجمع واستمرار نزح أي تسريب متبقٍ، مما يساعد على إعادة بسط الرئة والتصاقها بجدار الصدر ومنع الاختلاطات التنفسية.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> بزل الورب الثاني يقتصر على تخفيف الضغط الحاد في الريح الموترة أو تدبير الريح الجزئية البسيطة.
+
+<b class="opt-letter-tag">B)</b> استئصال الفقاعات وإيثاق الجنب إجراء جراحي يستطب في الريح الناكسة أو استمرار التسريب لأسبوع.
+
+<b class="opt-letter-tag">C)</b> الإيثاق الكيميائي بحقن التالك يسبب التصاقات شديدة وغير مستطب في الهجمة البدئية الأولى.
+
+<b class="opt-letter-tag">D)</b> الأكسجين تدبير داعم متمم لتسريع ارتشاف الغاز لكنه غير كافٍ بذاته في الريح الشاملة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التدبير المعياري والنهائي للريح الصدرية العفوية الشاملة غير المترافقة بانزياح منصفي حاد هو إدخال أنبوب تفجير الصدر لنزح الهواء المستمر.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_22" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">تعالج الريح الصدرية بالجراحة مع إيثاق جنب في حالة واحدة مما يلي:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">عند الشباب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">عند المسنين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ريح صدرية مع انصباب جنب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ريح صدرية ناكسة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — ريح صدرية ناكسة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ترتفع خطورة نكس الريح الصدرية تصاعدياً بعد الهجمة الأولى، مما يجعل العلاج الجراحي باستئصال الفقاعات مع إيثاق الجنب الميكانيكي ضرورياً لإلغاء جوف الجنب ومنع النكس نهائياً.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> حدوث الريح عند الشباب للمرة الأولى يعالج محافظاً أو بتفجير الصدر فقط.
+
+<b class="opt-letter-tag">B)</b> عمر المسنين بمفرده ليس معياراً لإجراء الجراحة وإيثاق الجنب.
+
+<b class="opt-letter-tag">C)</b> الريح الصدرية مع انصباب جنب تدبر مبدئياً بوضع مفجر الصدر ومراقبة السوائل والهواء.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تعد الريح الصدرية الناكسة الاستطباب النموذجي لإجراء التداخل الجراحي المقترن بإيثاق الجنب لمنع الهجمات اللاحقة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_23" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">السبب الأشيع لتقيح الجنب:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">جراحياً بعد عملية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نقص مناعة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تمزق المري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الانتانات الرئوية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">خراج حجابي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — الانتانات الرئوية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> ينتقل الخمج الجرثومي بالامتداد المباشر من النسيج الرئوي المصاب بالتهاب الرئة إلى السائل الجنبي المحيط عبر وريقة الجنب الحشوية، مما يحول الانصباب نظير ذات الرئة إلى انصباب قيحي معتم.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> الإنتان التالي للعمليات الجراحية الصدرية يمثل نسبة أقل من أسباب التقيح.
+
+<b class="opt-letter-tag">B)</b> نقص المناعة حالة مؤهبة للإصابة بالإنتان وليست سبباً إمراضياً مباشراً ومستقلاً بذاته.
+
+<b class="opt-letter-tag">C)</b> تمزق المري يؤدي إلى تقيح والتهاب منصف لكنه سبب قليل الشيوع مقارنة بذات الرئة.
+
+<b class="opt-letter-tag">E)</b> الخراج تحت الحجاب قد ينفذ عبر الحجاب الحاجز لكنه يشكل سبباً نادراً لتقيح الجنب.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تعد الإنتانات الرئوية والقصبية، ولا سيما ذات الرئة المكتسبة في المجتمع، أشيع سبب لتقيح الجنب بنسبة تقارب 50% من الحالات.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_24" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">كل مما يلي من أسباب الريح الصدرية العفوية الثانوية عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فقاعة هوائية في قمة الرئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سرطان رئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">سل رئة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ربو قصبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نفاخ رئوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — فقاعة هوائية في قمة الرئة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تشكل الفقاعات الهوائية القمية (Apical Blebs/Bullae) الآلية الأساسية للريح الصدرية العفوية البدئية (90% من الحالات)، بينما تشترط الريح العفوية الثانوية وجود مرض رئوي مزمن مستبطن مسبقاً.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">B)</b> سرطان الرئة من أسباب الريح الثانوية بسبب نخر الورم وانفتاحه نحو الجوف الجنبي.
+
+<b class="opt-letter-tag">C)</b> سل الرئة يسبب ريحاً ثانوية نتيجة تمزق الكهوف الدرنية السطحية المتجبنة.
+
+<b class="opt-letter-tag">D)</b> الربو القصبي يسبب ريحاً ثانوية ناجمة عن احتباس الهواء الحاد وفرط تمطط الأسناخ الرئوية.
+
+<b class="opt-letter-tag">E)</b> النفاخ الرئوي (COPD) يعد من أشيع أسباب الريح الصدرية الثانوية لتخرب الجدران بين الأسناخ.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تنجم الريح الصدرية العفوية البدئية عن انفجار فقاعات قمية في رئة سليمة، بينما تنتج الريح الثانوية عن أمراض رئوية بنيوية كالنفاخ والتدرن وسرطان الرئة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_25" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">كل مما يلي صحيح في انصباب الجنب الدموي عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نقص الاهتزازات بالجس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">خفوت الأصوات التنفسية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">طبلية بالقرع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">امتلاء زاوية الحجاب الحاجز.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — طبلية بالقرع.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الخيار C خاطئ؛ حيث يؤدي تراكم السائل المدمى داخل جوف الجنب إلى امتصاص الأمواج الصوتية وإحداث أصمية بالقرع، في حين تشاهد الطبلية بالقرع وفرط الوضاحة في المتلازمة الاسترواحية عند تجمع الهواء.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> نقص الاهتزازات بالجس ينتج عن عزل السائل المتجمع لانتقال اهتزازات الصوت من الرئة إلى جدار الصدر.
+
+<b class="opt-letter-tag">B)</b> خفوت الأصوات التنفسية ينجم عن وجود حاجز سائل يفصل الرئة المنخمصة عن جدار الصدر.
+
+<b class="opt-letter-tag">D)</b> امتلاء الزاوية الحجابية الحاجزية علامة سريرية وشعاعية لتجمع السائل الحر في أسفل الجوف الجنبي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">يتظاهر انصباب الجنب الدموي بأصمية بالقرع وخفوت الأصوات التنفسية ونقص الاهتزازات الصوتية وامتلاء زاوية الحجاب الحاجز.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_26" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">العلاج البدئي الأمثل للريح الصدرية الموترة (الضاغطة):</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">بزل ورب ثاني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">مراقبة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">تنظير.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فتح صدر إسعافي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تفجير.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — بزل ورب ثاني.</div>
+        <div class="exp-body-text"></div><div class="exp-section exp-note"><b class="exp-header-tag">ملاحظة:</b> هذا السؤال مكرر في دورة حزيران 2020 بصيغة وخيارات مختلفة (انظر السؤال رقم 75)، والجواب واحد في الصيغتين.
+
+<div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يؤدي احتباس الهواء وتزايد الضغط الإيجابي داخل جوف الجنب إلى خمص الرئة وانزياح عناصر المنصف وإعاقة العود الوريدي مؤدياً لوهط دوراني قاتل. يعمل بزل الورب الثاني بالإبرة على خط منتصف الترقوة على تحرير الضغط فوراً واستعادة النتاج القلبي ريثما يوضع المفجر الصدري النهائي.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">B)</b> المراقبة خطأ فادح يعرض المريض للوفاة السريعة بالوهط الدوراني والصدمة القلبية.
+
+<b class="opt-letter-tag">C)</b> التنظير مضاد استطباب في الحالة الحادة الإسعافية لعدم الاستقرار الهيموديناميكي.
+
+<b class="opt-letter-tag">D)</b> فتح الصدر الإسعافي ليس الخطوة البدئية لإلغاء الضغط الغازي المحتبس.
+
+<b class="opt-letter-tag">E)</b> تفجير الصدر هو التدبير النهائي الأساسي لكنه يطبق بعد إزالة الضغط الفوري بالبزل بالإبرة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الريح الصدرية الموترة حالة طارئة تشخص سريرياً وتدبر فوراً بإدخال إبرة ثخينة في الورب الثاني لتحويلها إلى ريح غير موترة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_27" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">يستطب العلاج الجراحي للريح الصدرية العفوية في كل مما يلي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">المزمنة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">ريح شاملة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الناكسة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">عند الغواصين والطيارين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">رئة وحيدة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — ريح شاملة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تشكل الريح الصدرية الشاملة (التي تزيد عن 30%) في هجمتها الأولى استطباباً لوضع أنبوب تفجير الصدر لإعادة بسط الرئة ومراقبة المريض. بينما يستطب العمل الجراحي عند النكس، أو فشل العلاج المحافظ، أو وجود اعتبارات مهنية خاصة كالطيران.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> الريح المزمنة وفشل انتشار الرئة أو استمرار التسريب لأسبوع يستطب فيها التداخل الجراحي تجنباً للإنتان.
+
+<b class="opt-letter-tag">C)</b> الريح الناكسة استطباب جراحي قطعي لاستئصال الفقاعات وإيثاق الجنب لمنع الهجمات اللاحقة.
+
+<b class="opt-letter-tag">D)</b> الغواصون والطيارون يخضعون للجراحة الوقائية من الهجمة الأولى لخطورة تقلبات الضغط الجوي وصعوبة الإنقاذ.
+
+<b class="opt-letter-tag">E)</b> مريض الرئة الوحيدة يستطب لديه العلاج الجراحي فوراً لانعدام الاحتياط التنفسي في حال تكرر النكس.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تعالج الريح الصدرية العفوية الشاملة لنصف الصدر الحادثة للمرة الأولى بتفجير الصدر بمفرده، ولا تستطب الجراحة كخط أول.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_28" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">التدبير الإسعافي للريح الصدرية الموترة:</span>
+                </div>
+                <span class="q-date-badge">شباط 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">صورة صدر شعاعية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">تفجير صدر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">بزل الورب الثاني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فتح صدر جراحي إسعافي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — بزل الورب الثاني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يحتاج مريض الريح الصدرية الموترة لإلغاء الضغط الصمامي المتصاعد على الأوردة الكبيرة والقلب بصورة فورية لتفادي الوهط الدوراني المميت. يتيح إدخال إبرة ثخينة في الورب الثاني على خط منتصف الترقوة تفريغ الهواء المحتبس وتثبيت المنصف كإجراء إسعافي أولي.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> صورة الصدر مضاد استطباب لتأخيرها العلاج، حيث يوضع التشخيص سريرياً ويسعف المريض في الحال.
+
+<b class="opt-letter-tag">B)</b> تفجير الصدر هو الحل النهائي المكمل الذي يجرى لاحقاً بعد تخفيف الضغط الحاد بالبزل بالإبرة.
+
+<b class="opt-letter-tag">D)</b> فتح الصدر الجراحي الإسعافي لا يستطب للريح الموترة غير المختلطة بنزف شديد.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التدبير الإسعافي المنقذ للحياة للريح الصدرية الموترة هو بزل الورب الثاني بإبرة ثخينة فوراً دون إضاعة الوقت بالاستقصاءات الشعاعية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_thoracic_surgery_29" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">في تقيح الجنب كل ما يلي صحيح ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ذات الرئة أشيع أسبابه.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التدبير الأنسب للانصباب غير المختلط تفجير الصدر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التدبير الأساسي صادات + تفجير.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تقيح الجنب المحجب يعالج بتنظير الصدر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">عند رؤية قيح بالبزل يستطب وضع مفجر صدر.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — التدبير الأنسب للانصباب غير المختلط تفجير الصدر.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الخيار B خاطئ؛ حيث يدبر الانصباب غير المختلط في المرحلة الأولى (المرحلة النتحية الباكرة) بالبزل الرشاف مع الصادات، ولا يحتاج لتفجير الصدر إلا إذا تعكر السائل أو ظهرت حجب أو انخفض الـ pH دون 7.1.
+
+</div><div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b>
+<b class="opt-letter-tag">A)</b> الإنتانات الرئوية والقصبية ولا سيما ذات الرئة تشكل أكثر من 50% من أسباب تقيح الجنب.
+
+<b class="opt-letter-tag">C)</b> التدبير الأساسي في حال تشكل التقيح الصريح يرتكز على الصادات الوريدية وتفجير الصدر بأنبوب.
+
+<b class="opt-letter-tag">D)</b> تقيح الجنب المحجب بالطور الانتقالي الثاني يعالج بتنظير الصدر VATS لتجريف الحجب والأجواف.
+
+<b class="opt-letter-tag">E)</b> رؤية سائل قيحي بالبزل تعني تحول الحالة لدبيلة صريحة تتطلب وضع مفجر صدر لتصريفها.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التدبير الأنسب لانصباب الجنب غير المختلط بالطور الأول هو البزل البسيط، ويصبح تفجير الصدر إلزامياً عند تعكر السائل أو رؤية قيح صريح.</span>
+        </div>
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "16 سؤال • 1 مواضيع • 2018 - 2025";
+        const originalDocTitle = "بنك الأسئلة - الجراحة الصدرية (أمراض وجراحة الجنب)";
+        const subjectName = "الجراحة الصدرية";
+        const groupByMode = "topic";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>

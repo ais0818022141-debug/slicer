@@ -1,0 +1,2690 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة - الجراحة العامة (أمراض الأمعاء الدقيقة الجراحية)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B1818;
+            --primary-dark: #5A0F0F;
+            --primary-rgb: 139, 24, 24;
+            --accent-gold: #B45309;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-subtle: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            line-height: 1.45;
+            font-size: 0.95rem;
+            padding-bottom: 30px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            position: relative;
+        }
+
+        /* Subtle High-Transparency Decorative Rhythm on the Left Margin */
+        .left-watermark-pulse {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 70vh;
+            color: var(--primary-color);
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Minimalist Controls Bar */
+        .controls-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-title-container h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .header-actions-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .filter-label {
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .filter-select {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 2px 4px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-download {
+            background: #059669 !important;
+            color: #ffffff !important;
+            border-color: #059669 !important;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-download:hover {
+            background: #047857 !important;
+            border-color: #047857 !important;
+        }
+
+        .filter-hidden {
+            display: none !important;
+        }
+
+        .index-row-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row-wrapper:hover {
+            background-color: #f8fafc;
+        }
+
+        .index-row-wrapper .index-row {
+            flex: 1;
+            border-bottom: none;
+        }
+
+        .btn-index-download {
+            font-family: inherit;
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            margin-left: 6px;
+        }
+
+        .btn-index-download:hover {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.82rem;
+            padding: 5px 12px;
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            color: var(--text-main);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .btn-active {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .btn-print {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-switch {
+            background: #f8fafc;
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .btn-switch:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-print:hover {
+            background: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FIRST PAGE: Minimalist Table of Contents (Single Column)
+           ------------------------------------------------------------- */
+        .index-page-container {
+            padding: 24px 0;
+            margin-bottom: 30px;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .subject-main-banner {
+            text-align: center;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .subject-title {
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .subject-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-summary {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .index-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .index-row {
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-bottom: 1px dotted var(--border-subtle);
+            transition: background 0.15s ease;
+        }
+
+        .index-row:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .index-topic-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .index-topic-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .index-count {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------
+           SECTION TITLE & FIRST QUESTION ANCHOR (No Orphans Ever!)
+           ------------------------------------------------------------- */
+        .topic-container {
+            margin-bottom: 24px;
+        }
+
+        .topic-header-anchor {
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 14px;
+            page-break-after: avoid;
+            break-after: avoid;
+            scroll-margin-top: 70px;
+        }
+
+        .topic-title-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .topic-counter {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* -------------------------------------------------------------
+           QUESTION CARD (Compact Flow, Elegant Typography)
+           ------------------------------------------------------------- */
+        .question-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .question-block {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .q-stem-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .q-number {
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.22rem;
+            flex-shrink: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-stem {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.20rem;
+            line-height: 1.66;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .q-date-badge {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 4px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            padding-right: 22px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 1.15rem;
+            line-height: 1.60;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-letter {
+            font-weight: 800;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            min-width: 22px;
+            font-size: 1.18rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .option-text {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        /* -------------------------------------------------------------
+           EXPLANATION BOX (Full Border Encompassing Box, Bold Typography)
+           ------------------------------------------------------------- */
+        .explanation-box {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 10px 14px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .exp-answer-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-body-text {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            color: #0f172a;
+            font-weight: 700; /* BOLD as requested */
+            font-size: 1.08rem;
+            line-height: 1.68;
+            margin-top: 4px;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+        }
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-header-tag {
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-left: 4px;
+        }
+
+        .exp-flag .exp-header-tag {
+            color: #dc2626;
+        }
+
+        .exp-lead {
+            margin-bottom: 3px;
+            font-weight: 700;
+        }
+
+        .exp-opt-item {
+            display: block;
+            margin-top: 1.5px;
+            margin-bottom: 2px;
+            padding-right: 0;
+            line-height: 1.58;
+            unicode-bidi: isolate;
+        }
+
+        .opt-letter-tag {
+            color: #1e293b;
+            font-weight: 800;
+            margin-left: 6px;
+            font-size: 1.0rem;
+        }
+
+        .exp-opt-desc {
+            unicode-bidi: isolate;
+        }
+
+        .opt-ref-tag {
+            color: #1e293b;
+            font-weight: 800;
+        }
+
+        .exp-para {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            line-height: 1.68;
+        }
+
+        /* HIGH-YIELD NOTE (Merged seamlessly inside explanation box) */
+        .high-yield-line {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            margin-top: 7px;
+            font-size: 1.08rem;
+            line-height: 1.68;
+            font-weight: 700;
+        }
+
+        .high-yield-label {
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-left: 4px;
+        }
+
+        .high-yield-text {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Exam Mode (Hides Explanation) */
+        .exam-mode .explanation-box {
+            display: none !important;
+        }
+
+        /* -------------------------------------------------------------
+           PRINT STYLING (@media print): Balanced Margins, Compact Filling
+           ------------------------------------------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Balanced print-friendly margins */
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.0pt !important;
+                line-height: 1.42 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .left-watermark-pulse {
+                position: fixed !important;
+                left: 2mm !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 32px !important;
+                height: 70vh !important;
+                opacity: 0.035 !important;
+                color: var(--primary-color) !important;
+                pointer-events: none !important;
+                z-index: -1 !important;
+            }
+
+            .no-print, .controls-header, .filter-hidden, .btn-index-download {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .index-page-container {
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .subject-title {
+                font-size: 16pt !important;
+            }
+
+            .topic-container {
+                margin-bottom: 14px !important;
+            }
+
+            .topic-header-anchor {
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .topic-header {
+                margin-top: 14px !important;
+                margin-bottom: 6px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .topic-title-text {
+                font-size: 11pt !important;
+            }
+
+            .question-card {
+                margin-bottom: 8px !important;
+                padding-bottom: 6px !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+
+            .question-block {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .question-header {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .q-stem-container {
+                gap: 6px !important;
+            }
+
+            .q-number {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 800 !important;
+            }
+
+            .q-stem {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.6pt !important;
+                font-weight: 700 !important;
+                line-height: 1.48 !important;
+            }
+
+            .q-date-badge {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 8.0pt !important;
+                margin-top: 2px !important;
+            }
+
+            .options-list {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                gap: 3px !important;
+                margin-bottom: 5px !important;
+                padding-right: 16px !important;
+            }
+
+            .option-row {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 11.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.44 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .option-letter {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                font-size: 11.6pt !important;
+                min-width: 20px !important;
+            }
+
+            .option-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 11.5pt !important;
+            }
+
+            .explanation-box {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                background-color: transparent !important;
+                border: 0.9pt solid var(--primary-color) !important;
+                border-radius: 3px !important;
+                margin-top: 4px !important;
+                padding: 7px 11px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-answer-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-weight: 800 !important;
+                color: var(--primary-color) !important;
+                font-size: 10.6pt !important;
+                margin-bottom: 4px !important;
+            }
+
+            .exp-body-text {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                font-size: 10.5pt !important;
+                font-weight: 700 !important; /* BOLD in print */
+                color: #0f172a !important;
+                line-height: 1.46 !important;
+                margin-top: 3px !important;
+            }
+
+            .exp-section {
+                margin-bottom: 4px !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .exp-opt-item {
+                margin-top: 1px !important;
+                margin-bottom: 1.5px !important;
+                padding-right: 0 !important;
+                line-height: 1.40 !important;
+            }
+
+            .opt-letter-tag {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                color: #0f172a !important;
+                font-size: 10.0pt !important;
+                font-weight: 800 !important;
+                margin-left: 5px !important;
+            }
+
+            .opt-ref-tag {
+                color: #0f172a !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-line {
+                font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+                margin-top: 4px !important;
+                font-size: 10.5pt !important;
+                line-height: 1.46 !important;
+                font-weight: 700 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .high-yield-label {
+                color: var(--accent-gold) !important;
+                font-weight: 800 !important;
+            }
+
+            .high-yield-text {
+                color: #0f172a !important;
+                font-weight: 700 !important;
+            }
+        }
+    </style>
+</head>
+<body class="study-mode">
+
+    <!-- Subtle Left Margin Rhythm Accent (Watermark) -->
+    <div class="left-watermark-pulse" aria-hidden="true">
+        <svg viewBox="0 0 100 800" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 0 V240 L40 260 L60 285 L32 315 L68 345 L50 365 V500 L42 518 L58 538 L50 555 V800" opacity="0.35" />
+            <circle cx="50" cy="240" r="3" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="500" r="3" fill="currentColor" opacity="0.4"/>
+            <path d="M36 140 H64 M50 126 V154" stroke-width="2.5" opacity="0.35"/>
+            <path d="M36 660 H64 M50 646 V674" stroke-width="2.5" opacity="0.35"/>
+        </svg>
+    </div>
+
+    <div class="controls-header no-print">
+        <div class="header-title-container">
+            <h1>بنك الأسئلة - الجراحة العامة (أمراض الأمعاء الدقيقة الجراحية)</h1>
+        </div>
+        <div class="header-actions-container">
+            <div class="filter-wrapper">
+                <label for="itemFilter" class="filter-label">التصنيف:</label>
+                <select id="itemFilter" class="filter-select" onchange="filterByItem(this.value)">
+                    <option value="all">جميع التصنيفات (الكل - 37 سؤال)</option>
+                    <option value="topic-1">أمراض الأمعاء الدقيقة الجراحية (37 سؤال)</option>
+
+                </select>
+            </div>
+            <div class="btn-group">
+                
+                <button id="btnStudy" class="btn btn-active" onclick="setMode('study')">
+                    وضع الدراسة
+                </button>
+                <button id="btnExam" class="btn" onclick="setMode('exam')">
+                    وضع الاختبار
+                </button>
+                <button id="btnDownloadSelection" class="btn btn-download" onclick="downloadCurrentSelection()" title="تحميل التحديد الحالي كملف HTML مستقل">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 3px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="downloadBtnText">تحميل التصنيف المحدد (HTML)</span>
+                </button>
+                <button class="btn btn-print" onclick="window.print()">
+                    حفظ كـ PDF / طباعة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FIRST PAGE: Single-column minimal Index -->
+        <div class="index-page-container">
+            <div class="subject-main-banner">
+                <h1 class="subject-title">الجراحة العامة</h1>
+                <p class="subject-subtitle">بنك الأسئلة الموحد والشامل (مرتب حسب المواضيع)</p>
+                <p class="stats-summary" id="statsSummary">37 سؤال • 1 مواضيع • 2018 - 2026</p>
+            </div>
+
+            <div class="index-section-title">فهرس المواضيع والتصنيفات</div>
+
+            <div class="index-list">
+
+                <div class="index-row-wrapper" data-group-id="topic-1">
+                    <a href="#topic-1" class="index-row" data-group-id="topic-1" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018">
+                        <span class="index-topic-name">أمراض الأمعاء الدقيقة الجراحية</span>
+                        <span class="index-topic-meta">
+                            <span>2018 - 2026</span>
+                            <span class="index-count">37 سؤال</span>
+                        </span>
+                    </a>
+                    <button type="button" class="btn-index-download no-print" onclick="downloadGroupItem(event, 'topic-1', 'أمراض الأمعاء الدقيقة الجراحية')" title="تحميل أمراض الأمعاء الدقيقة الجراحية كملف مستقل">⬇ تحميل</button>
+                </div>
+            </div><!-- end index-list -->
+        </div><!-- end index-page-container -->
+
+        <div class="topic-container" data-year="2026 2025 2024 2023 2022 2021 2020 2019 2018" data-group-id="topic-1">
+            <div class="topic-header-anchor">
+                <div class="topic-header" id="topic-1">
+                    <div class="topic-title-text">أمراض الأمعاء الدقيقة الجراحية</div>
+                    <span class="topic-counter">37 سؤال</span>
+                </div>
+                
+    <div class="question-card" id="q_general_surgery_137" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">1.</span>
+                    <span class="q-stem">العرض الأساسي في التهاب الزائدة الدودية هو:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الإمساك.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">غثيان وإقياء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">نقص الشهية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الحرارة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الألم البطني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — الألم البطني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يبدأ الألم الحشوي حول السرة بسبب تمدد لمعة الزائدة، ثم يمتد الالتهاب للبريتوان الجداري فيتوضع الألم الجداري الموضع في الحفرة الحرقفية اليمنى، مما يجعل الألم البطني هو العرض المحوري والثابت في كل الحالات تقريباً.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الإمساك شائع لكنه ثانوي بآلية الخزل المعوي وليس أساسياً.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">الغثيان والإقياء يأتيان بعد الألم وليسا العرض الرئيسي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">نقص الشهية علامة مساعدة وليست محورية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الحرارة خفيفة عادة (38.&rlm;5) وليست العرض الأساسي.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الألم البطني (المهاجر من حول السرة إلى الحفرة الحرقفية اليمنى بعد 4-8 ساعات، علامة كوشر) هو العرض الأساسي؛ ترتيب الأعراض: ألم ← قهم ← إقياء.</span>
+        </div>
+    </div>
+    </div>
+            </div>
+
+    <div class="question-card" id="q_general_surgery_138" data-year="2026">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">2.</span>
+                    <span class="q-stem">أشيع سبب لانسداد الأمعاء الدقيقة هو:</span>
+                </div>
+                <span class="q-date-badge">أيار 2026</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الأورام الخبيثة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التصاقات بعد عمل جراحي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">داء كرون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فتوق جدار البطن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انغلاف أمعاء.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — التصاقات بعد عمل جراحي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تؤدي الجراحات البطنية السابقة إلى تشكل التصاقات ليفية بين عرى الأمعاء والجدار البطني، وهذه الالتصاقات تسبب انعطافاً أو انضغاطاً ميكانيكياً للمعي مع مرور الزمن، مما يجعلها الآلية الأشيع بفارق كبير عن باقي الأسباب لدى البالغين.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الأورام الخبيثة سبب شائع لكنه أقل من الالتصاقات.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">داء كرون سبب نادر نسبياً بالمقارنة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الفتوق المرتبة الثانية بالشيوع.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">انغلاف الأمعاء نادر عند البالغين ويشيع عند الرضع.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الالتصاقات التالية للعمليات الجراحية السابقة تشكل 60-80% من أسباب انسداد الأمعاء الدقيقة، تليها الفتوق المختنقة ثم الأورام.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_139" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">3.</span>
+                    <span class="q-stem">الطريقة الاكثر موثوقية لتشخيص انسداد الشريان المساريقي الحاد هي:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الرنين المغناطيسي MRCP.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التصوير بالطبقي المحوري الحلزوني دون حقن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التصوير الوعائي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التصوير بالأمواج فوق الصوتية (دوبلر).</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">صورة البطن البسيطة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — التصوير الوعائي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يسمح التصوير الوعائي الظليل برؤية مباشرة للشريان المساريقي العلوي وفروعه، فيكشف موقع الصمة أو الخثرة بدقة عالية، إضافة لإمكانية التداخل العلاجي المباشر (حل خثرة أو ضخ موسعات)، مما يجعله الوسيلة الأكثر موثوقية مقارنة بباقي الوسائل غير المباشرة.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">MRCP مخصص للطرق الصفراوية والبنكرياسية وليس للأوعية المساريقية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">الطبقي المحوري دون حقن لا يظهر الأوعية بوضوح كافٍ.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الدوبلر أقل حساسية ودقة وقد يتأثر بالغازات المعوية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">الصورة البسيطة غير نوعية وتظهر فقط علامات متأخرة كبصمة الإبهام.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التصوير الوعائي الظليل (Angiography) هو المعيار الذهبي لتشخيص الإقفار المساريقي الحاد، يظهر الصمات والتصلب العصيدي ويحدد موضع الانسداد بدقة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_140" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">4.</span>
+                    <span class="q-stem">العلامة السريرية الموجهة لوجود التهاب الزائدة الدودية هي:</span>
+                </div>
+                <span class="q-date-badge">كانون 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">علامة هوفمان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">علامة ماكبورني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">علامة مورفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">علامة تراندلبرع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">علامة ريكلينغ هاوزن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — علامة ماكبورني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> مع تطور الالتهاب في الزائدة الدودية يمتد التخريش إلى الصفاق الجداري المجاور فينشأ إيلام موضع عند نقطة ماك بورني، وهي أهم علامة فحص سريري موجهة للتشخيص وتُستخدم أيضاً كمعلم تشريحي لشق الاستئصال الكلاسيكي.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">علامة هوفمان عصبية (ردود فعل هرمية) ولا علاقة لها بالزائدة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">علامة مورفي خاصة بالتهاب المرارة الحاد.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">علامة تراندلبرغ تخص القصور الوريدي في الأطراف.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">علامة ريكلينغهاوزن تخص الورام الليفي العصبي.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">علامة ماك بورني: إيلام بالجس عند التقاء الثلث الوحشي مع الثلثين الإنسيين للخط الواصل بين الشوك الحرقفي الأمامي العلوي والسرة، وهي العلامة الأشهر والأكثر ذكراً في التشخيص السريري لالتهاب الزائدة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_141" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">5.</span>
+                    <span class="q-stem">العرض الأساسي في التهاب الزائدة الدودية هو (إجابة وحيدة صحيحة):</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الحرارة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نقص شهية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">غثيان وإقياء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الإمساك.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الألم البطني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — الألم البطني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انسداد لمعة الزائدة (بفرط تصنع لمفاوي أو حصاة برازية) يسبب توسعاً وارتفاع الضغط داخل اللمعة، مما يحرض ألياف الحشوية المسؤولة عن الألم المركزي المبكر، ثم يتطور لالتهاب يصل للصفاق الجداري محدثاً الألم الموضّع في الحفرة الحرقفية اليمنى.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الحرارة عادة خفيفة ومتأخرة وليست العرض الأساسي؛ نقص الشهية عرض مرافق لكنه أقل نوعية وثباتاً من الألم؛ الغثيان والإقياء يليان الألم زمنياً وليسا العرض الأول؛ الإمساك أو الإسهال قد يحدثان لكنهما غير ثابتين ولا يمثلان العرض الرئيسي.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الألم النموذجي يبدأ حول السرة ثم يتوضع في الحفرة الحرقفية اليمنى (نقطة ماك برني)، ويترافق لاحقاً بغثيان وترفع حروري خفيف.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_142" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">6.</span>
+                    <span class="q-stem">سيدة 25 سنة شكت منذ 10 ساعات من ألم حول السرة تركز بعد حوالي 5 ساعات في الحفرة الحرقفية اليمنى، كل الأعراض والعلامات التالية يتوافق مع التهاب زائدة دودية حاد لديها عدا:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إقياء لمرة واحدة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">غثيان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ترفع حروري 40 درجة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تعب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">نقص شهية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — ترفع حروري 40 درجة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الالتهاب البسيط غير المختلط للزائدة يسبب استجابة التهابية جهازية خفيفة فقط، لذا فإن الحرارة المرتفعة جداً (40°م) تتجاوز ما هو متوقع في الحالة غير المختلطة وتشير غالباً لانثقاب مع التهاب صفاق أو تشكل خراج.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> الإقياء لمرة واحدة عرض شائع مرافق للألم؛ الغثيان عرض نموذجي ومرافق دوماً تقريباً؛ التعب والوهن أعراض عامة مرافقة شائعة؛ نقص الشهية من أكثر الأعراض ثباتاً ونوعية في هذا المرض.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التهاب الزائدة الحاد يترافق عادة بحرارة خفيفة (37.5-38.5°م)؛ الحرارة الشديدة (40°م) غير نموذجية وتوحي بانثقاب أو خراج أو تشخيص آخر.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_143" data-year="2025">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">7.</span>
+                    <span class="q-stem">كل مما يلي قد يسبب انسداد أمعاء، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آب 2025</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انغلاف أمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فتوق جدار البطن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الأورام الخبيثة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">قرحة معدية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التصاقات ما بعد العمل الجراحي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — قرحة معدية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> القرحة المعدية تقع في المعدة نفسها وتتظاهر بالنزف أو الانثقاب أو نادراً بتضيق البواب (Gastric outlet obstruction) وليس بانسداد الأمعاء الدقيقة أو الغليظة، بخلاف الأسباب الأخرى المذكورة التي تسبب انسداداً ميكانيكياً حقيقياً على مستوى الأمعاء.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> انغلاف الأمعاء سبب مباشر وشائع خاصة عند الأطفال؛ الفتوق المختنقة سبب كلاسيكي للانسداد المعوي؛ الأورام الخبيثة (خاصة القولونية) سبب شائع عند كبار السن؛ الالتصاقات ما بعد الجراحة هي الأشيع عموماً في الدول المتقدمة.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">أسباب انسداد الأمعاء الشائعة: الالتصاقات (الأشيع بعد الجراحة)، الفتوق المختنقة، الأورام، والانغلاف؛ القرحة المعدية تسبب انثقاباً أو نزفاً وليس انسداداً معوياً مباشراً (إلا نادراً بتضيق مخرج المعدة).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_144" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">8.</span>
+                    <span class="q-stem">العرض الأساسي في التهاب الزائدة الدودية:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الألم البطني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الإمساك.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الحرارة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">نقص الشهية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">غثيان وإقياء.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الألم البطني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الألم الحشوي الناجم عن تمدد الزائدة الملتهبة يُدرك بدايةً بشكل مبهم حول السرة، وعند امتداد الالتهاب إلى الصفاق الجداري المجاور للزائدة يتوضع الألم في الحفرة الحرقفية اليمنى ويصبح أكثر حدة، مما يجعله العرض الأساسي والأكثر ثباتاً في هذا المرض.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">الإمساك يحدث لكنه عرض ثانوي بسبب الخزل المعوي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">الحرارة عادة خفيفة وليست العرض الأساسي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">نقص الشهية شائع لكنه يأتي بعد الألم في الترتيب.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">الغثيان والإقياء يشترط حدوثهما لكن بعد الألم وليسا العرض الرئيسي.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الألم البطني هو العرض الأساسي والأهم، ويبدأ حول السرة والشرسوف ثم ينتقل بعد 4-8 ساعات إلى الحفرة الحرقفية اليمنى (علامة كوشر)؛ ترتيب الأعراض المعتاد هو: ألم ← قهم ← إقياء.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_145" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">9.</span>
+                    <span class="q-stem">كل ما يلي صحيح في الاحتشاء المساريقي ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الصمة الشريانية تأتي عادة من الطرف السفلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">نسبة الوفيات تكون مرتفعة عادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">من العوامل المؤهبة الرجفان الاذيني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الشريان المساريقي العلوي أكثر إصابة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">قد يكون سبب الاحتشاء هو الخثار الوريدي المعوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الصمة الشريانية تأتي عادة من الطرف السفلي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الصمات القلبية المنشأ (خاصة من الأذين الأيسر في الرجفان الأذيني) تنتقل عبر الدوران الشرياني إلى الشريان المساريقي العلوي الذي يتفرع من الأبهر بزاوية حادة مما يجعله عرضة أكبر للانصمام؛ لذا فإن نسبة كون المصدر من الطرف السفلي غير صحيحة وهي الخيار الخاطئ (المطلوب).</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">صحيحة، نسبة الوفيات مرتفعة (تصل لـ80%).</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">صحيحة، الرجفان الأذيني من أهم العوامل المؤهبة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">صحيحة، المساريقي العلوي الأكثر إصابة لانطلاقه بزاوية حادة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">صحيحة، الخثار الوريدي المساريقي أحد آليات الاحتشاء المعوي (10%).</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الصمة الشريانية هي أشيع أسباب الاحتشاء المساريقي (50%) ومصدرها في 95% من الحالات القلب الأيسر (كالرجفان الأذيني)، وليس الأطراف السفلية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_146" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">10.</span>
+                    <span class="q-stem">كل ما يلي من الأساسيات في تشخيص وتدبير الانسداد ماعدا:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إجراء صورة بسيطة للبطن بوضعية الوقوف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">فحص فوهات الفتوق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">إجراء مس شرجي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">وضع أنبوب أنفي معدي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التنظير الهضمي العلوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — التنظير الهضمي العلوي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تقييم انسداد الأمعاء يعتمد على الفحص السريري (فتوق، مس شرجي) والتصوير الشعاعي البسيط لكشف السويات السائلة الغازية، مع وضع أنبوب أنفي معدي لتخفيف الضغط والتوسع؛ التنظير الهضمي العلوي لا دور تشخيصياً أو علاجياً أساسياً له في هذه الحالة وقد يكون خطراً في حال توسع معوي شديد.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">أساسية لكشف السويات السائلة الغازية ونمط الانسداد.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">ضرورية لاستبعاد الفتق المختنق كسبب.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">تكشف كتلة أو سدادة أو دم في المستقيم.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">لرشف المفرزات وتخفيف التوسع البطني.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الأساسيات هي: صورة بطن بسيطة واقفة، فحص فوهات الفتوق، مس شرجي، وأنبوب أنفي معدي؛ أما التنظير الهضمي العلوي فليس جزءاً من التقييم الأولي لانسداد الأمعاء.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_147" data-year="2024">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">11.</span>
+                    <span class="q-stem">أهم علامة سريرية للاقفار المساريقي الحاد:</span>
+                </div>
+                <span class="q-date-badge">أيار 2024</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ألم بطني غير متوافق مع المضض البطني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الغثيان المستمر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">إسهال دموي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الترفع الحروري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ارتفاع الكريات البيض.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ألم بطني غير متوافق مع المضض البطني.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في المرحلة المبكرة قبل تموت جدار الأمعاء يكون الألم الحشوي الناجم عن نقص التروية شديداً جداً بينما لا تزال جدران الأمعاء غير مثقوبة وبالتالي لا يوجد تخريش صفاقي واضح، فينتج هذا التناقض المميز بين شدة الألم وقلة علامات الفحص.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">الغثيان عرض مرافق لكنه غير نوعي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">الإسهال الدموي يحدث لاحقاً وليس العلامة الأهم.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الترفع الحروري علامة متأخرة تدل على الاحتشاء.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">ارتفاع الكريات البيض غير نوعي وله حساسية منخفضة قبل الاحتشاء.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الألم البطني الشديد غير المتناسب مع شحّة الموجودات بالفحص السريري (المضض البطني الخفيف) هو أهم علامة دالة على الإقفار المساريقي الحاد قبل حدوث الاحتشاء والانثقاب.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_148" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">12.</span>
+                    <span class="q-stem">كل ما يلي صحيح في انسداد الأمعاء، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تدبير الانسداد الميكانيكي هو الاجراء الجراحي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">لا يمكن عملياً منع حدوث الالتصاقات بعد الجراحة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">عدد السويات السائلة الغازية عامل حاسم في تحديد شكل العلاج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الانسداد الخزلي شائع بعد الجراحة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">اورام السين مسبب شائع للانسداد الميكانيكي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — عدد السويات السائلة الغازية عامل حاسم في تحديد شكل العلاج.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عدد السويات السائلة الغازية يعكس فقط شدة تمدد العرى المعوية فوق منطقة الانسداد وموقعه (دقاق أم قولون)، لكنه لا يميز بين انسداد بسيط قابل للعلاج المحافظ وانسداد مختنق يستوجب الجراحة الإسعافية؛ فالقرار العلاجي يُبنى على الفحص السريري وعلامات الاختناق (الحرارة، تخريش الصفاق، الصدمة).</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">صحيح، الانسداد الميكانيكي عادة يتطلب تداخلاً جراحياً.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">صحيح، لا يمكن منع الالتصاقات بعد الجراحة عملياً.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">صحيح، الانسداد الخزلي شائع بعد أي جراحة بطنية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">صحيح، أورام السين من الأسباب الشائعة للانسداد الميكانيكي القولوني.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">قرار العلاج (محافظ أم جراحي) يعتمد على الحالة السريرية ووجود علامات الاختناق وليس على عدد السويات السائلة الغازية بالصورة الشعاعية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_149" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">13.</span>
+                    <span class="q-stem">كل ما يلي صحيح في الاحتشاء المساريقي، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">نسبة الوفيات تكون مرتفعة عادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الصمة الشريانية تأتي عادة من الطرف السفلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">قد يكون سبب الاحتشاء هو التخثر الوريدي في أوردة الأمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التشخيص يكون متأخر عادة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الشريان المساريقي العلوي أكثر الشرايين إصابة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الصمة الشريانية تأتي عادة من الطرف السفلي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الصمات الناجمة عن حالات قلبية (الرجفان الأذيني أو الخثرات الجدارية بعد احتشاء العضلة القلبية) تنتقل مباشرة عبر الأبهر إلى الشريان المساريقي العلوي بحكم انطلاقه بزاوية حادة، وهذا يجعل مصدر الطرف السفلي غير صحيح وهو الخيار الخاطئ المطلوب.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">صحيحة، نسبة الوفيات مرتفعة عادة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">صحيحة، الخثار الوريدي أحد أسباب الاحتشاء المساريقي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">صحيحة، التشخيص يتأخر غالباً بسبب عدم نوعية الأعراض الباكرة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">صحيحة، الشريان المساريقي العلوي هو الأكثر إصابة.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">في 95% من حالات الصمة المساريقية يكون المصدر القلب الأيسر (رجفان أذيني، خثرة جدارية بعد احتشاء)، وليس الأطراف السفلية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_150" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">14.</span>
+                    <span class="q-stem">كل ما يلي من العلامات في التهاب الزائدة الدودية الحاد دون انثقاب عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يكون الغثيان شائع.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الحركة تزيد الألم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">ارتفاع في الكريات البيض.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يفيد المس الشرجي في تشخيص التهاب الزائدة الحوضية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تكون الشهية جيدة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: E — تكون الشهية جيدة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب الزائدة الحاد يترافق نموذجياً بنقص شهية (قهم) بسبب الخوف اللاإرادي من الألم بعد الطعام، لذلك فإن وجود شهية جيدة يُضعف احتمال التشخيص بدلاً من كونه علامة داعمة له.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الغثيان شائع الحدوث ويأتي بعد الألم.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">الحركة تزيد الألم بسبب تخريش الصفاق.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">ارتفاع الكريات البيض علامة مخبرية شائعة ومساندة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">المس الشرجي مفيد خاصة في التوضع الحوضي للزائدة.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">غياب الشهية (القهم) من العلامات الشائعة والمساندة للتشخيص؛ فبقاء الشهية جيدة يجعل التشخيص مشكوكاً فيه.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_151" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">15.</span>
+                    <span class="q-stem">السبب الأقل توارداً في انسداد الأمعاء الميكانيكي عند البالغين هو:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انغلاف الأمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الفتوق المختنقة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انفتال السين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الالتصاقات واللجم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الأورام.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — انغلاف الأمعاء.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الانغلاف يحدث بآلية دخول عروة معوية داخل التي تليها وهو شائع جداً عند الرضع (غالباً مجهول السبب أو بسبب فرط تنسج لمفاوي)، بينما عند البالغين يكون نادراً ويرتبط عادة بوجود آفة عضوية مسببة (كورم) وليس آلية عفوية، لذا يُعد الأقل توارداً بين الخيارات.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">الفتوق سبب شائع وثاني أشيع سبب للانسداد.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">انفتال السين سبب شائع نسبياً خاصة عند المسنين.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الالتصاقات هي السبب الأشيع إطلاقاً (60-80%).</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">الأورام (خاصة سرطان الكولون) سبب شائع للانسداد الميكانيكي.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الانغلاف المعوي نادر عند البالغين وهو أشيع عند الرضع دون عمر السنتين؛ الأسباب الأشيع للانسداد عند البالغين بالترتيب: الالتصاقات، الفتوق، الأورام، ثم انفتال السين.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_152" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">16.</span>
+                    <span class="q-stem">الآلية الإمراضية pathophysiology الأكثر توارداً في التهاب الزائدة الدودية الحاد هي:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انسداد لمعة الزائدة بالأجربة اللمفاوية المتضخمة Lymphoid hyperplasia.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انسداد لمعة الزائدة بورم الكارسينوئيد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انسداد لمعة الزائدة بالحصيات البرازية Fecaliths.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انسداد لمعة الزائدة بالديدان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انسداد لمعة الزائدة ببذور الفواكه الصغيرة كالعنب.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — انسداد لمعة الزائدة بالأجربة اللمفاوية المتضخمة Lymphoid hyperplasia.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> فرط تنسج الأنسجة اللمفاوية الموجودة ضمن جدار الزائدة (استجابة لعدوى فيروسية أو جرثومية سابقة) يؤدي لانسداد اللمعة الضيقة أصلاً، فيتشكل جوف مغلق ينصب فيه المخاط ويحدث تكاثر جرثومي لاهوائي يؤدي للالتهاب والتمدد.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">الورم الكارسينوئيد سبب نادر جداً للانسداد وليس الآلية الأشيع.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">الحصاة البرازية سبب شائع (40%) لكنها أقل من فرط التنسج اللمفاوي إجمالاً.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الديدان سبب نادر نسبياً للانسداد.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">بذور الفواكه سبب نادر جداً ولا يمثل الآلية الأشيع.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">انسداد لمعة الزائدة بفرط تنسج الجريبات اللمفية هو السبب الأشيع (60% من الحالات)، ويشيع خاصة عند الأطفال واليافعين؛ بينما الحصاة البرازية (40%) هي السبب الأشيع عند البالغين تحديداً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_153" data-year="2023">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">17.</span>
+                    <span class="q-stem">تعد الشرايين التالية مستهدفة في الإصابة في نقص التروية المعوية، ما عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2023</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الحرقفي الباطن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">المساريقي السفلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الجذع الزلاقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الفخذي الأصلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">المساريقي العلوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — الفخذي الأصلي.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تروية الأحشاء البطنية والأمعاء تعتمد على الجذع الزلاقي والمساريقيين العلوي والسفلي مع مساهمة من الشريان الحرقفي الباطن في تروية المستقيم السفلي؛ أما الشريان الفخذي الأصلي فهو شريان طرفي يغذي الطرف السفلي ولا علاقة له بتروية الأمعاء، لذا فهو الخيار غير المرتبط بنقص التروية المعوية.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الحرقفي الباطن يغذي جزءاً من المستقيم ويمكن أن يتأثر.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">المساريقي السفلي أحد الشرايين المستهدفة رغم أنه أقل إصابة من العلوي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">الجذع الزلاقي يغذي الأحشاء العلوية ويمكن أن يتأثر بنقص التروية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">المساريقي العلوي هو الشريان الأكثر إصابة في نقص التروية المعوية.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الشرايين المستهدفة في نقص التروية المعوية: المساريقي العلوي (الأشيع)، المساريقي السفلي، الحرقفي الباطن، والجذع الزلاقي؛ أما الشريان الفخذي الأصلي فلا يغذي الأمعاء وليس هدفاً في هذا الإقفار.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_154" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">18.</span>
+                    <span class="q-stem">كل ما يلي من الأسباب الشائعة لانسداد الأمعاء الميكانيكي عند البالغين عدا:</span>
+                </div>
+                <span class="q-date-badge">أيلول 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الفتوق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">سرطان الأنبوب الهضمي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">انغلاف الأمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الالتصاقات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">انفتال السين.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — انغلاف الأمعاء.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عند البالغين نادراً ما يحدث الانغلاف عفوياً، وعند حدوثه يكون عادة ثانوياً لآفة عضوية كورم أو رتج ميكل تعمل كنقطة قيادة، بخلاف الأطفال الرضع حيث يحدث الانغلاف غالباً دون سبب عضوي واضح ويُعد السبب الأشيع للانسداد لديهم.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الفتوق من الأسباب الشائعة (المرتبة الثانية) للانسداد الميكانيكي عند البالغين.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">سرطان الأنبوب الهضمي (خاصة الكولون) سبب شائع للانسداد عند البالغين والمسنين خاصة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الالتصاقات هي السبب الأشيع مطلقاً للانسداد الميكانيكي عند البالغين.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">انفتال السين سبب شائع نسبياً للانسداد القولوني عند البالغين.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الانغلاف المعوي نادر عند البالغين وليس من الأسباب الشائعة لانسداد الأمعاء الميكانيكي لديهم، بعكس الرضع والأطفال حيث يُعد السبب الأشيع للانسداد المعوي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_155" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">19.</span>
+                    <span class="q-stem">ما يلي من علامات التهاب الزائدة الحاد عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">ألم انعكاسي إلى الكتف الأيمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">علامة البسواس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">علامة بلومبيرغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">علامة ماك بورني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">علامة روفسينغ.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — ألم انعكاسي إلى الكتف الأيمن.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الألم المنعكس إلى الكتف الأيمن ينتج عن تخريش العصب الحجابي الذي يعصب الحجاب الحاجز، وهذا لا علاقة له بالتهاب الزائدة الدودية الذي يقع بعيداً عن الحجاب الحاجز، لذلك لا يُعد من علاماته.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">علامة البسواس تدل على تخريش العضلة القطنية الحرقفية بزائدة خلف الصفاق.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">علامة بلومبيرغ (الألم الارتدادي) تدل على تخريش بريتواني موضعي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">علامة ماك بورني هي الحساسية النموذجية عند نقطة ماك بورني.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">علامة روفسينغ تدل على تخريش بريتواني ينتقل للحفرة اليمنى عند ضغط اليسرى.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">علامات ماك بورني وروفسينغ والبسواس وبلومبيرغ كلها علامات تخريش بريتواني موضعي أو عضلي مرتبطة بالزائدة الملتهبة؛ الألم المنعكس للكتف الأيمن يشير لتخريش الحجاب الحاجز (كما في التهاب المرارة أو خراج تحت الحجاب) وليس لالتهاب الزائدة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_156" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">20.</span>
+                    <span class="q-stem">السبب الأكثر شيوعاً لانسداد الأمعاء الدقيقة هو:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الأورام الخبيثة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الفتوق الغاصصة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الالتصاقات التالية لجراحة سابقة على البطن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">تدرن الأمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">داء كرون.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — الالتصاقات التالية لجراحة سابقة على البطن.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الالتصاقات الليفية الناتجة عن جراحة بطنية سابقة تسبب انثناءً أو التصاقاً في عرى الأمعاء الدقيقة يؤدي لانسدادها، وهي الآلية الأشيع إحصائياً لانسداد الأمعاء الدقيقة.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الأورام الخبيثة سبب أشيع لانسداد القولون وليس الدقيقة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">الفتوق الغاصصة سبب شائع لكنه أقل من الالتصاقات.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">تدرن الأمعاء سبب نادر نسبياً ومرتبط بمناطق انتشار السل.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">داء كرون قد يسبب انسداداً لكنه أقل شيوعاً من الالتصاقات.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الالتصاقات التالية للجراحة البطنية السابقة هي السبب الأول لانسداد الأمعاء الدقيقة الميكانيكي عند البالغين؛ يليها الفتوق الغاصصة كسبب ثانٍ شائع خاصة في من لم يخضعوا لجراحة سابقة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_157" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">21.</span>
+                    <span class="q-stem">ألم حاد في الحفرة الحرقفية اليمنى عند طفلة 12 سنة، كل ما يلي يدخل في التشخيص التفريقي عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">حمل هاجر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">حصاة حالب أيمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">رتج ميكل نازف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب زائدة دودية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التهاب عقد مساريقية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — رتج ميكل نازف.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> نزف رتج ميكل يتظاهر نموذجياً بنزف مستقيمي غير مؤلم (نزف هضمي سفلي) عند طفل صغير، وليس بألم حاد موضع في الحفرة الحرقفية اليمنى، لذلك لا يدخل في التشخيص التفريقي لهذه الصورة السريرية.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الحمل الهاجر يسبب ألماً حاداً بالحفرة الحرقفية عند الإناث في سن الإنجاب.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">حصاة الحالب الأيمن تسبب ألماً حاداً مشابهاً (مغص كلوي).</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">التهاب الزائدة الدودية هو السبب الأشيع لهذا العرض ويجب استبعاده دوماً.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">عند الإناث الشابات يجب دوماً إدخال الأسباب النسائية (الحمل الهاجر، كيسة مبيض ملتوية أو نازفة) والبولية (حصاة حالب) ضمن التشخيص التفريقي مع التهاب الزائدة؛ رتج ميكل النازف يتظاهر عادة بنزف هضمي سفلي غير مؤلم وليس بألم حاد في الحفرة الحرقفية اليمنى.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_158" data-year="2022">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">22.</span>
+                    <span class="q-stem">كل مما يلي صحيح في رتج ميكل عدا:</span>
+                </div>
+                <span class="q-date-badge">آذار 2022</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">تبلغ قاعدة الرتج أنشين نموذجياً وكذلك طوله.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">الاختلاط الأشيع هو الانسداد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">معدل إصابة الذكور ضعف إصابة الإناث.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يشاهد لدى 2% من التعداد العام عند تشريح الجثث.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يتوضع على بعد قدمين من الدسام الدقاقي الأعوري.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — الاختلاط الأشيع هو الانسداد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الاختلاط الأشيع سريرياً المرتبط برتج ميكل (خاصة عند الأطفال) هو النزف الهضمي السفلي الناتج عن المخاطية المعدية الهاجرة، وليس الانسداد المعوي، لذلك تُعد هذه العبارة غير صحيحة.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">صحيح، القاعدة والطول متقاربان تقريباً 2 إنش.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">صحيح، نسبة إصابة الذكور ضعف الإناث.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">صحيح، معدل الانتشار التشريحي 2%.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">صحيح، يقع على بعد قدمين من الدسام اللفائفي الأعوري.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">رتج ميكل: يشاهد لدى 2% من السكان، بطول 2 إنش، على بعد 2 قدم من الدسام اللفائفي الأعوري، وإصابة الذكور ضعف الإناث؛ النزف الهضمي هو الاختلاط الأشيع عند الأطفال بينما الانسداد أشيع عند البالغين.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_159" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">23.</span>
+                    <span class="q-stem">كل مما يلي صحيح فيما يتعلق بالتهاب الزائدة الدودية عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">قد يكون تعداد الكريات البيضاء ضمن الطبيعي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انسداد الأمعاء علامة مبكرة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">إيجابية ماك بورني.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">مس شرجي مؤلم.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — انسداد الأمعاء علامة مبكرة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انسداد الأمعاء يحدث كنتيجة متأخرة لالتهاب مجاور شديد أو تشكل خراج أو التهاب صفاق معمم، وليس كعلامة مبكرة تظهر في بداية المرض، لذلك هذه العبارة خاطئة.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">صحيح، تعداد الكريات البيضاء قد يكون طبيعياً خاصة في المراحل المبكرة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">صحيح، إيجابية ماك بورني علامة مبكرة نموذجية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">صحيح، المس الشرجي المؤلم يدعم تشخيص التهاب الزائدة خاصة الحوضي.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">انسداد الأمعاء (بسبب الشلل المعوي الموضع أو الخراج المحيط بالزائدة) هو علامة متأخرة/اختلاط لالتهاب الزائدة وليس علامة مبكرة؛ العلامات المبكرة تشمل الألم حول السرة المهاجر ثم إلى الحفرة الحرقفية اليمنى مع حرارة خفيفة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_160" data-year="2021">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">24.</span>
+                    <span class="q-stem">كل مما يلي من علامات التهاب الزائدة الدودية عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2021</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">المس الشرجي مؤلم.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">السدادية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">روفسينغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">ألم منتشر باتجاه الكتف الأيمن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ماك بورني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — ألم منتشر باتجاه الكتف الأيمن.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الألم المنتشر نحو الكتف الأيمن ناتج عن تخريش العصب الحجابي (كما في أمراض المرارة أو تحت الحجاب) وليس له علاقة تشريحية أو فيزيولوجية بالتهاب الزائدة الدودية.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">المس الشرجي المؤلم يدعم التهاب الزائدة الحوضي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">علامة السدادية إيجابية بزائدة حوضية الوضع.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">روفسينغ علامة تخريش بريتواني منتقل.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">ماك بورني العلامة الأكثر نوعية وموضعية.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">علامات ماك بورني وروفسينغ والسدادية والمس الشرجي المؤلم كلها علامات موضعية لتخريش بريتواني بالحفرة الحرقفية اليمنى؛ الألم المنتشر للكتف الأيمن ليس من علامات التهاب الزائدة بل يشير لتخريش حجابي.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_164" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">25.</span>
+                    <span class="q-stem">كل مما يلي صحيح حول رتج ميكل عدا:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">إصابة الذكور مثلي إصابة الإناث.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يتوضع على بعد مترين من الدسام الدقاقي الأعوري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التناذر العرضي منه يشاهد عادة قبل عمر السنتين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يحوي مخاطية هاجرة في نصف الحالات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">يشاهد لدى 2% من التعداد العام.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — يتوضع على بعد مترين من الدسام الدقاقي الأعوري.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> المسافة النموذجية بين رتج ميكل والدسام اللفائفي الأعوري هي حوالي قدمين (60 سم) حسب قاعدة الاثنين الكلاسيكية، وليس مترين كما ورد في هذا الخيار، لذلك هذه العبارة غير صحيحة.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">صحيح، نسبة إصابة الذكور ضعف الإناث.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">صحيح، الأعراض تظهر غالباً قبل عمر السنتين.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">صحيح، تحوي مخاطية هاجرة (معدية أو بنكرياسية) في نحو نصف الحالات العرضية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">صحيح، ينتشر لدى 2% من عموم السكان.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">رتج ميكل يقع على بعد قدمين (حوالي 60 سم) وليس مترين من الدسام اللفائفي الأعوري؛ باقي قاعدة الاثنين: 2% من السكان، طول إنشين، ذكور ضعف الإناث، أعراض قبل سن السنتين، ومخاطية هاجرة في نصف الحالات تقريباً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_165" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">26.</span>
+                    <span class="q-stem">أدق وسيلة تشخيصية للإقفار المساريقي الوريدي:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">صورة بسيطة بوضعية الوقوف.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">طبقي متعدد الشرائح مع حقن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">إيكو دوبلر.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">صورة بسيطة.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تصوير وريدي ظليل.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — طبقي متعدد الشرائح مع حقن.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التصوير الطبقي متعدد الشرائح مع الحقن الوريدي يسمح برؤية مباشرة لخثرة الوريد المساريقي العلوي أو فروعه، إضافة لعلامات ثانوية كسماكة جدار الأمعاء والاستسقاء، مما يجعله الوسيلة الأكثر دقة وحساسية وسرعة في التشخيص مقارنة بالطرق الأخرى.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الصورة البسيطة بالوقوف تكشف علامات غير نوعية متأخرة فقط كالانسداد أو الهواء الحر.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">إيكو دوبلر أقل حساسية بسبب الغازات المعوية وتعتمد على خبرة الفاحص.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الصورة البسيطة للبطن غير حساسة وغير نوعية لتشخيص الإقفار المساريقي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">التصوير الوريدي الظليل الغازي أقل استخداماً حالياً وأكثر توسعاً من ناحية الإجراء.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التصوير الطبقي المحوري متعدد الشرائح مع حقن الظليل (CT angiography/venography) هو المعيار الذهبي الحالي لتشخيص الإقفار المساريقي الوريدي والشرياني على حد سواء، إذ يظهر خثرة الوريد المساريقي مباشرة وسماكة جدار الأمعاء.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_166" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">27.</span>
+                    <span class="q-stem">خضع مريض لفتح بطن إسعافي وإجراء استئصال جزء من الأمعاء مع مفاغرة، بعد يومين تطور لدى المريض ناسور عالي النتاج، السبب المحتمل لذلك:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">جسم أجنبي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">شلل أمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">إنتان.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">انفكاك المفاغرة.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — انفكاك المفاغرة.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> انفكاك خط المفاغرة يؤدي لتسرب محتوى الأمعاء الغني بالإفرازات الهضمية مباشرة عبر الجرح أو الصفاق مشكلاً ناسوراً عالي النتاج خلال الأيام الأولى بعد الجراحة، وهو الاختلاط الجراحي المباشر الأشيع المسبب لهذه الصورة السريرية المبكرة.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الجسم الأجنبي سبب نادر ولا يفسر الحدوث المبكر خلال يومين فقط.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">شلل الأمعاء يسبب توسعاً وعدم عبور وليس ناسوراً مباشراً.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">الإنتان قد يرافق انفكاك المفاغرة كنتيجة له وليس سبباً مباشراً للناسور نفسه.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">انفكاك المفاغرة (Anastomotic leak/dehiscence) هو السبب الأشيع لظهور ناسور معوي عالي النتاج خلال الأيام الأولى بعد استئصال أمعاء مع مفاغرة، ويستدعي تقييماً إسعافياً فورياً (سريرياً وشعاعياً) لخطر الإنتان والصدمة الإنتانية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_280" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">28.</span>
+                    <span class="q-stem">الصحيح في الانغلاف المعوي:</span>
+                </div>
+                <span class="q-date-badge">حزيران 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الرحضة الشرجية مشخصة ومعالجة أحيانا.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يشاهد في الأعمار فوق 6 سنوات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">سببه غالبا ضخامة عقد مساريقية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يشكل رتج ميكل 98% من الأسباب.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">علاجه جراحي دوما.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الرحضة الشرجية مشخصة ومعالجة أحيانا.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عند الطفل المستقر همودينامياً بدون علامات انثقاب أو التهاب بريتوان، تُجرى الرحضة الشرجية (بالهواء أو التباين) والتي تُشخّص الانغلاف بإظهار علامة &quot;نابض الزنبرك&quot; (coiled spring)، كما أنها تُستخدم كإجراء علاجي ناجح في إرجاع الانغلاف في نسبة كبيرة من الحالات دون الحاجة لجراحة.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> A- يُشاهد بشكل أساسي بين 6 أشهر - سنتين وليس فوق 6 سنوات. B- السبب الأشيع مجهول (idiopathic) مرتبط بفرط تنسج لمفاوي وليس ضخامة عقد مساريقية. C- رتج ميكل سبب شائع كآفة قائدة عند الأطفال الأكبر لكنه لا يشكل 98% من الحالات إجمالاً. E- العلاج الجراحي محجوز للفشل في الرحضة أو وجود علامات انثقاب/تنخر، وليس إلزامياً دوماً.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الانغلاف المعوي مجهول السبب (idiopathic) هو الأشيع عند الرضع بعمر 6 أشهر - سنتين، ويُعزى غالباً لفرط التنسج اللمفاوي في اللويحات الباييرية بعد إنتان فيروسي؛ أما وجود آفة عضوية قائدة (lead point) كرتج ميكل فأكثر شيوعاً عند الأطفال الأكبر سناً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_161" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">29.</span>
+                    <span class="q-stem">تشاهد في التهاب الزائدة الدودية العلامة الإيجابية التالية:</span>
+                </div>
+                <span class="q-date-badge">تشـــرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">فرقعة تحت الجلد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">مورفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">البسواس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">كولن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: C — البسواس.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> عندما تكون الزائدة الدودية بوضعية خلف الصفاق (خلف الأعور)، فإن التهابها يخرش العضلة القطنية الحرقفية المجاورة، فيسبب ألماً عند بسط الفخذ الأيمن (علامة البسواس الإيجابية)، وهي علامة مميزة لالتهاب الزائدة بهذا الموضع.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">فرقعة تحت الجلد تشاهد في الغرغرينا الغازية أو انتفاخ الرئة تحت الجلد.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">علامة مورفي مرتبطة بالتهاب المرارة الحاد.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">علامة كولن (كدمة حول السرة) تشاهد في التهاب البنكرياس النزفي.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">علامة البسواس إيجابية (ألم عند بسط الفخذ الأيمن مع مقاومة) تشير لزائدة خلف الصفاق ملاصقة للعضلة القطنية الحرقفية الملتهبة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_162" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">30.</span>
+                    <span class="q-stem">كل مما يلي من الأسباب الشائعة لانسداد الأمعاء الميكانيكي عند البالغين ماعدا:</span>
+                </div>
+                <span class="q-date-badge">تشـــرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انغلاف الأمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">انفتال السين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">سرطان القولون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">فتق مختنق.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التصاقات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — انغلاف الأمعاء.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الانغلاف المعوي عند البالغين نادر ويكون غالباً ثانوياً لآفة مسببة (ورم، سليلة) بعكس الأطفال حيث يحدث بشكل بدئي وهو سبب شائع جداً لديهم؛ لذلك لا يُعد من الأسباب الشائعة لانسداد الأمعاء الميكانيكي عند البالغين.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">انفتال السين سبب شائع خاصة عند كبار السن.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">سرطان القولون سبب شائع لانسداد القولون عند البالغين.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الفتق المختنق سبب كلاسيكي شائع.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">الالتصاقات هي السبب الأشيع على الإطلاق عند البالغين.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">عند البالغين: الالتصاقات، الفتوق المختنقة، وأورام القولون هي الأسباب الأشيع لانسداد الأمعاء؛ الانغلاف المعوي سبب أشيع عند الرضع والأطفال الصغار وليس عند البالغين (وإن وجد عند البالغين فغالباً يكون ثانوياً لآفة عضوية كورم).</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_163" data-year="2020">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">31.</span>
+                    <span class="q-stem">العلامة التي نراها عند الضغط على الحفرة الحرقفية اليسرى وينتقل الألم للحفرة الحرقفية اليمنى تدعى:</span>
+                </div>
+                <span class="q-date-badge">تشـــرين 2020</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">السدادية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">روفسينغ.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">البسواس.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">مورفي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">ماك بورني.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — روفسينغ.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> الضغط على الحفرة اليسرى يدفع محتوى الغازات داخل القولون باتجاه الأعور والزائدة الدودية الملتهبة، فيزيد التمدد والتخريش البريتواني الموضعي هناك، مما يُحدث ألماً منعكساً بالحفرة اليمنى، وهذه هي علامة روفسينغ الإيجابية المميزة لالتهاب الزائدة.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">علامة السدادية تُقيّم بتدوير الفخذ المثني للداخل.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">علامة البسواس تُقيّم ببسط الفخذ ضد مقاومة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">علامة مورفي خاصة بالتهاب المرارة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">علامة ماك بورني هي الحساسية الموضعية المباشرة وليست منتقلة.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">علامة روفسينغ: ضغط الحفرة الحرقفية اليسرى يسبب ألماً منتقلاً للحفرة الحرقفية اليمنى بسبب انتقال الضغط الغازي داخل اللمعة المعوية نحو الأعور والزائدة الملتهبة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_167" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">32.</span>
+                    <span class="q-stem">أشيع سبب لانسداد الأمعاء عند الأطفال في سن المدرسة:</span>
+                </div>
+                <span class="q-date-badge">شباط 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">انغلاف الأمعاء.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">داء البوليبات العائلي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب الرتوج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">الفتق الإربي الغاصص.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">الالتصاقات.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — الفتق الإربي الغاصص.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> في هذه الفئة العمرية لم تحدث بعد العمليات الجراحية البطنية المسببة للالتصاقات، لذلك يصبح الفتق الإربي الذي يختنق محتواه المعوي (غاصص) هو السبب الأشيع لانسداد الأمعاء الدقيقة الميكانيكي.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الانغلاف أشيع عند الرضع دون السنتين وليس بعمر المدرسة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">داء البوليبات العائلي نادر ولا يرتبط بهذا العمر بشكل نموذجي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">التهاب الرتوج يصيب الكهول عادة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">الالتصاقات تحتاج جراحة بطنية سابقة وهي نادرة في هذا العمر.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الفتق الإربي الغاصص هو الأشيع في عمر المدرسة، بينما الانغلاف هو الأشيع عند الرضع وما دون سن المدرسة، والالتصاقات هي الأشيع عند البالغين عموماً.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_168" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">33.</span>
+                    <span class="q-stem">أشيع سبب لانسداد الأمعاء الدقيقة:</span>
+                </div>
+                <span class="q-date-badge">شباط 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الالتصاقات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب الرتوج.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">فتق إربي غاصص.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">خباثات.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تدرن الأمعاء.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: A — الالتصاقات.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> تُشكّل النسج الليفية الناتجة عن الالتهاب البريتواني بعد الجراحات البطنية أشرطة تلتصق بالعرى المعوية وتسبب انثناءها أو انضغاطها، مما يجعلها السبب الأشيع لانسداد الأمعاء الدقيقة بشكل عام لدى البالغين.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">التهاب الرتوج سبب شائع لانسداد القولون وليس الأمعاء الدقيقة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">الفتق الإربي الغاصص أشيع عند الأطفال بعمر المدرسة تحديداً وليس عموماً.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الخباثات أشيع أسباب انسداد القولون عند المسنين.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">الالتصاقات (60-80% من الحالات) الناتجة عن العمليات الجراحية البطنية السابقة هي الأشيع، تليها الفتوق ثم الأورام.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_169" data-year="2019">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">34.</span>
+                    <span class="q-stem">كل ما يلي يدخل في التشخيص التفريقي لألم حفرة حرقفية يمنى عند طفلة بعمر 10 سنوات عدا:</span>
+                </div>
+                <span class="q-date-badge">شباط 2019</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">التهاب العقد المساريقية الحاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب رتج ميكل.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">التهاب زائدة دودية حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التهاب مرارة حاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">التهاب حويضة وكلية.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: D — التهاب مرارة حاد.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> التهاب المرارة الحاد يتظاهر بألم في الربع العلوي الأيمن من البطن نتيجة موقع المرارة التشريحي تحت الكبد، وليس له علاقة بالحفرة الحرقفية اليمنى، لذلك لا يدخل ضمن التشخيص التفريقي لهذا الألم.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">التهاب العقد المساريقية يقلد التهاب الزائدة بشكل شائع عند الأطفال.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">B.</span> <span class="exp-opt-desc">رتج ميكل الملتهب يقع قرب اللفائفي ويسبب ألماً مشابهاً.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">هو السبب الأساسي المطروح للتشخيص.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">التهاب الحويضة والكلية يمين قد يعطي ألماً حرقفياً مرافقاً.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التهاب الزائدة الدودية والتهاب العقد المساريقية أكثر تشخيصين يلتبسان عند الأطفال؛ يجب أيضاً استبعاد رتج ميكل والأسباب البولية.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_170" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">35.</span>
+                    <span class="q-stem">في التهاب الزائدة الدودية الحاد أي من الأمراض التالية الأشيع أن تلتبس معها عند الأطفال:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الحمى التيفية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التهاب العقد المساريقية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الانتان البولي الحاد.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">داء كرون.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">القولنج الكلوي.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — التهاب العقد المساريقية.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يسبب الخمج الفيروسي تضخماً التهابياً في العقد اللمفاوية المساريقية المجاورة للدسام اللفائفي الأعوري، فينتج ألم حفرة حرقفية يمنى وحمى خفيفة يصعب تمييزهما سريرياً عن التهاب الزائدة الدودية، مما يجعله الأشيع التباساً في هذه الفئة العمرية.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الحمى التيفية أقل شيوعاً كتشخيص مشابه.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">الانتان البولي الحاد له أعراض بولية مرافقة مميزة.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">داء كرون نادر عند الأطفال الصغار مقارنة بالتهاب العقد المساريقية.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">القولنج الكلوي نادر عند الأطفال.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">التهاب العقد المساريقية الحاد يقلّد سريرياً التهاب الزائدة الدودية بشكل كبير عند الأطفال، غالباً بعد خمج فيروسي تنفسي أو معوي سابق.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_171" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">36.</span>
+                    <span class="q-stem">كل ما يلي صحيح في رتج ميكل عدا:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">يسبب نزف هضمي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">يتم استئصاله إذا وجد صدفة عند القيام بعمل جراحي آخر على البطن.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">هو رتج حقيقي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">يسبب انسداد معوي.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">E.</span>
+                <span class="option-text">تقرحات في مخاطية الأمعاء المجاورة للرتج.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — يتم استئصاله إذا وجد صدفة عند القيام بعمل جراحي آخر على البطن.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> استئصال رتج ميكل يتطلب بتر قطعة من المعي وإعادة مفاغرة، وهذا يحمل نسبة اختلاطات ووفيات لا تبرر إجراءه في حال كان الرتج لا عرضياً ومكتشفاً صدفة أثناء جراحة أخرى، لذلك تكون العبارة B خاطئة والإجابة الصحيحة لسؤال &quot;ما عدا&quot;.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">صحيح، ينجم النزف عن مخاطية هاجرة معدية مفرزة للحمض.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">صحيح، هو أشيع الرتوج الحقيقية شيوعاً.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">صحيح، يسبب انسداداً بآلية الانغلاف أو الانفتال غالباً.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">E.</span> <span class="exp-opt-desc">صحيح، التقرحات تحدث في المخاطية المجاورة للرتج وليس ضمنه.</span></div></div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">لا يُستأصل رتج ميكل المكتشف صدفة أثناء عملية أخرى إلا إذا كان عرضياً أو له سمات خطرة (قاعدة عنقه أو وجود نسيج هاجر واضح)، لأن الاستئصال الروتيني يحمل خطورة جراحية غير مبررة.</span>
+        </div>
+    </div>
+    </div>
+    <div class="question-card" id="q_general_surgery_172" data-year="2018">
+        <div class="question-block">
+            <div class="question-header">
+                <div class="q-stem-container">
+                    <span class="q-number">37.</span>
+                    <span class="q-stem">الركن الأساسي للتشخيص في الإقفار المساريقي الشرياني الحاد هو:</span>
+                </div>
+                <span class="q-date-badge">تشرين 2018</span>
+            </div>
+            <div class="options-list">
+                
+            <div class="option-row">
+                <span class="option-letter">A.</span>
+                <span class="option-text">الفحص السريري.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">B.</span>
+                <span class="option-text">التصوير بالصدى (دوبلر) لمنشأ الشرايين.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">C.</span>
+                <span class="option-text">الفحوص المخبرية.</span>
+            </div>
+            <div class="option-row">
+                <span class="option-letter">D.</span>
+                <span class="option-text">التصوير الشعاعي البسيط للبطن.</span>
+            </div>
+            </div>
+        </div>
+        
+    <div class="explanation-box">
+        <div class="exp-answer-line">الإجابة الصحيحة: B — التصوير بالصدى (دوبلر) لمنشأ الشرايين.</div>
+        <div class="exp-body-text"><div class="exp-section exp-clinical"><b class="exp-header-tag">التعليل السريري:</b> يتيح التصوير الظليل للشرايين المساريقية رؤية مباشرة لموقع الانسداد الشرياني (صمة أو تخثر عصيدي) في الشريان المساريقي العلوي، مما يوجه نحو العلاج الفوري (فتح بطن، استئصال الصمة أو حل الخثرة)، وهو الاستقصاء المعتمد حسب المرجع.</div> <div class="exp-section exp-other-opts"><b class="exp-header-tag">الخيارات الأخرى:</b> <div class="exp-opt-item"><span class="opt-letter-tag">A.</span> <span class="exp-opt-desc">الفحص السريري غير نوعي ولا يفيد في التشخيص المؤكد رغم أهميته في الشك السريري الأولي.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">C.</span> <span class="exp-opt-desc">الفحوص المخبرية (بيض، لاكتات) غير حساسة بما يكفي قبل حدوث الاحتشاء.</span></div><div class="exp-opt-item"><span class="opt-letter-tag">D.</span> <span class="exp-opt-desc">الصورة الشعاعية البسيطة قد تُظهر علامات غير نوعية فقط كسويات سائلة غازية أو بصمة الإبهام.</span></div></div> <div class="exp-section exp-note"><b class="exp-header-tag">ملاحظة:</b> المرجع ينص صراحة على أن الوسيلة الأفضل هي &quot;تصوير الشرايين الظليل&quot; (angiography)، وليس إيكو دوبلر؛ ولكن السؤال بهذه الصيغة هو الجواب الصحيح.</div></div>
+        
+        <div class="high-yield-line">
+            <b class="high-yield-label">الفكرة من السؤال:</b>
+            <span class="high-yield-text">تصوير الشرايين الظليل (angiography) هو الوسيلة التشخيصية الأفضل لأنه يحدد موقع الانسداد (صمة أو خثرة) ويوجه القرار العلاجي، مع ملاحظة أن أهم علامة سريرية هي الألم غير المتناسب مع شحة موجودات الفحص.</span>
+        </div>
+    </div>
+    </div>
+        </div><!-- end topic-container -->
+
+    </div><!-- end container -->
+
+    <script>
+        let currentFilterId = 'all';
+        const originalStatsText = "37 سؤال • 1 مواضيع • 2018 - 2026";
+        const originalDocTitle = "بنك الأسئلة - الجراحة العامة (أمراض الأمعاء الدقيقة الجراحية)";
+        const subjectName = "الجراحة العامة";
+        const groupByMode = "topic";
+
+        function setMode(mode) {
+            const body = document.body;
+            const btnStudy = document.getElementById('btnStudy');
+            const btnExam = document.getElementById('btnExam');
+
+            body.classList.remove('study-mode', 'exam-mode');
+            btnStudy.classList.remove('btn-active');
+            btnExam.classList.remove('btn-active');
+
+            if (mode === 'study') {
+                body.classList.add('study-mode');
+                btnStudy.classList.add('btn-active');
+            } else if (mode === 'exam') {
+                body.classList.add('exam-mode');
+                btnExam.classList.add('btn-active');
+            }
+        }
+
+        function filterByItem(filterValue) {
+            currentFilterId = filterValue;
+            const downloadBtnText = document.getElementById('downloadBtnText');
+            const statsSummary = document.getElementById('statsSummary');
+            const indexRows = document.querySelectorAll('.index-row-wrapper');
+            const topicContainers = document.querySelectorAll('.topic-container');
+
+            if (filterValue === 'all') {
+                document.querySelectorAll('.filter-hidden').forEach(el => el.classList.remove('filter-hidden'));
+                if (downloadBtnText) downloadBtnText.textContent = groupByMode === 'session' ? "تحميل الدورة المحددة (HTML)" : "تحميل التصنيف المحدد (HTML)";
+                if (statsSummary) statsSummary.textContent = originalStatsText;
+                document.title = originalDocTitle;
+                return;
+            }
+
+            if (filterValue.startsWith('year_')) {
+                const year = filterValue.replace('year_', '');
+                document.title = "بنك الأسئلة - " + subjectName + " (دورات " + year + ")";
+                if (downloadBtnText) downloadBtnText.textContent = "تحميل دورات " + year + " (HTML)";
+
+                let visibleCount = 0;
+                let visibleSections = 0;
+                topicContainers.forEach(tc => {
+                    const tcYear = tc.getAttribute('data-year');
+                    if (tcYear === year) {
+                        tc.classList.remove('filter-hidden');
+                        visibleSections++;
+                        const qCards = tc.querySelectorAll('.question-card');
+                        visibleCount += qCards.length;
+                    } else {
+                        tc.classList.add('filter-hidden');
+                    }
+                });
+
+                indexRows.forEach(irw => {
+                    const rowYear = irw.querySelector('.index-row')?.getAttribute('data-year');
+                    if (rowYear === year) {
+                        irw.classList.remove('filter-hidden');
+                    } else {
+                        irw.classList.add('filter-hidden');
+                    }
+                });
+
+                if (statsSummary) {
+                    statsSummary.textContent = subjectName + " • دورات سنة " + year + " (" + visibleCount + " سؤال في " + visibleSections + " دورات)";
+                }
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + filterValue + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "") : "";
+            const qCount = targetTc ? (targetTc.querySelectorAll('.question-card')?.length || 0) : 0;
+
+            document.title = "بنك الأسئلة - " + subjectName + " (" + itemTitle + ")";
+            if (downloadBtnText) {
+                downloadBtnText.textContent = "تحميل " + itemTitle + " (HTML)";
+            }
+
+            topicContainers.forEach(tc => {
+                if (tc.getAttribute('data-group-id') === filterValue) {
+                    tc.classList.remove('filter-hidden');
+                } else {
+                    tc.classList.add('filter-hidden');
+                }
+            });
+
+            indexRows.forEach(irw => {
+                if (irw.getAttribute('data-group-id') === filterValue) {
+                    irw.classList.remove('filter-hidden');
+                } else {
+                    irw.classList.add('filter-hidden');
+                }
+            });
+
+            if (statsSummary) {
+                statsSummary.textContent = subjectName + " • " + itemTitle + " (" + qCount + " سؤال)";
+            }
+        }
+
+        function downloadGroupItem(event, groupId, title) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + groupId + '"]');
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + title, [targetTc]);
+            }
+        }
+
+        function downloadCurrentSelection() {
+            if (currentFilterId === 'all') {
+                const allContainers = Array.from(document.querySelectorAll('.topic-container'));
+                exportContentAsHtml(subjectName + " - بنك الأسئلة الكامل", allContainers);
+                return;
+            }
+
+            if (currentFilterId.startsWith('year_')) {
+                const year = currentFilterId.replace('year_', '');
+                const yearContainers = Array.from(document.querySelectorAll('.topic-container[data-year="' + year + '"]'));
+                exportContentAsHtml(subjectName + " - دورات سنة " + year, yearContainers);
+                return;
+            }
+
+            const targetTc = document.querySelector('.topic-container[data-group-id="' + currentFilterId + '"]');
+            const itemTitle = targetTc ? (targetTc.querySelector('.topic-title-text')?.textContent?.trim() || "قسم") : "قسم";
+            if (targetTc) {
+                exportContentAsHtml(subjectName + " - " + itemTitle, [targetTc]);
+            }
+        }
+
+        function exportContentAsHtml(title, containerElements) {
+            if (!containerElements || containerElements.length === 0) return;
+
+            let totalQs = 0;
+            let clonedContainersHtml = '';
+
+            containerElements.forEach(tc => {
+                const clone = tc.cloneNode(true);
+                clone.classList.remove('filter-hidden');
+                clone.querySelectorAll('.filter-hidden').forEach(el => el.remove());
+                const cards = clone.querySelectorAll('.question-card');
+                totalQs += cards.length;
+                clonedContainersHtml += clone.outerHTML + '\n';
+            });
+
+            const styleContent = document.querySelector('style') ? document.querySelector('style').innerHTML : '';
+            const watermarkEl = document.querySelector('.left-watermark-pulse');
+            const watermarkHtml = watermarkEl ? watermarkEl.outerHTML : '';
+
+            const standaloneHtml = '<!DOCTYPE html>' +
+                '<html lang="ar" dir="rtl">' +
+                '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<title>' + title + '</title>' +
+                '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+                '<link rel="preconnect" href="https://fonts.gstatic.com">' +
+                '<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+                '<style>' + styleContent + '</style>' +
+                '</head>' +
+                '<body class="study-mode">' +
+                watermarkHtml +
+                '<div class="controls-header no-print">' +
+                '<div class="header-title-container"><h1>' + title + '</h1></div>' +
+                '<div class="btn-group">' +
+                '<button id="btnStudy" class="btn btn-active" onclick="setStudyMode()">وضع الدراسة (إظهار الشرح)</button>' +
+                '<button id="btnExam" class="btn" onclick="setExamMode()">وضع الاختبار (إخفاء الشرح)</button>' +
+                '<button class="btn btn-print" onclick="window.print()">حفظ كـ PDF / طباعة</button>' +
+                '</div></div>' +
+                '<div class="container">' +
+                '<div class="index-page-container" style="page-break-after: always; margin-bottom: 24px;">' +
+                '<div class="subject-main-banner">' +
+                '<h1 class="subject-title">' + subjectName + '</h1>' +
+                '<p class="subject-subtitle">' + title + '</p>' +
+                '<p class="stats-summary">' + totalQs + ' سؤال</p>' +
+                '</div></div>' +
+                clonedContainersHtml +
+                '</div>' +
+                '<script>' +
+                'function setStudyMode() { setMode("study"); }' +
+                'function setExamMode() { setMode("exam"); }' +
+                'function setMode(mode) {' +
+                '  const body = document.body;' +
+                '  const btnStudy = document.getElementById("btnStudy");' +
+                '  const btnExam = document.getElementById("btnExam");' +
+                '  body.classList.remove("study-mode", "exam-mode");' +
+                '  btnStudy.classList.remove("btn-active");' +
+                '  btnExam.classList.remove("btn-active");' +
+                '  if (mode === "study") { body.classList.add("study-mode"); btnStudy.classList.add("btn-active"); }' +
+                '  else if (mode === "exam") { body.classList.add("exam-mode"); btnExam.classList.add("btn-active"); }' +
+                '}' +
+                '<' + '/script>' +
+                '</body></html>';
+
+            const cleanFileName = title.replace(/[\/\\:*?"<>|]+/g, '_').trim() + '.html';
+            const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = cleanFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
+    </script>
+</body>
+</html>
